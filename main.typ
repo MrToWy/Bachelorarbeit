@@ -1,23 +1,19 @@
+#let template(doc) = [
+    #set heading(numbering: "1.")
+    #doc
+]
+#show: template
+
+
 #let title = [
   Bachelorarbeit
 ]
 
-#set text(
-  font: "New Computer Modern",
-  size: 11pt
-)
-#set page(
-  paper: "a4",
-  margin: (x: 1.8cm, y: 1.5cm),
-  header: align(right, title),
-  numbering: "1",
-)
-#set par(
-  justify: true,
-  leading: 0.52em,
-)
+#let amazed(term, color: blue) = text(color, box[✨ #term ✨])
 
-#set heading(numbering: "1.")
+
+
+
 
 #align(center, text(17pt)[
   *#title*
@@ -38,6 +34,9 @@
 )
 
 = Introduction
+You are #amazed[beautiful]!
+You are #amazed(color: purple)[purple]!
+
 What is ```rust fn main()``` in Rust
 would be ```c int main()``` in C.
 
