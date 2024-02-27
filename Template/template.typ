@@ -95,14 +95,21 @@
   outline(depth: 3, indent: true)
   pagebreak()
 
-   // header
-  set page(header: locate(loc => {
+    // header
+    import "@preview/hydra:0.3.0": hydra
+    set page(header: locate(loc => {
 
+      // dont print anything when the first element on the page is a level 1 heading
+      let chapter = hydra(1, loc: loc)
+      if(chapter == none){
+        return
+      }
+    
       if calc.even(loc.page()) {
-        align(left, smallcaps(getCurrentHeading(loc, topLevel: true)))
+        align(left, smallcaps(getCurrentHeadingHydra(loc, topLevel: true)))
       }
       else{
-        align(right, emph(getCurrentHeading(loc)))
+        align(right, emph(getCurrentHeadingHydra(loc)))
       }
       
     line(length: 100%)
@@ -124,8 +131,8 @@
   // Main body.
   set page(numbering: "1", number-align: center)
   counter(page).update(1)
-  body
 
+  body
   
   set page(header: none)
 

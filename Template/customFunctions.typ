@@ -7,6 +7,16 @@
   ) #plabel
 ]
 
+#import "@preview/hydra:0.3.0": hydra
+
+#let getCurrentHeadingHydra(loc, topLevel: false) = {
+    if(topLevel){
+      return hydra(1)
+    }
+    
+    return hydra()
+}
+
 #let getCurrentHeading(loc, topLevel: false) = {
     let topLevelElems = query(
       selector(heading).before(loc),

@@ -28,8 +28,9 @@
 
 
 
-
+#import "@preview/hydra:0.3.0": hydra, anchor
 = Introduction
+
 What is ```rust fn main()``` in Rust
 would be ```c int main()``` in C.
 
@@ -49,7 +50,7 @@ In Harry Potter @harry finden sich viele tolle Geschichten. @electronic
 
 #pagebreak()
 
-== Brem En
+= Brem En
 #lorem(500)
 
 === Contributions
