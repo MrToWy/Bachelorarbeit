@@ -23,18 +23,8 @@
 )
 
 
-#let codeFigure(caption, plabel, filename) = [
-  #figure(
-  caption: caption,
-  kind: "code",
-  supplement: [Code],
-  include "Code/" + filename + ".typ"
-  ) #plabel
-]
 
-#codeFigure("Test", <HelloWorld>, "HelloWorld")
 
-In @HelloWorld you can see...
 
 
 
@@ -43,20 +33,23 @@ In @HelloWorld you can see...
 What is ```rust fn main()``` in Rust
 would be ```c int main()``` in C.
 
+#codeFigure("Test", <HelloWorld>, "HelloWorld")
+
+In @HelloWorld you can see...
 
 
 
 == Zitieren
 In Harry Potter @harry finden sich viele tolle Geschichten. @electronic
 
-== 1
+== Motivation
 #lorem(500)
-== 2
+== Lorem Ipsum
 #lorem(1500)
 
 #pagebreak()
 
-== 3
+== Brem En
 #lorem(500)
 
 === Contributions

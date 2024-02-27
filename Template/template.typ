@@ -1,3 +1,5 @@
+#import "customFunctions.typ": *
+
 #let project(
   title: "",
   subtitle: "",
@@ -95,22 +97,28 @@
 
    // header
   set page(header: locate(loc => {
-    let elems = query(
-      selector(heading).before(loc),
-      loc,
-    )
-    if elems != () {
-      let body = elems.last().body
-      align(right, emph(body))
-    }
+
+      if calc.even(loc.page()) {
+        align(left, smallcaps(getCurrentHeading(loc, topLevel: true)))
+      }
+      else{
+        align(right, emph(getCurrentHeading(loc)))
+      }
+      
     line(length: 100%)
   }))
+    
 
   // footer
-  set page(footer: [
-    #line(length: 100%)
-    #align(center, overline(counter(page).display("1"), extent: 5em, offset: -1em))
-])
+  set page(footer: locate(
+    loc => if calc.even(loc.page()) {
+      line(length: 100%)
+      align(left, counter(page).display("1"));
+    } else {
+      line(length: 100%)
+      align(right, counter(page).display("1"));
+    }
+  ))
 
 
   // Main body.
@@ -124,3 +132,5 @@
   // bibliography
   bibliography("../sources.yaml", style: "springer-lecture-notes-in-computer-science")
 }
+
+
