@@ -1,12 +1,23 @@
 #let codeFigure(caption, plabel, filename) = [
   #figure(
-  caption: caption,
-  kind: "code",
-  supplement: [Code],
-  include "../Code/" + filename + ".typ"
+    caption: caption,
+    kind: "code",
+    supplement: [Code],
+    include "../Code/" + filename + ".typ"
   ) #plabel
 ]
 
+#let imageFigure(caption, plabel, filename, height: auto, width: auto) = [
+  #figure(
+    image("../Images/" + filename, height: height, width: width),
+    caption: caption,
+  ) #plabel
+]
+
+
+
+
+// header
 #import "@preview/hydra:0.3.0": hydra
 
 #let getCurrentHeadingHydra(loc, topLevel: false) = {

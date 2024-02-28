@@ -23,12 +23,6 @@
 )
 
 
-
-
-
-
-
-#import "@preview/hydra:0.3.0": hydra, anchor
 = Introduction
 
 What is ```rust fn main()``` in Rust
@@ -37,6 +31,8 @@ would be ```c int main()``` in C.
 #codeFigure("Test", <HelloWorld>, "HelloWorld")
 
 In @HelloWorld you can see...
+
+#imageFigure("Bild", <Test>, "Test.png", width: 40%)
 
 
 
