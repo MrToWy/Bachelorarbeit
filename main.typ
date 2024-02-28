@@ -2,7 +2,7 @@
 
 
 #show: project.with(
-  title: "Modulhandbücher",
+  title: "Konzeption und Entwicklung eines Systems zur Verwaltung und Erstellung von Modulhandbüchern",
   subtitle: "Bachelorarbeit im Studiengang Mediendesigninformatik",
   author: "Tobias Wylega",
   author_email: "tobias@wylega.de",
@@ -23,37 +23,12 @@
 )
 
 
-= Introduction
-
-What is ```rust fn main()``` in Rust
-would be ```c int main()``` in C.
-
-#codeFigure("Test", <HelloWorld>, "HelloWorld")
-
-In @HelloWorld you can see...
-
-#imageFigure("Bild", <Test>, "Test.png", width: 40%)
+#include "Chapters/1-Einleitung.typ" 
+#include "Chapters/2-Planung.typ" 
+#include "Chapters/3-Implementierung.typ" 
+#include "Chapters/4-Review.typ" 
 
 
-
-== Zitieren
-In Harry Potter @harry finden sich viele tolle Geschichten. @electronic
-
-== Motivation
-#lorem(500)
-== Lorem Ipsum
-#lorem(1500)
-
-#pagebreak()
-
-= Brem En
-#lorem(500)
-
-=== Contributions
-#lorem(40)
-
-= Related Work
-#lorem(500)
-
+// #include "Chapters/Tests.typ"
 
 
