@@ -137,7 +137,7 @@
   set page(header: none)
 
   // bibliography
-  bibliography("../sources.yaml", style: "springer-lecture-notes-in-computer-science", title: "Literaturverzeichnis")
+  bibliography(("../sources.bib", "../sources.yaml"), style: "institute-of-electrical-and-electronics-engineers", title: "Literaturverzeichnis")
 }
 
 

@@ -22,6 +22,9 @@
   date: "15. August 2024",
 )
 
+@harry[s.~7]
+
+@kleuker_grundkurs_2013 sad @electronic[Hui]
 
 #include "Chapters/1-Einleitung.typ" 
 #include "Chapters/2-Planung.typ" 
