@@ -76,7 +76,12 @@ Kapitel 6
 
 == Architektur
 
-=== Bestehende Tools & Anwendungen
+=== Bestehende Tools & Anwendungen <andereAnwendungen>
+-> Motivation warum wir das selber machen
+-> wir brauchen eigene Lösung wegen Bastian
+StudyPlan Admin kann Module & Studiengänge verwalten 
+Bastian geht davon aus, dass das alles gefüllt ist 
+
 
 === Struktur des bestehenden Backends
 
