@@ -47,7 +47,15 @@ https://www.sophist.de/publikationen/requirements-engineering-und-management/#26
 Kapitel 6
 
 
+
+
+
 6.3.3 Interview Seite 107
+
+
+
+
+
 
 
 === Interview mit Studiendekan
