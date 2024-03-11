@@ -17,7 +17,7 @@
   
   set par(justify: true)
   
-  set text(font: "New Computer Modern", lang: "de")
+  set text(font: "Arial", lang: "de", size: 12pt) // replaced this font: New Computer Modern
   show math.equation: set text(weight: 400)
   set heading(numbering: "1.1.")
 
