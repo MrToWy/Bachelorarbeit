@@ -50,7 +50,6 @@ Kapitel 6
 
 
 
-6.3.3 Interview Seite 107
 
 
 
@@ -87,7 +86,7 @@ Bastian geht davon aus, dass das alles gefüllt ist
 
 === Struktur der bestehenden Frontends 
 
-== Entwurf
+== Entwurf <entwurf>
 
-=== Datenbankschema / Klassendiagramm
+=== Datenbankschema / Klassendiagramm <dbschema>
 
