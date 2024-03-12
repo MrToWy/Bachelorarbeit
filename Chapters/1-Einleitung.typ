@@ -1,4 +1,5 @@
 #import "../abbreviations.typ": *
+#import "../Template/customFunctions.typ": *
 
 = Einleitung <introduction>
 
@@ -9,15 +10,28 @@ In dieser Arbeit soll eine Webanwendung erstellt werden, welche die Bearbeitung 
 == Aufbau der Arbeit
 
 == Definition und Zweck eines Modulhandbuchs
-In @entwurf wird die Struktur von verschiedenen Modulhandbüchern untersucht und anschließend in @dbschema ein dazu passendes Datenbankschema erstellt.
 
-== Zielgruppen
+In § 7 der Nds. StudAkkVO @studAkkVO ist beschrieben, dass jeder Studiengang in zeitlich und thematisch abgegerenzte Module einzuteilen ist. Des weiteren ist eine Beschreibung des Moduls und bestimmter Merkmale erforderlich. 
+
+#attributedQuote([@modulhandbuecher])[
+Ein Modulhandbuch dient der Orientierung im Studium und beschreibt die einzelnen Module eines Studiengangs detailliert.
+
+Das Modulhandbuch spiegelt einerseits die Prüfungsordnung wider, bietet darüber hinaus jedoch umfangreiche inhaltliche Hinweise zu den einzelnen Lehrveranstaltungen [...].
+]
+
+@ects ECTS users' guide 
+
+Es gibt verschiedene Zielgruppen für Modulhandbücher, die in @zielgruppen genauer betrachtet werden. Des Weiteren wird in @entwurf die Struktur von verschiedenen Modulhandbüchern untersucht und anschließend in @dbschema ein dazu passendes Datenbankschema erstellt.
+
+== Zielgruppen <zielgruppen>
 Im folgenden sollen die verschiedenen Zielgruppen ermittelt und definiert werden.
+
+=== Studierende
+
 
 === Modulverantwortliche und Studiengangverantwortliche
 CG Handbücher macht z. B. Dennis 
 
-=== Studierende
 
 == Analyse des aktuellen Arbeitsprozesses und Identifikation von Schwachstellen
 Um einen Überblick über den aktuellen Arbeitsprozess zu erhalten wurde zunächst ein Interview mit dem derzeitigen Studiendekan Felix Heine durchgeführt. Das Interview orientierte sich an den Vorschlägen der Sophisten. Bereits bei der Einladung zum Interview wurden einige der Vorschläge beachtet. Der Studiendekan konnte sich den Interviewort selbst auswählen und erhielt die geplanten Fragen vorab zur Einsicht. Außerdem wurde ein Protokoll angefertigt und dem Studiendekan im Anschluss bereitgestellt um sicherzustellen, dass die gesammelten Informationen korrekt sind. 

@@ -1,3 +1,11 @@
+#let attributedQuote(label, body) = [
+  #quote(
+    block: true, quotes: true, attribution:             [#cite(label.target, form: "author") #label])[
+      #body
+    ]
+  ]
+
+
 #let codeFigure(caption, plabel, filename) = [
   #figure(
     caption: caption,
