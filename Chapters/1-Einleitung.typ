@@ -29,7 +29,7 @@ Der ECTS User-Guide @ects beschreibt, dass Modulhandbücher Studierenden vor und
 
 
 === Modulverantwortliche und Studiengangverantwortliche
-CG Handbücher macht z. B. Dennis 
+Aus einem Interview mit dem Studiendekan geht hervor, dass es neben den Studierenden noch andere zu betrachtende Zielgruppen gibt. Für die Bearbeitung von Modulhandbüchern sind an der #hsh verschiedene Personengruppen zuständig. Zum einen gibt es den Studiendekan. Dieser ist für die Veröffentlichung des Dokumentes verantwortlich. Der Studiendekan ist nicht dafür zuständig, die Inhalte der einzelnen Modulbeschreibungen anzupassen. Für diese Anpassungen gibt es die Modulverantwortlichen. Jedes Modul hat eine Person, die die Informationen der Modulbeschreibung aktuell halten soll und gleichzeitig Ansprechpartner für Fragen ist. 
 
 
 == Analyse des aktuellen Arbeitsprozesses und Identifikation von Schwachstellen
