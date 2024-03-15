@@ -19,7 +19,7 @@ Im letzten Kapitel, @review, werden die Ergebnisse überprüft. Dazu wird ein In
 
 == Definition und Zweck eines Modulhandbuchs
 
-§ 7 der Nds. StudAkkVO @studAkkVO beschreibt, dass jeder Studiengang in zeitlich und thematisch abgegrenzte Module einzuteilen ist. Des Weiteren ist eine Beschreibung des Moduls und dessen Merkmale erforderlich. 
+§ 7 der Niedersächsischen Studienakkreditierungsverordnung @studAkkVO beschreibt, dass jeder Studiengang in zeitlich und thematisch abgegrenzte Module einzuteilen ist. Des Weiteren ist eine Beschreibung des Moduls und dessen Merkmale erforderlich. 
 
 #attributedQuote([@modulhandbuecher])[
 Ein Modulhandbuch dient der Orientierung im Studium und beschreibt die einzelnen Module eines Studiengangs detailliert.
@@ -32,7 +32,7 @@ Es gibt verschiedene Zielgruppen für Modulhandbücher, die in @zielgruppen gena
  
 
 == Ähnliche Arbeiten
-Bevor mit der Planung des neuen Systems zur Verwaltung von Modulhandbüchern begonnen wurde, fand zunächst eine Recherche zu ähnlichen Arbeiten statt. Ein System, welches ein ähnliches Problem löst ist der Curriculum Designer im #hone @hisinone der #his @his. Das #hone wird beispielsweise von der Universität Hohenheim zur Verwaltung der Modulhandbücher genutzt @hohenheimHIS. Weiterhin ist das #hone an der #hsh im Einsatz @hshHIS, um dort die Prüfungsanmeldungen zu realisieren.
+Bevor mit der Planung des neuen Systems zur Verwaltung von Modulhandbüchern begonnen wurde, fand zunächst eine Recherche zu ähnlichen Arbeiten statt. Ein System, welches ein ähnliches Problem löst, ist der #quote()[Curriculum Designer] im #hone @hisinone der #his @his. Das #hone wird beispielsweise von der Universität Hohenheim zur Verwaltung der Modulhandbücher genutzt @hohenheimHIS. Weiterhin ist das #hone an der #hsh im Einsatz @hshHIS, um dort die Prüfungsanmeldungen zu realisieren.
 
 Webservices zur Anbindung von:
 E-Learning-Systemen, Raumplanern, Facility Management-Systemen etc.
