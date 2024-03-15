@@ -25,8 +25,9 @@
 
 #include "Chapters/1-Einleitung.typ" 
 #include "Chapters/2-Planung.typ" 
-#include "Chapters/3-Implementierung.typ" 
-#include "Chapters/4-Review.typ" 
+#include "Chapters/3-Entwurf.typ" 
+#include "Chapters/4-Implementierung.typ" 
+#include "Chapters/5-Review.typ" 
 
 
 // #include "Chapters/Tests.typ"

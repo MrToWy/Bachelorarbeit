@@ -94,17 +94,3 @@ Auf diese Leistungsfaktoren stoßen Sie zuerst, da die Stakeholder sie explizit 
 Beigeisterungsfaktoren
 Brainstorming
 Risiko, der Machbarkeit, Nützlichkeit und dem Begeisterungspotenzial.
-
-= Entwurf <entwurf>
-
-== Struktur eines Modulhandbuches <structure>
-
-== Datenbankschema / Klassendiagramm <dbschema>
-
-== Benutzeroberflächen <UI>
-
-=== Usability
-
-=== Grundgerüst
-
-=== Prototyp
