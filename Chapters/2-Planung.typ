@@ -88,5 +88,7 @@ Bastian geht davon aus, dass das alles gefüllt ist
 
 == Entwurf <entwurf>
 
+=== Struktur eines Modulhandbuches <structure>
+
 === Datenbankschema / Klassendiagramm <dbschema>
 
