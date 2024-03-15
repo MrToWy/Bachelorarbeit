@@ -1,9 +1,14 @@
 #let attributedQuote(label, body) = [
-  #quote(
-    block: true, quotes: true, attribution:             [#cite(label.target, form: "author") #label])[
-      #body
-    ]
+  #pad(left: 1em, right: 1em, rest: 3em)[
+      // use a box to prevent the quote from beeing split on two pages
+      #box(
+        quote(
+          block: true, quotes: true, attribution:             [#cite(label.target, form: "author") #label])[
+        #body
+    ])
   ]
+  ]
+  
 
 
 #let codeFigure(caption, plabel, filename) = [
