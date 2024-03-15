@@ -1,7 +1,7 @@
 #import "../abbreviations.typ": *
 #import "../Template/customFunctions.typ": *
 
-= Anforderungsanalyse
+= Anforderungsanalyse <anforderungsanalyse>
 Anforderungsanalyse = Einstieg in Softwareentwicklung
 -> besondere Wichtigkeit, da es mit laufender Zeit immer schwieriger wird Fehler zu korrigieren
 @kleuker_grundkurs_2013[s.~55]
@@ -102,3 +102,10 @@ Bastian geht davon aus, dass das alles gefüllt ist
 
 == Datenbankschema / Klassendiagramm <dbschema>
 
+== Benutzeroberflächen <UI>
+
+=== Usability
+
+=== Grundgerüst
+
+=== Prototyp

@@ -8,6 +8,14 @@ Modulhandbücher begegnen vielen Menschen bereits vor dem Start des Studiums bei
 In dieser Arbeit soll eine Webanwendung erstellt werden, welche die Bearbeitung und Veröffentlichung von Modulhandbüchern simplifiziert. Der neue Prozess soll eine bessere Usability haben und effizienter sein. Das Ergebnis dieser Arbeit wird ein Prototyp sein, mit dem Modulhandbücher in einer Oberfläche verwaltet, bearbeitet und angezeigt werden können. Die Oberfläche der Webanwendung wird dabei nicht unbedingt ästhetisch ansprechend sein, da der Fokus primär auf der Funktionalität und der Prozessoptimierung liegt.
 
 == Aufbau der Arbeit
+In dieser Arbeit werden zunächst in @anforderungsanalyse die Anforderungen an das neue System ermittelt. Dafür wird der aktuelle Prozess analysiert, auf Schwachstellen geprüft und es werden die Zielgruppen ermittelt. Anschließend werden Use-Cases, sowie ein zukünftiger Arbeitsprozess entwickelt. Da es bereits Anwendungen gibt, die mit dem neuen System kommunizieren sollen, werden die Anwendungen und deren Struktur untersucht. Abschließend wird eine Liste der Anforderungen erstellt.
+
+In @entwurf werden die Strukturen verschiedener Modulhandbücher untersucht und verglichen. Aus den Ergebnissen der Untersuchung soll dann ein Datenbankschema erstellt werden. Außerdem werden Entwürfe für die Benutzeroberflächen erstellt.
+
+In @implementierung wird zu dem zuvor erstellten Datenbankschema ein Backend erstellt. Anschließend werden die Entwürfe der Benutzeroberflächen angefertigt. 
+
+Im letzten Kapitel, @review, werden die Ergebnisse überprüft. Dazu wird ein Interview geführt und es werden die Anforderungen auf Erfüllung geprüft. Im Ausblick werden Ideen für zukünftige Erweiterungen diskutiert.
+
 
 == Definition und Zweck eines Modulhandbuchs
 
