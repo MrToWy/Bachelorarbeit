@@ -33,8 +33,11 @@ Aus einem Interview mit dem Studiendekan geht hervor, dass es neben den Studiere
 
 
 == Analyse des aktuellen Arbeitsprozesses und Identifikation von Schwachstellen
-Um einen Überblick über den aktuellen Arbeitsprozess zu erhalten wurde zunächst ein Interview mit dem derzeitigen Studiendekan Felix Heine durchgeführt. Das Interview orientierte sich an den Vorschlägen der Sophisten. Bereits bei der Einladung zum Interview wurden einige der Vorschläge beachtet. Der Studiendekan konnte sich den Interviewort selbst auswählen und erhielt die geplanten Fragen vorab zur Einsicht. Außerdem wurde ein Protokoll angefertigt und dem Studiendekan im Anschluss bereitgestellt um sicherzustellen, dass die gesammelten Informationen korrekt sind. 
-6.3.3 Interview Seite 107
+Um einen Überblick über den aktuellen Arbeitsprozess zu erhalten, wurde zunächst ein Interview mit dem derzeitigen Studiendekan Felix Heine durchgeführt. Das Interview orientierte sich an den Vorschlägen der Sophisten. Bereits bei der Einladung zum Interview wurden einige der Vorschläge beachtet. Der Studiendekan konnte sich den Interviewort selbst auswählen und erhielt die geplanten Fragen vorab zur Einsicht. @rupp_requirements-engineering_2014[Seite 107-109]
+
+Aus dem Interview ergaben sich zum einen die bereits vorgestellte Konkretisierung der Zielgruppen in @zielgruppen. Zum Anderen wurde der aktuelle Arbeitsprozess klar definiert, sowie dessen Schwachstellen aufgezeigt.
+
+
 
 
 == Ähnliche Arbeiten
