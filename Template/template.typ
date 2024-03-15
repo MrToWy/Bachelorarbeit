@@ -133,6 +133,8 @@
     }
   ))
 
+  // ensure, that a level 1 heading always starts on an empty page
+  show heading.where(level:1) : it => { pagebreak(weak:true, to: "even"); it}
 
   // Main body.
   set page(numbering: "1", number-align: center)
