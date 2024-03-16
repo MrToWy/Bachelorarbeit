@@ -26,6 +26,8 @@ Jede in @andereAnwendungen beschriebene Anwendung stellt im Backend ein Modul da
 
 Zusätzlich gibt es Module, die zwischen allen Anwendungen geteilt werden. Diese Shared-Modules bieten beispielsweise Funktionen zur Benutzerverwaltung und zum Versand von Emails an.
 
+Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzepte. Damit ein Modul beispielsweise eine HTTP-GET-Anfrage bearbeiten kann, muss es eine #gls("Controller")-Klasse haben. Ein #gls("Controller") nimmt die Anfrage an und verarbeitet sie. Falls hierbei Daten benötigt werden, ruft der #gls("Controller") eine #gls("Service")-Klasse auf. Diese lädt die angefragten Daten aus der Datenbank und gibt sie an den #gls("Controller") zurück. Für die Datenbankzugriffe wird #gls("Prisma") genutzt. Es gibt eine schema.prisma-Datei, in der die Struktur der Datenbank definiert ist. Somit muss kein SQL geschrieben werden, sondern es können Methoden von #gls("Prisma") genutzt werden.
+
 
 === Struktur der bestehenden Datenbank
 
@@ -40,13 +42,12 @@ Das Interview wurde mit dem derzeitigen Studiendekan #heine durchgeführt. Das I
 Aus dem Interview ergaben sich zum einen die bereits vorgestellte Konkretisierung der Zielgruppen in @zielgruppen. Zum Anderen wurde der aktuelle Arbeitsprozess klar definiert, sowie dessen Schwachstellen aufgezeigt.
 
 == Analyse des aktuellen Arbeitsprozesses und Identifikation von Schwachstellen
+Tools nennen, die Heine nutzt. Artefakte nennen, die manuell erstellt werden und in Zukunft generiert werden.
 
 
 
 == Zielgruppen <zielgruppen>
 Im Folgenden sollen die verschiedenen Zielgruppen eines Modulhandbuches ermittelt und definiert werden.
-
-(https://www.sophist.de/fileadmin/user_upload/Bilder_zu_Seiten/Publikationen/RE6/Webinhalte_Buchteil_2/Webinhalt_Checkliste_Stakeholderklassen.pdf, Tabelle Kapitel 5.2.1)
 
 
 === Studierende

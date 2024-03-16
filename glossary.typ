@@ -20,6 +20,12 @@
           description: [
             Eine Anwendung, mit der Studierende ihr Studium individuell planen können.
           ]
+        ),
+
+        Controller: (
+          description: [
+            Controller sind für die Bearbeitung eingehender Anfragen und die Rückgabe von Antworten an den Client zuständig. @nestDocumentation
+          ]
         )
     )
 
