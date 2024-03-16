@@ -21,13 +21,17 @@
   
   set text(font: "Arial", lang: "de", size: 12pt, hyphenate: false) // replaced this font: New Computer Modern
   show math.equation: set text(weight: 400)
+  
   set heading(
-    numbering: "1.1.",
-    supplement: it => 
-      if it.level == 1 [Kapitel]
-      else if it.level == 2 [Abschnitt] 
-      else [Unterabschnitt]
+    numbering: "1.1."
   )
+
+  show heading.where(level: 1): set heading(supplement: [Kapitel])
+
+  show heading.where(level: 2): set heading(supplement: [Abschnitt])
+
+  show heading.where(level: 3): set heading(supplement: [Unterabschnitt])
+
 
 
   // code styling
