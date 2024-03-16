@@ -13,7 +13,9 @@
   // Set the document's basic properties.
   set document(author: author, title: title)
   set page("a4")
+
   set page(margin: (inside: 3.5cm, outside: 2cm, y: 1.75cm))
+  //set page(margin: (inside: 2.75cm, outside: 2.75cm, y: 1.75cm))
   
   set par(justify: true)
   
