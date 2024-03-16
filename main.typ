@@ -19,7 +19,7 @@
     Hochschule Hannover\    
     #link("mailto:dennis.allerkamp@hs-hannover.de")
   ],
-  date: "15. August 2024",
+  date: "15. August 2024"
 )
 
 
