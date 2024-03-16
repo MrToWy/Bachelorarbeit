@@ -9,15 +9,26 @@ Die Planung des neuen Systems für Modulhandbücher beginnt mit der Anforderungs
 
 
 == Architektur
+In der Abteilung Informatik der #hsh gibt es bereits mehrere Anwendungen, die ein gemeinsames Backend nutzen. Dieses Backend soll in dieser Arbeit erweitert werden, um auch den anderen Anwendungen die Auflistung der Modulhandbücher anbieten zu können. Zusätzlich wird eine neue Anwendung erstellt, die mit dem angepassten Backend kommunizieren wird.
 
-=== Bestehende Tools & Anwendungen <andereAnwendungen>
--> Motivation warum wir das selber machen
--> wir brauchen eigene Lösung wegen Bastian
-StudyPlan Admin kann Module & Studiengänge verwalten 
-Bastian geht davon aus, dass das alles gefüllt ist 
+
+=== Bestehende Anwendungen <andereAnwendungen>
+
+Studierende, die planen möchten, welches Modul sie in welchem Semester erledigen, gibt es die Anwendung #quote()[StudyPlan]. Hier können Studierende vom vorgeschlagenen Studienverlauf abweichen und dabei sicherstellen, trotzdem alle Module in der gewünschten Zeit zu erledigen. #quote()[StudyPlan] wird von dem angepassten Backend profitieren, weil sich daraus eine stets aktuelle Auflistung aller Module inklusive deren Zeitaufwände ergibt.
+
+Die Entwicklung von #quote()[StudyPlan] läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt.
+
+Außerdem gibt es die Anwendung #quote()[StudyGraph], welche Studieninhalte visualisiert und somit auch die Informationen zu den angebotenen Modulen benötigt.
 
 
 === Struktur des bestehenden Backends
+Das bestehende Backend der #quote()[StudyBase] ist mithilfe des auf JavaScript basierenden Framework NestJS erstellt. NestJS legt einen Fokus auf "effiziente, zuverlässige und skalierbare serverseitige Anwendungen" @nestjs.
+
+Das NestJS Backend ist modular aufgebaut.
+Jede in @andereAnwendungen beschriebene Anwendung stellt im Backend ein Modul dar. Die Module der einzelnen Anwendungen enthalten ebenfalls Module, die die einzelnen Funktionen abbilden. Beispielsweise gibt es im Modul StudyPlan das Modul degrees, welches alle Studiengänge verwaltet.
+
+Zusätzlich gibt es Module, die zwischen allen Anwendungen geteilt werden. Diese Shared-Modules bieten beispielsweise Funktionen zur Benutzerverwaltung und zum Versand von Emails an.
+
 
 === Struktur der bestehenden Datenbank
 
