@@ -1,5 +1,6 @@
 #import "customFunctions.typ": *
 
+
 #let project(
   title: "",
   subtitle: "",
@@ -8,6 +9,7 @@
   prof: none,
   second_prof: none,
   date: none,
+  glossaryColumns: 1,
   body,
 ) = {
   // Set the document's basic properties.
@@ -22,9 +24,7 @@
   set text(font: "Arial", lang: "de", size: 12pt, hyphenate: false) // replaced this font: New Computer Modern
   show math.equation: set text(weight: 400)
   
-  set heading(
-    numbering: "1.1."
-  )
+
 
   show heading.where(level: 1): set heading(supplement: [Kapitel])
 
@@ -107,6 +107,21 @@
   outline(depth: 3, indent: true)
   pagebreak()
 
+
+  // glossary
+  counter(page).update(0)
+  show figure.where(kind: "jkrb_glossary"): it => {emph(it.body)}
+  [
+    = Glossar <Glossary>
+    #line(length: 100%)
+
+    #columns(glossaryColumns)[
+        #make-glossary(glossary-pool)
+    ]
+  ]
+  
+    
+
     // header
     import "@preview/hydra:0.3.0": hydra
     set page(header: locate(loc => {
@@ -142,9 +157,16 @@
   // ensure, that a level 1 heading always starts on an empty page
   show heading.where(level:1) : it => { pagebreak(weak:true, to: "even"); it}
 
+
+
+
+  
   // Main body.
   set page(numbering: "1", number-align: center)
   counter(page).update(1)
+  set heading(
+    numbering: "1.1."
+  )
 
   body
   

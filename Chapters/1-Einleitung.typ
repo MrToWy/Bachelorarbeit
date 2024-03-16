@@ -1,4 +1,3 @@
-#import "../abbreviations.typ": *
 #import "../Template/customFunctions.typ": *
 
 = Einleitung <introduction>

@@ -1,3 +1,7 @@
+#import "@preview/gloss-awe:0.0.5": *
+#import "../abbreviations.typ": *
+#import "../glossary.typ": *
+
 #let attributedQuote(label, body) = [
   #pad(left: 1em, right: 1em, rest: 3em)[
       // use a box to prevent the quote from beeing split on two pages

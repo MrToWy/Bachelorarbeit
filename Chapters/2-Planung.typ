@@ -1,11 +1,8 @@
-#import "../abbreviations.typ": *
 #import "../Template/customFunctions.typ": *
 
 = Anforderungsanalyse <anforderungsanalyse>
 
 Die Planung des neuen Systems für Modulhandbücher beginnt mit der Anforderungsanalyse. Der Schritt der Anforderungsanalyse hat eine besondere Wichtigkeit, da es mit fortlaufender Projektlaufzeit immer aufwändiger wird, Fehler zu korrigieren oder Anpassungen vorzunehmen. @kleuker_grundkurs_2013[Seite 55] Damit diese wichtige Phase gründlich absolviert wird, folgt der Ablauf der Anforderungsanalyse den Empfehlungen von Chris Rupp und den SOPHISTen @rupp_requirements-engineering_2014. Es werden zunächst der aktuelle Arbeitsprozess und die Architektur benachbarter Systeme analysiert und dessen Probleme erkundet. Anschließend werden die Zielgruppen des neuen Systems ermittelt. Abschließend werden Ziele definiert.
-
-
 
 
 == Architektur
@@ -14,18 +11,18 @@ In der Abteilung Informatik der #hsh gibt es bereits mehrere Anwendungen, die ei
 
 === Bestehende Anwendungen <andereAnwendungen>
 
-Studierende, die planen möchten, welches Modul sie in welchem Semester erledigen, gibt es die Anwendung #quote()[StudyPlan]. Hier können Studierende vom vorgeschlagenen Studienverlauf abweichen und dabei sicherstellen, trotzdem alle Module in der gewünschten Zeit zu erledigen. #quote()[StudyPlan] wird von dem angepassten Backend profitieren, weil sich daraus eine stets aktuelle Auflistung aller Module inklusive deren Zeitaufwände ergibt.
+Studierende, die planen möchten, welches Modul sie in welchem Semester erledigen, gibt es die Anwendung #gls("StudyPlan"). Hier können Studierende vom vorgeschlagenen Studienverlauf abweichen und dabei sicherstellen, trotzdem alle Module in der gewünschten Zeit zu erledigen. #gls("StudyPlan") wird von dem angepassten Backend profitieren, weil sich daraus eine stets aktuelle Auflistung aller Module inklusive deren Zeitaufwände ergibt.
 
-Die Entwicklung von #quote()[StudyPlan] läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt.
+Die Entwicklung von #gls("StudyPlan") läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt.
 
-Außerdem gibt es die Anwendung #quote()[StudyGraph], welche Studieninhalte visualisiert und somit auch die Informationen zu den angebotenen Modulen benötigt.
+Außerdem gibt es die Anwendung #gls("StudyGraph"), welche Studieninhalte visualisiert und somit auch die Informationen zu den angebotenen Modulen benötigt.
 
 
 === Struktur des bestehenden Backends
-Das bestehende Backend der #quote()[StudyBase] ist mithilfe des auf JavaScript basierenden Framework NestJS erstellt. NestJS legt einen Fokus auf "effiziente, zuverlässige und skalierbare serverseitige Anwendungen" @nestjs.
+Das bestehende Backend, auch #gls("StudyBase") genannt, ist mithilfe des auf JavaScript basierenden Framework NestJS erstellt. NestJS legt einen Fokus auf "effiziente, zuverlässige und skalierbare serverseitige Anwendungen" @nestjs.
 
 Das NestJS Backend ist modular aufgebaut.
-Jede in @andereAnwendungen beschriebene Anwendung stellt im Backend ein Modul dar. Die Module der einzelnen Anwendungen enthalten ebenfalls Module, die die einzelnen Funktionen abbilden. Beispielsweise gibt es im Modul StudyPlan das Modul degrees, welches alle Studiengänge verwaltet.
+Jede in @andereAnwendungen beschriebene Anwendung stellt im Backend ein Modul dar. Die Module der einzelnen Anwendungen enthalten ebenfalls Module, die die einzelnen Funktionen abbilden. Beispielsweise gibt es im Modul #gls("StudyPlan") das Modul _degrees_, welches alle Studiengänge verwaltet.
 
 Zusätzlich gibt es Module, die zwischen allen Anwendungen geteilt werden. Diese Shared-Modules bieten beispielsweise Funktionen zur Benutzerverwaltung und zum Versand von Emails an.
 
