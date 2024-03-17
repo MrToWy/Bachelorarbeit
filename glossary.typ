@@ -26,7 +26,7 @@
           description: [
             Controller sind für die Bearbeitung eingehender Anfragen und die Rückgabe von Antworten an den Client zuständig. @nestDocumentation
           ]
-        )
+        ),
     )
 
     

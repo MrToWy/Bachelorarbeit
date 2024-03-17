@@ -1,6 +1,8 @@
 #import "@preview/gloss-awe:0.0.5": *
 #import "../abbreviations.typ": *
 #import "../glossary.typ": *
+#import "@preview/treet:0.1.0": *
+
 
 #let attributedQuote(label, body) = [
   #pad(left: 1em, right: 1em, rest: 3em)[
