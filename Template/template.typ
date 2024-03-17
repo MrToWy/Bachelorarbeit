@@ -1,5 +1,6 @@
 #import "customFunctions.typ": *
 
+#show par: it => [#it <meta:content>]
 
 #let project(
   title: "",

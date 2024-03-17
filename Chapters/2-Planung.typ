@@ -18,8 +18,8 @@ Die Entwicklung von #gls("StudyPlan") läuft parallel zur Entwicklung dieser Bac
 Außerdem gibt es die Anwendung #gls("StudyGraph"), welche Studieninhalte visualisiert und somit auch die Informationen zu den angebotenen Modulen benötigt.
 
 
-=== Struktur des bestehenden Backends
-Das bestehende Backend, auch #gls("StudyBase") genannt, ist mithilfe des auf JavaScript basierenden Framework NestJS erstellt. NestJS legt einen Fokus auf "effiziente, zuverlässige und skalierbare serverseitige Anwendungen" @nestjs.
+=== Struktur des bestehenden Backends <backend>
+Das bestehende Backend, auch #studybase genannt, ist mithilfe des auf JavaScript basierenden Framework NestJS erstellt. NestJS legt einen Fokus auf "effiziente, zuverlässige und skalierbare serverseitige Anwendungen" @nestjs.
 
 Das NestJS Backend ist modular aufgebaut.
 Jede in @andereAnwendungen beschriebene Anwendung stellt im Backend ein Modul dar. Die Module der einzelnen Anwendungen enthalten ebenfalls Module, die die einzelnen Funktionen abbilden. Beispielsweise gibt es im Modul #gls("StudyPlan") das Modul _degrees_, welches alle Studiengänge verwaltet.
@@ -29,7 +29,7 @@ Zusätzlich gibt es Module, die zwischen allen Anwendungen geteilt werden. Diese
 Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzepte. Damit ein Modul beispielsweise eine HTTP-GET-Anfrage bearbeiten kann, muss es eine #gls("Controller")-Klasse haben. Ein #gls("Controller") nimmt die Anfrage an und verarbeitet sie. Falls hierbei Daten benötigt werden, ruft der #gls("Controller") eine #gls("Service")-Klasse auf. Diese lädt die angefragten Daten aus der Datenbank und gibt sie an den #gls("Controller") zurück. Für die Datenbankzugriffe wird #gls("Prisma") genutzt. Es gibt eine schema.prisma-Datei, in der die Struktur der Datenbank definiert ist. Somit muss kein SQL geschrieben werden, sondern es können Methoden von #gls("Prisma") genutzt werden.
 
 #par(leading: 0.5em)[
-#figure()[
+#figure(caption: "Ordnerstruktur der " + studybase)[
 #align(left)[
 #tree-list()[
 - StudyBase/src
@@ -48,14 +48,17 @@ Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzept
       - Prisma.Service    
 ]]]]
 
-#lorem(61)
-#lorem(1)
 
 === Struktur der bestehenden Datenbank
+Die Datenbank des Backends wird mithilfe von #gls("Prisma") und dessen schema.prisma-Datei automatisch generiert. Es gibt Tabellen für Module und Studiengänge.
 
-=== Struktur der bestehenden Frontends 
+=== Struktur einer beispielhaften Angular Anwendung
+Eine Angular Anwendung besteht aus Komponenten und Seiten. Auf einer Seite werden 0 bis n Komponenten in einer HTML-ähnlichen Struktur organisiert. 
 
+Eine Komponente ist ein wiederverwendbares Element auf einer Website - beispielsweise ein Drop-Down, oder eine Textbox. Eine Komponente ist ebenfalls in der HTML-ähnlichen Struktur organisiert. In der Komponente können sich HTML-Elemente und andere Angular-Komponenten befinden.
 
+Komponenten und Seiten haben eine .HTML-Datei für die Beschreibung der Struktur, eine .SCSS-Datei für die Beschreibung des Aussehens, sowie eine .TS-Datei für kleinere Logiken. Geschäftslogik wird meist in seperate Service-Klassen ausgelagert - ähnlich wie schon in <backend> beschrieben.
+  
 == Interview mit Studiendekan
 Da die Anforderungen sowie der aktuelle Arbeitsablauf noch unklar waren, musste eine Methode gefunden werden, um beides gründlich zu durchleuchten. Ein Interview hat den entscheidenden Vorteil, dass der Verlauf des Gesprächs individuell angepasst werden kann. Wenn sich neue Fragen ergeben, oder Fragen nicht ausreichend beantwortet wurden, kann im Interview direkt nachgefragt werden.@rupp_requirements-engineering_2014[Kapitel 6.3.3] 
 
