@@ -25,7 +25,31 @@
   
   set text(font: "Arial", lang: "de", size: 12pt, hyphenate: false) // replaced this font: New Computer Modern
   show math.equation: set text(weight: 400)
-  
+
+
+  // heading size
+  show heading.where(
+  level: 1
+): it => pad(bottom: 1em)[
+  #set text(2em)
+  #it
+]
+
+  // heading size
+  show heading.where(
+  level: 2
+): it => pad(bottom: 0.4em, top: 0.4em)[
+  #set text(1.3em)
+  #it
+]
+
+  // heading size
+  show heading.where(
+  level: 3
+): it => pad(bottom: 0.4em, top: 0.4em)[
+  #set text(1.25em)
+  #it
+]
 
 
   show heading.where(level: 1): set heading(supplement: [Kapitel])
