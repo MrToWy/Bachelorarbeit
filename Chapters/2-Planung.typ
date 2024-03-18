@@ -85,6 +85,8 @@ Aus einem Interview mit dem Studiendekan geht hervor, dass es neben den Studiere
 
 
 == Use Cases <usecases>
+#hide()[
+
 Die Ergebnisse aus dem Interview werden mithilfe der Use–Case–Modellierung verwendet, um aufzuzeigen, welche Funktionen die einzelnen Akteure im neuen System verwenden können.
 
 
@@ -92,13 +94,16 @@ Die Ergebnisse aus dem Interview werden mithilfe der Use–Case–Modellierung v
 @rupp_requirements-engineering_2014[s.~192]
 
 
-
+]
 
 == Zukünftiger Arbeitsprozess
 
 
 
 == Anforderungen 
+
+#hide()[
+
 @rupp_requirements-engineering_2014[Kapitel 5.3]
 
 
@@ -118,8 +123,9 @@ Tab. 5.1 Leitfragen zur Erstellung hoch-qualitativer Anforderungen
 Kontextgrenzen
 @rupp_requirements-engineering_2014[Kapitel 5.4.2]
 
-
 6.2
+
+  
 #image("../Images/Faktoren.png")
 Basisfaktoren
 Wenn Ihnen das Fachgebiet geläufig ist, kennen Sie diese in vielen Fällen selbst und könnten sie selbst ergänzen.
@@ -129,3 +135,5 @@ Auf diese Leistungsfaktoren stoßen Sie zuerst, da die Stakeholder sie explizit 
 Beigeisterungsfaktoren
 Brainstorming
 Risiko, der Machbarkeit, Nützlichkeit und dem Begeisterungspotenzial.
+
+]

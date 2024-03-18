@@ -122,7 +122,7 @@
 //hide()[
 outline(
   title: [Abbildungsverzeichnis],
-  target: figure.where(kind: image),
+  target: figure,
   indent: true
 ) //]
 
