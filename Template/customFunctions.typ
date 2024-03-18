@@ -48,6 +48,12 @@
 }
 
 #let getCurrentHeading(loc, topLevel: false) = {
+
+    let chapterNumber = counter(heading).display()
+    if(topLevel){
+      chapterNumber = str(counter(heading).get().at(0))
+    }
+  
     let topLevelElems = query(
       selector(heading).before(loc),
       loc,
@@ -66,5 +72,5 @@
       currentTopLevelElem = topLevelElems.last().body
     }
     
-    return currentTopLevelElem
+    return chapterNumber + " " + currentTopLevelElem
 }

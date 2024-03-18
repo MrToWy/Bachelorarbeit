@@ -134,10 +134,10 @@
       }
     
       if calc.even(loc.page()) {
-        align(left, smallcaps(getCurrentHeadingHydra(loc, topLevel: true)))
+        align(left, smallcaps(getCurrentHeading(loc, topLevel: true)))
       }
       else{
-        align(right, emph(getCurrentHeadingHydra(loc)))
+        align(right, emph(getCurrentHeading(loc)))
       }
       
     line(length: 100%)
