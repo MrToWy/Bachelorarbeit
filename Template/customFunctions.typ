@@ -3,9 +3,12 @@
 #import "../glossary.typ": *
 #import "@preview/treet:0.1.0": *
 
+#let sidePadding = 1em
+#let topBotPadding = 3em
+
 
 #let attributedQuote(label, body) = [
-  #pad(left: 1em, right: 1em, rest: 3em)[
+  #pad(left: sidePadding, right: sidePadding, rest: topBotPadding)[
       // use a box to prevent the quote from beeing split on two pages
       #box(
         quote(
@@ -18,21 +21,46 @@
 
 
 #let codeFigure(caption, plabel, filename) = [
+  #pad(left: sidePadding, right: sidePadding, rest: topBotPadding)[
   #figure(
     caption: caption,
     kind: "code",
     supplement: [Code],
     include "../Code/" + filename + ".typ"
   ) #plabel
-]
+]]
 
 #let imageFigure(plabel, filename, pCaption, height: auto, width: auto) = [
+  #align(center)[
+  #pad(left: sidePadding, right: sidePadding, rest: topBotPadding)[
   #figure(
     image("../Images/" + filename, height: height, width: width),
-    caption: pCaption,
+    caption: pCaption
   ) #plabel
-]
+]]]
 
+#let treeFigure(pLabel, pCaption, content) = [
+#pad(left: sidePadding, right: sidePadding, rest: topBotPadding)[
+#par(leading: 0.5em)[
+#figure(caption: pCaption)[
+#align(left)[
+#tree-list()[
+- StudyBase/src
+  - Plan
+    - Plan.Module
+    - Degrees
+      - Degree.Module
+      - Degree.Controller
+      - Degree.Service
+  - Shared
+    - Mailer
+      - Mailer.Module
+      - Mailer.Service
+    - Prisma
+      - Prisma.Module
+      - Prisma.Service    
+]]] #pLabel ]]
+]
 
 
 

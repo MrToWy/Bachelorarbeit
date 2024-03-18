@@ -28,11 +28,8 @@ Zusätzlich gibt es Module, die zwischen allen Anwendungen geteilt werden. Diese
 
 Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzepte. Damit ein Modul beispielsweise eine HTTP-GET-Anfrage bearbeiten kann, muss es eine #gls("Controller")-Klasse haben. Ein #gls("Controller") nimmt die Anfrage an und verarbeitet sie. Falls hierbei Daten benötigt werden, ruft der #gls("Controller") eine #gls("Service")-Klasse auf. Diese lädt die angefragten Daten aus der Datenbank und gibt sie an den #gls("Controller") zurück. Für die Datenbankzugriffe wird #gls("Prisma") genutzt. 
 
-#par(leading: 0.5em)[
-#figure(caption: "Ordnerstruktur der " + studybase)[
-#align(left)[
-#tree-list()[
-- StudyBase/src
+#treeFigure(<backendFiles>, "Ordnerstruktur der " + studybase)[
+  - StudyBase/src
   - Plan
     - Plan.Module
     - Degrees
@@ -45,9 +42,8 @@ Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzept
       - Mailer.Service
     - Prisma
       - Prisma.Module
-      - Prisma.Service    
-]]]]
-
+      - Prisma.Service   
+]
 
 === Struktur der bestehenden Datenbank
 Es gibt eine schema.prisma-Datei, in der die Struktur der relationalen Datenbank definiert ist. Somit muss kein SQL geschrieben werden, sondern es können Methoden von #gls("Prisma") genutzt werden. Es gibt Tabellen für Module und Studiengänge. Die Tabellen werden von #gls("Prisma") generiert. Änderungen an der Struktur müssen demnach an der schema.prisma-Datei erfolgen. Dadurch ist die Struktur der Datenbank versioniert und kann in einer Quellcodeverwaltung abgelegt werden.
