@@ -100,17 +100,35 @@
   
   pagebreak()
 
+
   // Table of contents.
   show outline.entry.where(
     level: 1
   ): it => {
-    v(2em, weak: true)
-    strong(it)
+    if(it.element.has("level")){
+      v(2em, weak: true)
+       strong(it)
+    }
+    else{
+      v(1.2em, weak: true)
+      it
+    }
+   
   }
   outline(depth: 3, indent: true)
   pagebreak()
 
+// table of figures
+//hide()[
+outline(
+  title: [Abbildungsverzeichnis],
+  target: figure.where(kind: image),
+  indent: true
+) //]
 
+pagebreak()
+
+  
   // glossary
   counter(page).update(0)
   show figure.where(kind: "jkrb_glossary"): it => {emph(it.body)}
@@ -122,6 +140,9 @@
         #make-glossary(glossary-pool)
     ]
   ]
+
+
+  
   
     
 
@@ -162,9 +183,6 @@
 
   // ensure, that a level 1 heading always starts on an empty page
   show heading.where(level:1) : it => { pagebreak(weak:true, to: "even"); it}
-
-
-
 
   
   // Main body.
