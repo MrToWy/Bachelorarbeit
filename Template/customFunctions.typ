@@ -26,10 +26,10 @@
   ) #plabel
 ]
 
-#let imageFigure(caption, plabel, filename, height: auto, width: auto) = [
+#let imageFigure(plabel, filename, pCaption, height: auto, width: auto) = [
   #figure(
     image("../Images/" + filename, height: height, width: width),
-    caption: caption,
+    caption: pCaption,
   ) #plabel
 ]
 
@@ -41,10 +41,10 @@
 
 #let getCurrentHeadingHydra(loc, topLevel: false) = {
     if(topLevel){
-      return hydra(1)
+      return hydra(1, top-margin:3.75cm)
     }
     
-    return hydra()
+    return hydra(top-margin:3.75cm)
 }
 
 #let getCurrentHeading(loc, topLevel: false) = {

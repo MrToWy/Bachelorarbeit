@@ -27,6 +27,18 @@
             Controller sind für die Bearbeitung eingehender Anfragen und die Rückgabe von Antworten an den Client zuständig. @nestDocumentation
           ]
         ),
+        
+        NestJS: (
+          description: [
+            Ein auf JavaScript basierendes Framework für serverseitige Anwendungen. @nestDocumentation
+          ]
+        ),
+
+        Prisma:(
+          description: [
+            "Automatisch generierter und typsicherer Datenbankabfrage-Generator für Node.js & TypeScript" @prisma
+          ]
+        )
     )
 
     

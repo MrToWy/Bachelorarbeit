@@ -2,7 +2,7 @@
 
 = Anforderungsanalyse <anforderungsanalyse>
 
-Die Planung des neuen Systems für Modulhandbücher beginnt mit der Anforderungsanalyse. Der Schritt der Anforderungsanalyse hat eine besondere Wichtigkeit, da es mit fortlaufender Projektlaufzeit immer aufwändiger wird, Fehler zu korrigieren oder Anpassungen vorzunehmen. @kleuker_grundkurs_2013[Seite 55] Damit diese wichtige Phase gründlich absolviert wird, folgt der Ablauf der Anforderungsanalyse den Empfehlungen von Chris Rupp und den SOPHISTen @rupp_requirements-engineering_2014. Es werden zunächst der aktuelle Arbeitsprozess und die Architektur benachbarter Systeme analysiert und dessen Probleme erkundet. Anschließend werden die Zielgruppen des neuen Systems ermittelt. Abschließend werden Ziele definiert.
+Die Planung des neuen Systems für Modulhandbücher beginnt mit der Anforderungsanalyse. Der Schritt der Anforderungsanalyse hat eine besondere Wichtigkeit, da es mit fortlaufender Projektlaufzeit immer aufwändiger wird, Fehler zu korrigieren oder Anpassungen vorzunehmen. @kleuker_grundkurs_2013[Seite 55] Damit diese wichtige Phase gründlich absolviert wird, folgt der Ablauf der Anforderungsanalyse den Empfehlungen von Chris Rupp und den SOPHISTen @rupp_requirements-engineering_2014. Es werden zunächst der aktuelle Arbeitsprozess und die Architektur benachbarter Systeme analysiert und deren Probleme erkundet. Anschließend werden die Zielgruppen des neuen Systems ermittelt. Abschließend werden Ziele definiert.
 
 
 == Architektur
@@ -19,14 +19,14 @@ Außerdem gibt es die Anwendung #gls("StudyGraph"), welche Studieninhalte visual
 
 
 === Struktur des bestehenden Backends <backend>
-Das bestehende Backend, auch #studybase genannt, ist mithilfe des auf JavaScript basierenden Framework NestJS erstellt. NestJS legt einen Fokus auf "effiziente, zuverlässige und skalierbare serverseitige Anwendungen" @nestjs.
+Das bestehende Backend, auch #studybase genannt, ist mithilfe des auf JavaScript basierenden Framework #nest erstellt. #nest legt einen Fokus auf "effiziente, zuverlässige und skalierbare serverseitige Anwendungen" @nestjs.
 
-Das NestJS Backend ist modular aufgebaut.
+Das #nest Backend ist modular aufgebaut.
 Jede in @andereAnwendungen beschriebene Anwendung stellt im Backend ein Modul dar. Die Module der einzelnen Anwendungen enthalten ebenfalls Module, die die einzelnen Funktionen abbilden. Beispielsweise gibt es im Modul #gls("StudyPlan") das Modul _degrees_, welches alle Studiengänge verwaltet.
 
 Zusätzlich gibt es Module, die zwischen allen Anwendungen geteilt werden. Diese Shared-Modules bieten beispielsweise Funktionen zur Benutzerverwaltung und zum Versand von Emails an.
 
-Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzepte. Damit ein Modul beispielsweise eine HTTP-GET-Anfrage bearbeiten kann, muss es eine #gls("Controller")-Klasse haben. Ein #gls("Controller") nimmt die Anfrage an und verarbeitet sie. Falls hierbei Daten benötigt werden, ruft der #gls("Controller") eine #gls("Service")-Klasse auf. Diese lädt die angefragten Daten aus der Datenbank und gibt sie an den #gls("Controller") zurück. Für die Datenbankzugriffe wird #gls("Prisma") genutzt. Es gibt eine schema.prisma-Datei, in der die Struktur der Datenbank definiert ist. Somit muss kein SQL geschrieben werden, sondern es können Methoden von #gls("Prisma") genutzt werden.
+Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzepte. Damit ein Modul beispielsweise eine HTTP-GET-Anfrage bearbeiten kann, muss es eine #gls("Controller")-Klasse haben. Ein #gls("Controller") nimmt die Anfrage an und verarbeitet sie. Falls hierbei Daten benötigt werden, ruft der #gls("Controller") eine #gls("Service")-Klasse auf. Diese lädt die angefragten Daten aus der Datenbank und gibt sie an den #gls("Controller") zurück. Für die Datenbankzugriffe wird #gls("Prisma") genutzt. 
 
 #par(leading: 0.5em)[
 #figure(caption: "Ordnerstruktur der " + studybase)[
@@ -50,24 +50,29 @@ Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzept
 
 
 === Struktur der bestehenden Datenbank
-Die Datenbank des Backends wird mithilfe von #gls("Prisma") und dessen schema.prisma-Datei automatisch generiert. Es gibt Tabellen für Module und Studiengänge.
+Es gibt eine schema.prisma-Datei, in der die Struktur der relationalen Datenbank definiert ist. Somit muss kein SQL geschrieben werden, sondern es können Methoden von #gls("Prisma") genutzt werden. Es gibt Tabellen für Module und Studiengänge. Die Tabellen werden von #gls("Prisma") generiert. Änderungen an der Struktur müssen demnach an der schema.prisma-Datei erfolgen. Dadurch ist die Struktur der Datenbank versioniert und kann in einer Quellcodeverwaltung abgelegt werden.
+
+#codeFigure("Auszug aus schema.prisma", <moduletable>, "moduleTablePrisma")
+
 
 === Struktur einer beispielhaften Angular Anwendung
 Eine Angular Anwendung besteht aus Komponenten und Seiten. Auf einer Seite werden 0 bis n Komponenten in einer HTML-ähnlichen Struktur organisiert. 
 
 Eine Komponente ist ein wiederverwendbares Element auf einer Website - beispielsweise ein Drop-Down, oder eine Textbox. Eine Komponente ist ebenfalls in der HTML-ähnlichen Struktur organisiert. In der Komponente können sich HTML-Elemente und andere Angular-Komponenten befinden.
 
-Komponenten und Seiten haben eine .HTML-Datei für die Beschreibung der Struktur, eine .SCSS-Datei für die Beschreibung des Aussehens, sowie eine .TS-Datei für kleinere Logiken. Geschäftslogik wird meist in seperate Service-Klassen ausgelagert - ähnlich wie schon in <backend> beschrieben.
+Komponenten und Seiten haben eine .HTML-Datei für die Beschreibung der Struktur, eine .SCSS-Datei für die Beschreibung des Aussehens, sowie eine .TS-Datei für kleinere Logiken. Geschäftslogik wird meist in seperate Service-Klassen ausgelagert – ähnlich wie schon in <backend> beschrieben.
   
 == Interview mit Studiendekan
 Da die Anforderungen sowie der aktuelle Arbeitsablauf noch unklar waren, musste eine Methode gefunden werden, um beides gründlich zu durchleuchten. Ein Interview hat den entscheidenden Vorteil, dass der Verlauf des Gesprächs individuell angepasst werden kann. Wenn sich neue Fragen ergeben, oder Fragen nicht ausreichend beantwortet wurden, kann im Interview direkt nachgefragt werden.@rupp_requirements-engineering_2014[Kapitel 6.3.3] 
 
 Das Interview wurde mit dem derzeitigen Studiendekan #heine durchgeführt. Das Interview orientierte sich an den Vorschlägen der Sophisten. Bereits bei der Einladung zum Interview wurden einige der Vorschläge beachtet. Der Studiendekan konnte sich den Interviewort selbst auswählen und erhielt die geplanten Fragen vorab zur Einsicht. @rupp_requirements-engineering_2014[Seite 107-109]
 
-Aus dem Interview ergaben sich zum einen die bereits vorgestellte Konkretisierung der Zielgruppen in @zielgruppen. Zum Anderen wurde der aktuelle Arbeitsprozess klar definiert, sowie dessen Schwachstellen aufgezeigt.
+Aus dem Interview ergaben sich zum einen die Konkretisierung der Zielgruppen in @zielgruppen. Zum Anderen wurde der aktuelle Arbeitsprozess klar definiert, sowie dessen Schwachstellen aufgezeigt (@oldProcess).
 
-== Analyse des aktuellen Arbeitsprozesses und Identifikation von Schwachstellen
-Tools nennen, die Heine nutzt. Artefakte nennen, die manuell erstellt werden und in Zukunft generiert werden.
+== Analyse des aktuellen Arbeitsprozesses und Identifikation von Schwachstellen <oldProcess>
+Der Prozess um Modulhandbücher zu bearbeiten hat sich bereits in der Planungsphase dieser Arbeit verändert. Bisher hab es für die Modulhandbücher Word-Dokumente, welche in einem Git-Repository verwaltet wurden. Bei Änderungen mussten jeweils das deutsche und das englische Word Dokument bearbeitet werden. Anschließend kann es notwendig sein, die Änderungen auch im Curriculum des Studienganges (@mdiCurr) und im Anhang des besonderen Teils der Prüfungsordnung (@currTable) vorzunehmen.
+
+Als Vorbereitung für ein neues System wurden vom Studiendekan die zuvor genannten Word Dokumente maschinell eingelesen, in ein JSON-Format umgewandelt und anschließend in eine PostgresSQL-Datenbank eingespielt. Weiterhin wurde ein Python Script erstellt, welches aus den Datensätzen in der Datenbank mithilfe von Latex ein PDF-Dokument für die Modulhandbücher generieren kann.
 
 
 

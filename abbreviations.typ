@@ -7,3 +7,4 @@
 #let studybase = {gls("StudyBase")}
 #let controller = {gls("Controller")}
 #let service = {gls("Service")}
+#let nest = {gls("NestJS")}

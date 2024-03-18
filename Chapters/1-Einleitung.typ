@@ -26,6 +26,16 @@ Ein Modulhandbuch dient der Orientierung im Studium und beschreibt die einzelnen
 Das Modulhandbuch spiegelt einerseits die Prüfungsordnung wider, bietet darüber hinaus jedoch umfangreiche inhaltliche Hinweise zu den einzelnen Lehrveranstaltungen […].
 ]
 
+
+Es gibt noch weitere Dokumente, die Informationen über die Module eines Studienganges enthalten. In @mdiCurr ist das vorgeschlagene Curriculum des Studiengangs Mediendesigninformatik zu sehen. Hier entspricht eine Spalte einem Semester. Die Höhe der Module spiegelt die Anzahl der zu erreichenden Credits wider. 
+#imageFigure(<mdiCurr>, "MDI_Curriculum.png")[Curriculum Mediendesigninformatik @fak4]
+
+#box()[
+Im Anhang des besonderen Teils der Prüfungsordnung @btpo befindet sich eine Auflistung aller Module des Studiengangs in tabellarischer Form (@currTable).
+
+#imageFigure(<currTable>, "currTable.png")[Auszug Anhang Prüfungsordnung @btpo]
+]
+
 Es gibt verschiedene Zielgruppen für Modulhandbücher, die in @zielgruppen genauer betrachtet werden. Des Weiteren wird in @structure die Struktur von verschiedenen Modulhandbüchern untersucht und anschließend in @dbschema ein dazu passendes Datenbankschema erstellt.
 
  

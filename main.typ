@@ -1,6 +1,5 @@
 #import "Template/template.typ": *
 
-
 #show: project.with(
   title: "Konzeption und Entwicklung eines Systems zur Verwaltung und Erstellung von Modulhandbüchern",
   subtitle: "Bachelorarbeit im Studiengang Mediendesigninformatik",
@@ -28,9 +27,3 @@
 #include "Chapters/3-Entwurf.typ" 
 #include "Chapters/4-Implementierung.typ" 
 #include "Chapters/5-Review.typ" 
-
-
-// #include "Chapters/Tests.typ"
-
-
-
