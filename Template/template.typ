@@ -16,8 +16,9 @@
   // Set the document's basic properties.
   set document(author: author, title: title)
   set page("a4")
+  let topMargin = 3.75cm
 
-  set page(margin: (inside: 3.5cm, outside: 2cm, y: 1.75cm))
+  set page(margin: (inside: 3.5cm, outside: 2cm, y: topMargin))
   //set page(margin: (inside: 2.75cm, outside: 2.75cm, y: 1.75cm))
   
   set par(justify: true)
@@ -82,19 +83,20 @@
     prof,
   )
 
-  v(30.2em, weak: true)
-  
-  align(center, text("Selbständigkeitserklärung", weight: "bold"))
-  [Hiermit erkläre ich, dass ich die eingereichte Bachelorarbeit selbständig und ohne fremde Hilfe verfasst, andere als die von mir angegebenen Quellen und Hilfsmittel nicht benutzt und die den benutzten Werken wörtlich oder inhaltlich entnommenen Stellen als solche kenntlich gemacht habe.]
+  align(bottom)[
+  #align(center, text("Selbständigkeitserklärung", weight: "bold"))
+  Hiermit erkläre ich, dass ich die eingereichte Bachelorarbeit selbständig und ohne fremde Hilfe verfasst, andere als die von mir angegebenen Quellen und Hilfsmittel nicht benutzt und die den benutzten Werken wörtlich oder inhaltlich entnommenen Stellen als solche kenntlich gemacht habe.
 
-  v(5.2em, weak: true)
+
+  #v(5.2em, weak: true)
   
-    grid(
+    #grid(
     columns: (auto, 4fr),
     gutter: 13pt,
     [Hannover, den #date],
     align(right)[Unterschrift],
   )
+  ]
   
   pagebreak()
 
@@ -128,16 +130,19 @@
     set page(header: locate(loc => {
 
       // dont print anything when the first element on the page is a level 1 heading
-      let chapter = hydra(1, loc: loc)
+      let chapter = hydra(1, loc: loc, top-margin: topMargin)
+      //chapter = getCurrentHeadingHydra(loc, topMargin)
+      
       if(chapter == none){
         return
       }
+      
     
       if calc.even(loc.page()) {
-        align(left, smallcaps(getCurrentHeading(loc, topLevel: true)))
+        align(left, smallcaps(getCurrentHeadingHydra(loc, topLevel: true, topMargin)))
       }
       else{
-        align(right, emph(getCurrentHeading(loc)))
+        align(right, emph(getCurrentHeadingHydra(loc, topMargin)))
       }
       
     line(length: 100%)

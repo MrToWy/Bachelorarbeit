@@ -39,15 +39,15 @@
 // header
 #import "@preview/hydra:0.3.0": hydra
 
-#let getCurrentHeadingHydra(loc, topLevel: false) = {
+#let getCurrentHeadingHydra(loc, topLevel: false, topMargin) = {
     if(topLevel){
-      return hydra(1, top-margin:3.75cm)
+      return hydra(1, top-margin:topMargin)
     }
     
-    return hydra(top-margin:3.75cm)
+    return hydra(top-margin:topMargin)
 }
 
-#let getCurrentHeading(loc, topLevel: false) = {
+#let getCurrentHeading(loc, topLevel: false, topMargin) = {
 
     let chapterNumber = counter(heading).display()
     if(topLevel){
