@@ -97,8 +97,6 @@ Die Ergebnisse aus dem Interview werden mithilfe der Use–Case–Modellierung v
 
 */
 
-== Zukünftiger Arbeitsprozess
-
 
 
 == Anforderungen 
