@@ -11,7 +11,7 @@ In dieser Arbeit werden zunächst in @anforderungsanalyse die Anforderungen an d
 
 In @entwurf werden die Strukturen verschiedener Modulhandbücher untersucht und verglichen. Aus den Ergebnissen der Untersuchung soll dann ein Datenbankschema erstellt werden. Außerdem werden Entwürfe für die Benutzeroberflächen erstellt.
 
-In @implementierung wird zu dem zuvor erstellten Datenbankschema ein Backend erstellt. Anschließend werden die Entwürfe der Benutzeroberflächen angefertigt. 
+In @implementierung wird zu dem zuvor erstellten Datenbankschema ein Backend erstellt. Anschließend werden aus den zuvor erstellten Entwürfen die Benutzeroberflächen angefertigt. 
 
 Im letzten Kapitel, @review, werden die Ergebnisse überprüft. Dazu wird ein Interview geführt und es werden die Anforderungen auf Erfüllung geprüft. Im Ausblick werden Ideen für zukünftige Erweiterungen diskutiert.
 
@@ -41,4 +41,8 @@ Es gibt verschiedene Zielgruppen für Modulhandbücher, die in @zielgruppen gena
  
 
 == Ähnliche Arbeiten
-Bevor mit der Planung des neuen Systems zur Verwaltung von Modulhandbüchern begonnen wurde, fand zunächst eine Recherche zu ähnlichen Arbeiten statt. Ein System, welches ein ähnliches Problem löst, ist der #quote()[Curriculum Designer] im #hone @hisinone der #his @his. Das #hone wird beispielsweise von der Universität Hohenheim zur Verwaltung der Modulhandbücher genutzt @hohenheimHIS. Weiterhin ist das #hone an der #hsh im Einsatz @hshHIS, um dort die Prüfungsanmeldungen zu realisieren. Sollte die #hsh entscheiden, das #hone in Zukunft auch für die Verwaltung von Modulhandbüchern zu nutzen, ist das #hone zu dem System, welches in dieser Arbeit erstellt wird, kompatibel. In dem Fall könnten die Informationen der Handbücher über Webservices vom #hone und über die REST-Schnittstellen des neuen Systems synchronisiert werden.  
+Bevor mit der Planung des neuen Systems zur Verwaltung von Modulhandbüchern begonnen wurde, fand zunächst eine Recherche zu ähnlichen Arbeiten statt. Ein System, welches ein ähnliches Problem löst, ist der #quote()[Curriculum Designer] im #hone @hisinone der #his @his. Das #hone wird beispielsweise von der Universität Hohenheim zur Verwaltung der Modulhandbücher genutzt @hohenheimHIS. Weiterhin ist das #hone an der #hsh im Einsatz @hshHIS, um dort die Prüfungsanmeldungen zu realisieren. 
+
+
+Da es keine öffentlichen Dokumentationen für die Nutzung der Schnittstellen vom #hone gibt und derzeit auch unklar ist, ob das #hone hochschulweit zur Verwaltung von Modulhandbüchern eingesetzt werden soll, bietet es sich an ein eigenes System zu entwickeln. Das selbst entwickelte System hat den zusätzlichen Vorteil, dass es an alle besonderen Anforderungen angepasst werden kann, ohne einen Antrag bei der #his stellen zu müssen.
+Sollte die #hsh entscheiden, das #hone in Zukunft auch für die Verwaltung von Modulhandbüchern zu nutzen, könnten die Informationen der Handbücher über Webservices vom #hone und über die REST-Schnittstellen des neuen Systems synchronisiert werden.  
