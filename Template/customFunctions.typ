@@ -7,6 +7,7 @@
 #let sidePadding = 1em
 #let topBotPadding = 3em
 
+#let smallLine = line(length: 100%, stroke: 0.045em)
 
 #let attributedQuote(label, body) = [
   #pad(left: sidePadding, right: sidePadding, rest: topBotPadding)[

@@ -190,17 +190,17 @@ pagebreak()
         align(right, emph(getCurrentHeadingHydra(loc, topMargin)))
       }
       
-    line(length: 100%)
+    smallLine
   }))
     
 
   // footer
   set page(footer: locate(
     loc => if calc.even(loc.page()) {
-      line(length: 100%)
+      smallLine
       align(left, counter(page).display("1"));
     } else {
-      line(length: 100%)
+      smallLine
       align(right, counter(page).display("1"));
     }
   ))
