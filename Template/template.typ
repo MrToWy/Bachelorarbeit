@@ -143,22 +143,26 @@
   pagebreak()
 
 // table of figures
-//hide()[
+set page(numbering: "I")
+counter(page).update(1)
+  {
+  show heading: none
+  heading[Abbildungsverzeichnis]
+}
 outline(
   title: [Abbildungsverzeichnis],
   target: figure,
   indent: true
-) //]
+) 
 
 pagebreak()
 
   
   // glossary
-  counter(page).update(0)
+  
   show figure.where(kind: "jkrb_glossary"): it => {emph(it.body)}
   [
     = Glossar <Glossary>
-    #line(length: 100%)
 
     #columns(glossaryColumns)[
         #make-glossary(glossary-pool)
