@@ -11,7 +11,7 @@ In der Abteilung Informatik der #hsh gibt es bereits mehrere Anwendungen, die ei
 
 === Bestehende Anwendungen <andereAnwendungen>
 
-Studierende, die planen möchten, welches Modul sie in welchem Semester erledigen, gibt es die Anwendung #gls("StudyPlan"). Hier können Studierende vom vorgeschlagenen Studienverlauf abweichen und dabei sicherstellen, trotzdem alle Module in der gewünschten Zeit zu erledigen. #gls("StudyPlan") wird von dem angepassten Backend profitieren, weil sich daraus eine stets aktuelle Auflistung aller Module inklusive deren Zeitaufwände ergibt.
+Für Studierende, die planen möchten, welches Modul sie in welchem Semester erledigen, gibt es die Anwendung #gls("StudyPlan"). Hier können Studierende vom vorgeschlagenen Studienverlauf abweichen und dabei sicherstellen, trotzdem alle Module in der gewünschten Zeit zu erledigen. #gls("StudyPlan") wird von dem angepassten Backend profitieren, weil sich daraus eine stets aktuelle Auflistung aller Module inklusive deren Zeitaufwände ergibt.
 
 Die Entwicklung von #gls("StudyPlan") läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt.
 
@@ -85,7 +85,7 @@ Aus einem Interview mit dem Studiendekan geht hervor, dass es neben den Studiere
 
 
 == Use Cases <usecases>
-#hide()[
+/*
 
 Die Ergebnisse aus dem Interview werden mithilfe der Use–Case–Modellierung verwendet, um aufzuzeigen, welche Funktionen die einzelnen Akteure im neuen System verwenden können.
 
@@ -93,8 +93,7 @@ Die Ergebnisse aus dem Interview werden mithilfe der Use–Case–Modellierung v
   "Sie können Use-Case-Beschreibungen als Ergänzung zu Use-Case-Diagrammen erstellen, etwa um jeden einzelnen Use-Case aus dem Diagramm genauer zu beleuchten. Use-Case Beschreibungen können aber auch ohne Diagramm für sich stehen."
 @rupp_requirements-engineering_2014[s.~192]
 
-
-]
+*/
 
 == Zukünftiger Arbeitsprozess
 
@@ -102,7 +101,7 @@ Die Ergebnisse aus dem Interview werden mithilfe der Use–Case–Modellierung v
 
 == Anforderungen 
 
-#hide()[
+/*
 
 @rupp_requirements-engineering_2014[Kapitel 5.3]
 
@@ -136,4 +135,4 @@ Beigeisterungsfaktoren
 Brainstorming
 Risiko, der Machbarkeit, Nützlichkeit und dem Begeisterungspotenzial.
 
-]
+*/
