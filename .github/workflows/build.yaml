@@ -25,7 +25,7 @@ jobs:
 
       - name: Get current date
         id: date
-        run: echo "DATE=$(date +%Y-%m-%d-%H:%M)" >> $GITHUB_ENV
+        run: echo "DATE=$(date %d.%m.+%Y)" >> $GITHUB_ENV
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
