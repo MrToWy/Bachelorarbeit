@@ -87,6 +87,21 @@ Aus dem Interview mit dem Studiendekan (@interview) geht hervor, dass es neben d
 
 
 == Use Cases <usecases>
+
+#useCase(1)[
+  #lorem(3)
+][
+  #lorem(20)
+][
+  #lorem(1)
+][
+  #lorem(7)
+][
+  #lorem(40)
+]
+
+
+
 /*
 
 Die Ergebnisse aus dem Interview werden mithilfe der Use–Case–Modellierung verwendet, um aufzuzeigen, welche Funktionen die einzelnen Akteure im neuen System verwenden können.
@@ -100,6 +115,12 @@ Die Ergebnisse aus dem Interview werden mithilfe der Use–Case–Modellierung v
 
 
 == Anforderungen 
+
+=== Funtionale Anforderungen
+#anforderung()
+
+=== Nicht-Funtionale Anforderungen
+#anforderung(funktional: false)
 
 /*
 

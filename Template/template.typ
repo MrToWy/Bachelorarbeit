@@ -22,6 +22,7 @@
   //set page(margin: (inside: 2.75cm, outside: 2.75cm, y: 1.75cm))
   
   set par(justify: true)
+  show table : set table.cell(align: left)
   
   set text(font: "Arial", lang: "de", size: 12pt, hyphenate: false) // replaced this font: New Computer Modern
   show math.equation: set text(weight: 400)

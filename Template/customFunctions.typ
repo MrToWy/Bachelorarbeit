@@ -9,6 +9,48 @@
 
 #let smallLine = line(length: 100%, stroke: 0.045em)
 
+
+#let useCase(nummer, name, kurzbeschreibung, akteur, vorbedingungen, hauptszenario) = [
+  #figure(caption: [Use Case #nummer])[
+  #block()[
+  #show table.cell.where(x: 0): set text(weight: "bold")
+
+    #table(
+      columns: (0.4fr, 1fr),
+      fill: (x, y) => if calc.even(x) { rgb("E28862") } else { rgb("EEC0AB") },
+      stroke: (x: none, y: 2.5pt + rgb("FFFF")),
+  
+
+      [Name], name,
+      [Kurzbeschreibung], kurzbeschreibung,
+      [Akteur], akteur,
+      [Vorbedingungen], vorbedingungen,
+      [Hauptszenario], hauptszenario
+    )
+  ]]
+]
+
+#let anforderung(funktional: true) = [
+  #let prefix = if(funktional) {"F"} else {"N"}
+  
+  #figure(caption: if funktional {"Funktionale Anforderungen"} else {"Nicht-Funktionale Anforderungen"})[
+  #block()[
+  #show table.cell.where(x: 0): set text(weight: "bold")
+    #let results = if(funktional) {csv("../anforderungen.csv")} else {csv("../nichtFuntionaleAnforderugen.csv")} 
+    #let counter = 1
+    
+    #table(
+      columns: (0.1fr, 1fr),
+      fill: (x, y) => if calc.even(x) { rgb("E28862") } else { rgb("EEC0AB") },
+      stroke: (x: none, y: 2.5pt + rgb("FFFF")),
+      [*Name*], [*Beschreibung*],
+      
+      ..results.enumerate(start: 1).map(((i, row)) => ([#prefix#(i)], ..row)).flatten(),
+    )
+  ]]
+]
+
+
 #let attributedQuote(label, body) = [
   #pad(left: sidePadding, right: sidePadding, rest: topBotPadding)[
       // use a box to prevent the quote from beeing split on two pages
