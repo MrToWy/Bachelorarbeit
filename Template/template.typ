@@ -12,6 +12,8 @@
   second_prof: none,
   date: none,
   glossaryColumns: 1,
+  enableGlossary: false,
+  enableAbbildungsverzeichnis: false,
   body,
 ) = {
   // Set the document's basic properties.
@@ -145,7 +147,8 @@
   outline(depth: 3, indent: true)
   pagebreak()
 
-// table of figures
+  if(enableAbbildungsverzeichnis){
+    // table of figures
 set page(numbering: "I")
 counter(page).update(1)
   {
@@ -159,11 +162,13 @@ outline(
 ) 
 
 pagebreak()
+  }
 
   
   // glossary
-  
-  show figure.where(kind: "jkrb_glossary"): it => {emph(it.body)}
+
+  if(enableGlossary){
+    show figure.where(kind: "jkrb_glossary"): it => {emph(it.body)}
   [
     = Glossar <Glossary>
 
@@ -171,12 +176,9 @@ pagebreak()
         #make-glossary(glossary-pool)
     ]
   ]
-
+  }
 
   
-  
-    
-
     // header
     import "@preview/hydra:0.3.0": hydra
     set page(header: locate(loc => {
