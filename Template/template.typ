@@ -7,6 +7,7 @@
   subtitle: "",
   author: "",
   author_email: "",
+  matrikelnummer: 0,
   prof: none,
   second_prof: none,
   date: none,
@@ -100,7 +101,8 @@
     gutter: 13pt,
     text("Autor:", weight: "bold"),
     [#author\
-    #link("mailto:" + author_email)
+    #link("mailto:" + author_email)\
+    Matrikelnummer: #matrikelnummer
     ],
     text("Erstprüfer:", weight: "bold"),
     prof,

@@ -5,6 +5,7 @@
   subtitle: "Bachelorarbeit im Studiengang Mediendesigninformatik",
   author: "Tobias Wylega",
   author_email: "tobias@wylega.de",
+  matrikelnummer: 1629483,
   prof: [
     Prof. Dr. Dennis Allerkamp\
     Abteilung Informatik, Fakultät IV\
