@@ -107,7 +107,7 @@
     text("Erstprüfer:", weight: "bold"),
     prof,
     text("Zweitprüfer:", weight: "bold"),
-    prof,
+    second_prof,
   )
 
   align(bottom)[

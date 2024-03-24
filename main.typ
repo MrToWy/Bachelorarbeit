@@ -14,10 +14,10 @@
     
   ],
   second_prof: [
-    Prof. Dr. Dennis Allerkamp\
+    Prof. Dr. Matthias Hovestadt\
     Abteilung Informatik, Fakultät IV\
     Hochschule Hannover\    
-    #link("mailto:dennis.allerkamp@hs-hannover.de")
+    #link("mailto:matthias.hovestadt@hs-hannover.de")
   ],
   date: "15. August 2024",
   glossaryColumns: 1
