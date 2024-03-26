@@ -15,7 +15,7 @@ Für Studierende, die planen möchten, welches Modul sie in welchem Semester erl
 
 Die Entwicklung von #studyPlan läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt.
 
-Außerdem gibt es die Anwendung #gls("StudyGraph"), welche Studieninhalte visualisiert und somit auch die Informationen zu den angebotenen Modulen benötigt.
+Außerdem gibt es die Anwendung StudyGraph, welche Studieninhalte visualisiert und somit auch die Informationen zu den angebotenen Modulen benötigt.
 
 
 === Struktur des bestehenden Backends <backend>
@@ -26,7 +26,7 @@ Jede in @andereAnwendungen beschriebene Anwendung stellt im Backend ein Modul da
 
 Zusätzlich gibt es Module, die zwischen allen Anwendungen geteilt werden. Diese Shared-Modules bieten beispielsweise Funktionen zur Benutzerverwaltung und zum Versand von Emails an.
 
-Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzepte. Damit ein Modul beispielsweise eine HTTP-GET-Anfrage bearbeiten kann, muss es eine #gls("Controller")-Klasse haben. Ein #gls("Controller") nimmt die Anfrage an und verarbeitet sie. Falls hierbei Daten benötigt werden, ruft der #gls("Controller") eine #gls("Service")-Klasse auf. Diese lädt die angefragten Daten aus der Datenbank und gibt sie an den #gls("Controller") zurück. Für die Datenbankzugriffe wird #gls("Prisma") genutzt. 
+Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzepte. Damit ein Modul beispielsweise eine HTTP-GET-Anfrage bearbeiten kann, muss es eine #text(controller)-Klasse haben. Ein #controller nimmt die Anfrage an und verarbeitet sie. Falls hierbei Daten benötigt werden, ruft der #controller eine Service-Klasse auf. Diese lädt die angefragten Daten aus der Datenbank und gibt sie an den #controller zurück. Für die Datenbankzugriffe wird Prisma genutzt. 
 
 #treeFigure(<backendFiles>, "Ordnerstruktur der StudyBase")[
   - StudyBase/src
@@ -46,7 +46,7 @@ Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzept
 ]
 
 === Struktur der bestehenden Datenbank
-Es gibt eine schema.prisma-Datei, in der die Struktur der relationalen Datenbank definiert ist. Somit muss kein SQL geschrieben werden, sondern es können Methoden von #gls("Prisma") genutzt werden. Es gibt Tabellen für Module und Studiengänge. Die Tabellen werden von #gls("Prisma") generiert. Änderungen an der Struktur müssen demnach an der schema.prisma-Datei erfolgen. Dadurch ist die Struktur der Datenbank versioniert und kann in einer Quellcodeverwaltung abgelegt werden.
+Es gibt eine schema.prisma-Datei, in der die Struktur der relationalen Datenbank definiert ist. Somit muss kein SQL geschrieben werden, sondern es können Methoden von Prisma genutzt werden. Es gibt Tabellen für Module und Studiengänge. Die Tabellen werden von Prisma generiert. Änderungen an der Struktur müssen demnach an der schema.prisma-Datei erfolgen. Dadurch ist die Struktur der Datenbank versioniert und kann in einer Quellcodeverwaltung abgelegt werden.
 
 #codeFigure("Auszug aus schema.prisma", <moduletable>, "moduleTablePrisma")
 
