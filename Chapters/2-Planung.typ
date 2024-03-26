@@ -30,19 +30,19 @@ Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzept
 
 #treeFigure(<backendFiles>, "Ordnerstruktur der StudyBase")[
   - StudyBase/src
-  - Plan
-    - Plan.Module
-    - Degrees
-      - Degree.Module
-      - Degree.Controller
-      - Degree.Service
-  - Shared
-    - Mailer
-      - Mailer.Module
-      - Mailer.Service
-    - Prisma
-      - Prisma.Module
-      - Prisma.Service   
+    - Plan
+      - Plan.Module
+      - Degrees
+        - Degree.Module
+        - Degree.Controller
+        - Degree.Service
+    - Shared
+      - Mailer
+        - Mailer.Module
+        - Mailer.Service
+      - Prisma
+        - Prisma.Module
+        - Prisma.Service   
 ]
 
 === Struktur der bestehenden Datenbank

@@ -88,22 +88,7 @@
 #par(leading: 0.5em)[
 #figure(caption: pCaption)[
 #align(left)[
-#tree-list()[
-- StudyBase/src
-  - Plan
-    - Plan.Module
-    - Degrees
-      - Degree.Module
-      - Degree.Controller
-      - Degree.Service
-  - Shared
-    - Mailer
-      - Mailer.Module
-      - Mailer.Service
-    - Prisma
-      - Prisma.Module
-      - Prisma.Service    
-]]] #pLabel ]]
+#tree-list(content)]] #pLabel ]]
 ]
 
 
