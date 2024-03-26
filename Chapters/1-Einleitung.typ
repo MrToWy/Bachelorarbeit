@@ -11,12 +11,7 @@ In dieser Arbeit soll eine Webanwendung erstellt werden, welche die Bearbeitung 
 == Definition und Zweck eines Modulhandbuchs
 
 § 7 der Niedersächsischen Studienakkreditierungsverordnung @studAkkVO beschreibt, dass jeder Studiengang in zeitlich und thematisch abgegrenzte Module einzuteilen ist. Des Weiteren ist eine Beschreibung des Moduls und dessen Merkmale erforderlich. 
-
-#attributedQuote([@modulhandbuecher])[
-Ein Modulhandbuch dient der Orientierung im Studium und beschreibt die einzelnen Module eines Studiengangs detailliert.
-
-Das Modulhandbuch spiegelt einerseits die Prüfungsordnung wider, bietet darüber hinaus jedoch umfangreiche inhaltliche Hinweise zu den einzelnen Lehrveranstaltungen […].
-]
+Die Aufgabe eines Modulhandbuches ist es, die Orientierung im Studium zu erleichtern und die Prüfungsordnung abzubilden. Das Handbuch soll über die einzelnen Lehrveranstaltungen informieren und diese detailliert beschreiben. @modulhandbuecher
 
 
 Es gibt noch weitere Dokumente, die Informationen über die Module eines Studienganges enthalten. In @mdiCurr ist das vorgeschlagene Curriculum des Studiengangs Mediendesigninformatik zu sehen. Hier entspricht eine Spalte einem Semester. Die Höhe der Module spiegelt die Anzahl der zu erreichenden Credits wider. 
