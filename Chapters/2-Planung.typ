@@ -94,48 +94,115 @@ Aus dem Interview mit dem Studiendekan (@interview) geht hervor, dass es neben d
 
 
 == Use Cases <usecases>
+Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–Modellierung verwendet, um aufzuzeigen, welche Funktionen die einzelnen Akteure im neuen System verwenden können.@rupp_requirements-engineering_2014[Seite~192]
+
+/*
+  "Sie können Use-Case-Beschreibungen als Ergänzung zu Use-Case-Diagrammen erstellen, etwa um jeden einzelnen Use-Case aus dem Diagramm genauer zu beleuchten. Use-Case Beschreibungen können aber auch ohne Diagramm für sich stehen."
+*/
 
 #useCase(1)[
-  #lorem(3)
+  Studiengang per Suche finden
 ][
-  #lorem(20)
+  Studieninteressierte Person
 ][
-  #lorem(1)
+  Fakultät ausgewählt
 ][
-  #lorem(7)
+  1. User gibt "MDI" in das Suchfeld ein
+  2. System zeigt den Studiengang Mediendesigninformatik an
+  3. User klickt den Eintrag an
+  4. System zeigt den Studiengang und dessen Module
+]
+
+
+#useCase(2)[
+  Modul per Filter finden
 ][
-  #lorem(40)
+  Studierende Person
+][
+  Studiengang ausgewählt
+][
+  1. User wählt in den Filteroptionen als Semester 2 aus
+  2. System zeigt alle Module an, die laut Curriculum im 2. Semester empfohlen werden
+  3. User klickt einen Eintrag an
+  4. System zeigt das Modul
+]
+
+
+#useCase(3)[
+  Informationen zu einem Modul verändern
+][
+  Modulverantwortliche Person
+][
+  Erfolgreich mit einem Account eingeloggt, der das ausgewählte Modul bearbeiten darf
+][
+  1. User drückt auf "Bearbeiten"
+  2. System wechselt in den Bearbeitungsmodus
+  3. User aktualisiert Texte in den Eingabefeldern
+  4. User drückt auf "Speichern"
+  5. System prüft, ob Änderungen plausibel sind (z. B. passen Zeitaufwände und ECTS zusammen)
+  6. System wechselt in den Anzeigemodus
 ]
 
 
 
-/*
+#useCase(4)[
+  Eine neue Modulverantwortliche Person anlegen
+][
+  Studiengangsverantwortliche Person
+][
+  Erfolgreich mit einem Account eingeloggt, der Modulverantwortliche Personen anlegen darf
+][
+  1. User drückt auf Accountübersicht
+  2. User drückt auf "Hinzufügen"
+  3. System wechselt in den Bearbeitungsmodus
+  4. User füllt Eingabefelder 
+  5. User drückt auf "Speichern"
+  6. System prüft, ob Angaben plausibel sind (z.B. passt Name zu Email)
+  7. System zeigt "Account erfolgreich angelegt"
+]
 
-Die Ergebnisse aus dem Interview werden mithilfe der Use–Case–Modellierung verwendet, um aufzuzeigen, welche Funktionen die einzelnen Akteure im neuen System verwenden können.
+
+#useCase(5)[
+  Ein neues Modul anlegen
+][
+  Studiengangsverantwortliche Person
+][
+  Erfolgreich mit einem Account eingeloggt, der Module anlegen darf
+][
+  1. User drückt auf Module
+  2. User drückt auf "Hinzufügen"
+  3. System wechselt in den Bearbeitungsmodus
+  4. User füllt Eingabefelder 
+  5. User drückt auf "Speichern"
+  6. System prüft, ob Angaben plausibel sind (z.B. passen Zeitaufwände und ECTS zusammen)
+  7. System zeigt "Account erfolgreich angelegt"
+]
 
 
-  "Sie können Use-Case-Beschreibungen als Ergänzung zu Use-Case-Diagrammen erstellen, etwa um jeden einzelnen Use-Case aus dem Diagramm genauer zu beleuchten. Use-Case Beschreibungen können aber auch ohne Diagramm für sich stehen."
-@rupp_requirements-engineering_2014[s.~192]
-
-*/
 
 
 
 == Anforderungen 
+Zur besseren Übersichtlichkeit werden die Anforderungen in Funktional und Nicht-Funktional aufgeteilt. 
+
+Jede Anforderung in den folgenden Auflistungen enthält entweder das Wort "muss", "sollte", oder "könnte". @rupp_requirements-engineering_2014[Kapitel 1.5.2] Damit wird zwischen Anforderungen unterschieden, die zwingend erforderlich sind (muss), Anforderungen, die sehr sinnvoll sind (sollte) und Anforderungen, die nicht zwingend erforderlich sind, aber die Nutzer begeistern würden (könnte). Eine weitere Priorisierung wird an dieser Stelle nicht benötigt, sondern kann bei Bedarf erfolgen.
+
 
 === Funtionale Anforderungen
+Die Funktionalen Anforderungen ergeben sich aus den Use-Cases und dem Interview. 
+
 #anforderung()
 
 === Nicht-Funtionale Anforderungen
+Die Nicht-Funktionalen Anforderungen ergeben sich aus der Iso-Norm #todo("Iso Norm eintragen und zusammenfassen", inline:true)
 #anforderung(funktional: false)
 
-/*
 
 @rupp_requirements-engineering_2014[Kapitel 5.3]
 
 
 sollte / muss als Schlüsselwörter
-@rupp_requirements-engineering_2014[Kapitel 1.5.2]
+
 
 qualitätskriterien für anforderungen
 @rupp_requirements-engineering_2014[Kapitel 1.8.1]
@@ -163,4 +230,4 @@ Beigeisterungsfaktoren
 Brainstorming
 Risiko, der Machbarkeit, Nützlichkeit und dem Begeisterungspotenzial.
 
-*/
+

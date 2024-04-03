@@ -10,7 +10,8 @@
 #let smallLine = line(length: 100%, stroke: 0.045em)
 
 
-#let useCase(nummer, name, kurzbeschreibung, akteur, vorbedingungen, hauptszenario) = [
+#let useCase(nummer, kurzbeschreibung, akteur, vorbedingungen, hauptszenario) = [
+  #pad(left: 0em, right: 0em, rest: topBotPadding/2)[
   #figure(caption: [Use Case #nummer])[
   #block()[
   #show table.cell.where(x: 0): set text(weight: "bold")
@@ -21,13 +22,13 @@
       stroke: (x: none, y: 2.5pt + rgb("FFFF")),
   
 
-      [Name], name,
+      [Name], [UC] + str(nummer),
       [Kurzbeschreibung], kurzbeschreibung,
       [Akteur], akteur,
       [Vorbedingungen], vorbedingungen,
       [Hauptszenario], hauptszenario
     )
-  ]]
+  ]]]
 ]
 
 #let anforderung(funktional: true) = [

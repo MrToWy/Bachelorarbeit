@@ -1,1 +1,4 @@
-Die Software blockiert nach drei Fehlversuchen die Anmeldung für 30 Sekunden.
+"System könnte anzeigen, welcher Pfad aufgerufen wurde (Fakultät->Studiengang->Modul)"
+Vor dem Löschen eines Elements muss eine Rückfrage erscheinen
+Gelöschte Elemente könnten wiederherstellbar sein
+Ladezeiten >500ms sollten einen Ladebalken zeigen
