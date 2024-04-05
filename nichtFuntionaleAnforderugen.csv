@@ -1,4 +1,4 @@
-"System könnte anzeigen, welcher Pfad aufgerufen wurde (Fakultät->Studiengang->Modul)"
-Vor dem Löschen eines Elements muss eine Rückfrage erscheinen
-Gelöschte Elemente könnten wiederherstellbar sein
-Ladezeiten >500ms sollten einen Ladebalken zeigen
+PATH,"System könnte anzeigen, welcher Pfad aufgerufen wurde (Fakultät->Studiengang->Modul)"
+ASK,Vor dem Löschen eines Elements muss eine Rückfrage erscheinen
+SOFTDELETE,Gelöschte Elemente könnten wiederherstellbar sein
+QUICK,Ladezeiten >500ms sollten einen Ladebalken zeigen

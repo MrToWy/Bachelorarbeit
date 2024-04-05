@@ -111,8 +111,9 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
   2. System zeigt den Studiengang Mediendesigninformatik an
   3. User klickt den Eintrag an
   4. System zeigt den Studiengang und dessen Module
+][
+  - #getAnfName(<SEARCH>, "F")
 ]
-
 
 #useCase(2)[
   Modul per Filter finden
@@ -125,6 +126,8 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
   2. System zeigt alle Module an, die laut Curriculum im 2. Semester empfohlen werden
   3. User klickt einen Eintrag an
   4. System zeigt das Modul
+][
+  - #getAnfName(<FILTER>, "F")
 ]
 
 
@@ -141,6 +144,9 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
   4. User drückt auf "Speichern"
   5. System prüft, ob Änderungen plausibel sind (z. B. passen Zeitaufwände und ECTS zusammen)
   6. System wechselt in den Anzeigemodus
+][
+ - #getAnfName(<EDIT>, "F")
+ - #getAnfName(<CHECKMOD>, "F")
 ]
 
 
@@ -159,6 +165,8 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
   5. User drückt auf "Speichern"
   6. System prüft, ob Angaben plausibel sind (z.B. passt Name zu Email)
   7. System zeigt "Account erfolgreich angelegt"
+][
+  - #getAnfName(<CRUSER>, "F")
 ]
 
 
@@ -176,6 +184,8 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
   5. User drückt auf "Speichern"
   6. System prüft, ob Angaben plausibel sind (z.B. passen Zeitaufwände und ECTS zusammen)
   7. System zeigt "Account erfolgreich angelegt"
+][
+  - #getAnfName(<MODULE>, "F")
 ]
 
 

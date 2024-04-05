@@ -10,7 +10,7 @@
 #let smallLine = line(length: 100%, stroke: 0.045em)
 
 
-#let useCase(nummer, kurzbeschreibung, akteur, vorbedingungen, hauptszenario) = [
+#let useCase(nummer, kurzbeschreibung, akteur, vorbedingungen, hauptszenario, anforderungen) = [
   #pad(left: 0em, right: 0em, rest: topBotPadding/2)[
   #figure(caption: [Use Case #nummer])[
   #block()[
@@ -26,7 +26,8 @@
       [Kurzbeschreibung], kurzbeschreibung,
       [Akteur], akteur,
       [Vorbedingungen], vorbedingungen,
-      [Hauptszenario], hauptszenario
+      [Hauptszenario], hauptszenario,
+      [Resultierende Anforderungen], anforderungen
     )
   ]]]
 ]
@@ -46,9 +47,21 @@
       stroke: (x: none, y: 2.5pt + rgb("FFFF")),
       [*Name*], [*Beschreibung*],
       
-      ..results.enumerate(start: 1).map(((i, row)) => ([#prefix#(i)], ..row)).flatten(),
+      ..results.enumerate(start: 1).map(((i, row)) => ([#prefix#(i)#label(row.first())], 
+
+      row.last()
+      
+      )).flatten(),
     )
   ]]
+]
+
+#let getAnfName(label, prefix)=[
+  #context(
+  link(label, text(prefix) + query(
+    selector(label),
+  ).first())
+  )
 ]
 
 

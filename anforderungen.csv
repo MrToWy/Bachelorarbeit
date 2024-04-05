@@ -1,20 +1,20 @@
-User muss sich einloggen können
-User sollte sich ausloggen können
-Studiengangsverantwortliche Person (SVP) muss neue User anlegen können
-SVP muss Passwörter zurücksetzen können
-SVP sollte das eigene Passwort zurücksetzen können
-"SVP muss Studiengänge verwalten (anlegen, verändern, löschen) können"
-SVP muss Module verwalten können
-SVP sollte Module duplizieren können
-SVP sollte sich einzelne Änderungen anzeigen lassen können
-SVP könnte einzelne Änderungen rückgängig machen 
-"SVP könnte sich die Auflistung aller Module als Tabelle anzeigen lassen, um sie mit dem Anhang der Prüfungsordnung vergleichen zu können"
-"Modulverantwortliche Person muss Module bearbeiten können, für die Sie als Ansprechpartner hinterlegt ist"
-Nicht angemeldete Person (NP) muss Studiengänge ansehen können
-NP muss Module ansehen können
-"NP sollte Filter nutzen können, um das gesuchte Modul zu finden"
-"NP sollte Suche nutzen können, um das gesuchte Modul zu finden"
-NP sollte ein PDF mit allen Modulbeschreibungen runterladen können
-NP könnte sich das Curriculum eines Studienganges anzeigen lassen
-System sollte Änderungen an Modulen auf Plausibilität prüfen
-System sollte Änderungen an Usern auf Plausibilität prüfen
+LOGIN,User muss sich einloggen können
+LOGOUT,User sollte sich ausloggen können
+CRUSER,Studiengangsverantwortliche Person (SVP) muss neue User anlegen können
+RESETPW,SVP muss Passwörter zurücksetzen können
+RESETMYPW,SVP sollte das eigene Passwort zurücksetzen können
+COURSE,"SVP muss Studiengänge verwalten (anlegen, verändern, löschen) können"
+MODULE,SVP muss Module verwalten können
+DUPLICATE,SVP sollte Module duplizieren können
+SHOWCHANGES,SVP sollte sich einzelne Änderungen anzeigen lassen können
+REVERT,SVP könnte einzelne Änderungen rückgängig machen 
+COMPARE,"SVP könnte sich die Auflistung aller Module als Tabelle anzeigen lassen, um sie mit dem Anhang der Prüfungsordnung vergleichen zu können"
+EDIT,"Modulverantwortliche Person muss Module bearbeiten können, für die Sie als Ansprechpartner hinterlegt ist"
+SHOWCOURSES,Nicht angemeldete Person (NP) muss Studiengänge ansehen können
+SHOWMODULES,NP muss Module ansehen können
+FILTER,"NP sollte Filter nutzen können, um das gesuchte Modul zu finden"
+SEARCH,"NP sollte Suche nutzen können, um das gesuchte Modul zu finden"
+PDF,NP sollte ein PDF mit allen Modulbeschreibungen runterladen können
+CURR,NP könnte sich das Curriculum eines Studienganges anzeigen lassen
+CHECKMOD,System sollte Änderungen an Modulen auf Plausibilität prüfen
+CHECKUS,System sollte Änderungen an Usern auf Plausibilität prüfen
