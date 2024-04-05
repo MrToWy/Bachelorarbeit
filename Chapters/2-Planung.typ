@@ -5,7 +5,7 @@
 Die Planung des neuen Systems für Modulhandbücher beginnt mit der Anforderungsanalyse. Der Schritt der Anforderungsanalyse hat eine besondere Wichtigkeit, da es mit fortlaufender Projektlaufzeit immer aufwändiger wird, Fehler zu korrigieren oder Anpassungen vorzunehmen. @kleuker_grundkurs_2013[Seite 55] Damit diese wichtige Phase gründlich absolviert wird, folgt der Ablauf der Anforderungsanalyse den Empfehlungen von Chris Rupp und den #sophisten @rupp_requirements-engineering_2014. Es werden zunächst der aktuelle Arbeitsprozess und die Architektur benachbarter Systeme analysiert und deren Probleme erkundet. Anschließend werden die Zielgruppen des neuen Systems ermittelt. Abschließend werden Ziele definiert.
 
 
-== Architektur
+== Architektur <architecture>
 In der Abteilung Informatik der #hsh gibt es bereits mehrere Anwendungen, die ein gemeinsames Backend nutzen. Dieses Backend soll in dieser Arbeit erweitert werden, um auch den anderen Anwendungen die Auflistung der Modulhandbücher anbieten zu können. Zusätzlich wird eine neue Anwendung erstellt, die mit dem angepassten Backend kommunizieren wird.
 
 
@@ -204,10 +204,11 @@ Die Funktionalen Anforderungen ergeben sich aus den Use-Cases und dem Interview.
 #anforderung()
 
 === Nicht-Funtionale Anforderungen
-Die Nicht-Funktionalen Anforderungen ergeben sich aus der Iso-Norm #todo("Iso Norm eintragen und zusammenfassen", inline:true)
+Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter der Berücksichtigung der Iso-Norm #todo("Iso Norm eintragen und zusammenfassen", inline:true) und ergeben sich aus den Bedingungen aus @architecture.
 #anforderung(funktional: false)
 
 
+/*
 @rupp_requirements-engineering_2014[Kapitel 5.3]
 
 
@@ -241,3 +242,4 @@ Brainstorming
 Risiko, der Machbarkeit, Nützlichkeit und dem Begeisterungspotenzial.
 
 
+*/

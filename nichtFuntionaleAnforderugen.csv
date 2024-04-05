@@ -2,3 +2,20 @@ PATH,"System könnte anzeigen, welcher Pfad aufgerufen wurde (Fakultät->Studien
 ASK,Vor dem Löschen eines Elements muss eine Rückfrage erscheinen
 SOFTDELETE,Gelöschte Elemente könnten wiederherstellbar sein
 QUICK,Ladezeiten >500ms sollten einen Ladebalken zeigen
+DOKBACK,Neue API-Endpoints sollten dokumentiert sein
+TEST,Geschäftslogik könnte mithilfe von Unittests automatisiert getestet werden
+TESTUI,System könnte mithilfe von e2e-Tests automatisiert getestet werden
+DEPLOY,Das Deployment könnte automatisiert sein
+MODULAR,Einzelne Komponenten des Quellcodes sollten wiederverwendbar sein 
+ERROR,Fehlermeldungen sollten verständlich sein
+ERRORSOLVE,Fehlermeldungen könnten eine Lösung anbieten
+ERRORSTABLE,Das System muss bei auftretenden Fehlern weiterhin funktionieren / sich selbst wiederherstellen
+TRANSLATE,Das System muss in Englisch und Deutsch verfügbar sein
+TRANSLATEMULTIPLE,Das System sollte für beliebig viele Sprachen erweiterbar sein
+RESPONSIVE,Das System könnte auf verschiedenen Displaygrößen nutzbar sein
+KEYBOARD,Das System könnte verschiedene Eingabemethoden unterstützen
+FRONT,Das Frontend muss eine neue Anwendung sein
+FRONT_TECH,Das Frontend muss Angular nutzen
+BACK,Das bestehende Backend muss erweitert werden
+BACK_TECH,Das Backend muss Primsa und NestJS nutzen
+DB,Die bestehende Datenbank muss erweitert werden
