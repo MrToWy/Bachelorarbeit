@@ -111,8 +111,6 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
   2. System zeigt den Studiengang Mediendesigninformatik an
   3. User klickt den Eintrag an
   4. System zeigt den Studiengang und dessen Module
-][
-  - #getAnfName(<SEARCH>, "F")
 ]
 
 #useCase(2)[
@@ -126,8 +124,6 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
   2. System zeigt alle Module an, die laut Curriculum im 2. Semester empfohlen werden
   3. User klickt einen Eintrag an
   4. System zeigt das Modul
-][
-  - #getAnfName(<FILTER>, "F")
 ]
 
 
@@ -144,11 +140,7 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
   4. User drückt auf "Speichern"
   5. System prüft, ob Änderungen plausibel sind (z. B. passen Zeitaufwände und ECTS zusammen)
   6. System wechselt in den Anzeigemodus
-][
- - #getAnfName(<EDIT>, "F")
- - #getAnfName(<CHECKMOD>, "F")
 ]
-
 
 
 #useCase(4)[
@@ -165,8 +157,6 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
   5. User drückt auf "Speichern"
   6. System prüft, ob Angaben plausibel sind (z.B. passt Name zu Email)
   7. System zeigt "Account erfolgreich angelegt"
-][
-  - #getAnfName(<CRUSER>, "F")
 ]
 
 
@@ -184,10 +174,7 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
   5. User drückt auf "Speichern"
   6. System prüft, ob Angaben plausibel sind (z.B. passen Zeitaufwände und ECTS zusammen)
   7. System zeigt "Account erfolgreich angelegt"
-][
-  - #getAnfName(<MODULE>, "F")
 ]
-
 
 
 
@@ -201,11 +188,115 @@ Jede Anforderung in den folgenden Auflistungen enthält entweder das Wort "muss"
 === Funtionale Anforderungen
 Die Funktionalen Anforderungen ergeben sich aus den Use-Cases und dem Interview. 
 
-#anforderung()
+#track("Login", type: "F")[Ein User muss sich einloggen können.]<LOGIN>
+#track("Logout", type: "F")[Ein User sollte sich ausloggen können.]<LOGOUT>
+#track("User anlegen", type: "F")[Studiengangsverantwortliche Person (SVP) muss neue User anlegen können]<CRUSER>
+#track("Passwörter zurücksetzen", type: "F")[SVP muss Passwörter zurücksetzen können.]<RESETPW>
+#track("Eigenes Passwort zurücksetzen", type: "F")[SVP sollte das eigene Passwort zurücksetzen können.]<RESETMYPW>
+#track("Studiengänge verwalten", type: "F")[SVP muss Studiengänge verwalten (anlegen, verändern, löschen) können.]<COURSE>
+#track("Module verwalten", type: "F")[SVP muss Module verwalten können.]<MODULE>
+#track("Module duplizieren", type: "F")[SVP sollte Module duplizieren können.]<DUPLICATE>
+#track("Änderungen anzeigen", type: "F")[SVP sollte sich einzelne Änderungen anzeigen lassen können.]<SHOWCHANGES>
+#track("Änderungen widerrufen", type: "F")[SVP könnte einzelne Änderungen rückgängig machen.]<REVERT>
+#track("Anhang der Prüfungsordnung", type: "F")[SVP könnte sich die Auflistung aller Module als Tabelle anzeigen lassen, um sie mit dem Anhang der Prüfungsordnung vergleichen zu können.]<COMPARE>
+#track("Module bearbeiten", type: "F")[Modulverantwortliche Person muss Module bearbeiten können, für die Sie als Ansprechpartner hinterlegt ist.]<EDIT>
+#track("Studiengänge ansehen", type: "F")[Nicht angemeldete Person (NP) muss Studiengänge ansehen können.]<SHOWCOURSES>
+#track("Module ansehen", type: "F")[NP muss Module ansehen können.]<SHOWMODULES>
+#track("Filterfunktion", type: "F")[NP sollte Filter nutzen können, um das gesuchte Modul zu finden.]<FILTER>
+#track("Suchfunktion", type: "F")[NP sollte Suche nutzen können, um das gesuchte Modul zu finden.]<SEARCH>
+#track("PDF anzeigen", type: "F")[NP sollte ein PDF mit allen Modulbeschreibungen runterladen können.]<PDF>
+#track("Curriculum anzeigen", type: "F")[NP könnte sich das Curriculum eines Studienganges anzeigen lassen.]<CURR>
+#track("Plausibilitätschecks bei Modulen", type: "F")[System sollte Änderungen an Modulen auf Plausibilität prüfen.]<CHECKMOD>
+#track("Plausibilitätschecks bei Usern", type: "F")[System sollte Änderungen an Usern auf Plausibilität prüfen.]<CHECKUS>
+
 
 === Nicht-Funtionale Anforderungen
 Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter der Berücksichtigung der Iso-Norm #todo("Iso Norm eintragen und zusammenfassen", inline:true) und ergeben sich aus den Bedingungen aus @architecture.
-#anforderung(funktional: false)
+
+#track("Aktueller Pfad", type:"N")[
+  System könnte anzeigen, welcher Pfad aufgerufen wurde (Fakultät->Studiengang->Modul)
+]<PATH>
+
+#track("Rückfragen", type:"N")[
+  Vor dem Löschen eines Elements muss eine Rückfrage erscheinen
+]<ASK>
+
+#track("Wiederherstellbarkeit", type:"N")[
+  Gelöschte Elemente könnten wiederherstellbar sein
+]<SOFTDELETE>
+
+#track("Ladebalken", type:"N")[
+  Ladezeiten >500ms sollten einen Ladebalken zeigen
+]<QUICK>
+
+#track("Dokumentation im Backend", type:"N")[
+  Neue API-Endpoints sollten dokumentiert sein
+]<DOKBACK>
+
+#track("Unittests", type:"N")[
+  Geschäftslogik könnte mithilfe von Unittests automatisiert getestet werden
+]<TEST>
+
+#track("e2e-Tests", type:"N")[
+  System könnte mithilfe von e2e-Tests automatisiert getestet werden
+]<TESTUI>
+
+#track("Deployment", type:"N")[
+  Das Deployment könnte automatisiert sein
+]<DEPLOY>
+
+#track("Modularität", type:"N")[
+  Einzelne Komponenten des Quellcodes sollten wiederverwendbar sein 
+]<MODULAR>
+
+#track("Verständlichkeit", type:"N")[
+  Fehlermeldungen sollten verständlich sein
+]<ERROR>
+
+#track("Lösung anbieten", type:"N")[
+  Fehlermeldungen könnten eine Lösung anbieten
+]<ERRORSOLVE>
+
+#track("Stabilität", type:"N")[
+  Das System muss bei auftretenden Fehlern weiterhin funktionieren / sich selbst wiederherstellen
+]<ERRORSTABLE>
+
+#track("Zwei Sprachen", type:"N")[
+  Das System muss in Englisch und Deutsch verfügbar sein
+]<TRANSLATE>
+
+#track("Beliebig viele Sprachen", type:"N")[
+  Das System sollte für beliebig viele Sprachen erweiterbar sein
+]<TRANSLATEMULTIPLE>
+
+#track("Responsive", type:"N")[
+  Das System könnte auf verschiedenen Displaygrößen nutzbar sein
+]<RESPONSIVE>
+
+#track("Eingabemethoden", type:"N")[
+  Das System könnte verschiedene Eingabemethoden unterstützen
+]<KEYBOARD>
+
+#track("Neue Anwendung", type:"N")[
+  Das Frontend muss eine neue Anwendung sein
+]<FRONT>
+
+#track("Angular im Frontend", type:"N")[
+  Das Frontend muss Angular nutzen
+]<FRONT_TECH>
+
+#track("Aktuelles Backend beibehalten", type:"N")[
+  Das bestehende Backend muss erweitert werden
+]<BACK>
+
+#track("Prisma und NestJS im Backend", type:"N")[
+  Das Backend muss Primsa und NestJS nutzen
+]<BACK_TECH>
+
+#track("Aktuelle Datenbank beibehalten", type:"N")[
+  Die bestehende Datenbank muss erweitert werden
+]<DB>
+
 
 
 /*
@@ -243,3 +334,4 @@ Risiko, der Machbarkeit, Nützlichkeit und dem Begeisterungspotenzial.
 
 
 */
+

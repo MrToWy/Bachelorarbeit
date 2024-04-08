@@ -9,8 +9,37 @@
 
 #let smallLine = line(length: 100%, stroke: 0.045em)
 
+#let exampleText(content: none) = {
+  if(content == none){
+    return
+  }
+[
+  #linebreak()
+  #text(weight: "semibold")[Beispiel: ]
+  #content
+]
+}
+  
 
-#let useCase(nummer, kurzbeschreibung, akteur, vorbedingungen, hauptszenario, anforderungen) = [
+#let track(title, type: "Info", example: none, content) = {
+  let c = counter(type)
+  c.step()
+  [
+  #context[
+    #let number = str(c.get().first())
+    #let name = type+number 
+    #pad(top: topBotPadding/8, bottom: topBotPadding/8)[
+    #text(weight: "semibold")[
+    #smallcaps(name + ": " + title)
+  ] #linebreak()
+  #content
+  #exampleText(content: example)
+  ]]]
+}
+
+
+
+#let useCase(nummer, kurzbeschreibung, akteur, vorbedingungen, hauptszenario) = [
   #pad(left: 0em, right: 0em, rest: topBotPadding/2)[
   #figure(caption: [Use Case #nummer])[
   #block()[
@@ -26,34 +55,34 @@
       [Kurzbeschreibung], kurzbeschreibung,
       [Akteur], akteur,
       [Vorbedingungen], vorbedingungen,
-      [Hauptszenario], hauptszenario,
-      [Resultierende Anforderungen], anforderungen
+      [Hauptszenario], hauptszenario
     )
   ]]]
 ]
 
+
+#show figure: set block(breakable: true)
 #let anforderung(funktional: true) = [
   #let prefix = if(funktional) {"F"} else {"N"}
   
   #figure(caption: if funktional {"Funktionale Anforderungen"} else {"Nicht-Funktionale Anforderungen"})[
-  #block()[
+
   #show table.cell.where(x: 0): set text(weight: "bold")
     #let results = if(funktional) {csv("../anforderungen.csv")} else {csv("../nichtFuntionaleAnforderugen.csv")} 
     #let counter = 1
     
     #table(
-      columns: (0.1fr, 1fr),
+      columns: (1fr, 9fr),
       fill: (x, y) => if calc.even(x) { rgb("E28862") } else { rgb("EEC0AB") },
       stroke: (x: none, y: 2.5pt + rgb("FFFF")),
       [*Name*], [*Beschreibung*],
       
       ..results.enumerate(start: 1).map(((i, row)) => ([#prefix#(i)#label(row.first())], 
-
       row.last()
       
       )).flatten(),
     )
-  ]]
+  ]
 ]
 
 #let getAnfName(label, prefix)=[
