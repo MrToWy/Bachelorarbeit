@@ -21,14 +21,14 @@
 }
   
 
-#let track(title, type: "Info", example: none, content) = {
+#let track(title, padding: topBotPadding/8, type: "Info", example: none, content) = {
   let c = counter(type)
   c.step()
   [
   #context[
     #let number = str(c.get().first())
     #let name = type+number 
-    #pad(top: topBotPadding/8, bottom: topBotPadding/8)[
+    #pad(top: padding, bottom: padding)[
     #text(weight: "semibold")[
     #smallcaps(name + ": " + title)
   ] #linebreak()
@@ -37,6 +37,9 @@
   ]]]
 }
 
+#let narrowTrack(title, type: "Info", content) = [
+  #track(title, padding: 0em, type: type, content)
+]
 
 
 #let useCase(nummer, kurzbeschreibung, akteur, vorbedingungen, hauptszenario) = [
