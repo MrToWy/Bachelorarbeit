@@ -18,51 +18,52 @@ Das Modul enthält zunächst grundlegende Informationen:
 ]
 
 #track("Modulniveau")[
-  
+  Hier steht entweder Grundlagenmodul oder Vertiefungsmodul. 
 ]
 
 #track("Pflicht / Wahlpflicht")[
-  
+  Hier steht entweder Pflichtmodul oder Wahlpflichtmodul.
+  Studierende müssen alle Pflichtmodule absolvieren und müssen eine bestimmte Anzahl an selbstausgewählten Wahlpflichtmodul absolieren.
 ]
 
 #track("Teilmodule")[
   Auflistung aller Teilmodule
 ]
 
-#track("Verantwortliche(r)")[
-  Name der verantwortlichen Person
+#track("Verantwortliche(r)", example: "Wohlfeil, Stefan, Prof. Dr.")[
+  Name der verantwortlichen Person. Diese Person ist für die Bearbeitung des Modulhandbuches zuständig.
 ]
 
 #track("Credits")[
-  Anzahl ECTS
+  Anzahl erreichbarer ECTS bei Absolvierung dieses Moduls. Eine Zahl zwischen 2 (Englisch) und 30 (z.B. Masterarbeit).
 ]
 
-#track("Präsenzstunden / Selbststudium")[
-  Aufwand des Studiums
+#track("Präsenzstunden / Selbststudium", example: "68 h / 112 h")[
+  Aufwand des Studiums, aufgeteilt nach der Zeit die in der Hochschule verbracht wird und der Zeit, die im Selbststudium verbracht wird (Arbeit an Übungen, Prüfungsvorbereitung...)
 ]
 
 #track("Studiensemester")[
-  Vorgeschlagenes Semester
+  Vorgeschlagenes Semester. Anhand dieser Information wird das Curriculum generiert (@mdiCurr). 
 ]
 
 #track("Moduldauer")[
-  In der Regel "1 Semester"
+  In der Regel "1 Semester".
 ]
 
-#track("Voraussetzungen nach Prüfungsordnung")[
-  
+#track("Voraussetzungen nach Prüfungsordnung", example: "Alle Modulprüfungen des 1. bis 3. Semesters")[
+  Für die Absolvierung des Moduls zwingend erforderliche Voraussetzungen.
 ]
 
-#track("Empfohlene Voraussetzungen")[
-  
+#track("Empfohlene Voraussetzungen", example: "Alle Module der Semester 1 bis 3 sowie BIN-112 und BIN-202")[
+  Für die Absolvierung des Moduls empfohlene Voraussetzungen.
 ]
 
-#track("Studien-/ Prüfungsleistungen")[
-  
+#track("Studien-/ Prüfungsleistungen", example: "Referat (Hausarbeit plus Präsentation/Vortrag), Anwesenheitspflicht")[
+  Kommagetrennte Auflistung der zu erbringenden Leistungen.
 ]
 
-#track("Angestrebte Lernergebnisse")[
-  
+#track("Angestrebte Lernergebnisse", example: "Die Studierenden sind in der Lage, dreidimensionale Objekte zu gestalten, zu bewegen und zueinander in Beziehung zu setzen.")[
+  Eine Stichpunktartige, Kommagetrennte Auflistung der Kompetenzen
 ]
 
 
@@ -71,39 +72,40 @@ Die Teilmodule enthalten zusätzlich weitere Informationen:
 
 
 #track("Sprache")[
-  
+  Hier steht immer entweder "nach Vereinbarung" oder "deutsch".
 ]
 
-#track("Zuordnung zu Curricula")[
-  
+#track("Zuordnung zu Curricula", example: "BIN, MDI")[
+  Auflistung aller Studiengänge, in denen dieses Teilmodul verwendet wird.
 ]
 
-#track("Veranstaltungsart, SWS")[
-  
+#track("Veranstaltungsart, SWS", example: "Vorlesung mit Übung, 4 SWS")[
+  Eine Kurzbeschreibung zum Ablauf der Veranstaltung, sowie deren Dauer in Semesterwochenstunden
 ]
 
-#track("Empfehlungen zum Selbststudium")[
-  
+#track("Empfehlungen zum Selbststudium", example: "Aufbereitung der Lehrveranstaltung anhand von eigenen Projekten")[
+  Hier stehen Vorschläge, wie der Lehrinhalt im Selbststudium vertieft werden kann.
 ]
 
 #track("Gruppengröße")[
-  
+  Üblicherweise eine Zahl zwischen 1 (Bachelorarbeit) und 100 (Mathematik 1).
 ]
 
-#track("Inhalt")[
-  
+#track("Inhalt", example: "Neue und aktuelle Trends im Bereich Betriebssysteme und Netze")[
+  Die Inhalte der Veranstaltung kurz zusammengefasst.
 ]
 
-#track("Anforderungen der Präsenzzeit")[
-  
+#track("Anforderungen der Präsenzzeit", example: "Regelmäßige und aktive Teilnahme.")[
+  Hier ist kurz beschrieben, was von Studierenden in der Präsenzzeit erwartet wird.
 ]
 
-#track("Anforderungen des Selbststudiums")[
-  
+#track("Anforderungen des Selbststudiums", example: "Vor- und Nachbereitung")[
+  Hier ist kurz beschrieben, was von Studierenden außerhalb der Präsenzzeit erwartet wird.
 ]
 
-#track("Literatur")[
-  
+#track("Literatur", example: "Skript zur Vorlesung
+Reges, S., Stepp, M.: Building Java Programs, Prentice Hall")[
+  Eine Auflistung empfohlener Literatur zur Vertiefung des behandelten Themas.
 ]
 
 
