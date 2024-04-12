@@ -9,13 +9,13 @@ Die Planung des neuen Systems für Modulhandbücher beginnt mit der Anforderungs
 In der Abteilung Informatik der #hsh gibt es bereits mehrere Anwendungen, die ein gemeinsames Backend nutzen. Dieses Backend soll in dieser Arbeit erweitert werden, um auch den anderen Anwendungen die Auflistung der Modulhandbücher anbieten zu können. Zusätzlich wird eine neue Anwendung erstellt, die mit dem angepassten Backend kommunizieren wird.
 
 
-=== Bestehende Anwendungen <andereAnwendungen>
+=== Geplante Anwendungen <andereAnwendungen>
 
-Für Studierende, die planen möchten, welches Modul sie in welchem Semester erledigen, gibt es die Anwendung #studyPlan. Hier können Studierende vom vorgeschlagenen Studienverlauf abweichen und dabei sicherstellen, trotzdem alle Module in der gewünschten Zeit zu erledigen. #studyPlan wird von dem angepassten Backend profitieren, weil #studyPlan eine stets aktuelle Auflistung aller Module inklusive deren Zeitaufwände benötigt.
+Für Studierende, die planen möchten, welches Modul sie in welchem Semester erledigen, wird es die Anwendung #studyPlan geben. Hier können Studierende vom vorgeschlagenen Studienverlauf abweichen und dabei sicherstellen, trotzdem alle Module in der gewünschten Zeit zu erledigen. #studyPlan wird von dem angepassten Backend profitieren, weil #studyPlan eine stets aktuelle Auflistung aller Module inklusive deren Zeitaufwände benötigt.
 
-Die Entwicklung von #studyPlan läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt.
+Die Entwicklung von #studyPlan läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt. Derzeit gibt es bereits einen ersten Prototypen, welcher allerdings noch nicht produktiv genutzt wird.
 
-Außerdem gibt es die Anwendung StudyGraph, welche Studieninhalte visualisiert und somit auch die Informationen zu den angebotenen Modulen benötigt.
+Außerdem ist die Anwendung StudyGraph geplant, welche Studieninhalte visualisiert und somit auch die Informationen zu den angebotenen Modulen benötigt.
 
 
 === Struktur des bestehenden Backends <backend>
