@@ -298,9 +298,9 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
   Das System muss in Englisch und Deutsch verfügbar sein
 ]<TRANSLATE>
 
-#narrowTrack("Beliebig viele Sprachen", type:"N")[
+#narrowTrack("Beliebig viele Sprachen", type:"N", label:<TRANSLATEMULTIPLE>)[
   Das System sollte für beliebig viele Sprachen erweiterbar sein
-]<TRANSLATEMULTIPLE>
+]
 
 #narrowTrack("Responsive", type:"N")[
   Das System könnte auf verschiedenen Displaygrößen nutzbar sein

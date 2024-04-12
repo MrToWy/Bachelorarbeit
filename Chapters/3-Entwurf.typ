@@ -62,14 +62,20 @@ Das Modul enthält zunächst grundlegende Informationen:
   Kommagetrennte Auflistung der zu erbringenden Leistungen.
 ]
 
-#track("Angestrebte Lernergebnisse", example: "Die Studierenden sind in der Lage, dreidimensionale Objekte zu gestalten, zu bewegen und zueinander in Beziehung zu setzen.")[
+#track("Angestrebte Lernergebnisse", example: "Die Studierenden sind in der Lage, dreidimensionale Objekte zu gestalten, zu bewegen und zueinander in Beziehung zu setzen.", label:<erg>)[
   Eine Stichpunktartige, Kommagetrennte Auflistung der Kompetenzen
 ]
 
+#text(" ")<EndOfChapter>
 
 === Teilmoduleigenschaften
 Die Teilmodule enthalten zusätzlich weitere Informationen:
 
+#context [
+  #for (value) in (range(counter(heading).at(<EndOfChapter>).last())) {
+  counter(heading).step(level: 9)
+}
+]
 
 #track("Sprache")[
   Hier steht immer entweder "nach Vereinbarung" oder "deutsch".
@@ -115,112 +121,12 @@ Reges, S., Stepp, M.: Building Java Programs, Prentice Hall")[
 #import "@preview/pintorita:0.1.1"
 #show raw.where(lang: "pintora"): it => pintorita.render(it.text)
 
-```pintora
-erDiagram
-
-  Faculty {
-    INTEGER Id
-    TEXT Title
-}
-
-  Course {
-    INTEGER Id
-    TEXT Title
-    VARCHAR Shortcut
-}
-
-  Module {
-    INTEGER Id
-    TEXT Title(I1)
-    TEXT Subtitle(I2)
-    TEXT Niveau(I3)
-    TEXT Type(I4)
-    TEXT Submodules(I5)
-    TEXT Responsible(I6)
-    INTEGER Credits(I7)
-    INTEGER HoursAtLocation(I8)
-    INTEGER HoursAtHome(I8)
-    INTEGER Semester(I9)
-    INTEGER CourseLength(I10)
-    TEXT Requirement(I11)
-    TEXT AdditionalRequirements(I12)
-    TEXT Exam(I13)
-    TEXT Learnings(I14)
-  }
+#diagramFigure("ER-Diagramm - Gesamtbild", <ER>, "ER")
 
 
-  SubModule {
-    INTEGER Id
-    TEXT Language(I15)
-    TEXT Type(I17)
-    INTEGER PresenceHoursPerWeek(I17)
-    TEXT LearningRecommendations(I18)
-    INTEGER GroupSize(I19)
-    TEXT Content(I20)
-    TEXT PresenceRequirements(I21)
-    TEXT LearningRequirements(I22)
-    TEXT Literature(I23)
-}
+Um die Anforderung @TRANSLATEMULTIPLE sicherzustellen, wird die Tabelle TranslatedText für alle Eigenschaften mit dem Datentyp "TEXT" genutzt. Zur besseren Lesbarkeit wurde dies nur exemplarisch für die Eigenschaften E1-E3 dargestellt:
 
-  User {
-    INTEGER Id
-    TEXT Title
-    VARCHAR Username
-    VARCHAR FirstName
-    VARCHAR LastName
-    VARCHAR Email
-    VARCHAR Password
-}
-
-Faculty ||--o{ Course : "Courses"
-
-Course ||--o{ Module : "Modules(I16)"
-
-Module ||--o{ SubModule : "Submodules(I5)"
-
-Course ||--o{ User : "Responsible"
-Module ||--o{ User : "Responsible(I6)"
-```
-
-Um die Übersetzbarkeit (#link(<TRANSLATEMULTIPLE>)[siehe Anforderung]) sicherzustellen, wird die Tabelle TranslatedText für alle Eigenschaften mit dem Datentyp "TEXT" genutzt. Zur besseren Lesbarkeit wurde dies nur exemplarisch für die Eigenschaften I1-I3 dargestellt:
-
-```pintora
-erDiagram
-
-  TranslatedText {
-    INTEGER Id
-    VARCHAR Default
-    VARCHAR English
-}
-
-  Module {
-    INTEGER Id
-  }
-
-  ModuleTitle {
-    INTEGER Id
-}
-
-  ModuleSubtitle {
-    INTEGER Id
-}
-
-  ModuleNiveau {
-    INTEGER Id
-}
-
-
-
-Module ||--o{ ModuleTitle : "Title(I1)"
-Module ||--o{ ModuleSubtitle : "Subtitle(I2)"
-Module ||--o{ ModuleNiveau : "Niveau(I3)"
-
-ModuleTitle ||--o{ TranslatedText : "Translated_Title"
-ModuleSubtitle ||--o{ TranslatedText : "Translated_Title"
-ModuleNiveau ||--o{ TranslatedText : "Translated_Title"
-
-
-```
+#diagramFigure("ER-Diagramm - TranslatedText", <ER_TRANS>, "ER_Translation")
 
 == Benutzeroberflächen <UI>
 

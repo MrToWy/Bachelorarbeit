@@ -21,24 +21,30 @@
 }
   
 
-#let track(title, padding: topBotPadding/8, type: "Info", example: none, content) = {
+#let track(title, padding: topBotPadding/8, type: "E", example: none, label:none, content) = {
   let c = counter(type)
   c.step()
   [
   #context[
-    #let number = str(c.get().first())
-    #let name = type+number 
     #pad(top: padding, bottom: padding)[
     #text(weight: "semibold")[
-    #smallcaps(name + ": " + title)
+    #heading(outlined: false, depth: 9, numbering: (..nums) => {
+  let nums = nums.pos()
+  // the number to actually display
+  let num = nums.last()
+
+  // combine indent and formatted numbering
+  h(0em)
+  numbering(type + "1", num)
+})[#smallcaps(title)]#label
   ] #linebreak()
   #content
   #exampleText(content: example)
   ]]]
 }
 
-#let narrowTrack(title, type: "Info", content) = [
-  #track(title, padding: 0em, type: type, content)
+#let narrowTrack(title, type: "Info", label:none, content) = [
+  #track(title, padding: 0em, type: type, label:label, content)
 ]
 
 
@@ -88,13 +94,6 @@
   ]
 ]
 
-#let getAnfName(label, prefix)=[
-  #context(
-  link(label, text(prefix) + query(
-    selector(label),
-  ).first())
-  )
-]
 
 
 #let attributedQuote(label, body) = [
@@ -108,6 +107,16 @@
   ]
   ]
   
+
+#let diagramFigure(caption, plabel, filename) = [
+  #pad(left: sidePadding, right: sidePadding, rest: topBotPadding)[
+  #figure(
+    caption: caption,
+    kind: "diagram",
+    supplement: [Diagramm],
+    include "../Diagrams/" + filename + ".typ"
+  ) #plabel
+]]
 
 
 #let codeFigure(caption, plabel, filename) = [
@@ -147,7 +156,7 @@
       return hydra(1, top-margin:topMargin)
     }
     
-    return hydra(top-margin:topMargin)
+    return hydra(2, top-margin:topMargin)
 }
 
 #let getCurrentHeading(loc, topLevel: false, topMargin) = {

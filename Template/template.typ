@@ -55,6 +55,12 @@
   #it
 ]
 
+  // heading size
+  show heading.where(
+  level: 9
+): it => pad(rest: 0em, bottom: -1.45em)[
+  #it
+]
 
   show heading.where(level: 1): set heading(supplement: [Kapitel])
 
@@ -62,7 +68,7 @@
 
   show heading.where(level: 3): set heading(supplement: [Unterabschnitt])
 
-
+  show heading.where(level: 9): set heading(supplement: [])
 
   // code styling
   import "@preview/codly:0.2.0": *
