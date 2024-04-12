@@ -244,9 +244,29 @@ Jede Anforderung in den folgenden Auflistungen enthält entweder das Wort "muss"
 
 
 === Nicht-Funtionale Anforderungen
-Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter der Berücksichtigung der Iso-Norm #todo("Iso Norm eintragen und zusammenfassen", inline:true) und ergeben sich aus den Bedingungen aus @architecture.
+Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter der Berücksichtigung der Iso-Norm ISO/IEC 25000 @rupp_requirements-engineering_2014[Kapitel 12] und ergeben sich aus den Bedingungen aus @architecture.
 
-#narrowTrack("Aktueller Pfad", type:"N")[
+#task(title: [Änderbarkeit])[
+
+  #narrowTrack("Modularität", type:"N")[
+  Einzelne Komponenten des Quellcodes sollten wiederverwendbar sein 
+]<MODULAR>
+
+  #narrowTrack("Testbarkeit", type:"N")[
+  System sollte aus kleinen gut testbaren Einheiten bestehen
+]
+
+#narrowTrack("Unittests", type:"N", label:<TEST>)[
+  Geschäftslogik könnte mithilfe von Unittests automatisiert getestet werden
+]
+
+#narrowTrack("e2e-Tests", type:"N", label:<TESTUI>)[
+  System könnte mithilfe von e2e-Tests automatisiert getestet werden
+]
+]
+
+#task(title: [Benutzbarkeit])[
+  #narrowTrack("Aktueller Pfad", type:"N")[
   System könnte anzeigen, welcher Pfad aufgerufen wurde (Fakultät->Studiengang->Modul)
 ]<PATH>
 
@@ -259,28 +279,8 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
 ]<SOFTDELETE>
 
 #narrowTrack("Ladebalken", type:"N")[
-  Ladezeiten >500ms sollten einen Ladebalken zeigen
+  Ladezeiten >1s sollten einen Ladebalken zeigen
 ]<QUICK>
-
-#narrowTrack("Dokumentation im Backend", type:"N")[
-  Neue API-Endpoints sollten dokumentiert sein
-]<DOKBACK>
-
-#narrowTrack("Unittests", type:"N")[
-  Geschäftslogik könnte mithilfe von Unittests automatisiert getestet werden
-]<TEST>
-
-#narrowTrack("e2e-Tests", type:"N")[
-  System könnte mithilfe von e2e-Tests automatisiert getestet werden
-]<TESTUI>
-
-#narrowTrack("Deployment", type:"N")[
-  Das Deployment könnte automatisiert sein
-]<DEPLOY>
-
-#narrowTrack("Modularität", type:"N")[
-  Einzelne Komponenten des Quellcodes sollten wiederverwendbar sein 
-]<MODULAR>
 
 #narrowTrack("Verständlichkeit", type:"N")[
   Fehlermeldungen sollten verständlich sein
@@ -290,18 +290,6 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
   Fehlermeldungen könnten eine Lösung anbieten
 ]<ERRORSOLVE>
 
-#narrowTrack("Stabilität", type:"N")[
-  Das System muss bei auftretenden Fehlern weiterhin funktionieren / sich selbst wiederherstellen
-]<ERRORSTABLE>
-
-#narrowTrack("Zwei Sprachen", type:"N")[
-  Das System muss in Englisch und Deutsch verfügbar sein
-]<TRANSLATE>
-
-#narrowTrack("Beliebig viele Sprachen", type:"N", label:<TRANSLATEMULTIPLE>)[
-  Das System sollte für beliebig viele Sprachen erweiterbar sein
-]
-
 #narrowTrack("Responsive", type:"N")[
   Das System könnte auf verschiedenen Displaygrößen nutzbar sein
 ]<RESPONSIVE>
@@ -309,26 +297,81 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
 #narrowTrack("Eingabemethoden", type:"N")[
   Das System könnte verschiedene Eingabemethoden unterstützen
 ]<KEYBOARD>
+]
 
-#narrowTrack("Neue Anwendung", type:"N")[
+#task(title: [Effizienz])[
+  
+  #narrowTrack("Startzeit Frontend", type:"N")[
+  Jede Seite im Frontend sollte innerhalb einer Sekunde geladen sein.
+]<DEPLOY>
+
+#narrowTrack("Startzeit Backend", type:"N")[
+  Das Backend sollte im kritischen Fehlerfall innerhalb einer Minute neustarten.
+]<DEPLOY>
+
+  #narrowTrack("Deployment", type:"N")[
+  Das Deployment könnte automatisiert sein
+]<DEPLOY>
+]
+
+#task(title: [Funktionalität])[
+  #narrowTrack("Zwei Sprachen", type:"N")[
+  Das System muss in Englisch und Deutsch verfügbar sein
+]<TRANSLATE>
+
+#narrowTrack("Mehrsprachenfähigkeit", type:"N", label:<TRANSLATEMULTIPLE>)[
+  Das System sollte für beliebig viele Sprachen erweiterbar sein
+]
+]
+
+#task(title: [Übertragbarkeit])[
+  #narrowTrack("Dokumentation zur Installation", type:"N")[
+  Die Installation des Systems sollte dokumentiert sein.
+]<DOKBACK>
+]
+
+#task(title: [Fehlertoleranz])[
+  #narrowTrack("Stabilität", type:"N")[
+  Das System muss bei auftretenden Fehlern weiterhin funktionieren / sich selbst wiederherstellen
+]<ERRORSTABLE>
+]
+
+#task(title: [Technische Anforderungen (ergeben sich aus @architecture)])[
+  #narrowTrack("Neue Anwendung", type:"N")[
   Das Frontend muss eine neue Anwendung sein
 ]<FRONT>
 
-#narrowTrack("Angular im Frontend", type:"N")[
+#narrowTrack("Technologien im Frontend", type:"N")[
   Das Frontend muss Angular nutzen
 ]<FRONT_TECH>
 
-#narrowTrack("Aktuelles Backend beibehalten", type:"N")[
+#narrowTrack("Bestehende Anwendung", type:"N")[
   Das bestehende Backend muss erweitert werden
 ]<BACK>
 
-#narrowTrack("Prisma und NestJS im Backend", type:"N")[
+#narrowTrack("Technologien im Backend", type:"N")[
   Das Backend muss Primsa und NestJS nutzen
 ]<BACK_TECH>
 
-#narrowTrack("Aktuelle Datenbank beibehalten", type:"N")[
+#narrowTrack("Bestehende Datenbank", type:"N")[
   Die bestehende Datenbank muss erweitert werden
 ]<DB>
+]
+
+#task(title: [Weitere Anforderungen])[
+  #narrowTrack("Dokumentation im Backend", type:"N")[
+  Neue API-Endpoints sollten dokumentiert sein
+]<DOKBACK>
+]
+
+
+
+
+
+
+
+
+
 
 
 
