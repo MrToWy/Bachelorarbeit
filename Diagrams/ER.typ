@@ -55,12 +55,28 @@ erDiagram
     VARCHAR Password
 }
 
+Changelog {
+    INTEGER Id
+    DATETIME Timestamp
+    VARCHAR Table
+}
+
+ChangelogItem {
+    INTEGER Id
+    VARCHAR Column
+    VARCHAR PreviousValue
+}
+
 Faculty ||--o{ Course : "Courses"
 
 Course ||--o{ Module : "Modules(E16)"
 
 Module ||--o{ SubModule : "Submodules(E5)"
 
-Course ||--o{ User : "Responsible"
+
 Module ||--o{ User : "Responsible(E6)"
+Course ||--o{ User : "Responsible"
+
+Changelog ||--o{ User : "Author(F15)"
+Changelog ||--o{ ChangelogItem : "Changes(F16)"
 ```

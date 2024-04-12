@@ -1,12 +1,14 @@
 #import "../abbreviations.typ": *
 #import "../Template/customFunctions.typ": *
+#import "@preview/pintorita:0.1.1"
+#show raw.where(lang: "pintora"): it => pintorita.render(it.text)
 
 = Entwurf <entwurf>
 
 == Struktur eines Modulhandbuches <structure>
 Die Modulhandbücher der Abteilung Informatik haben für alle drei Studiengänge (BIN, MDI und MIN) dieselbe Struktur. Es gibt eine Aufteilung in Module und Teilmodule. Ein Modul kann dabei 0 bis n verschiedene Teilmodule haben und jedes Teilmodul kann zu 1 bis n Modulen gehören. Teilmodule können Studiengangsübergreifend mit Modulen verknüpft werden. #emph("Beispiel"): Es gibt das Modul "MDI-103 Grundlagen der Informatik" und das Modul "BIN-103 Grundlagen der Informatik". Beide verweisen auf das Teilmodul "BIN-103-01 Grundlagen der Informatik". Somit können Studiengangsübergreifende Module abgebildet werden. In der Regel hat jedoch jedes Modul genau ein Teilmodul und umgekehrt gehört in der Regel jedes Teilmodul zu genau einem Modul.
 
-=== Moduleigenschaften
+=== Moduleigenschaften <properties>
 Das Modul enthält zunächst grundlegende Informationen:
 
 #track("Titel", example: "BIN-100 Mathematik 1")[
@@ -116,17 +118,22 @@ Reges, S., Stepp, M.: Building Java Programs, Prentice Hall")[
 
 
 
-== Datenbankschema / Klassendiagramm <dbschema>
+== Datenbankschema <dbschema>
 
-#import "@preview/pintorita:0.1.1"
-#show raw.where(lang: "pintora"): it => pintorita.render(it.text)
+Um die Datenstruktur zu planen wurde zunächst ein ER-Diagramm erstellt (@ER).
+Hierfür wurden im ersten Schritt Tabellen für Module und Teilmodule geplant. Damit das System auch für alle Fakultäten und alle Studiengänge nutzbar ist wurden zusätzlich die Tabellen Faculty und Course geplant.  
+Um die Anforderungen @SHOWCHANGES und @REVERT vorzubereiten wird die Tabelle Changelog genutzt.
+Die bestehende User-Tabelle wird an verschiedenen Stellen referenziert, um beispielsweise die Verantwortlichen Personen anzugeben.
+Eigenschaften die aus @requirements oder aus @properties hervorgehen sind dementsprechend markiert.
 
 #diagramFigure("ER-Diagramm - Gesamtbild", <ER>, "ER")
 
 
-Um die Anforderung @TRANSLATEMULTIPLE sicherzustellen, wird die Tabelle TranslatedText für alle Eigenschaften mit dem Datentyp "TEXT" genutzt. Zur besseren Lesbarkeit wurde dies nur exemplarisch für die Eigenschaften E1-E3 dargestellt:
+Um die Anforderung @TRANSLATEMULTIPLE vorzubereiten, wird die Tabelle TranslatedText für alle Eigenschaften mit dem Datentyp "TEXT" genutzt. Zur besseren Lesbarkeit wurde dies nur exemplarisch für die Eigenschaften E1-E3 dargestellt:
 
 #diagramFigure("ER-Diagramm - TranslatedText", <ER_TRANS>, "ER_Translation")
+
+
 
 == Benutzeroberflächen <UI>
 

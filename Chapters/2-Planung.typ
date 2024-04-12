@@ -178,6 +178,20 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
 ]<UseCaseCreateModule>
 
 #useCase(6)[
+  Änderungen an Modul rückgängig machen
+][
+  Studiengangsverantwortliche Person
+][
+  Erfolgreich mit einem Account eingeloggt, der Module bearbeiten darf
+][
+  1. User öffnet Modul
+  2. User drückt auf "Änderungs-Historie"
+  3. System zeigt Änderungen
+  4. User drückt auf "Auf diesen Stand zurücksetzen" 
+  5. System zeigt "Änderungen rückgängig gemacht"
+]<UCRevertChanges>
+
+#useCase(7)[
   Tabelle im Anhang der Prüfungsordnung überprüfen
 ][
   Studiengangsverantwortliche Person
@@ -190,7 +204,7 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
 ]<UseCaseTable>
 
 
-== Anforderungen 
+== Anforderungen <requirements>
 Zur besseren Übersichtlichkeit werden die Anforderungen in Funktional und Nicht-Funktional aufgeteilt. 
 
 Jede Anforderung in den folgenden Auflistungen enthält entweder das Wort "muss", "sollte", oder "könnte". @rupp_requirements-engineering_2014[Kapitel 1.5.2] Damit wird zwischen Anforderungen unterschieden, die zwingend erforderlich sind (muss), Anforderungen, die sehr sinnvoll sind (sollte) und Anforderungen, die nicht zwingend erforderlich sind, aber die Nutzer begeistern würden (könnte). Eine weitere Priorisierung wird an dieser Stelle nicht benötigt, sondern kann bei Bedarf erfolgen.
@@ -201,45 +215,48 @@ Jede Anforderung in den folgenden Auflistungen enthält entweder das Wort "muss"
 #import "@preview/gentle-clues:0.7.1": *
 
 #task(title:[Aus #link(<UseCaseSearch>)[Use-Case 1] ergeben sich folgende Anforderungen:])[
-  #narrowTrack("Studiengänge ansehen", type: "F")[Nicht angemeldete Person (NP) muss Studiengänge ansehen können.]<SHOWCOURSES>
-  #narrowTrack("Curriculum anzeigen", type: "F")[NP könnte sich das Curriculum eines Studienganges anzeigen lassen.]<CURR>
-  #narrowTrack("Suchfunktion", type: "F")[NP sollte Suche nutzen können, um den gesuchten Studiengang zu finden.]<SEARCH>
-  #narrowTrack("PDF anzeigen", type: "F")[NP sollte ein PDF mit allen Modulbeschreibungen runterladen können.]<PDF>
+  #narrowTrack("Studiengänge ansehen", type: "F", label: <SHOWCOURSES>)[Nicht angemeldete Person (NP) muss Studiengänge ansehen können.]
+  #narrowTrack("Curriculum anzeigen", type: "F", label: <CURR>)[NP könnte sich das Curriculum eines Studienganges anzeigen lassen.]
+  #narrowTrack("Suchfunktion", type: "F", label: <SEARCH>)[NP sollte Suche nutzen können, um den gesuchten Studiengang zu finden.]
+  #narrowTrack("PDF anzeigen", type: "F", label: <PDF>)[NP sollte ein PDF mit allen Modulbeschreibungen runterladen können.]
 ]
 
 #task(title: [Aus #link(<UseCaseFilter>)[Use-Case 2] ergeben sich folgende Anforderungen:])[
-  #narrowTrack("Module ansehen", type: "F")[NP muss Module ansehen können.]<SHOWMODULES>
-  #narrowTrack("Filterfunktion", type: "F")[NP sollte Filter nutzen können, um das gesuchte Modul zu finden.]<FILTER>
+  #narrowTrack("Module ansehen", type: "F", label: <SHOWMODULES>)[NP muss Module ansehen können.]
+  #narrowTrack("Filterfunktion", type: "F", label: <FILTER>)[NP sollte Filter nutzen können, um das gesuchte Modul zu finden.]
 ]
 
 
 #task(title: [Aus #link(<UseCaseEditModule>)[Use-Case 3] ergeben sich folgende Anforderungen:])[
-  #narrowTrack("Login", type: "F")[Ein User muss sich einloggen können.]<LOGIN>
-  #narrowTrack("Module bearbeiten", type: "F")[Modulverantwortliche Person muss Module bearbeiten können, für die Sie als Ansprechpartner hinterlegt ist.]<EDIT>
-  #narrowTrack("Plausibilitätschecks bei Modulen", type: "F")[System sollte Änderungen an Modulen auf Plausibilität prüfen.]<CHECKMOD>
+  #narrowTrack("Login", type: "F", label: <LOGIN>)[Ein User muss sich einloggen können.]
+  #narrowTrack("Module bearbeiten", type: "F", label: <EDIT>)[Modulverantwortliche Person muss Module bearbeiten können, für die Sie als Ansprechpartner hinterlegt ist.]
+  #narrowTrack("Plausibilitätschecks bei Modulen", type: "F", label: <CHECKMOD>)[System sollte Änderungen an Modulen auf Plausibilität prüfen.]
 ]
 
 #task(title: [Aus #link(<UseCaseCreateUser>)[Use-Case 4] ergeben sich folgende Anforderungen:])[
-  #narrowTrack("User anlegen", type: "F")[Studiengangsverantwortliche Person (SVP) muss neue User anlegen können]<CRUSER>
-  #narrowTrack("Plausibilitätschecks bei Usern", type: "F")[System sollte Änderungen an Usern auf Plausibilität prüfen.]<CHECKUS>
+  #narrowTrack("User anlegen", type: "F", label: <CRUSER>)[Studiengangsverantwortliche Person (SVP) muss neue User anlegen können]
+  #narrowTrack("Plausibilitätschecks bei Usern", type: "F", label: <CHECKUS>)[System sollte Änderungen an Usern auf Plausibilität prüfen.]
 ]
 
 #task(title: [Aus #link(<UseCaseCreateModule>)[Use-Case 5] ergeben sich folgende Anforderungen:])[
-  #narrowTrack("Module verwalten", type: "F")[SVP muss Module verwalten können.]<MODULE>
-  #narrowTrack("Module duplizieren", type: "F")[SVP sollte Module duplizieren können.]<DUPLICATE>
-  #narrowTrack("Studiengänge verwalten", type: "F")[SVP muss Studiengänge verwalten (anlegen, verändern, löschen) können.]<COURSE>
-  #narrowTrack("Änderungen anzeigen", type: "F")[SVP sollte sich einzelne Änderungen anzeigen lassen können.]<SHOWCHANGES>
-  #narrowTrack("Änderungen widerrufen", type: "F")[SVP könnte einzelne Änderungen rückgängig machen.]<REVERT>
+  #narrowTrack("Module verwalten", type: "F", label: <MODULE>)[SVP muss Module verwalten können.]
+  #narrowTrack("Module duplizieren", type: "F", label: <DUPLICATE>)[SVP sollte Module duplizieren können.]
+  #narrowTrack("Studiengänge verwalten", type: "F", label: <COURSE>)[SVP muss Studiengänge verwalten (anlegen, verändern, löschen) können.]
 ]
 
-#task(title: [Aus #link(<UseCaseTable>)[Use-Case 6] ergibt sich folgende Anforderung:])[
-  #narrowTrack("Anhang der Prüfungsordnung", type: "F")[SVP könnte sich die Auflistung aller Module als Tabelle anzeigen lassen, um sie mit dem Anhang der Prüfungsordnung vergleichen zu können.]<COMPARE>
+#task(title: [Aus #link(<UCRevertChanges>)[Use-Case 6] ergibt sich folgende Anforderung:])[
+  #narrowTrack("Änderungen anzeigen", type: "F", label: <SHOWCHANGES>)[SVP sollte sich einzelne Änderungen anzeigen lassen können.]
+  #narrowTrack("Änderungen widerrufen", type: "F", label: <REVERT>)[SVP könnte einzelne Änderungen rückgängig machen.]
+]
+
+#task(title: [Aus #link(<UseCaseTable>)[Use-Case 7] ergibt sich folgende Anforderung:])[
+  #narrowTrack("Anhang der Prüfungsordnung", type: "F", label: <COMPARE>)[SVP könnte sich die Auflistung aller Module als Tabelle anzeigen lassen, um sie mit dem Anhang der Prüfungsordnung vergleichen zu können.]
 ]
 
 #task(title: [Dadurch, dass die administrativen Bereiche nur ausgewählten Benutzern zur Verfügung stehen sollen, entstehen die folgenden Anforderungen:])[
-  #narrowTrack("Logout", type: "F")[Ein User sollte sich ausloggen können.]<LOGOUT>
-#narrowTrack("Passwörter zurücksetzen", type: "F")[SVP muss Passwörter zurücksetzen können.]<RESETPW>
-#narrowTrack("Eigenes Passwort zurücksetzen", type: "F")[SVP sollte das eigene Passwort zurücksetzen können.]<RESETMYPW>
+  #narrowTrack("Logout", type: "F", label: <LOGOUT>)[Ein User sollte sich ausloggen können.]
+#narrowTrack("Passwörter zurücksetzen", type: "F", label: <RESETPW>)[SVP muss Passwörter zurücksetzen können.]
+#narrowTrack("Eigenes Passwort zurücksetzen", type: "F", label: <RESETMYPW>)[SVP sollte das eigene Passwort zurücksetzen können.]
 ]
 
 
@@ -248,11 +265,11 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
 
 #task(title: [Änderbarkeit])[
 
-  #narrowTrack("Modularität", type:"N")[
+  #narrowTrack("Modularität", type:"N", label: <MODULAR>)[
   Einzelne Komponenten des Quellcodes sollten wiederverwendbar sein 
-]<MODULAR>
+]
 
-  #narrowTrack("Testbarkeit", type:"N")[
+  #narrowTrack("Testbarkeit", type:"N", label: <TESTABLE>)[
   System sollte aus kleinen gut testbaren Einheiten bestehen
 ]
 
@@ -266,58 +283,66 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
 ]
 
 #task(title: [Benutzbarkeit])[
-  #narrowTrack("Aktueller Pfad", type:"N")[
+  #narrowTrack("Aktueller Pfad", type:"N", label: <PATH>)[
   System könnte anzeigen, welcher Pfad aufgerufen wurde (Fakultät->Studiengang->Modul)
-]<PATH>
+]
 
-#narrowTrack("Rückfragen", type:"N")[
+#narrowTrack("Rückfragen", type:"N", label:<ASK>)[
   Vor dem Löschen eines Elements muss eine Rückfrage erscheinen
-]<ASK>
+]
 
-#narrowTrack("Wiederherstellbarkeit", type:"N")[
+#narrowTrack("Wiederherstellbarkeit", type:"N", label:<SOFTDELETE>)[
   Gelöschte Elemente könnten wiederherstellbar sein
-]<SOFTDELETE>
+]
 
-#narrowTrack("Ladebalken", type:"N")[
+#narrowTrack("Ladebalken", type:"N", label:<QUICK>)[
   Ladezeiten >1s sollten einen Ladebalken zeigen
-]<QUICK>
+]
 
-#narrowTrack("Verständlichkeit", type:"N")[
+#narrowTrack("Verständlichkeit", type:"N", label:<ERROR>)[
   Fehlermeldungen sollten verständlich sein
-]<ERROR>
+]
 
-#narrowTrack("Lösung anbieten", type:"N")[
+#narrowTrack("Lösung anbieten", type:"N", label:<ERRORSOLVE>)[
   Fehlermeldungen könnten eine Lösung anbieten
-]<ERRORSOLVE>
+]
 
-#narrowTrack("Responsive", type:"N")[
+#narrowTrack("Responsive", type:"N", label:<RESPONSIVE>)[
   Das System könnte auf verschiedenen Displaygrößen nutzbar sein
-]<RESPONSIVE>
+]
 
-#narrowTrack("Eingabemethoden", type:"N")[
+#narrowTrack("Eingabemethoden", type:"N", label:<KEYBOARD>)[
   Das System könnte verschiedene Eingabemethoden unterstützen
-]<KEYBOARD>
+]
+
+#narrowTrack("Selbsterklärend", type:"N", label:<SELFEXPLAIN>)[
+  Das System sollte selbsterklärend sein und kein Handbuch benötigen.
+]
 ]
 
 #task(title: [Effizienz])[
   
-  #narrowTrack("Startzeit Frontend", type:"N")[
+  #narrowTrack("Startzeit Frontend", type:"N", label:<STARTFRONTEND>)[
   Jede Seite im Frontend sollte innerhalb einer Sekunde geladen sein.
-]<DEPLOY>
+]
 
-#narrowTrack("Startzeit Backend", type:"N")[
+#narrowTrack("Startzeit Backend", type:"N", label:<STARTBACKEND>)[
   Das Backend sollte im kritischen Fehlerfall innerhalb einer Minute neustarten.
-]<DEPLOY>
+]
 
-  #narrowTrack("Deployment", type:"N")[
+  #narrowTrack("Deployment", type:"N", label:<DEPLOY>)[
   Das Deployment könnte automatisiert sein
-]<DEPLOY>
+]
+
+  #narrowTrack("Effizienz der Aufgabenerledigung", type:"N", label:<DEPLOY>)[
+  Jeder Use-Case sollte mit möglichst wenigen Klicks erledigbar sein.
+]
 ]
 
 #task(title: [Funktionalität])[
-  #narrowTrack("Zwei Sprachen", type:"N")[
+  #narrowTrack("Zwei Sprachen", type:"N", label:<TRANSLATE>)[
   Das System muss in Englisch und Deutsch verfügbar sein
-]<TRANSLATE>
+]
 
 #narrowTrack("Mehrsprachenfähigkeit", type:"N", label:<TRANSLATEMULTIPLE>)[
   Das System sollte für beliebig viele Sprachen erweiterbar sein
@@ -325,43 +350,43 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
 ]
 
 #task(title: [Übertragbarkeit])[
-  #narrowTrack("Dokumentation zur Installation", type:"N")[
-  Die Installation des Systems sollte dokumentiert sein.
-]<DOKBACK>
+  #narrowTrack("Dokumentation zur Installation", type:"N", label: <DOKBACK>)[
+  Es sollte dokumentiert sein, wie das System installiert wird.
+]
 ]
 
 #task(title: [Fehlertoleranz])[
-  #narrowTrack("Stabilität", type:"N")[
+  #narrowTrack("Stabilität", type:"N", label: <ERRORSTABLE>)[
   Das System muss bei auftretenden Fehlern weiterhin funktionieren / sich selbst wiederherstellen
-]<ERRORSTABLE>
+]
 ]
 
 #task(title: [Technische Anforderungen (ergeben sich aus @architecture)])[
-  #narrowTrack("Neue Anwendung", type:"N")[
+  #narrowTrack("Neue Anwendung", type:"N", label: <FRONT>)[
   Das Frontend muss eine neue Anwendung sein
-]<FRONT>
+]
 
-#narrowTrack("Technologien im Frontend", type:"N")[
+#narrowTrack("Technologien im Frontend", type:"N", label: <FRONT_TECH>)[
   Das Frontend muss Angular nutzen
-]<FRONT_TECH>
+]
 
-#narrowTrack("Bestehende Anwendung", type:"N")[
+#narrowTrack("Bestehende Anwendung", type:"N", label: <BACK>)[
   Das bestehende Backend muss erweitert werden
-]<BACK>
+]
 
-#narrowTrack("Technologien im Backend", type:"N")[
+#narrowTrack("Technologien im Backend", type:"N", label: <BACK_TECH>)[
   Das Backend muss Primsa und NestJS nutzen
-]<BACK_TECH>
+]
 
-#narrowTrack("Bestehende Datenbank", type:"N")[
+#narrowTrack("Bestehende Datenbank", type:"N", label: <DB>)[
   Die bestehende Datenbank muss erweitert werden
-]<DB>
+]
 ]
 
 #task(title: [Weitere Anforderungen])[
-  #narrowTrack("Dokumentation im Backend", type:"N")[
+  #narrowTrack("Dokumentation im Backend", type:"N", label: <DOKBACK>)[
   Neue API-Endpoints sollten dokumentiert sein
-]<DOKBACK>
+]
 ]
 
 
