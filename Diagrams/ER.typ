@@ -18,8 +18,6 @@ erDiagram
     TEXT Subtitle(E2)
     TEXT Niveau(E3)
     TEXT Type(E4)
-    TEXT Submodules(E5)
-    TEXT Responsible(E6)
     INTEGER Credits(E7)
     INTEGER HoursAtLocation(E8)
     INTEGER HoursAtHome(E8)

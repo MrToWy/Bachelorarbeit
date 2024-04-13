@@ -29,7 +29,7 @@ Das Modul enthält zunächst grundlegende Informationen:
 ]
 
 #track("Teilmodule")[
-  Auflistung aller Teilmodule
+  Auflistung aller Teilmodule.
 ]
 
 #track("Verantwortliche(r)", example: "Wohlfeil, Stefan, Prof. Dr.")[
@@ -41,7 +41,7 @@ Das Modul enthält zunächst grundlegende Informationen:
 ]
 
 #track("Präsenzstunden / Selbststudium", example: "68 h / 112 h")[
-  Aufwand des Studiums, aufgeteilt nach der Zeit die in der Hochschule verbracht wird und der Zeit, die im Selbststudium verbracht wird (Arbeit an Übungen, Prüfungsvorbereitung...)
+  Aufwand des Studiums, aufgeteilt nach der Zeit die in der Hochschule verbracht wird und der Zeit, die im Selbststudium verbracht wird (Arbeit an Übungen, Prüfungsvorbereitung...).
 ]
 
 #track("Studiensemester")[
@@ -65,7 +65,7 @@ Das Modul enthält zunächst grundlegende Informationen:
 ]
 
 #track("Angestrebte Lernergebnisse", example: "Die Studierenden sind in der Lage, dreidimensionale Objekte zu gestalten, zu bewegen und zueinander in Beziehung zu setzen.", label:<erg>)[
-  Eine Stichpunktartige, Kommagetrennte Auflistung der Kompetenzen
+  Eine Stichpunktartige, Kommagetrennte Auflistung der Kompetenzen.
 ]
 
 #text(" ")<EndOfChapter>
@@ -88,7 +88,7 @@ Die Teilmodule enthalten zusätzlich weitere Informationen:
 ]
 
 #track("Veranstaltungsart, SWS", example: "Vorlesung mit Übung, 4 SWS")[
-  Eine Kurzbeschreibung zum Ablauf der Veranstaltung, sowie deren Dauer in Semesterwochenstunden
+  Eine Kurzbeschreibung zum Ablauf der Veranstaltung, sowie deren Dauer in Semesterwochenstunden.
 ]
 
 #track("Empfehlungen zum Selbststudium", example: "Aufbereitung der Lehrveranstaltung anhand von eigenen Projekten")[
@@ -122,14 +122,14 @@ Reges, S., Stepp, M.: Building Java Programs, Prentice Hall")[
 
 Um die Datenstruktur zu planen wurde zunächst ein ER-Diagramm erstellt (@ER).
 Hierfür wurden im ersten Schritt Tabellen für Module und Teilmodule geplant. Damit das System auch für alle Fakultäten und alle Studiengänge nutzbar ist wurden zusätzlich die Tabellen Faculty und Course geplant.  
-Um die Anforderungen @SHOWCHANGES und @REVERT vorzubereiten wird die Tabelle Changelog genutzt.
-Die bestehende User-Tabelle wird an verschiedenen Stellen referenziert, um beispielsweise die Verantwortlichen Personen anzugeben.
+Um die Anforderungen @SHOWCHANGES und @REVERT vorzubereiten wurde die Tabelle Changelog genutzt.
+Die bestehende User-Tabelle wurden an verschiedenen Stellen referenziert, um beispielsweise die Verantwortlichen Personen anzugeben.
 Eigenschaften die aus @requirements oder aus @properties hervorgehen sind dementsprechend markiert.
 
 #diagramFigure("ER-Diagramm - Gesamtbild", <ER>, "ER")
 
 
-Um die Anforderung @TRANSLATEMULTIPLE vorzubereiten, wird die Tabelle TranslatedText für alle Eigenschaften mit dem Datentyp "TEXT" genutzt. Zur besseren Lesbarkeit wurde dies nur exemplarisch für die Eigenschaften E1-E3 dargestellt:
+Um die Anforderung @TRANSLATEMULTIPLE vorzubereiten, wurde die Tabelle TranslatedText für alle Eigenschaften mit dem Datentyp "TEXT" genutzt. Zur besseren Lesbarkeit wurde dies nur exemplarisch für die Eigenschaften E1-E3 dargestellt:
 
 #diagramFigure("ER-Diagramm - TranslatedText", <ER_TRANS>, "ER_Translation")
 
