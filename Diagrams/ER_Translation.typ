@@ -3,8 +3,7 @@ erDiagram
 
   TranslatedText {
     INTEGER Id
-    VARCHAR Default
-    VARCHAR English
+    VARCHAR Text
 }
 
   Module {
@@ -23,15 +22,20 @@ erDiagram
     INTEGER Id
 }
 
+  Language {
+    INTEGER Id
+    VARCHAR Name
+    VARCHAR ISOCode
+}
 
 
-Module ||--o{ ModuleTitle : "Title(E1)"
-Module ||--o{ ModuleSubtitle : "Subtitle(E2)"
-Module ||--o{ ModuleNiveau : "Niveau(E3)"
+
+Module ||--|| ModuleTitle : "Title(E1)"
+Module ||--|| ModuleSubtitle : "Subtitle(E2)"
+Module }o--|| ModuleNiveau : "Niveau(E3)"
 
 ModuleTitle ||--o{ TranslatedText : "Translated_Title"
 ModuleSubtitle ||--o{ TranslatedText : "Translated_Title"
 ModuleNiveau ||--o{ TranslatedText : "Translated_Title"
-
-
+TranslatedText }o--|| Language : "Language"
 ```

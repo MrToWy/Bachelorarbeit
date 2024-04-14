@@ -20,16 +20,16 @@ Das Modul enthält zunächst grundlegende Informationen:
 ]
 
 #track("Modulniveau")[
-  Hier steht entweder Grundlagenmodul oder Vertiefungsmodul. 
+  Hier ist angegeben, ob das Modul ein Grundlagenmodul oder Vertiefungsmodul ist. 
 ]
 
 #track("Pflicht / Wahlpflicht")[
-  Hier steht entweder Pflichtmodul oder Wahlpflichtmodul.
-  Studierende müssen alle Pflichtmodule absolvieren und müssen eine bestimmte Anzahl an selbstausgewählten Wahlpflichtmodul absolieren.
+  Hier ist angegeben, ob das Modul ein Pflichtmodul oder Wahlpflichtmodul ist.
+  Studierende müssen alle Pflichtmodule absolvieren und müssen eine bestimmte Anzahl an selbst ausgewählten Wahlpflichtmodulen absolvieren.
 ]
 
 #track("Teilmodule")[
-  Auflistung aller Teilmodule.
+  Eine Auflistung aller Teilmodule.
 ]
 
 #track("Verantwortliche(r)", example: "Wohlfeil, Stefan, Prof. Dr.")[
@@ -41,15 +41,15 @@ Das Modul enthält zunächst grundlegende Informationen:
 ]
 
 #track("Präsenzstunden / Selbststudium", example: "68 h / 112 h")[
-  Aufwand des Studiums, aufgeteilt nach der Zeit die in der Hochschule verbracht wird und der Zeit, die im Selbststudium verbracht wird (Arbeit an Übungen, Prüfungsvorbereitung...).
+  Aufwand des Studiums, aufgeteilt nach der Zeit, die in der Hochschule verbracht wird und der Zeit, die im Selbststudium verbracht wird (Arbeit an Übungen, Prüfungsvorbereitung …).
 ]
 
 #track("Studiensemester")[
   Vorgeschlagenes Semester. Anhand dieser Information wird das Curriculum generiert (@mdiCurr). 
 ]
 
-#track("Moduldauer")[
-  In der Regel "1 Semester".
+#track("Moduldauer", example: "1 Semester")[
+  Hier ist angegeben, wie lange es dauert das Modul zu absolvieren.
 ]
 
 #track("Voraussetzungen nach Prüfungsordnung", example: "Alle Modulprüfungen des 1. bis 3. Semesters")[
@@ -61,11 +61,11 @@ Das Modul enthält zunächst grundlegende Informationen:
 ]
 
 #track("Studien-/ Prüfungsleistungen", example: "Referat (Hausarbeit plus Präsentation/Vortrag), Anwesenheitspflicht")[
-  Kommagetrennte Auflistung der zu erbringenden Leistungen.
+  Eine kommagetrennte Auflistung der zu erbringenden Leistungen.
 ]
 
 #track("Angestrebte Lernergebnisse", example: "Die Studierenden sind in der Lage, dreidimensionale Objekte zu gestalten, zu bewegen und zueinander in Beziehung zu setzen.", label:<erg>)[
-  Eine Stichpunktartige, Kommagetrennte Auflistung der Kompetenzen.
+  Eine stichpunktartige, kommagetrennte Auflistung der Kompetenzen, die in diesem Modul erworben werden.
 ]
 
 #text(" ")<EndOfChapter>
@@ -79,12 +79,16 @@ Die Teilmodule enthalten zusätzlich weitere Informationen:
 }
 ]
 
-#track("Sprache")[
-  Hier steht immer entweder "nach Vereinbarung" oder "deutsch".
+#track("Titel", example: "BIN-100-01 Mathematik 1")[
+  Der Titel des Teilmoduls setzt sich zusammen aus dem Kürzel des übergeordneten Moduls, einer eigenen Nummer und dem Namen des Teilmoduls.
+]
+
+#track("Sprache", example: ["nach Vereinbarung" oder "deutsch"])[
+  Hier ist angegeben, in welcher Sprache die Veranstaltung stattfindet.
 ]
 
 #track("Zuordnung zu Curricula", example: "BIN, MDI")[
-  Auflistung aller Studiengänge, in denen dieses Teilmodul verwendet wird.
+  Eine kommagetrennte Auflistung aller Studiengänge, in denen dieses Teilmodul verwendet wird.
 ]
 
 #track("Veranstaltungsart, SWS", example: "Vorlesung mit Übung, 4 SWS")[
@@ -120,8 +124,8 @@ Reges, S., Stepp, M.: Building Java Programs, Prentice Hall")[
 
 == Datenbankschema <dbschema>
 
-Um die Datenstruktur zu planen wurde zunächst ein ER-Diagramm erstellt (@ER).
-Hierfür wurden im ersten Schritt Tabellen für Module und Teilmodule geplant. Damit das System auch für alle Fakultäten und alle Studiengänge nutzbar ist wurden zusätzlich die Tabellen Faculty und Course geplant.  
+Die Erstellung eines Datenbankschemas ist ein wichtiger Schritt. Mit einem vollständigen Datenbankschema wird sichergestellt, dass alle benötigten Daten in der Datenbank gespeichert werden können, dass auf die Daten effizient zugegriffen werden kann und dass die Datenkonsistenz gewährleistet ist. @relationaleDb[Kapitel 3] \ Bei der Konzeption wurde darauf geachtet, dass die entstehende Datenbank in der dritten Normalform vorliegen wird, um Anomalien zu vermeiden. @relationaleDb[Kapitel 9]\
+Im ersten Schritt wurden Tabellen für Module und Teilmodule geplant. Damit das System auch für alle Fakultäten und alle Studiengänge nutzbar ist wurden zusätzlich die Tabellen Faculty und Course geplant.  
 Um die Anforderungen @SHOWCHANGES und @REVERT vorzubereiten wurde die Tabelle Changelog genutzt.
 Die bestehende User-Tabelle wurden an verschiedenen Stellen referenziert, um beispielsweise die Verantwortlichen Personen anzugeben.
 Eigenschaften die aus @requirements oder aus @properties hervorgehen sind dementsprechend markiert.

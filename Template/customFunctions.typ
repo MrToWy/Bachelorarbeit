@@ -66,7 +66,8 @@
       [Kurzbeschreibung], kurzbeschreibung,
       [Akteur], akteur,
       [Vorbedingungen], vorbedingungen,
-      [Hauptszenario], hauptszenario
+      [Hauptszenario], hauptszenario,
+     // [Nachbedingung], nachbedingung
     )
   ]]]
 ]

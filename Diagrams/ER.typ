@@ -9,13 +9,15 @@ erDiagram
   Course {
     INTEGER Id
     TEXT Title
-    VARCHAR Shortcut
+    VARCHAR Shortcut(E1)
 }
 
   Module {
     INTEGER Id
+    INTEGER Number(E1)
     TEXT Title(E1)
     TEXT Subtitle(E2)
+    VARCHAR Shortcut(E2)
     TEXT Niveau(E3)
     TEXT Type(E4)
     INTEGER Credits(E7)
@@ -32,15 +34,16 @@ erDiagram
 
   SubModule {
     INTEGER Id
-    TEXT Language(E15)
-    TEXT Type(E17)
-    INTEGER PresenceHoursPerWeek(E17)
-    TEXT LearningRecommendations(E18)
-    INTEGER GroupSize(E19)
-    TEXT Content(E20)
-    TEXT PresenceRequirements(E21)
-    TEXT LearningRequirements(E22)
-    TEXT Literature(E23)
+    INTEGER Number(E15)
+    TEXT Language(E16)
+    TEXT Type(E18)
+    INTEGER PresenceHoursPerWeek(E18)
+    TEXT LearningRecommendations(E19)
+    INTEGER GroupSize(20)
+    TEXT Content(E21)
+    TEXT PresenceRequirements(E22)
+    TEXT LearningRequirements(E23)
+    TEXT Literature(E24)
 }
 
   User {
@@ -67,14 +70,14 @@ ChangelogItem {
 
 Faculty ||--o{ Course : "Courses"
 
-Course ||--o{ Module : "Modules(E16)"
+Course ||--o{ Module : "Modules(E17)"
 
-Module ||--o{ SubModule : "Submodules(E5)"
+Module }o--o{ SubModule : "Submodules(E5)"
 
 
-Module ||--o{ User : "Responsible(E6)"
-Course ||--o{ User : "Responsible"
+Module }o--|| User : "Responsible(E6)"
+Course }o--|| User : "Responsible"
 
-Changelog ||--o{ User : "Author(F15)"
+Changelog }o--|| User : "Author(F15)"
 Changelog ||--o{ ChangelogItem : "Changes(F16)"
 ```

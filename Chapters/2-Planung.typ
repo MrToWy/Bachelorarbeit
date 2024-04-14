@@ -101,7 +101,7 @@ Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–M
 */
 
 #useCase(1)[
-  Studiengang per Suche finden 
+  Studiengang per Suche finden
 ][
   Studieninteressierte Person
 ][
@@ -296,7 +296,7 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
 ]
 #task(title: [Benutzbarkeit])[
   #narrowTrack("Aktueller Pfad", type:"N", label: <PATH>)[
-  System könnte anzeigen, welcher Pfad aufgerufen wurde (Fakultät->Studiengang->Modul).
+  System könnte anzeigen, welcher Pfad aufgerufen wurde \ (z.B. Fakultät->Studiengang->Modul).
 ]
 
 #narrowTrack("Rückfragen", type:"N", label:<ASK>)[
