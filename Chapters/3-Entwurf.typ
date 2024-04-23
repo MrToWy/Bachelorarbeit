@@ -5,130 +5,19 @@
 
 = Entwurf <entwurf>
 
-== Struktur eines Modulhandbuches <structure>
-Die Modulhandbücher der Abteilung Informatik haben für alle drei Studiengänge (BIN, MDI und MIN) dieselbe Struktur. Es gibt eine Aufteilung in Module und Teilmodule. Ein Modul kann dabei 0 bis n verschiedene Teilmodule haben und jedes Teilmodul kann zu 1 bis n Modulen gehören. Teilmodule können Studiengangsübergreifend mit Modulen verknüpft werden. #emph("Beispiel"): Es gibt das Modul "MDI-103 Grundlagen der Informatik" und das Modul "BIN-103 Grundlagen der Informatik". Beide verweisen auf das Teilmodul "BIN-103-01 Grundlagen der Informatik". Somit können Studiengangsübergreifende Module abgebildet werden. In der Regel hat jedoch jedes Modul genau ein Teilmodul und umgekehrt gehört in der Regel jedes Teilmodul zu genau einem Modul.
+In diesem Kapitel werden die Ergebnisse aus @anforderungsanalyse verwendet, um @implementierung vorzubereiten. Hierzu wird ein Datenbankschema erstellt, um die Datenbank fürs Backend anzupassen. Anschließend werden die Benutzeroberflächen prototypisch geplant. Im letzten Schritt werden die benötigten Endpunkte des Backends ermittelt.
 
-=== Moduleigenschaften <properties>
-Das Modul enthält zunächst grundlegende Informationen:
 
-#track("Titel", example: "BIN-100 Mathematik 1")[
-  Zusammengesetzt aus einem Kürzel des Studiengangs,  einer eindeutigen Zahl und dem Namen des Moduls.
-]
-
-#track("Untertitel", example: "Mathematische Grundlagen der Informatik (BIN-MAT1) oder C/C++ (BIN-PR3)")[
-  Ein alternativer, ggf. etwas präziserer Name des Moduls, sowie ein Kürzel. In den aktuell veröffentlichten Handbüchern ist hier oft nur das Kürzel angegeben.
-]
-
-#track("Modulniveau")[
-  Hier ist angegeben, ob das Modul ein Grundlagenmodul oder Vertiefungsmodul ist. 
-]
-
-#track("Pflicht / Wahlpflicht")[
-  Hier ist angegeben, ob das Modul ein Pflichtmodul oder Wahlpflichtmodul ist.
-  Studierende müssen alle Pflichtmodule absolvieren und müssen eine bestimmte Anzahl an selbst ausgewählten Wahlpflichtmodulen absolvieren.
-]
-
-#track("Teilmodule")[
-  Eine Auflistung aller Teilmodule.
-]
-
-#track("Verantwortliche(r)", example: "Wohlfeil, Stefan, Prof. Dr.")[
-  Name der verantwortlichen Person. Diese Person ist für die Bearbeitung des Modulhandbuches zuständig.
-]
-
-#track("Credits")[
-  Anzahl erreichbarer ECTS bei Absolvierung dieses Moduls. Eine Zahl zwischen 2 (Englisch) und 30 (z.B. Masterarbeit).
-]
-
-#track("Präsenzstunden / Selbststudium", example: "68 h / 112 h")[
-  Aufwand des Studiums, aufgeteilt nach der Zeit, die in der Hochschule verbracht wird und der Zeit, die im Selbststudium verbracht wird (Arbeit an Übungen, Prüfungsvorbereitung …).
-]
-
-#track("Studiensemester")[
-  Vorgeschlagenes Semester. Anhand dieser Information wird das Curriculum generiert (@mdiCurr). 
-]
-
-#track("Moduldauer", example: "1 Semester")[
-  Hier ist angegeben, wie lange es dauert das Modul zu absolvieren.
-]
-
-#track("Voraussetzungen nach Prüfungsordnung", example: "Alle Modulprüfungen des 1. bis 3. Semesters")[
-  Für die Absolvierung des Moduls zwingend erforderliche Voraussetzungen.
-]
-
-#track("Empfohlene Voraussetzungen", example: "Alle Module der Semester 1 bis 3 sowie BIN-112 und BIN-202")[
-  Für die Absolvierung des Moduls empfohlene Voraussetzungen.
-]
-
-#track("Studien-/ Prüfungsleistungen", example: "Referat (Hausarbeit plus Präsentation/Vortrag), Anwesenheitspflicht")[
-  Eine kommagetrennte Auflistung der zu erbringenden Leistungen.
-]
-
-#track("Angestrebte Lernergebnisse", example: "Die Studierenden sind in der Lage, dreidimensionale Objekte zu gestalten, zu bewegen und zueinander in Beziehung zu setzen.", label:<erg>)[
-  Eine stichpunktartige, kommagetrennte Auflistung der Kompetenzen, die in diesem Modul erworben werden.
-]
-
-#text(" ")<EndOfChapter>
-
-=== Teilmoduleigenschaften
-Die Teilmodule enthalten zusätzlich weitere Informationen:
-
-#context [
-  #for (value) in (range(counter(heading).at(<EndOfChapter>).last())) {
-  counter(heading).step(level: 9)
-}
-]
-
-#track("Titel", example: "BIN-100-01 Mathematik 1")[
-  Der Titel des Teilmoduls setzt sich zusammen aus dem Kürzel des übergeordneten Moduls, einer eigenen Nummer und dem Namen des Teilmoduls.
-]
-
-#track("Sprache", example: ["nach Vereinbarung" oder "deutsch"])[
-  Hier ist angegeben, in welcher Sprache die Veranstaltung stattfindet.
-]
-
-#track("Zuordnung zu Curricula", example: "BIN, MDI")[
-  Eine kommagetrennte Auflistung aller Studiengänge, in denen dieses Teilmodul verwendet wird.
-]
-
-#track("Veranstaltungsart, SWS", example: "Vorlesung mit Übung, 4 SWS")[
-  Eine Kurzbeschreibung zum Ablauf der Veranstaltung, sowie deren Dauer in Semesterwochenstunden.
-]
-
-#track("Empfehlungen zum Selbststudium", example: "Aufbereitung der Lehrveranstaltung anhand von eigenen Projekten")[
-  Hier stehen Vorschläge, wie der Lehrinhalt im Selbststudium vertieft werden kann.
-]
-
-#track("Gruppengröße")[
-  Üblicherweise eine Zahl zwischen 1 (Bachelorarbeit) und 100 (Mathematik 1).
-]
-
-#track("Inhalt", example: "Neue und aktuelle Trends im Bereich Betriebssysteme und Netze")[
-  Die Inhalte der Veranstaltung kurz zusammengefasst.
-]
-
-#track("Anforderungen der Präsenzzeit", example: "Regelmäßige und aktive Teilnahme.")[
-  Hier ist kurz beschrieben, was von Studierenden in der Präsenzzeit erwartet wird.
-]
-
-#track("Anforderungen des Selbststudiums", example: "Vor- und Nachbereitung")[
-  Hier ist kurz beschrieben, was von Studierenden außerhalb der Präsenzzeit erwartet wird.
-]
-
-#track("Literatur", example: "Skript zur Vorlesung
-Reges, S., Stepp, M.: Building Java Programs, Prentice Hall")[
-  Eine Auflistung empfohlener Literatur zur Vertiefung des behandelten Themas.
-]
 
 
 
 == Datenbankschema <dbschema>
 
-Die Erstellung eines Datenbankschemas ist ein wichtiger Schritt. Mit einem vollständigen Datenbankschema wird sichergestellt, dass alle benötigten Daten in der Datenbank gespeichert werden können, dass auf die Daten effizient zugegriffen werden kann und dass die Datenkonsistenz gewährleistet ist. @relationaleDb[Kapitel 3] \ Bei der Konzeption wurde darauf geachtet, dass die entstehende Datenbank in der dritten Normalform vorliegen wird, um Anomalien zu vermeiden. @relationaleDb[Kapitel 9]\
-Im ersten Schritt wurden Tabellen für Module und Teilmodule geplant. Damit das System auch für alle Fakultäten und alle Studiengänge nutzbar ist wurden zusätzlich die Tabellen Faculty und Course geplant.  
-Um die Anforderungen @SHOWCHANGES und @REVERT vorzubereiten wurde die Tabelle Changelog genutzt.
-Die bestehende User-Tabelle wurden an verschiedenen Stellen referenziert, um beispielsweise die Verantwortlichen Personen anzugeben.
-Eigenschaften die aus @requirements oder aus @properties hervorgehen sind dementsprechend markiert.
+Die Erstellung eines Datenbankschemas ist ein wichtiger Schritt. Mit einem vollständigen Datenbankschema wird sichergestellt, dass alle benötigten Daten in der Datenbank gespeichert werden können, dass auf die Daten effizient zugegriffen werden kann und dass die Datenkonsistenz gewährleistet ist. @relationaleDb[Kapitel 3] \ Bei der Konzeption wurde darauf geachtet, dass die entstehende Datenbank in der dritten Normalform vorliegen wird, um Anomalien zu vermeiden (@normalized). @relationaleDb[Kapitel 9]\
+Im ersten Schritt wurden Tabellen für Module und Teilmodule geplant. Damit das System auch für alle Fakultäten und alle Studiengänge nutzbar ist, wurden zusätzlich die Tabellen Faculty und Course geplant.  
+Um die Anforderungen @SHOWCHANGES und @REVERT vorzubereiten, wurde die Tabelle Changelog genutzt.
+Die bestehende User-Tabelle wurden an verschiedenen Stellen referenziert, um beispielsweise die verantwortlichen Personen anzugeben.
+Eigenschaften, die aus @requirements oder aus @properties hervorgehen, sind dementsprechend markiert.
 
 #diagramFigure("ER-Diagramm - Gesamtbild", <ER>, "ER")
 
@@ -140,6 +29,10 @@ Um die Anforderung @TRANSLATEMULTIPLE vorzubereiten, wurde die Tabelle Translate
 
 
 == Benutzeroberflächen <UI>
+Flat Design
+
+UI-Patterns Vorlesung um 22.04.
+Folie 37/38
 
 === Usability
 
@@ -161,3 +54,6 @@ Miller, George A. (1956). The Magical Number 7, Plus or Minus Two: Some Limits o
 === Grundgerüst
 
 === Prototyp
+
+
+== Benötigte Endpunkte im Backend

@@ -13,7 +13,7 @@ In der Abteilung Informatik der #hsh gibt es bereits mehrere Anwendungen, die ei
 
 Für Studierende, die planen möchten, welches Modul sie in welchem Semester erledigen, wird es die Anwendung #studyPlan geben. Hier können Studierende vom vorgeschlagenen Studienverlauf abweichen und dabei sicherstellen, trotzdem alle Module in der gewünschten Zeit zu erledigen. #studyPlan wird von dem angepassten Backend profitieren, weil #studyPlan eine stets aktuelle Auflistung aller Module inklusive deren Zeitaufwände benötigt.
 
-Die Entwicklung von #studyPlan läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt. Derzeit gibt es bereits einen ersten Prototypen, welcher allerdings noch nicht produktiv genutzt wird.
+Die Entwicklung von #studyPlan läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt. Derzeit gibt es bereits einen ersten Prototyp, welcher allerdings noch nicht produktiv genutzt wird.
 
 Außerdem ist die Anwendung StudyGraph geplant, welche Studieninhalte visualisiert und somit auch die Informationen zu den angebotenen Modulen benötigt.
 
@@ -75,7 +75,7 @@ Als Vorbereitung für ein neues System wurden vom Studiendekan die zuvor genannt
 
 
 == Zielgruppen <zielgruppen>
-Im Folgenden sollen die verschiedenen Zielgruppen eines Modulhandbuches ermittelt und definiert werden.
+Im folgenden Abschnitt sollen die verschiedenen Zielgruppen eines Modulhandbuches ermittelt und definiert werden. Die Übersicht der Zielgruppen wird für die später folgende Ermittlung der Use Cases benötigt (@usecases). Hierdurch wird ermöglicht zu verstehen, wer das Modulhandbuch verwenden wird und welche Anforderungen die verschiedenen Gruppen haben. Zur Ermittlung wurde zum einen im ECTS User-Guides @ects recherchiert und zum anderen das Interview (@interview) genutzt.
 
 
 === Studieninteressierte
@@ -83,7 +83,7 @@ Der ECTS User-Guide @ects beschreibt, dass Modulhandbücher bereits bei der Wahl
 
 
 === Studierende
-Eine Weitere Zielgruppe sind Studierende. Diese können mithilfe der Modulbeschreibungen verstehen, welche Inhalte in einem Modul gelernt werden und welche Voraussetzungen es gibt. Dadurch können Studierende einschätzen, ob sie genug Vorwissen für ein bestimmtes Modul haben. Weiterhin können Studierende dank der Modulhandbücher zu jedem Modul den korrekten Ansprechpartner finden, einen Überblick über die zu erbringende Arbeitszeit erhalten, sowie Informationen zu den Prüfungsleistungen finden. 
+Eine weitere Zielgruppe sind Studierende. Diese können mithilfe der Modulbeschreibungen verstehen, welche Inhalte in einem Modul gelernt werden und welche Voraussetzungen es gibt. Dadurch können Studierende einschätzen, ob sie genug Vorwissen für ein bestimmtes Modul haben. Weiterhin können Studierende dank der Modulhandbücher zu jedem Modul den korrekten Ansprechpartner finden, einen Überblick über die zu erbringende Arbeitszeit erhalten, sowie Informationen zu den Prüfungsleistungen finden. 
 
 
 
@@ -94,114 +94,15 @@ Aus dem Interview mit dem Studiendekan (@interview) geht hervor, dass es neben d
 
 
 == Use Cases <usecases>
-Die Ergebnisse aus den vorherigen Abschnitten werden mithilfe der Use–Case–Modellierung verwendet, um aufzuzeigen, welche Funktionen die einzelnen Akteure im neuen System verwenden können.@rupp_requirements-engineering_2014[Seite~192]
+Im folgenden Abschnitt werden die Ergebnisse aus den vorherigen Abschnitten verwendet, um aufzuzeigen, welche Funktionen die einzelnen Akteure im neuen System verwenden können.@rupp_requirements-engineering_2014[Seite~192] Hierzu werden Use Cases bestimmt, damit im nächsten Abschnitt (@requirements) daraus Anforderungen abgeleitet werden können. So soll sichergestellt werden, dass alle zuvor bestimmten Akteure ihre Aufgaben vollständig mit dem neuen System erledigen können.
+
+
 
 /*
   "Sie können Use-Case-Beschreibungen als Ergänzung zu Use-Case-Diagrammen erstellen, etwa um jeden einzelnen Use-Case aus dem Diagramm genauer zu beleuchten. Use-Case Beschreibungen können aber auch ohne Diagramm für sich stehen."
 */
 
-#useCase(1)[
-  Studiengang per Suche finden
-][
-  Studieninteressierte Person
-][
-  Keine
-][
-  1. User gibt "MDI" in das Suchfeld ein
-  2. System zeigt den Studiengang Mediendesigninformatik an
-  3. User klickt den Eintrag an
-  4. System zeigt den Studiengang und dessen Module
-  5. User klickt auf "PDF anzeigen" und sieht alle Modulbeschreibungen in einem PDF
-]<UseCaseSearch>
-
-#useCase(2)[
-  Modul per Filter finden
-][
-  Studierende Person
-][
-  Studiengang ausgewählt
-][
-  1. User wählt in den Filteroptionen als Semester 2 aus
-  2. System zeigt alle Module an, die laut Curriculum im 2. Semester empfohlen werden
-  3. User klickt einen Eintrag an
-  4. System zeigt das Modul
-]<UseCaseFilter>
-
-
-#useCase(3)[
-  Informationen zu einem Modul verändern
-][
-  Modulverantwortliche Person
-][
-  Erfolgreich mit einem Account eingeloggt, der das ausgewählte Modul bearbeiten darf
-][
-  1. User drückt auf "Bearbeiten"
-  2. System wechselt in den Bearbeitungsmodus
-  3. User aktualisiert Texte in den Eingabefeldern
-  4. User drückt auf "Speichern"
-  5. System prüft, ob Änderungen plausibel sind (z. B. passen Zeitaufwände und ECTS zusammen)
-  6. System wechselt in den Anzeigemodus
-]<UseCaseEditModule>
-
-
-#useCase(4)[
-  Eine neue Modulverantwortliche Person anlegen
-][
-  Studiengangsverantwortliche Person
-][
-  Erfolgreich mit einem Account eingeloggt, der Modulverantwortliche Personen anlegen darf
-][
-  1. User drückt auf Accountübersicht
-  2. User drückt auf "Hinzufügen"
-  3. System wechselt in den Bearbeitungsmodus
-  4. User füllt Eingabefelder 
-  5. User drückt auf "Speichern"
-  6. System prüft, ob Angaben plausibel sind (z.B. passt Name zu Email)
-  7. System zeigt "Account erfolgreich angelegt"
-]<UseCaseCreateUser>
-
-
-#useCase(5)[
-  Ein neues Modul anlegen
-][
-  Studiengangsverantwortliche Person
-][
-  Erfolgreich mit einem Account eingeloggt, der Module anlegen darf
-][
-  1. User drückt auf Module
-  2. User drückt auf "Hinzufügen"
-  3. System wechselt in den Bearbeitungsmodus
-  4. User füllt Eingabefelder 
-  5. User drückt auf "Speichern"
-  6. System prüft, ob Angaben plausibel sind (z.B. passen Zeitaufwände und ECTS zusammen)
-  7. System zeigt "Account erfolgreich angelegt"
-]<UseCaseCreateModule>
-
-#useCase(6)[
-  Änderungen an Modul rückgängig machen
-][
-  Studiengangsverantwortliche Person
-][
-  Erfolgreich mit einem Account eingeloggt, der Module bearbeiten darf
-][
-  1. User öffnet Modul
-  2. User drückt auf "Änderungs-Historie"
-  3. System zeigt Änderungen
-  4. User drückt auf "Auf diesen Stand zurücksetzen" 
-  5. System zeigt "Änderungen rückgängig gemacht"
-]<UCRevertChanges>
-
-#useCase(7)[
-  Tabelle im Anhang der Prüfungsordnung überprüfen
-][
-  Studiengangsverantwortliche Person
-][
-  Alle Module des Studiengangs angelegt
-][
-  1. User erstellt die Tabelle manuell
-  2. User öffnet die generierte Tabelle im System
-  3. User vergleicht beide Tabellen, um sicherzustellen dass sie korrekt sind
-]<UseCaseTable>
+#include("Planung/use-cases.typ")
 
 
 == Anforderungen <requirements>
@@ -211,10 +112,10 @@ Jede Anforderung in den folgenden Auflistungen enthält entweder das Wort "muss"
 
 #import "@preview/gentle-clues:0.7.1": *
 
+
+
 #block(breakable: false)[
 === Funtionale Anforderungen
-
-
 #task(title:[Aus #link(<UseCaseSearch>)[Use-Case 1] ergeben sich folgende Anforderungen:])[
   #narrowTrack("Studiengänge ansehen", type: "F", label: <SHOWCOURSES>)[Nicht angemeldete Person (NP) muss Studiengänge ansehen können.]
   #narrowTrack("Curriculum anzeigen", type: "F", label: <CURR>)[NP könnte sich das Curriculum eines Studienganges anzeigen lassen.]
@@ -260,6 +161,7 @@ Jede Anforderung in den folgenden Auflistungen enthält entweder das Wort "muss"
 #narrowTrack("Passwörter zurücksetzen", type: "F", label: <RESETPW>)[SVP muss Passwörter zurücksetzen können.]
 #narrowTrack("Eigenes Passwort zurücksetzen", type: "F", label: <RESETMYPW>)[SVP sollte das eigene Passwort zurücksetzen können.]
 ]
+
 
 #block(breakable: false)[
 === Nicht-Funtionale Anforderungen
@@ -399,6 +301,9 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
   #narrowTrack("Dokumentation im Backend", type:"N", label: <DOKBACK>)[
   Neue API-Endpoints sollten dokumentiert sein.
 ]
+#narrowTrack("Normalisierte Datenbank", type:"N", label: <normalized>)[
+  Die Datenbank sollte in der dritten Normalform sein.
+]
 ]
 
 
@@ -448,3 +353,119 @@ Risiko, der Machbarkeit, Nützlichkeit und dem Begeisterungspotenzial.
 
 */
 
+
+
+== Struktur eines Modulhandbuches <structure>
+Die Modulhandbücher der Abteilung Informatik haben für alle drei Studiengänge (BIN, MDI und MIN) dieselbe Struktur. Es gibt eine Aufteilung in Module und Teilmodule. Ein Modul kann dabei 0 bis n verschiedene Teilmodule haben und jedes Teilmodul kann zu 1 bis n Modulen gehören. Teilmodule können Studiengangsübergreifend mit Modulen verknüpft werden. #emph("Beispiel"): Es gibt das Modul "MDI-103 Grundlagen der Informatik" und das Modul "BIN-103 Grundlagen der Informatik". Beide verweisen auf das Teilmodul "BIN-103-01 Grundlagen der Informatik". Somit können Studiengangsübergreifende Module abgebildet werden. In der Regel hat jedoch jedes Modul genau ein Teilmodul und umgekehrt gehört in der Regel jedes Teilmodul zu genau einem Modul.
+
+=== Moduleigenschaften <properties>
+Das Modul enthält zunächst grundlegende Informationen:
+
+#track("Titel", example: "BIN-100 Mathematik 1")[
+  Zusammengesetzt aus einem Kürzel des Studiengangs,  einer eindeutigen Zahl und dem Namen des Moduls.
+]
+
+#track("Untertitel", example: "Mathematische Grundlagen der Informatik (BIN-MAT1) oder C/C++ (BIN-PR3)")[
+  Ein alternativer, ggf. etwas präziserer Name des Moduls, sowie ein Kürzel. In den aktuell veröffentlichten Handbüchern ist hier oft nur das Kürzel angegeben.
+]
+
+#track("Modulniveau")[
+  Hier ist angegeben, ob das Modul ein Grundlagenmodul oder Vertiefungsmodul ist. 
+]
+
+#track("Pflicht / Wahlpflicht")[
+  Hier ist angegeben, ob das Modul ein Pflichtmodul oder Wahlpflichtmodul ist.
+  Studierende müssen alle Pflichtmodule absolvieren und müssen eine bestimmte Anzahl an selbst ausgewählten Wahlpflichtmodulen absolvieren.
+]
+
+#track("Teilmodule")[
+  Eine Auflistung aller Teilmodule.
+]
+
+#track("Verantwortliche(r)", example: "Wohlfeil, Stefan, Prof. Dr.")[
+  Name der verantwortlichen Person. Diese Person ist für die Bearbeitung des Modulhandbuches zuständig.
+]
+
+#track("Credits")[
+  Anzahl erreichbarer ECTS bei Absolvierung dieses Moduls. Eine Zahl zwischen 2 (Englisch) und 30 (z.B. Masterarbeit).
+]
+
+#track("Präsenzstunden / Selbststudium", example: "68 h / 112 h")[
+  Aufwand des Studiums, aufgeteilt nach der Zeit, die in der Hochschule verbracht wird und der Zeit, die im Selbststudium verbracht wird (Arbeit an Übungen, Prüfungsvorbereitung …).
+]
+
+#track("Studiensemester")[
+  Vorgeschlagenes Semester. Anhand dieser Information wird das Curriculum generiert (@mdiCurr). 
+]
+
+#track("Moduldauer", example: "1 Semester")[
+  Hier ist angegeben, wie lange es dauert das Modul zu absolvieren.
+]
+
+#track("Voraussetzungen nach Prüfungsordnung", example: "Alle Modulprüfungen des 1. bis 3. Semesters")[
+  Für die Absolvierung des Moduls zwingend erforderliche Voraussetzungen.
+]
+
+#track("Empfohlene Voraussetzungen", example: "Alle Module der Semester 1 bis 3 sowie BIN-112 und BIN-202")[
+  Für die Absolvierung des Moduls empfohlene Voraussetzungen.
+]
+
+#track("Studien-/ Prüfungsleistungen", example: "Referat (Hausarbeit plus Präsentation/Vortrag), Anwesenheitspflicht")[
+  Eine kommagetrennte Auflistung der zu erbringenden Leistungen.
+]
+
+#track("Angestrebte Lernergebnisse", example: "Die Studierenden sind in der Lage, dreidimensionale Objekte zu gestalten, zu bewegen und zueinander in Beziehung zu setzen.", label:<erg>)[
+  Eine stichpunktartige, kommagetrennte Auflistung der Kompetenzen, die in diesem Modul erworben werden.
+]
+
+#text(" ")<EndOfChapter>
+
+=== Teilmoduleigenschaften
+Die Teilmodule enthalten zusätzlich weitere Informationen:
+
+#context [
+  #for (value) in (range(counter(heading).at(<EndOfChapter>).last())) {
+  counter(heading).step(level: 9)
+}
+]
+
+#track("Titel", example: "BIN-100-01 Mathematik 1")[
+  Der Titel des Teilmoduls setzt sich zusammen aus dem Kürzel des übergeordneten Moduls, einer eigenen Nummer und dem Namen des Teilmoduls.
+]
+
+#track("Sprache", example: ["nach Vereinbarung" oder "deutsch"])[
+  Hier ist angegeben, in welcher Sprache die Veranstaltung stattfindet.
+]
+
+#track("Zuordnung zu Curricula", example: "BIN, MDI")[
+  Eine kommagetrennte Auflistung aller Studiengänge, in denen dieses Teilmodul verwendet wird.
+]
+
+#track("Veranstaltungsart, SWS", example: "Vorlesung mit Übung, 4 SWS")[
+  Eine Kurzbeschreibung zum Ablauf der Veranstaltung, sowie deren Dauer in Semesterwochenstunden.
+]
+
+#track("Empfehlungen zum Selbststudium", example: "Aufbereitung der Lehrveranstaltung anhand von eigenen Projekten")[
+  Hier stehen Vorschläge, wie der Lehrinhalt im Selbststudium vertieft werden kann.
+]
+
+#track("Gruppengröße")[
+  Üblicherweise eine Zahl zwischen 1 (Bachelorarbeit) und 100 (Mathematik 1).
+]
+
+#track("Inhalt", example: "Neue und aktuelle Trends im Bereich Betriebssysteme und Netze")[
+  Die Inhalte der Veranstaltung kurz zusammengefasst.
+]
+
+#track("Anforderungen der Präsenzzeit", example: "Regelmäßige und aktive Teilnahme.")[
+  Hier ist kurz beschrieben, was von Studierenden in der Präsenzzeit erwartet wird.
+]
+
+#track("Anforderungen des Selbststudiums", example: "Vor- und Nachbereitung")[
+  Hier ist kurz beschrieben, was von Studierenden außerhalb der Präsenzzeit erwartet wird.
+]
+
+#track("Literatur", example: "Skript zur Vorlesung
+Reges, S., Stepp, M.: Building Java Programs, Prentice Hall")[
+  Eine Auflistung empfohlener Literatur zur Vertiefung des behandelten Themas.
+]

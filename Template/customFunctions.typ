@@ -111,13 +111,13 @@
   ]
   
 
-#let diagramFigure(caption, plabel, filename) = [
+#let diagramFigure(caption, plabel, filename, rendered:true) = [
   #pad(left: sidePadding, right: sidePadding, rest: topBotPadding)[
   #figure(
     caption: caption,
     kind: "diagram",
     supplement: [Diagramm],
-    include "../Diagrams/" + filename + ".typ"
+    include "../Diagrams/" + (if (rendered){"rendered/"} else {""}) + filename + ".typ"
   ) #plabel
 ]]
 

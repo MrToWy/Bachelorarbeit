@@ -25,8 +25,6 @@ erDiagram
     INTEGER HoursAtHome(E8)
     INTEGER Semester(E9)
     INTEGER CourseLength(E10)
-    TEXT Requirement(E11)
-    TEXT AdditionalRequirements(E12)
     TEXT Exam(E13)
     TEXT Learnings(E14)
   }
@@ -68,6 +66,16 @@ ChangelogItem {
     VARCHAR PreviousValue
 }
 
+RequirementList {
+  INTEGER Id
+  TEXT Name
+  BOOLEAN Optional
+}
+
+RequirementListItem {
+  INTEGER Id
+}
+
 Faculty ||--o{ Course : "Courses"
 
 Course ||--o{ Module : "Modules(E17)"
@@ -80,4 +88,8 @@ Course }o--|| User : "Responsible"
 
 Changelog }o--|| User : "Author(F15)"
 Changelog ||--o{ ChangelogItem : "Changes(F16)"
+
+Module }o--|| RequirementList : "Requirement(E11/12)"
+RequirementList }o--o{ RequirementListItem : "Requirements"
+Module ||--o{ RequirementListItem : "Module"
 ```
