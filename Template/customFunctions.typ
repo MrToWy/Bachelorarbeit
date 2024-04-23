@@ -3,7 +3,7 @@
 #import "../glossary.typ": *
 #import "@preview/treet:0.1.0": *
 #import "@preview/big-todo:0.2.0": *
-
+#import "@preview/gentle-clues:0.7.1": *
 
 
 #let sidePadding = 1em
@@ -50,9 +50,9 @@
 ]
 
 
-#let useCase(nummer, kurzbeschreibung, akteur, vorbedingungen, hauptszenario) = [
+#let useCase(nummer, name, kurzbeschreibung, akteur, vorbedingungen, hauptszenario) = [
   #pad(left: 0em, right: 0em, rest: topBotPadding/2)[
-  #figure(caption: [Use Case #nummer])[
+  #figure()[
   #block()[
   #show table.cell.where(x: 0): set text(weight: "bold")
 
@@ -62,7 +62,7 @@
       stroke: (x: none, y: 2.5pt + rgb("FFFF")),
   
 
-      [Name], [UC] + str(nummer),
+      [Name], text([UC] + str(nummer) + " - " + name, weight: "semibold"),
       [Kurzbeschreibung], kurzbeschreibung,
       [Akteur], akteur,
       [Vorbedingungen], vorbedingungen,

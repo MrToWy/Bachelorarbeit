@@ -1,6 +1,6 @@
 #import "../../Template/customFunctions.typ": *
 
-#useCase(1)[
+#useCase(1, "Suchfunktion")[
   Der Use Case beschreibt, wie Informationen zu einem Studiengang gefunden werden können. Durch die Nutzung einer Autovervollständigung soll ein Studiengang leicht findbar sein.
 ][
   Studieninteressierte Person
@@ -14,7 +14,7 @@
   5. User klickt auf "PDF anzeigen" und sieht alle Modulbeschreibungen in einem PDF
 ]<UseCaseSearch>
 
-#useCase(2)[
+#useCase(2, "Filterfunktion")[
   Der Use Case beschreibt, wie Informationen zu einem Modul gefunden werden können. Durch die Nutzung verschiedener Filter, soll ein Modul leicht findbar sein.
 ][
   Studierende Person
@@ -28,7 +28,7 @@
 ]<UseCaseFilter>
 
 
-#useCase(3)[
+#useCase(3, "Modul bearbeiten")[
   Der Use Case beschreibt, wie Informationen eines Moduls verändert werden können. Das System prüft dabei, ob die angegebenen Informationen plausibel sind. Beispielsweise müssen Zeitaufwände und ECTS zusammenpassen.
 ][
   Modulverantwortliche Person
@@ -44,7 +44,7 @@
 ]<UseCaseEditModule>
 
 
-#useCase(4)[
+#useCase(4, "User anlegen")[
   Der Use Case beschreibt, wie ein neuer Benutzeraccount angelegt werden kann. Das System prüft dabei, ob die angegebenen Informationen plausibel sind. Beispielsweise müssen Name und Email Adresse zusammenpassen. Außerdem wird sichergestellt, dass das Passwort sicher ist.
 ][
   Studiengangsverantwortliche Person
@@ -61,8 +61,9 @@
 ]<UseCaseCreateUser>
 
 
-#useCase(5)[
-  Ein neues Modul anlegen
+#useCase(5, "Modul anlegen")[
+  Der Use Case beschreibt, wie ein neues Modul angelegt werden kann. 
+  Das System prüft dabei, ob die angegebenen Informationen plausibel sind.
 ][
   Studiengangsverantwortliche Person
 ][
@@ -73,12 +74,12 @@
   3. System wechselt in den Bearbeitungsmodus
   4. User füllt Eingabefelder 
   5. User drückt auf "Speichern"
-  6. System prüft, ob Angaben plausibel sind (z.B. passen Zeitaufwände und ECTS zusammen)
-  7. System zeigt "Account erfolgreich angelegt"
+  6. System prüft, ob Angaben plausibel sind
+  7. System zeigt "Modul erfolgreich angelegt"
 ]<UseCaseCreateModule>
 
-#useCase(6)[
-  Änderungen an Modul rückgängig machen
+#useCase(6, "Änderungen rückgängig machen")[
+  Der Use-Case beschreibt, wie Änderungen an einem Modul rückgängig gemacht werden können. Damit können sowohl eigene Änderungen, als auch die Änderungen anderer User zurückgesetzt werden.
 ][
   Studiengangsverantwortliche Person
 ][
@@ -91,8 +92,8 @@
   5. System zeigt "Änderungen rückgängig gemacht"
 ]<UCRevertChanges>
 
-#useCase(7)[
-  Tabelle im Anhang der Prüfungsordnung überprüfen
+#useCase(7, "Prüfungsordnung verifizieren")[
+  Der Use-Case beschreibt, wie das System bei der Erstellung der Prüfungsordnung unterstützen kann. Die hierzu erforderliche Tabelle kann im System generiert werden, um zu vergleichen, ob alle Daten korrekt hinterlegt sind.
 ][
   Studiengangsverantwortliche Person
 ][

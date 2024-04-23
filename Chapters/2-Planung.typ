@@ -169,6 +169,10 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
 
 #linebreak()
 
+Die ISO-Norm 25000 beschreibt verschiedene Merkmale, die zur Messung von Softwarequalität genutzt werden können. Um eine gute Softwarequalität zu erreichen, sollten aus allen Merkmalen konkrete Anforderungen an das neue System abgeleitet werden. Die Merkmale sind jeweils in Submerkmale unterteilt. Nicht jedes Submerkmal ist für das neue System relevant, jedoch sollten möglichst viele Submerkmale in Anforderungen übersetzt werden, um eine gute Qualität sicherzustellen.
+
+Das Merkmal #emph("Änderbarkeit") besteht aus den Submerkmalen #emph("Analysierbarkeit"), #emph("Modifizierbarkeit"), #emph("Stabilität") und #emph("Testbarkeit").
+
 #task(title: [Änderbarkeit])[
 
   #narrowTrack("Modularität", type:"N", label: <MODULAR>)[
@@ -196,6 +200,9 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
 ]
 ]
 ]
+
+Das Merkmal #emph("Benutzbarkeit") besteht aus den Submerkmalen #emph("Verständlichkeit"), #emph("Erlernbarkeit"), #emph("Bedienbarkeit"), #emph("Attraktivität") und #emph("Konformität").
+
 #task(title: [Benutzbarkeit])[
   #narrowTrack("Aktueller Pfad", type:"N", label: <PATH>)[
   System könnte anzeigen, welcher Pfad aufgerufen wurde \ (z.B. Fakultät->Studiengang->Modul).
@@ -234,6 +241,8 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
 ]
 ]
 
+Das Merkmal #emph("Effizienz") besteht aus den Submerkmalen #emph("Zeitverhalten"), #emph("Verbrauchsverhalten") und #emph("Konformität").
+
 #task(title: [Effizienz])[
   
   #narrowTrack("Startzeit Frontend", type:"N", label:<STARTFRONTEND>)[
@@ -248,10 +257,12 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
   Das Deployment könnte automatisiert sein.
 ]
 
-  #narrowTrack("Effizienz der Aufgabenerledigung", type:"N", label:<DEPLOY>)[
+  #narrowTrack("Effizienz der Aufgabenerledigung", type:"N", label:<CLICKS>)[
   Jeder Use-Case sollte mit möglichst wenigen Klicks erledigbar sein.
 ]
 ]
+
+Das Merkmal #emph("Funktionalität") besteht aus den Submerkmalen #emph("Angemessenheit"), #emph("Richtigkeit"), #emph("Interoperabilität"), #emph("Sicherheit") und #emph("Ordnungsmäßigkeit").
 
 #task(title: [Funktionalität])[
   #narrowTrack("Zwei Sprachen", type:"N", label:<TRANSLATE>)[
@@ -263,13 +274,17 @@ Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter 
 ]
 ]
 
+Das Merkmal #emph("Übertragbarkeit") besteht aus den Submerkmalen #emph("Anpassbarkeit"), #emph("Installierbarkeit"), #emph("Koexistenz"), #emph("Austauschbarkeit") und #emph("Konformität").
+
 #task(title: [Übertragbarkeit])[
   #narrowTrack("Dokumentation zur Installation", type:"N", label: <DOKBACK>)[
   Es sollte dokumentiert sein, wie das System installiert wird.
 ]
 ]
 
-#task(title: [Fehlertoleranz])[
+Das Merkmal #emph("Zuverlässigkeit") besteht aus den Submerkmalen #emph("Reife"), #emph("Fehlertoleranz"), #emph("Robustheit"), #emph("Wiederherstellbarkeit") und #emph("Konformität").
+
+#task(title: [Zuverlässigkeit])[
   #narrowTrack("Stabilität", type:"N", label: <ERRORSTABLE>)[
   Das System muss bei auftretenden Fehlern weiterhin funktionieren / sich selbst wiederherstellen.
 ]
