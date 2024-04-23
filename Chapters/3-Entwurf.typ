@@ -53,7 +53,32 @@ Miller, George A. (1956). The Magical Number 7, Plus or Minus Two: Some Limits o
 
 === Grundgerüst
 
+Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) nutzen zu können, wird diese in der oberen Leiste (Toolbar) platziert. Die Toolbar ist in jeder Ansicht zu sehen. Unter der Toolbar ist die eigentliche Anwendung zu sehen, die aus verschiedenen Ansichten besteht. Damit jederzeit erkenntlich ist, in welcher Ansicht sich der User befindet (@PATH), wird diese Information auf der Toolbar platziert.
+
+#imageFigure(<grundgerüstö>, "mockups/Grundgerüst.svg", "Grundgerüst")
+
+Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seitenleiste (Drawer) platziert. Die Seitenleiste kann mithilfe eines Knopfes ausgeklappt werden, welcher sich auf der Toolbar befindet. Somit können auch diese Funktionen mit wenig Aufwand (@CLICKS) von jeder Ansicht aus erreicht werden. 
+
+[Scribble vom Drawer]
+
+
 === Prototyp
+
+- Suchfunktion
+
+- Filterfunktion
+
+- Modul anlegen / bearbeiten
+
+- Übersetzbarkeit
+
+- User anlegen
+
+- Änderungen rückgängig machen
+
+- Prüfungsordnung verifizieren
+
+
 
 
 == Benötigte Endpunkte im Backend
