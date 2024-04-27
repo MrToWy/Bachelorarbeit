@@ -272,6 +272,12 @@ Das Merkmal #emph("Funktionalität") besteht aus den Submerkmalen #emph("Angemes
 #narrowTrack("Mehrsprachenfähigkeit", type:"N", label:<TRANSLATEMULTIPLE>)[
   Das System sollte für beliebig viele Sprachen erweiterbar sein.
 ]
+
+#narrowTrack("Auswahlmöglichkeiten", type:"N", label: <lookup>)[
+  System sollte möglichst oft vorschlagen, welche Eingaben sinnvoll wären.
+]
+
+
 ]
 
 Das Merkmal #emph("Übertragbarkeit") besteht aus den Submerkmalen #emph("Anpassbarkeit"), #emph("Installierbarkeit"), #emph("Koexistenz"), #emph("Austauschbarkeit") und #emph("Konformität").
