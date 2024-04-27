@@ -5,7 +5,7 @@
 
 = Entwurf <entwurf>
 
-In diesem Kapitel werden die Ergebnisse aus @anforderungsanalyse verwendet, um @implementierung vorzubereiten. Hierzu wird ein Datenbankschema erstellt, um die Datenbank fürs Backend anzupassen. Anschließend werden die Benutzeroberflächen prototypisch geplant. Im letzten Schritt werden die benötigten Endpunkte des Backends ermittelt.
+In diesem Kapitel werden die gesammelten Anforderungen aus @anforderungsanalyse verwendet, um die Implementierung in @implementierung vorzubereiten. Hierzu wird zunächst ein Datenbankschema erstellt, um die Datenbank fürs Backend anzupassen. Anschließend werden die Benutzeroberflächen prototypisch geplant. Im letzten Schritt werden die benötigten Endpunkte des Backends ermittelt.
 
 
 
@@ -29,12 +29,14 @@ Um die Anforderung @TRANSLATEMULTIPLE vorzubereiten, wurde die Tabelle Translate
 
 
 == Benutzeroberflächen <UI>
+
+Im Folgenden wird mithilfe von Mockups entworfen, wie die Benutzeroberflächen der neuen Anwendung aussehen sollen. Da an Mockups schnell Änderungen vorgenommen werden können, soll dieser Prozess dabei helfen, zeiteffizient gute Lösungen zu finden. Es werden zunächst in @scaffold die Elemente zur Navigation durch die Anwendung vorgestellt. Anschließend werden in @views die verschiedenen Ansichten skizziert.
+
 Flat Design
 
 UI-Patterns Vorlesung um 22.04.
 Folie 37/38
 
-=== Usability
 
 /*
 
@@ -51,18 +53,21 @@ Miller, George A. (1956). The Magical Number 7, Plus or Minus Two: Some Limits o
 */
 
 
-=== Grundgerüst
+=== Grundgerüst <scaffold>
 
 Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) nutzen zu können, wird diese in der oberen Leiste (Toolbar) platziert. Die Toolbar ist in jeder Ansicht zu sehen. Unter der Toolbar ist die eigentliche Anwendung zu sehen, die aus verschiedenen Ansichten besteht. Damit jederzeit erkenntlich ist, in welcher Ansicht sich der User befindet (@PATH), wird diese Information auf der Toolbar platziert.
 
-#imageFigure(<grundgerüstö>, "mockups/Grundgerüst.svg", "Grundgerüst")
-
-Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seitenleiste (Drawer) platziert. Die Seitenleiste kann mithilfe eines Knopfes ausgeklappt werden, welcher sich auf der Toolbar befindet. Somit können auch diese Funktionen mit wenig Aufwand (@CLICKS) von jeder Ansicht aus erreicht werden. 
-
-[Scribble vom Drawer]
 
 
-=== Prototyp
+#imageFigure(<grundgerüst>, "mockups/Grundgerüst.svg", "Grundgerüst")
+
+Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seitenleiste (Drawer) platziert. Die Seitenleiste kann mithilfe eines Knopfes ausgeklappt werden, welcher sich auf der Toolbar befindet. Somit können auch diese Funktionen mit wenig Aufwand (@CLICKS) von jeder Ansicht aus erreicht werden. Im Drawer sind die Masken zur Verwaltung der Benutzer (@CRUSER), zur Anzeige gelöschter Module (@SOFTDELETE) und zur Ansicht alter Prüfungsordnungen. Außerdem wird hier die Versionsnummer angezeigt, damit jederzeit überprüft werden kann, mit welcher Version des Systems gearbeitet wird.
+
+
+#imageFigure(<drawer>, "mockups/Drawer.png", "Drawer")
+
+
+=== Ansichten <views>
 
 - Suchfunktion
 

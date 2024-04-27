@@ -208,6 +208,7 @@ Das Merkmal #emph("Benutzbarkeit") besteht aus den Submerkmalen #emph("Verständ
   System könnte anzeigen, welcher Pfad aufgerufen wurde \ (z.B. Fakultät->Studiengang->Modul).
 ]
 
+  
 #narrowTrack("Rückfragen", type:"N", label:<ASK>)[
   Vor dem Löschen eines Elements muss eine Rückfrage erscheinen.
 ]
@@ -431,7 +432,7 @@ Das Modul enthält zunächst grundlegende Informationen:
   Für die Absolvierung des Moduls empfohlene Voraussetzungen.
 ]
 
-#track("Studien-/ Prüfungsleistungen", example: "Referat (Hausarbeit plus Präsentation/Vortrag), Anwesenheitspflicht")[
+#track("Studien-/ Prüfungsleistungen", example: "Referat (Hausarbeit plus Präsentation/Vortrag), Anwesenheitspflicht", label:<exam>)[
   Eine kommagetrennte Auflistung der zu erbringenden Leistungen.
 ]
 
