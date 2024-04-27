@@ -123,7 +123,7 @@
 
 
 #let codeFigure(caption, plabel, filename) = [
-  #pad(left: sidePadding, right: sidePadding, rest: topBotPadding)[
+  #pad(left: 0em, right: 0em, rest: topBotPadding/4)[
   #figure(
     caption: caption,
     kind: "code",

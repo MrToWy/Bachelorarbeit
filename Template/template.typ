@@ -71,7 +71,7 @@
   show heading.where(level: 9): set heading(supplement: [])
 
   // code styling
-  import "@preview/codly:0.2.0": *
+  import "@preview/codly:0.2.1": *
   let icon(codepoint) = {
     box(
       height: 0.8em,
@@ -81,7 +81,7 @@
     h(0.1em)
   } 
   show: codly-init.with()
-  codly()
+  codly(zebra-color: white)
 
 
   // Title page.
