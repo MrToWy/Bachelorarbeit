@@ -69,10 +69,21 @@ Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seiten
 
 === Komponenten <views>
 
-#heading(level: 4, numbering:none, "Suchfunktion")
-Für die Suchfunktion wird eine Komponente benötigt, mit der ein User ein bestimmtes Modul finden kann. Hierzu soll ein Text eingegeben werden. Module die zu dem Text passen, sollen vorgeschlagen werden. Der User kann einen Vorschlag anklicken, um sich dieses Modul anzusehen.
 
-#imageFigure(<search>, "mockups/Search.svg", "Suche mit Dropdown")
+
+#let fig = imageFigureNoPad(<search>, "mockups/Search.png", "Suche mit Dropdown", width: 6em)
+
+#let content = [
+  #heading(level: 4, numbering:none, "Suchfunktion")
+  Für die Suchfunktion wird eine Komponente benötigt, mit der ein User ein bestimmtes Modul finden kann. Hierzu soll ein Text eingegeben werden. Module die zu dem Text passen, sollen vorgeschlagen werden. Der User kann einen Vorschlag anklicken, um sich dieses Modul anzusehen.
+
+]
+
+#let boxed = box(fig, inset: 0.5em)
+#wrap-content(align: bottom + right, boxed, content)
+
+
+
 
 #heading(level: 4, numbering:none, "Modulübersicht")
 

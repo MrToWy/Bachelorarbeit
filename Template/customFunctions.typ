@@ -4,6 +4,8 @@
 #import "@preview/treet:0.1.0": *
 #import "@preview/big-todo:0.2.0": *
 #import "@preview/gentle-clues:0.7.1": *
+#import "@preview/wrap-it:0.1.0": wrap-content
+
 
 
 #let sidePadding = 1em
@@ -140,6 +142,14 @@
     caption: pCaption
   ) #plabel
 ]]]
+
+#let imageFigureNoPad(plabel, filename, pCaption, height: auto, width: auto) = [
+  #align(center)[
+  #figure(
+    image("../Images/" + filename, height: height, width: width),
+    caption: pCaption
+  ) #plabel
+]]
 
 #let treeFigure(pLabel, pCaption, content) = [
 #pad(left: sidePadding, right: sidePadding, rest: topBotPadding)[
