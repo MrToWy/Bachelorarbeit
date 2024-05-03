@@ -104,3 +104,10 @@ Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seiten
 
 
 == Benötigte Endpunkte im Backend <endpoints>
+
+Damit das zukünftige Frontend mit dem  Backend kommunizieren kann, muss das Backend Endpunkte bereitstellen, die das Frontent nutzen kann. Ein Endpoint ist beispielsweise die Auflistung aller Module und ist mithilfe einer URI aufrufbar (hier z.B. /modules). Ein einzelnes Modul könnte über die Ressource /modules/{id} aufgerufen werden.
+(Rest-Buch, 3.2)
+
+In der vorliegenden Version des "StudyBase-"Backends gibt es bereits mehrere Resourcen. Im folgenden soll ermittelt werden, welche Ressourcen für das neue System benötigt werden. Nach dem YAGNI-Prinzip sollen dann in 
+@implementierung nur die Resourcen ausgearbeitet werden, die für das neue System benötigt werden. (Rest-Buch 4.2.8)
+
