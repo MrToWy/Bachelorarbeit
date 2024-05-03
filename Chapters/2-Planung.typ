@@ -404,7 +404,7 @@ Das Modul enthält zunächst grundlegende Informationen:
   Eine Auflistung aller Teilmodule.
 ]
 
-#track("Verantwortliche(r)", example: "Wohlfeil, Stefan, Prof. Dr.")[
+#track("Verantwortliche(r)", example: "Wohlfeil, Stefan, Prof. Dr.", label: <responsible>)[
   Name der verantwortlichen Person. Diese Person ist für die Bearbeitung des Modulhandbuches zuständig.
 ]
 
@@ -416,7 +416,7 @@ Das Modul enthält zunächst grundlegende Informationen:
   Aufwand des Studiums, aufgeteilt nach der Zeit, die in der Hochschule verbracht wird und der Zeit, die im Selbststudium verbracht wird (Arbeit an Übungen, Prüfungsvorbereitung …).
 ]
 
-#track("Studiensemester")[
+#track("Studiensemester", label: <recommendedSemester>)[
   Vorgeschlagenes Semester. Anhand dieser Information wird das Curriculum generiert (@mdiCurr). 
 ]
 

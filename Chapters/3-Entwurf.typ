@@ -111,3 +111,22 @@ Damit das zukünftige Frontend mit dem  Backend kommunizieren kann, muss das Bac
 In der vorliegenden Version des "StudyBase-"Backends gibt es bereits mehrere Resourcen. Im folgenden soll ermittelt werden, welche Ressourcen für das neue System benötigt werden. Nach dem YAGNI-Prinzip sollen dann in 
 @implementierung nur die Resourcen ausgearbeitet werden, die für das neue System benötigt werden. (Rest-Buch 4.2.8)
 
+Im zukünftigen Frontend sollen an verschiedenen Stellen die Module aufgelistet werden. Die Suchfunktion soll Vorschläge anhand der Modulliste machen, die Studiengänge sollen ihre Module anzeigen und die studiengangsverantwortliche Person soll alle Module verwalten können. Es wird also eine Resource benötigt, die alle Module auflistet. Für die Suchfunktion muss die Resource allerdings weniger Informationen anzeigen, als für die Auflistungen in der Verwaltungsoberfläche. 
+
+#heading(level: 4, numbering: none)[Endpunkt /modules]
+  Die Suchfunktion benötigt:
+1. den Namen des Moduls, um einen Vorschlag anzuzeigen (@search)
+2. die Id des Moduls, um die Detailansicht zu dem Modul öffnen zu können
+3. den Studiengang des Moduls, um die Ergebnisse gruppieren zu können (@search)
+Die Tabellen im restlichen System profizieren dahingegen von zusätzlichen Informationen. Diese können dabei helfen, die Module zu filtern (@FILTER), oder schnell Informationen zu einem Modul herauszufinden, ohne dieses aufrufen zu müssen. 
+
+Es werden also die folgenden Informationen zusätzlich benötigt:
+4. Semester, in dem das Modul vorgeschlagen ist (@recommendedSemester), um beispielsweise nur die Module des aktuellen Semester zu filtern 
+5. Ansprechpartner (@responsible), um schnell eine Kontaktinformation zu erhalten
+#todo(inline:true)[Ansprechpartner als Use-Case?]
+
+
+#heading(level: 4, numbering: none)[Endpunkt /modules/{id}]
+  Hier sollten alle Informationen zur Verfügung gestellt werden, die für die Detailansichten eines einzelnen Moduls benötigt werden. Es müssen also alle Informationen aus @properties enthalten sein.
+
+
