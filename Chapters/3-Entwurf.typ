@@ -55,32 +55,43 @@ Miller, George A. (1956). The Magical Number 7, Plus or Minus Two: Some Limits o
 
 === Grundgerüst <scaffold>
 
-Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) nutzen zu können, wird diese in der oberen Leiste (Toolbar) platziert. Neben der Suche ist ein Dropdown, mit dem die angezeigte Sprache umgestellt werden kann (@TRANSLATEMULTIPLE). Die Toolbar ist in jeder Ansicht zu sehen. Unter der Toolbar ist die eigentliche Anwendung zu sehen, die aus verschiedenen Ansichten besteht. Damit jederzeit erkenntlich ist, in welcher Ansicht sich der User befindet (@PATH), wird diese Information als Breadcrumb auf der Toolbar platziert.
+#let toolbarText = [
+Die Oberfläche der Anwendung besteht aus einer Toolbar und einem ausklappbaren Drawer. Unter der Toolbar ist die eigentliche Anwendung zu sehen, die aus verschiedenen Ansichten besteht. Die Toolbar ist in jeder Ansicht zu sehen. Diese Art der Navigation ist mittlerweile Standard und sollte für den Großteil der User selbsterklärend sein. (Interface-Buch Seite 131)
+
+Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) nutzen zu können, wird diese in der oberen Leiste (Toolbar) platziert. Neben der Suche ist ein Dropdown, mit dem die angezeigte Sprache umgestellt werden kann (@TRANSLATEMULTIPLE).  Damit jederzeit erkenntlich ist, in welcher Ansicht sich der User befindet (@PATH), wird diese Information als Breadcrumb auf der Toolbar platziert.
+]
+
+#let toolbarImage = imageFigureNoPad(<grundgerüst>, "mockups/Grundgerüst.svg", "Grundgerüst")
+
+#let boxedToolbarImage = box(toolbarImage, inset: 0.5em)
+
+#wrap-content(align: bottom + right, boxedToolbarImage, toolbarText)
 
 
 
-#imageFigure(<grundgerüst>, "mockups/Grundgerüst.svg", "Grundgerüst")
-
-Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seitenleiste (Drawer) platziert. Die Seitenleiste kann mithilfe eines Knopfes ausgeklappt werden, welcher sich auf der Toolbar befindet. Somit können auch diese Funktionen mit wenig Aufwand (@CLICKS) von jeder Ansicht aus erreicht werden. Im Drawer sind die Masken zur Verwaltung der Benutzer (@CRUSER), zur Anzeige gelöschter Module (@SOFTDELETE) und zur Ansicht alter Prüfungsordnungen. Außerdem wird hier die Versionsnummer angezeigt, damit jederzeit überprüft werden kann, mit welcher Version des Systems gearbeitet wird.
+#let drawerText = [Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seitenleiste (Drawer) platziert. Die Seitenleiste kann mithilfe eines Knopfes ausgeklappt werden, welcher sich auf der Toolbar befindet. Somit können auch diese Funktionen mit wenig Aufwand (@CLICKS) von jeder Ansicht aus erreicht werden. Im Drawer sind die Masken zur Verwaltung der Benutzer (@CRUSER), zur Anzeige gelöschter Module (@SOFTDELETE) und zur Ansicht alter Prüfungsordnungen. Außerdem wird hier die Versionsnummer angezeigt, damit jederzeit überprüft werden kann, mit welcher Version des Systems gearbeitet wird.]
 
 
-#imageFigure(<drawer>, "mockups/Drawer.png", "Drawer")
+#let drawerImage = imageFigure(<drawer>, "mockups/Drawer.png", "Drawer")
 
+//#wrap-content(align: top + right, drawerImage, drawerText)
+#drawerText
+#drawerImage
 
 === Komponenten <views>
 
 
 
-#let fig = imageFigureNoPad(<search>, "mockups/Search.png", "Suche mit Dropdown", width: 6em)
+#let searchFunctionImage = imageFigureNoPad(<search>, "mockups/Search.png", "Suche mit Dropdown", width: 6em)
 
-#let content = [
+#let searchFunctionText = [
   #heading(level: 4, numbering:none, "Suchfunktion")
-  Für die Suchfunktion wird eine Komponente benötigt, mit der ein User ein bestimmtes Modul finden kann. Hierzu soll ein Text eingegeben werden. Module die zu dem Text passen, sollen vorgeschlagen werden. Der User kann einen Vorschlag anklicken, um sich dieses Modul anzusehen.
+  Für die Suchfunktion wird eine Komponente benötigt, mit der ein User ein bestimmtes Modul finden kann. Hierzu soll ein Text eingegeben werden. Module die zu dem Text passen, sollen vorgeschlagen werden. Durch die Vorschläge spart der User zeit, da nicht der vollständige Modulname eingegeben werden muss und auch nicht erst zu einer Ergebnisseite weitergeleitet wird. (Design-Buch, 502ff.) Der User kann einen Vorschlag anklicken, um sich dieses Modul anzusehen.
 
 ]
 
-#let boxed = box(fig, inset: 0.5em)
-#wrap-content(align: bottom + right, boxed, content)
+#let boxed = box(searchFunctionImage, inset: 0.5em)
+#wrap-content(align: bottom + right, boxed, searchFunctionText)
 
 
 
