@@ -5,13 +5,13 @@
 
 = Entwurf <entwurf>
 
-In diesem Kapitel werden die gesammelten Anforderungen aus @anforderungsanalyse verwendet, um die Implementierung in @implementierung vorzubereiten. Hierzu wird zunächst ein Datenbankschema erstellt, um die Datenbank fürs Backend anzupassen. Anschließend werden die Benutzeroberflächen prototypisch geplant. Im letzten Schritt werden die benötigten Endpunkte des Backends ermittelt.
+In diesem Kapitel werden die gesammelten Anforderungen aus @anforderungsanalyse verwendet, um die Implementierung in @implementierung vorzubereiten. Hierzu wird zunächst ein Datenbankschema erstellt, um die Datenbank fürs Backend anzupassen (@dbschema). Anschließend werden die Benutzeroberflächen prototypisch geplant (@UI). Im letzten Schritt werden die benötigten Endpunkte des Backends ermittelt (@endpoints).
 
 
 
 
 
-== Datenbankschema <dbschema>
+== Aufbau der Datenbank <dbschema>
 
 Die Erstellung eines Datenbankschemas ist ein wichtiger Schritt. Mit einem vollständigen Datenbankschema wird sichergestellt, dass alle benötigten Daten in der Datenbank gespeichert werden können, dass auf die Daten effizient zugegriffen werden kann und dass die Datenkonsistenz gewährleistet ist. @relationaleDb[Kapitel 3] \ Bei der Konzeption wurde darauf geachtet, dass die entstehende Datenbank in der dritten Normalform vorliegen wird, um Anomalien zu vermeiden (@normalized). @relationaleDb[Kapitel 9]\
 Im ersten Schritt wurden Tabellen für Module und Teilmodule geplant. Damit das System auch für alle Fakultäten und alle Studiengänge nutzbar ist, wurden zusätzlich die Tabellen Faculty und Course geplant.  
@@ -55,7 +55,7 @@ Miller, George A. (1956). The Magical Number 7, Plus or Minus Two: Some Limits o
 
 === Grundgerüst <scaffold>
 
-Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) nutzen zu können, wird diese in der oberen Leiste (Toolbar) platziert. Die Toolbar ist in jeder Ansicht zu sehen. Unter der Toolbar ist die eigentliche Anwendung zu sehen, die aus verschiedenen Ansichten besteht. Damit jederzeit erkenntlich ist, in welcher Ansicht sich der User befindet (@PATH), wird diese Information auf der Toolbar platziert.
+Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) nutzen zu können, wird diese in der oberen Leiste (Toolbar) platziert. Neben der Suche ist ein Dropdown, mit dem die angezeigte Sprache umgestellt werden kann (@TRANSLATEMULTIPLE). Die Toolbar ist in jeder Ansicht zu sehen. Unter der Toolbar ist die eigentliche Anwendung zu sehen, die aus verschiedenen Ansichten besteht. Damit jederzeit erkenntlich ist, in welcher Ansicht sich der User befindet (@PATH), wird diese Information als Breadcrumb auf der Toolbar platziert.
 
 
 
@@ -67,9 +67,15 @@ Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seiten
 #imageFigure(<drawer>, "mockups/Drawer.png", "Drawer")
 
 
-=== Ansichten <views>
+=== Komponenten <views>
 
-- Suchfunktion
+#heading(level: 4, numbering:none, "Suchfunktion")
+Für die Suchfunktion wird eine Komponente benötigt, mit der ein User ein bestimmtes Modul finden kann. Hierzu soll ein Text eingegeben werden. Module die zu dem Text passen, sollen vorgeschlagen werden. Der User kann einen Vorschlag anklicken, um sich dieses Modul anzusehen.
+
+#imageFigure(<search>, "mockups/Search.svg", "Suche mit Dropdown")
+
+#heading(level: 4, numbering:none, "Modulübersicht")
+
 
 - Filterfunktion
 
@@ -86,4 +92,4 @@ Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seiten
 
 
 
-== Benötigte Endpunkte im Backend
+== Benötigte Endpunkte im Backend <endpoints>

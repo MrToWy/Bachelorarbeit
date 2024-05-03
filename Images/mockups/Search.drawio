@@ -1,0 +1,57 @@
+<mxfile host="app.diagrams.net" modified="2024-05-03T09:17:26.071Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="s2gHmXUC1RjhKHHlbWHO" version="24.3.1" type="device">
+  <diagram name="Seite-1" id="16NHNWIgSLPOA0fajQPc">
+    <mxGraphModel dx="1091" dy="1104" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kDeWN1aM2l66xyjtU0gT-4" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.navigation.anchor;fontSize=17;fontColor=#666666;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="340" y="50" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kDeWN1aM2l66xyjtU0gT-9" value="Mathe" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.searchBox;strokeColor=#999999;mainText=;strokeColor2=#008cff;fontColor=#666666;fontSize=17;align=left;spacingLeft=3;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="550" y="50" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bMb183nQgBPdwGVp6cMJ-2" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.rrect;rSize=0;strokeColor=#999999;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="550" y="80" width="150" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="bMb183nQgBPdwGVp6cMJ-3" value="MDI" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.rrect;rSize=0;strokeColor=#999999;fontColor=#008cff;fontSize=17;fillColor=#ffffff;resizeWidth=1;whiteSpace=wrap;" vertex="1" parent="bMb183nQgBPdwGVp6cMJ-2">
+          <mxGeometry width="150" height="30" relative="1" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bMb183nQgBPdwGVp6cMJ-4" value="Mathematik 1" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.anchor;fontSize=17;fontColor=#666666;align=left;spacingLeft=5;resizeWidth=1;whiteSpace=wrap;" vertex="1" parent="bMb183nQgBPdwGVp6cMJ-2">
+          <mxGeometry width="150" height="20" relative="1" as="geometry">
+            <mxPoint y="30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bMb183nQgBPdwGVp6cMJ-5" value="Mathematik 2" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.anchor;fontSize=17;fontColor=#666666;align=left;spacingLeft=5;resizeWidth=1;whiteSpace=wrap;" vertex="1" parent="bMb183nQgBPdwGVp6cMJ-2">
+          <mxGeometry width="150" height="20" relative="1" as="geometry">
+            <mxPoint y="50" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bMb183nQgBPdwGVp6cMJ-8" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.rrect;rSize=0;strokeColor=#999999;fillColor=#ffffff;" vertex="1" parent="bMb183nQgBPdwGVp6cMJ-2">
+          <mxGeometry y="80" width="150" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="bMb183nQgBPdwGVp6cMJ-9" value="BIN" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.rrect;rSize=0;strokeColor=#999999;fontColor=#008cff;fontSize=17;fillColor=#ffffff;resizeWidth=1;whiteSpace=wrap;" vertex="1" parent="bMb183nQgBPdwGVp6cMJ-8">
+          <mxGeometry width="150" height="30" relative="1" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bMb183nQgBPdwGVp6cMJ-10" value="Mathematik 1" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.anchor;fontSize=17;fontColor=#666666;align=left;spacingLeft=5;resizeWidth=1;whiteSpace=wrap;" vertex="1" parent="bMb183nQgBPdwGVp6cMJ-8">
+          <mxGeometry width="150" height="20" relative="1" as="geometry">
+            <mxPoint y="30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bMb183nQgBPdwGVp6cMJ-11" value="Mathematik 2" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.anchor;fontSize=17;fontColor=#666666;align=left;spacingLeft=5;resizeWidth=1;whiteSpace=wrap;" vertex="1" parent="bMb183nQgBPdwGVp6cMJ-8">
+          <mxGeometry width="150" height="20" relative="1" as="geometry">
+            <mxPoint y="50" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bMb183nQgBPdwGVp6cMJ-12" value="Mathematik 3" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.rrect;rSize=0;fontSize=17;fontColor=#666666;align=left;spacingLeft=5;fillColor=#ddeeff;strokeColor=none;resizeWidth=1;whiteSpace=wrap;" vertex="1" parent="bMb183nQgBPdwGVp6cMJ-8">
+          <mxGeometry width="150" height="20" relative="1" as="geometry">
+            <mxPoint y="70" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
