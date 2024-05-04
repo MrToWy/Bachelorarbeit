@@ -24,6 +24,9 @@ Nachdem die Datenbank vorbereitet war, konnten nun die benötigten Endpoints im 
 Die Eingabeelemente im Frontend mithilfe eines Dropdowns fertige Texte anbieten. 
 Dank der zuvor erstellen Relations-Felder (@schema), ist es einfach, hierfür Endpoints zu erstellen. Wird beispielsweise ein Vorschlag für den Eintrag Prüfungsleistungen (@exam) benötigt, kann einfach auf das Relations-Feld  `TranslationKey.moduleExams` geschaut werden, welches alle Einträge aus dem Feld Exam in der Tabelle Module vereint.
 
+
+Für die Generierung der PDF-Datei (@PDF), wird ein Python-Skript ausgeführt. Da dies eine längere Laufzeit hat, meldet der Endpunkt zunächst den Status 202-Accepted zurück, und nennt eine Id. Das Frontend kann mithilfe der Id das fertige PDF abrufen. Solange das PDF noch nicht bereit steht, meldet das Backend einen Status 404-Not Found zurück. (Kap 13.1 REST-Buch)
+
 == UI: Module anlegen
 == UI: Module anzeigen 
 === Website

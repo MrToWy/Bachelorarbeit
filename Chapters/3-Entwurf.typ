@@ -30,12 +30,8 @@ Um die Anforderung @TRANSLATEMULTIPLE vorzubereiten, wurde die Tabelle Translate
 
 == Benutzeroberflächen <UI>
 
-Im Folgenden wird mithilfe von Mockups entworfen, wie die Benutzeroberflächen der neuen Anwendung aussehen sollen. Da an Mockups schnell Änderungen vorgenommen werden können, soll dieser Prozess dabei helfen, zeiteffizient gute Lösungen zu finden. Es werden zunächst in @scaffold die Elemente zur Navigation durch die Anwendung vorgestellt. Anschließend werden in @views die verschiedenen Ansichten skizziert.
+Im Folgenden wird mithilfe von Mockups entworfen, wie die Benutzeroberflächen der neuen Anwendung aussehen sollen. Da an Mockups schnell Änderungen vorgenommen werden können, soll dieser Prozess dabei helfen, zeiteffizient gute Lösungen zu finden. Es werden zunächst in @scaffold die Elemente zur Navigation durch die Anwendung vorgestellt. Anschließend werden in @views die verschiedenen Komponenten der Anwendung, sowie die daraus zusammengesetzten Ansichten skizziert.
 
-Flat Design
-
-UI-Patterns Vorlesung um 22.04.
-Folie 37/38
 
 
 /*
@@ -54,29 +50,31 @@ Miller, George A. (1956). The Magical Number 7, Plus or Minus Two: Some Limits o
 
 
 === Grundgerüst <scaffold>
+Die Oberfläche der Anwendung besteht aus einer Toolbar und einem ausklappbaren Drawer. Unter der Toolbar ist die eigentliche Anwendung zu sehen, die aus verschiedenen Ansichten besteht. Die Toolbar ist in jeder Ansicht zu sehen. Diese Art der Navigation ist mittlerweile Standard und sollte für den Großteil der User selbsterklärend sein. @designInterfaces[Seite 131] 
 
 #let toolbarText = [
-Die Oberfläche der Anwendung besteht aus einer Toolbar und einem ausklappbaren Drawer. Unter der Toolbar ist die eigentliche Anwendung zu sehen, die aus verschiedenen Ansichten besteht. Die Toolbar ist in jeder Ansicht zu sehen. Diese Art der Navigation ist mittlerweile Standard und sollte für den Großteil der User selbsterklärend sein. (Interface-Buch Seite 131)
-
 Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) nutzen zu können, wird diese in der oberen Leiste (Toolbar) platziert. Neben der Suche ist ein Dropdown, mit dem die angezeigte Sprache umgestellt werden kann (@TRANSLATEMULTIPLE).  Damit jederzeit erkenntlich ist, in welcher Ansicht sich der User befindet (@PATH), wird diese Information als Breadcrumb auf der Toolbar platziert.
 ]
 
-#let toolbarImage = imageFigureNoPad(<grundgerüst>, "mockups/Grundgerüst.svg", "Grundgerüst")
+#let toolbarImage = imageFigureNoPad(<grundgerüst>, "mockups/Grundgerüst.svg", "Toolbar")
 
 #let boxedToolbarImage = box(toolbarImage, inset: 0.5em)
 
-#wrap-content(align: bottom + right, boxedToolbarImage, toolbarText)
+#wrap-content(align: bottom + right,
+column-gutter: 1em,
+boxedToolbarImage, toolbarText)
 
 
 
 #let drawerText = [Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seitenleiste (Drawer) platziert. Die Seitenleiste kann mithilfe eines Knopfes ausgeklappt werden, welcher sich auf der Toolbar befindet. Somit können auch diese Funktionen mit wenig Aufwand (@CLICKS) von jeder Ansicht aus erreicht werden. Im Drawer sind die Masken zur Verwaltung der Benutzer (@CRUSER), zur Anzeige gelöschter Module (@SOFTDELETE) und zur Ansicht alter Prüfungsordnungen. Außerdem wird hier die Versionsnummer angezeigt, damit jederzeit überprüft werden kann, mit welcher Version des Systems gearbeitet wird.]
 
 
-#let drawerImage = imageFigure(<drawer>, "mockups/Drawer.png", "Drawer")
+#let drawerImage = imageFigureNoPad(width: 40%,
+  <drawer>, "mockups/Drawer.png", "Drawer")
 
-//#wrap-content(align: top + right, drawerImage, drawerText)
-#drawerText
-#drawerImage
+#wrap-content(align: bottom + right, drawerImage, drawerText)
+//#drawerText
+//#drawerImage
 
 === Komponenten <views>
 
@@ -86,7 +84,7 @@ Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) n
 
 #let searchFunctionText = [
   #heading(level: 4, numbering:none, "Suchfunktion")
-  Für die Suchfunktion wird eine Komponente benötigt, mit der ein User ein bestimmtes Modul finden kann. Hierzu soll ein Text eingegeben werden. Module die zu dem Text passen, sollen vorgeschlagen werden. Durch die Vorschläge spart der User zeit, da nicht der vollständige Modulname eingegeben werden muss und auch nicht erst zu einer Ergebnisseite weitergeleitet wird. (Design-Buch, 502ff.) Der User kann einen Vorschlag anklicken, um sich dieses Modul anzusehen.
+  Für die Suchfunktion wird eine Komponente benötigt, mit der ein bestimmtes Modul gefunden werden kann. In die Suchleiste soll der User den Namen des gesuchten Modules eingeben können. Dabei muss der Modulname nicht vollständig eingegeben werden. Module, die zu dem eingebenen Text passen, sollen vorgeschlagen werden. Durch die Vorschläge spart der User Zeit, da nicht der vollständige Modulname eingegeben werden muss und auch nicht erst zu einer Ergebnisseite weitergeleitet wird. @designInterfaces[Seite 502 ff.] Der User kann einen Vorschlag anklicken, um sich dieses Modul anzusehen.
 
 ]
 
@@ -97,13 +95,27 @@ Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) n
 
 
 #heading(level: 4, numbering:none, "Modulübersicht")
-
-
 - Filterfunktion
 
-- Modul anlegen / bearbeiten
+#heading(level: 4, numbering:none, "Modul anlegen / bearbeiten")
 
-- Übersetzbarkeit
+
+ 
+#let translateText = [
+Für die Erstellung oder Bearbeitung eines Moduls kann entweder ein vorhandener Text aus einem Dropdown ausgewählt werden, oder ein neuer Text durch klicken auf den "Neu"-Button angelegt werden. Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im Dropdown angezeigt wird, sowie die tatsächlichen Texte, die später im Modulhandbuch abgebildet werden. 
+]
+
+#let translateDropdownImage = imageFigureNoPad(<translateDropdown>, "mockups/ÜbersetzbarkeitDropdown.svg", "Dropdown zur Textauswahl", width: 16em)
+
+#let translateImage = imageFigureNoPad(<translatePopup>, "mockups/Übersetzbarkeit.svg", "Neuen Text hinzufügen", width: 16em)
+
+#let translationBoxed = box(inset: 0.5em)[#translateDropdownImage #translateImage]
+
+#wrap-content(align: bottom + right, translationBoxed, translateText)
+
+//#translateText
+//#translateDropdownImage
+//#translateImage
 
 - User anlegen
 
@@ -116,11 +128,10 @@ Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) n
 
 == Benötigte Endpunkte im Backend <endpoints>
 
-Damit das zukünftige Frontend mit dem  Backend kommunizieren kann, muss das Backend Endpunkte bereitstellen, die das Frontent nutzen kann. Ein Endpoint ist beispielsweise die Auflistung aller Module und ist mithilfe einer URI aufrufbar (hier z.B. /modules). Ein einzelnes Modul könnte über die Ressource /modules/{id} aufgerufen werden.
-(Rest-Buch, 3.2)
+Damit das zukünftige Frontend mit dem  Backend kommunizieren kann, muss das Backend Endpunkte bereitstellen, die das Frontent nutzen kann. Ein Endpoint ist beispielsweise die Auflistung aller Module und ist mithilfe einer URI aufrufbar (hier z.B. /modules). Ein einzelnes Modul könnte über die Ressource /modules/{id} aufgerufen werden. @restUndHTTP[Abschnitt 3.2]
 
 In der vorliegenden Version des "StudyBase-"Backends gibt es bereits mehrere Resourcen. Im folgenden soll ermittelt werden, welche Ressourcen für das neue System benötigt werden. Nach dem YAGNI-Prinzip sollen dann in 
-@implementierung nur die Resourcen ausgearbeitet werden, die für das neue System benötigt werden. (Rest-Buch 4.2.8)
+@implementierung nur die Resourcen ausgearbeitet werden, die für das neue System benötigt werden. @restUndHTTP[Unterabschnitt 4.2.8]
 
 Im zukünftigen Frontend sollen an verschiedenen Stellen die Module aufgelistet werden. Die Suchfunktion soll Vorschläge anhand der Modulliste machen, die Studiengänge sollen ihre Module anzeigen und die studiengangsverantwortliche Person soll alle Module verwalten können. Es wird also eine Resource benötigt, die alle Module auflistet. Für die Suchfunktion muss die Resource allerdings weniger Informationen anzeigen, als für die Auflistungen in der Verwaltungsoberfläche. 
 
@@ -141,3 +152,4 @@ Es werden also die folgenden Informationen zusätzlich benötigt:
   Hier sollten alle Informationen zur Verfügung gestellt werden, die für die Detailansichten eines einzelnen Moduls benötigt werden. Es müssen also alle Informationen aus @properties enthalten sein.
 
 
+#heading(level: 4, numbering: none)[Endpunkt /modules/{id}]a 
