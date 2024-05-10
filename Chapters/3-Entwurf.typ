@@ -139,14 +139,15 @@ Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im 
 
 == Benötigte Endpunkte im Backend <endpoints>
 
-Damit das zukünftige Frontend mit dem  Backend kommunizieren kann, muss das Backend Endpunkte (auch genannt Ressourcen, Endpoints, Routen...) bereitstellen, die das Frontent nutzen kann. Ein Endpunkt ist beispielsweise die Auflistung aller Module und ist mithilfe einer URI aufrufbar (hier z.B. /modules). Ein einzelnes Modul könnte über die Ressource /modules/{id} aufgerufen werden. @restUndHTTP[Abschnitt 3.2] Die Planung, welche Endpunkte benötigt werden und wie diese aussehen sollen, wird die spätere Implementierung in @createEndpoints beschleunigen, da dann dort weniger Entscheidungen getroffen werden müssen.
+Damit das zukünftige Frontend mit dem  Backend kommunizieren kann, muss das Backend Endpunkte (auch genannt Ressourcen, Endpoints, Routen...) bereitstellen, die das Frontent nutzen kann. Ein Endpunkt ist beispielsweise die Auflistung aller Module und ist mithilfe einer URI aufrufbar (hier z.B. /modules). Ein einzelnes Modul könnte über den Endpunkt /modules/{id} aufgerufen werden. @restUndHTTP[Abschnitt 3.2] 
 
 In der vorliegenden Version des "StudyBase-"Backends gibt es bereits mehrere Endpunkte. Im Folgenden soll ermittelt werden, welche Endpunkte für das neue System benötigt werden. Nach dem YAGNI-Prinzip sollen dann in 
-@implementierung nur die Endpunkte ausgearbeitet werden, die für das neue System benötigt werden. @restUndHTTP[Unterabschnitt 4.2.8]
-
-Im zukünftigen Frontend sollen an verschiedenen Stellen die Module aufgelistet werden. Die Suchfunktion soll Vorschläge anhand der Modulliste machen, die Studiengänge sollen ihre Module anzeigen und die studiengangsverantwortliche Person soll alle Module verwalten können. Es wird also eine Resource benötigt, die alle Module auflistet. Für die Suchfunktion muss die Resource allerdings weniger Informationen anzeigen, als für die Auflistungen in der Verwaltungsoberfläche.  #todo(inline:true)[erklären, hier weniger Infos müssen/reichen (siehe auch ToDo unten)]
+@implementierung nur die Endpunkte ausgearbeitet werden, die für das neue System benötigt werden. @restUndHTTP[Unterabschnitt 4.2.8] Durch die Planung, welche Endpunkte benötigt werden und wie diese aussehen sollen,  wird die spätere Implementierung in @createEndpoints beschleunigt, da dann dort weniger Entscheidungen getroffen werden müssen.
 
 #heading(level: 4, numbering: none)[Endpunkt /modules]
+Im zukünftigen Frontend sollen an verschiedenen Stellen die Module aufgelistet werden. Die Suchfunktion soll Vorschläge anhand der Modulliste machen, die Studiengänge sollen ihre Module anzeigen und die studiengangsverantwortliche Person soll alle Module verwalten können. Es wird also eine Resource benötigt, die alle Module auflistet. Für die Suchfunktion muss die Resource allerdings weniger Informationen anzeigen, als für die Auflistungen in der Verwaltungsoberfläche. Beispielsweise ist für die Suche zunächst uninteressant, was die angestrebten Lernergebnisse eines Modules sind.
+
+
   Die Suchfunktion benötigt:
 1. den Namen des Moduls, um einen Vorschlag anzuzeigen (@search)
 2. die Id des Moduls, um die Detailansicht zu dem Modul öffnen zu können
@@ -160,6 +161,8 @@ Es werden also die folgenden Informationen zusätzlich benötigt:
 
 
 #heading(level: 4, numbering: none)[Endpunkt /modules/{id}]
-  Hier sollten alle Informationen zur Verfügung gestellt werden, die für die Detailansichten eines einzelnen Moduls benötigt werden. Es müssen also alle Informationen aus @properties enthalten sein. #todo(inline:true)[erklären, warum nicht einfach alle Infos in /modules gezeigt werdne]
+  Hier sollten alle Informationen zur Verfügung gestellt werden, die für die Detailansichten eines einzelnen Moduls benötigt werden. Es müssen also alle Informationen aus @properties enthalten sein. #todo(inline:true)[erklären, warum nicht einfach alle Infos in /modules gezeigt werden]
 
 
+== Zwischenfazit
+Im vergangenen Kapitel wurde das gesamte System geplant. Für das Backend gibt es ein Datenbankschema, sowie einen Plan wie die Endpunkte der API gestaltet werden sollen. Für das Frontend gibt es Mockups für das Grundgerüst der Anwendung, sowie Mockups für einige Komponenten und Ansichten. Dank der detaillierten Planung sind im folgenden @implementierung weniger Entscheidungen zu treffen, sodass die Implementierung risikofreier ist.

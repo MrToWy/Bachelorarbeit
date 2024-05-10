@@ -15,7 +15,7 @@
 ]<UseCaseSearch>
 
 #useCase(2, "Filterfunktion")[
-  Der Use Case beschreibt, wie Informationen zu einem Modul gefunden werden können. Durch die Nutzung verschiedener Filter, soll ein Modul leicht findbar sein.
+  Der Use Case beschreibt, wie Informationen zu einem Modul gefunden werden können. Durch die Nutzung verschiedener Filter, soll ein Modul leicht findbar sein. Eine studierende Person könnte beispielsweise auf der Suche nach einer Ansprechperson eines bestimmten Moduls sein, oder möchte wissen, welche Module in einem bestimmten Semester stattfinden.
 ][
   Studierende Person
 ][
@@ -25,6 +25,7 @@
   2. System zeigt alle Module an, die laut Curriculum im 2. Semester empfohlen werden
   3. User klickt einen Eintrag an
   4. System zeigt das Modul
+  5. User kann gesuchte Informationen ablesen
 ]<UseCaseFilter>
 
 
