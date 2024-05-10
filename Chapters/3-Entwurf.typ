@@ -50,10 +50,10 @@ Miller, George A. (1956). The Magical Number 7, Plus or Minus Two: Some Limits o
 
 
 === Grundgerüst <scaffold>
-Die Oberfläche der Anwendung besteht aus einer Toolbar und einem ausklappbaren Drawer. Unter der Toolbar ist die eigentliche Anwendung zu sehen, die aus verschiedenen Ansichten besteht. Die Toolbar ist in jeder Ansicht zu sehen. Diese Art der Navigation ist mittlerweile Standard und sollte für den Großteil der User selbsterklärend sein. @designInterfaces[Seite 131] 
+Die Oberfläche der Anwendung besteht aus einer oberen Leiste (Toolbar) und einem ausklappbaren Drawer. Unter der Toolbar ist die eigentliche Anwendung zu sehen, die aus verschiedenen Ansichten besteht. Die Toolbar ist in jeder Ansicht zu sehen. Diese Art der Navigation ist mittlerweile Standard und sollte für den Großteil der User selbsterklärend sein. @designInterfaces[Seite 131] 
 
 #let toolbarText = [
-Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) nutzen zu können, wird diese in der oberen Leiste (Toolbar) platziert. Neben der Suche ist ein Dropdown, mit dem die angezeigte Sprache umgestellt werden kann (@TRANSLATEMULTIPLE).  Damit jederzeit erkenntlich ist, in welcher Ansicht sich der User befindet (@PATH), wird diese Information als Breadcrumb auf der Toolbar platziert.
+Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) nutzen zu können, wird diese in der Toolbar platziert. Neben der Suche ist ein Dropdown, mit dem die angezeigte Sprache umgestellt werden kann (@TRANSLATEMULTIPLE).  Damit jederzeit erkenntlich ist, in welcher Ansicht sich der User befindet (@PATH), wird diese Information als Breadcrumb auf der Toolbar platziert. @designInterfaces[Seite 193 f.]
 ]
 
 #let toolbarImage = imageFigureNoPad(<grundgerüst>, "mockups/Grundgerüst.svg", "Toolbar")
@@ -97,13 +97,24 @@ boxedToolbarImage, toolbarText)
 #heading(level: 4, numbering:none, "Modulübersicht")
 - Filterfunktion
 
-#heading(level: 4, numbering:none, "Modul anlegen / bearbeiten")
+
+
+#box[
+  #heading(level: 4, numbering:none, "Modul anlegen / bearbeiten")
+
+Damit die Dateneingabe für den User möglichst intuitiv ist, orientiert sich die Sortierung der Eingabefelder an der Sortierung der Felder im resultierenden PDF. Um eine einheitliche Optik zu erreichen wurden anschließend die Felder geringfügig umsortiert, sodass gleiche Datentypen, oder Felder die thematisch zueinander passen, nah beieinander sind. Das resultierende PDF wird in der Vorschau imitiert. Hier werden die Eingaben des Users in Echtzeit angezeigt, sodass der User jederzeit sehen kann, wie die Modulbeschreibung aussehen wird.
+  
+#imageFigure(<addModule>, "mockups/AddModule.png", "Modul hinzufügen")
+]
 
 
  
 #let translateText = [
-Für die Erstellung oder Bearbeitung eines Moduls kann entweder ein vorhandener Text aus einem Dropdown ausgewählt werden, oder ein neuer Text durch klicken auf den "Neu"-Button angelegt werden. Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im Dropdown angezeigt wird, sowie die tatsächlichen Texte, die später im Modulhandbuch abgebildet werden. 
+Für die Erstellung oder Bearbeitung eines Moduls kann entweder ein vorhandener Text aus einem Dropdown ausgewählt werden, oder ein neuer Text durch klicken auf den "Neu"-Button angelegt werden. Dies ist besonders praktisch, da sich bestimmte Texte oft wiederholen. #todo(inline: true)[Statistiken dazu? Textefelder deren Texte sich nicht doppeln, könnten in einer eigenen Gruppe gruppiert sein (-> brauchen kein Dropdown)] 
+
+Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im Dropdown angezeigt wird, sowie die tatsächlichen Texte, die später im Modulhandbuch abgebildet werden. 
 ]
+
 
 #let translateDropdownImage = imageFigureNoPad(<translateDropdown>, "mockups/ÜbersetzbarkeitDropdown.svg", "Dropdown zur Textauswahl", width: 16em)
 
@@ -128,19 +139,19 @@ Für die Erstellung oder Bearbeitung eines Moduls kann entweder ein vorhandener 
 
 == Benötigte Endpunkte im Backend <endpoints>
 
-Damit das zukünftige Frontend mit dem  Backend kommunizieren kann, muss das Backend Endpunkte bereitstellen, die das Frontent nutzen kann. Ein Endpoint ist beispielsweise die Auflistung aller Module und ist mithilfe einer URI aufrufbar (hier z.B. /modules). Ein einzelnes Modul könnte über die Ressource /modules/{id} aufgerufen werden. @restUndHTTP[Abschnitt 3.2]
+Damit das zukünftige Frontend mit dem  Backend kommunizieren kann, muss das Backend Endpunkte (auch genannt Ressourcen, Endpoints, Routen...) bereitstellen, die das Frontent nutzen kann. Ein Endpunkt ist beispielsweise die Auflistung aller Module und ist mithilfe einer URI aufrufbar (hier z.B. /modules). Ein einzelnes Modul könnte über die Ressource /modules/{id} aufgerufen werden. @restUndHTTP[Abschnitt 3.2] Die Planung, welche Endpunkte benötigt werden und wie diese aussehen sollen, wird die spätere Implementierung in @createEndpoints beschleunigen, da dann dort weniger Entscheidungen getroffen werden müssen.
 
-In der vorliegenden Version des "StudyBase-"Backends gibt es bereits mehrere Resourcen. Im folgenden soll ermittelt werden, welche Ressourcen für das neue System benötigt werden. Nach dem YAGNI-Prinzip sollen dann in 
-@implementierung nur die Resourcen ausgearbeitet werden, die für das neue System benötigt werden. @restUndHTTP[Unterabschnitt 4.2.8]
+In der vorliegenden Version des "StudyBase-"Backends gibt es bereits mehrere Endpunkte. Im Folgenden soll ermittelt werden, welche Endpunkte für das neue System benötigt werden. Nach dem YAGNI-Prinzip sollen dann in 
+@implementierung nur die Endpunkte ausgearbeitet werden, die für das neue System benötigt werden. @restUndHTTP[Unterabschnitt 4.2.8]
 
-Im zukünftigen Frontend sollen an verschiedenen Stellen die Module aufgelistet werden. Die Suchfunktion soll Vorschläge anhand der Modulliste machen, die Studiengänge sollen ihre Module anzeigen und die studiengangsverantwortliche Person soll alle Module verwalten können. Es wird also eine Resource benötigt, die alle Module auflistet. Für die Suchfunktion muss die Resource allerdings weniger Informationen anzeigen, als für die Auflistungen in der Verwaltungsoberfläche. 
+Im zukünftigen Frontend sollen an verschiedenen Stellen die Module aufgelistet werden. Die Suchfunktion soll Vorschläge anhand der Modulliste machen, die Studiengänge sollen ihre Module anzeigen und die studiengangsverantwortliche Person soll alle Module verwalten können. Es wird also eine Resource benötigt, die alle Module auflistet. Für die Suchfunktion muss die Resource allerdings weniger Informationen anzeigen, als für die Auflistungen in der Verwaltungsoberfläche.  #todo(inline:true)[erklären, hier weniger Infos müssen/reichen (siehe auch ToDo unten)]
 
 #heading(level: 4, numbering: none)[Endpunkt /modules]
   Die Suchfunktion benötigt:
 1. den Namen des Moduls, um einen Vorschlag anzuzeigen (@search)
 2. die Id des Moduls, um die Detailansicht zu dem Modul öffnen zu können
 3. den Studiengang des Moduls, um die Ergebnisse gruppieren zu können (@search)
-Die Tabellen im restlichen System profizieren dahingegen von zusätzlichen Informationen. Diese können dabei helfen, die Module zu filtern (@FILTER), oder schnell Informationen zu einem Modul herauszufinden, ohne dieses aufrufen zu müssen. 
+Die Tabellen im restlichen System profitieren dahingegen von zusätzlichen Informationen. Diese können dabei helfen, die Module zu filtern (@FILTER), oder schnell Informationen zu einem Modul herauszufinden, ohne dieses aufrufen zu müssen. 
 
 Es werden also die folgenden Informationen zusätzlich benötigt:
 4. Semester, in dem das Modul vorgeschlagen ist (@recommendedSemester), um beispielsweise nur die Module des aktuellen Semester zu filtern 
@@ -149,7 +160,6 @@ Es werden also die folgenden Informationen zusätzlich benötigt:
 
 
 #heading(level: 4, numbering: none)[Endpunkt /modules/{id}]
-  Hier sollten alle Informationen zur Verfügung gestellt werden, die für die Detailansichten eines einzelnen Moduls benötigt werden. Es müssen also alle Informationen aus @properties enthalten sein.
+  Hier sollten alle Informationen zur Verfügung gestellt werden, die für die Detailansichten eines einzelnen Moduls benötigt werden. Es müssen also alle Informationen aus @properties enthalten sein. #todo(inline:true)[erklären, warum nicht einfach alle Infos in /modules gezeigt werdne]
 
 
-#heading(level: 4, numbering: none)[Endpunkt /modules/{id}]a 

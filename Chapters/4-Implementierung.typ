@@ -17,7 +17,7 @@ Glücklicherweise kann das von Prisma benötigte Relations-Feld mithilfe des Bef
 
 Bei dem Prozess, die vorhandene Datenstruktur zu ändern, gingen die Test-Daten verloren. Es wurde kein Aufwand investiert, um die Migration verlustfrei zu gestalten. Nach Fertigstellung der Datenstruktur sollen die vom Studiendekan ermittelten Daten in die Datenbank eingesetzt werden, da diese bereits geprüft sind und vollständig sein sollten.
 
-=== Endpoints erstellen
+=== Endpoints erstellen <createEndpoints>
 Nachdem die Datenbank vorbereitet war, konnten nun die benötigten Endpoints im Backend angelegt werden. Hierbei war es wichtig, 
 
 
