@@ -95,6 +95,8 @@ Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächs
 #wrap-content(align: top + right, loginImage, loginText)
 ]
 
+#box[
+
 #let searchFunctionImage = imageFigureNoPad(<search>, "mockups/Search.png", "Suche mit Dropdown", width: 6em)
 
 #let searchFunctionText = [
@@ -106,7 +108,7 @@ Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächs
 #let boxed = box(searchFunctionImage, inset: 0.5em)
 #wrap-content(align: bottom + right, boxed, searchFunctionText)
 
-
+]
 
 
 #heading(level: 4, numbering:none, "Modulübersicht")
@@ -197,9 +199,11 @@ Alle Änderungen sollen nachverfolgbar sein (@SHOWCHANGES). Hierzu wird eine Üb
 #wrap-content(align: top + right, changeLogImage, changeLogText)
 ]
 
+#box[
 == Benötigte Endpunkte im Backend <endpoints>
 
 Damit das zukünftige Frontend mit dem  Backend kommunizieren kann, muss das Backend Endpunkte (auch genannt Ressourcen, Endpoints, Routen...) bereitstellen, die das Frontent nutzen kann. Ein Endpunkt ist beispielsweise die Auflistung aller Module und ist mithilfe einer URI aufrufbar (hier z.B. /modules). Ein einzelnes Modul könnte über den Endpunkt #box[/modules/{id}] aufgerufen werden. @restUndHTTP[Abschnitt 3.2] 
+]
 
 In der vorliegenden Version des "StudyBase-"Backends gibt es bereits mehrere Endpunkte. Im Folgenden soll ermittelt werden, welche Endpunkte für das neue System benötigt werden. Nach dem YAGNI-Prinzip sollen dann in 
 @implementierung nur die Endpunkte ausgearbeitet werden, die für das neue System benötigt werden. @restUndHTTP[Unterabschnitt 4.2.8] Durch die Planung, welche Endpunkte benötigt werden und wie diese aussehen sollen,  wird die spätere Implementierung in @createEndpoints beschleunigt, da dann dort weniger Entscheidungen getroffen werden müssen.
