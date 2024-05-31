@@ -19,7 +19,7 @@
     Hochschule Hannover\    
     #link("mailto:matthias.hovestadt@hs-hannover.de")
   ],
-  date: "15. August 2024",
+  date: "13. August 2024",
   glossaryColumns: 1
 )
  
