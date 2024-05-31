@@ -22,6 +22,12 @@ Eigenschaften, die aus @requirements oder aus @properties hervorgehen, sind deme
 #diagramFigure("ER-Diagramm - Gesamtbild", <ER>, "ER")
 
 
+#todo(inline:true)[
+  hier müssen die Überlegungen zur Übersetzbarkeit hin
+
+  Idee, alle Übersetzungen in eine Tabelle zu legen und in den einzelnen Tabellen dann nur Key-Ids zu speichern
+]
+
 Um die Anforderung @TRANSLATEMULTIPLE vorzubereiten, wurde die Tabelle TranslatedText für alle Eigenschaften mit dem Datentyp "TEXT" genutzt. Zur besseren Lesbarkeit wurde dies nur exemplarisch für die Eigenschaften E1-E3 dargestellt:
 
 #diagramFigure("ER-Diagramm - TranslatedText", <ER_TRANS>, "ER_Translation")
@@ -154,7 +160,7 @@ Angemeldete User sehen auf verschiedenen Seiten Buttons, mit denen sie Module an
 
  
 #let translateText = [
-Für die Erstellung oder Bearbeitung eines Moduls kann entweder ein vorhandener Text aus einem Dropdown ausgewählt werden, oder ein neuer Text durch klicken auf den "Neu"-Button angelegt werden. Dies ist besonders praktisch, da sich bestimmte Texte oft wiederholen. 
+Für die Erstellung oder Bearbeitung eines Moduls kann entweder ein vorhandener Text aus einem Dropdown ausgewählt werden (@lookup), oder ein neuer Text durch klicken auf den "Neu"-Button angelegt werden. Dies ist besonders praktisch, da sich bestimmte Texte oft wiederholen. 
 
 Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im Dropdown angezeigt wird, sowie die tatsächlichen Texte, die später im Modulhandbuch abgebildet werden. 
 ]
@@ -198,6 +204,8 @@ Alle Änderungen sollen nachverfolgbar sein (@SHOWCHANGES). Hierzu wird eine Üb
 
 #wrap-content(align: top + right, changeLogImage, changeLogText)
 ]
+
+#imageFigure(<preview>, "modern-preview.png", "")
 
 #box[
 == Benötigte Endpunkte im Backend <endpoints>
