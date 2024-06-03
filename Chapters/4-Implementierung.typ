@@ -2,31 +2,39 @@
 #import "../Template/customFunctions.typ": *
 
 = Implementierung <implementierung>
-Nachdem in @entwurf das System geplant wurde, sollen nun in diesem Kapitel das gesamte System erstellt werden. Zunächst wird das Backend vorbereitet. Hierzu wird in @createBackend als erstes die Datenbank an das neue Schema angepasst, um im Anschluss die geplanten Endpunkte implementieren zu können. Sobald das Backend vollständig ist, kann das Frontend die benötigten Daten abrufen. Deshalb wird erst im zweiten Schritt dann in @createFrontend das Frontend erstellt. In @createDocumentation ist abschließend beschrieben, wie das System dokumentiert wurde. 
+Nachdem in @entwurf das System geplant wurde, sollen nun in diesem Kapitel das System erstellt werden. Zunächst wird das Backend vorbereitet. Hierzu wird in @createBackend als erstes die Datenbank an das neue Schema angepasst, um im Anschluss die geplanten Endpunkte implementieren zu können. Sobald das Backend vollständig ist, kann das Frontend die benötigten Daten abrufen. Deshalb wird erst im zweiten Schritt dann in @createFrontend das Frontend erstellt. In @createDocumentation ist abschließend beschrieben, wie das System dokumentiert wurde. 
 
 == Backend <createBackend>
-Das Backend besteht aus drei Komponenten. Es gibt eine Datenbank, in der die Informationen zu den Modulen, Usern und die Änderungshistorie gespeichert werden. Außerdem gibt es die Anwendung, die Daten aus der Datenbank lädt und mithilfe von HTTP-Endpunkten an das Frontend weitergibt. Zuletzt gibt es zwei Python-Skripte, welche aus der Datenbank für die einzelnen Studiengänge die Modulhandbücher im PDF-Format generieren. In den folgenden Unterabschnitten ist die Implementierung der drei genannten Komponenten beschrieben.
+Das Backend wird im folgenden auch als API bezeichnet und greift auf verschiedene andere Komponenten zu (@architectureDiagram). Es gibt eine Datenbank, in der die Informationen zu den Modulen, Usern und die Änderungshistorie gespeichert werden. Außerdem gibt es die API selbst, die Daten aus der Datenbank lädt und mithilfe von HTTP-Endpunkten an das Frontend weitergibt. Zuletzt gibt es zwei Python-Skripte und einen Docker-Container, welche aus der Datenbank für die einzelnen Studiengänge die Modulhandbücher im PDF-Format generieren. In den folgenden Unterabschnitten ist die Implementierung der genannten Komponenten beschrieben.
+
+#imageFigure(<architectureDiagram>, "Architektur.png", "Komponenten des Systems")
 
 === Datenbank <schema>
 
-Im ersten Schritt wurde das vorhandene Datenbankschema an das in @dbschema erstellte Schema angeglichen. Neben neuen Tabellen wie zum Beispiel der Tabellen für Fakultät und Abteilung gab es einen erhöhten Arbeitsaufwand beim Hinzufügen der übersetzbaren Texte. Hierbei war es leider nicht ausreichend, die Verweise auf Einträge in der Tabelle "TranslationKey" zu setzen (Zeile 3 und 4 in @factultyPrismaCode), sondern es musste auch zu jedem übersetzten Text ein Relations-Feld in der Tabelle  "TranslationKey" hinterlegt werden (Zeile 4 in @relationPrismaCode).
-
-#codeFigure("Faculty-Tabelle", <factultyPrismaCode>, "facultyPrisma")
-
-#codeFigure("TranslationKey-Tabelle", <relationPrismaCode>, "relationPrisma")
-
-Glücklicherweise kann das von Prisma benötigte Relations-Feld mithilfe des Befehls `prisma format` automatisch generiert werden. Das funktioniert allerdings nur, wenn die Tabelle einen einzigen Verweis zur TranslationKey-Tabelle hat. Wenn das nicht der Fall ist, müssen die Relations-Felder manuell gesetzt werden. Zusätzlich muss jede Relation dann einen eigenen Namen erhalten, damit Prisma die Zuweisung versteht. Dies ist beispielsweise für die Modul-Tabelle relevant, die viele übersetzte Felder besitzt.  
+Im ersten Schritt wurde das vorhandene Datenbankschema an das in @dbschema erstellte Schema angeglichen. Neben neuen Tabellen wie zum Beispiel der Tabellen für Fakultät und Abteilung gab es einen erhöhten Arbeitsaufwand beim Hinzufügen der übersetzbaren Texte. Die in @dbschema geplante Art die Übersetzungen abzuspeichern erwies sich als unpraktisch. Zwar konnte das Datenbankschema noch ohne viel Aufwand erstellt werden (@moduleprismanew), jedoch führten die verschiedenen Ids (nameId, descriptionId) zu einem Problem. Damit ein Modul im Frontend dargestellt werden kann, muss mit der bisherigen Planung für jedes einzelne übersetzte Feld ein Join auf die Tabelle "TranslationKey" und auf die Tabelle "Translation" gemacht werden, um den gewünschten Text zu erhalten. Dies führt bereits bei der Abfrage eines einzelnen Modules zu vielen Joins und einer recht komplizierten Codestruktur.
 
 #codeFigure("Beispiel für Relations-Felder", <moduleprismanew>, "modulePrismaNew")
 
+Um die komplizierten Joins und den sich daraus ergebenen komplizierten Quellcode zu vermeiden, wurde die Datenstruktur der übersetzten Texte leicht verändert. Pro Tabelle, die zu übersetzende Felder beinhaltet wurde eine weitere Tabelle erstellt, die die Texte enthält (siehe @newDbSchema). Somit sind nun nicht mehr pro übersetztem Feld zwei Joins erforderlich, sondern nur noch pro Tabelle ein Join.
+
+#imageFigure(<newDbSchema>, "newTransl.png", "Beispiel: Übersetzung eines Modules", width: 8em)
+
 Bei dem Prozess, die vorhandene Datenstruktur zu ändern, gingen die Test-Daten verloren. Es wurde kein Aufwand investiert, um die Migration verlustfrei zu gestalten. Nach Fertigstellung der Datenstruktur sollen die vom Studiendekan ermittelten Daten in die Datenbank eingesetzt werden, da diese auf einem neueren Stand sind, bereits geprüft wurden und vollständig sein sollten.
 
-Die Datenübernahme wurde mithilfe von Python umgesetzt. Bei der Erstellung des Skripts wurde darauf geachtet, dass es bei jeder Ausführung zunächst die neue Datenbank leert, um anschließend die Daten von der alten Datenbank in die neue Datenbank zu kopieren. Die größte Hürde war hier die Übersetzbarkeit. In der ursprünglichen Datenstruktur war die Übersetzbarkeit anders umgesetzt, sodass das Kopieren mehrsprachiger Texte anspruchsvoller war, als das Kopieren einfacher Zahlenwerte.
+Die Datenübernahme wurde mithilfe von Python umgesetzt. Bei der Erstellung des Skripts wurde darauf geachtet, dass es bei jeder Ausführung zunächst die neue Datenbank leert, um anschließend die Daten von der alten Datenbank in die neue Datenbank zu kopieren. 
 
 
 === HTTP-Endpunkte <createEndpoints>
 
-Nachdem die Datenbank vorbereitet war, konnten nun die benötigten Endpoints im Backend angelegt werden. Hierbei war es wichtig, 
+Nachdem die Datenbank vorbereitet war, konnten nun die benötigten Endpoints im Backend angelegt werden. Hierbei war es wichtig, zwischen öffentlichen und privaten Endpunkten zu unterscheiden. Damit User im Frontend auch ohne Anmeldung die Module ansehen können, müssen manche Endpunkte ohne Authentisierung erreichbar sein. Hierzu wurde ein eigener Decorator (@publicDecorator) erstellt. Dieser kann einfach über einen Endpunkt geschrieben werden, um diesen als öffentlich zu markieren (@moduleController). Damit dies funktioniert, musste zusätzlich der AuthGuard durch eine eigene Implementierung (@authGuard) ersetzt werden. Diese neue Implmentierung überprüft, ob in den Metadaten "isPublic" steht. Wenn dies der Fall ist, kann die Anfrage mit `return true` genehmigt werden. Falls diese Metadaten nicht gesetzt sind, wird die ursprüngliche Implementierung von canActivate (Zeile 14) aufgerufen, um zu überprüfen, ob ein gültiger Token mitgesendet wurde. 
+
+#codeFigure("public.decorator.ts", <publicDecorator>, "publicDecorator")
+
+#codeFigure("module.controller.ts", <moduleController>, "getModule")
+
+#codeFigure("jwt-auth.guard.ts", <authGuard>, "authGuard")
+
+Außerdem erklären, wie die Endpoints gruppiert werden, damits in Swagger gut asussieht
 
 
 Die Eingabeelemente im Frontend mithilfe eines Dropdowns fertige Texte anbieten. 
@@ -77,7 +85,7 @@ Damit jede Komponente weiß, welche Sprache gerade dargestellt werden soll, wird
 Der LanguageService hat eine Methode `getLanguages`, mit der an verschiedenen Stellen in der Anwendung angezeigt werden kann, welche Sprachen zur Auswahl stehen. Außerdem sind Getter und Setter für die Eigenschaft `languageCode` implementiert. Im Setter wird die ausgewählte Sprache in den LocalStorage geschrieben, damit die Benutzer der Website nicht bei jedem Besuch erneut ihre Sprache auswählen müssen. Außerdem wird die neuausgewählte Sprache an das `languageSubject` weitergegeben. Das `languageSubject` ist ein BehaviourSubject aus der Erweiterungsbibliothek RxJS @RxJSBehaviorSubject. Nach dem Observer-Pattern-Prinzip können andere Komponenten und Services das languageSubject beobachten und erhalten im Falle einer Veränderung eine Benachrichtigung. Somit können beim Wechsel der Sprache die neuen Texte geladen werden.
 
 #codeFigure("language.service.ts", <languageService>, "languageService")
-#todo(inline: true)[Default Sprache konfigurierbar machen]
+
 
 Für die Übersetzung der Website müssen zwei verschiedene Arten von Texten übersetzt werden. Die statischen Elemente der Website, wie zum Beispiel Button-Beschriftungen, oder Tabellenüberschriften ändern sich in der Regel nicht und stehen fest im Quellcode der Angular Anwendung. Die dynamischen Texte, wie zum Beispiel Modulnamen ändern sich abhängig vom angezeigten Modul und werden aus dem Backend empfangen. Diese beiden Arten an Texten werden auf verschiedene Weise übersetzt.
 
