@@ -2,7 +2,7 @@
 #import "../Template/customFunctions.typ": *
 
 = Implementierung <implementierung>
-Nachdem in @entwurf das System geplant wurde, sollen nun in diesem Kapitel das System erstellt werden. Zunächst wird das Backend vorbereitet. Hierzu wird in @createBackend als erstes die Datenbank an das neue Schema angepasst, um im Anschluss die geplanten Endpunkte implementieren zu können. Sobald das Backend vollständig ist, kann das Frontend die benötigten Daten abrufen. Deshalb wird erst im zweiten Schritt dann in @createFrontend das Frontend erstellt. In @createDocumentation ist abschließend beschrieben, wie das System dokumentiert wurde. 
+Nachdem in @entwurf das System geplant wurde, soll nun in diesem Kapitel das System erstellt werden. Zunächst wird das Backend vorbereitet. Hierzu wird in @schema als erstes die Datenbank an das neue Schema angepasst, um im Anschluss die geplanten Endpunkte implementieren zu können. Sobald das Backend vollständig ist, kann das Frontend die benötigten Daten abrufen. Deshalb wird erst im zweiten Schritt dann in @createFrontend das Frontend erstellt. In @createDocumentation ist abschließend beschrieben, wie das System dokumentiert wurde. 
 
 == Backend <createBackend>
 Das Backend wird im folgenden auch als API bezeichnet und greift auf verschiedene andere Komponenten zu (@architectureDiagram). Es gibt eine Datenbank, in der die Informationen zu den Modulen, Usern und die Änderungshistorie gespeichert werden. Außerdem gibt es die API selbst, die Daten aus der Datenbank lädt und mithilfe von HTTP-Endpunkten an das Frontend weitergibt. Zuletzt gibt es zwei Python-Skripte und einen Docker-Container, welche aus der Datenbank für die einzelnen Studiengänge die Modulhandbücher im PDF-Format generieren. In den folgenden Unterabschnitten ist die Implementierung der genannten Komponenten beschrieben.
@@ -11,7 +11,11 @@ Das Backend wird im folgenden auch als API bezeichnet und greift auf verschieden
 
 === Datenbank <schema>
 
-Im ersten Schritt wurde das vorhandene Datenbankschema an das in @dbschema erstellte Schema angeglichen. Neben neuen Tabellen wie zum Beispiel der Tabellen für Fakultät und Abteilung gab es einen erhöhten Arbeitsaufwand beim Hinzufügen der übersetzbaren Texte. Die in @dbschema geplante Art die Übersetzungen abzuspeichern erwies sich als unpraktisch. Zwar konnte das Datenbankschema noch ohne viel Aufwand erstellt werden (@moduleprismanew), jedoch führten die verschiedenen Ids (nameId, descriptionId) zu einem Problem. Damit ein Modul im Frontend dargestellt werden kann, muss mit der bisherigen Planung für jedes einzelne übersetzte Feld ein Join auf die Tabelle "TranslationKey" und auf die Tabelle "Translation" gemacht werden, um den gewünschten Text zu erhalten. Dies führt bereits bei der Abfrage eines einzelnen Modules zu vielen Joins und einer recht komplizierten Codestruktur.
+Im ersten Schritt wurde das vorhandene Datenbankschema an das in @dbschema erstellte Schema angeglichen. 
+
+Hierzu musste die in @dbstructure gezeigte schema.prisma-Datei bearbeitet werden. In der Prisma-Datei entspricht ein wie in @moduletable gezeigter Block einer Tabelle in der Datenbank. Einzelne Zeilen innerhalb des Blocks ensprechen Spalten in der Tabelle. Neben der Id-Zeile in @moduletable ist zu sehen, wie eine selbstständig hochzählende Zahl möglich ist. Außerdem können in der Schema-Datei Relationen zwischen Tabellen definiert werden, indem hinter eine entsprechende Zeile \@relation geschrieben wird. Hierbei ist zubeachten, dass immer in beiden Tabellen eine \@relation definiert werden muss. (siehe @moduleprismanew). Mithilfe von Konsolenbefehlen kann dann die Prisma-Datei auf die Datenbank angewendet werden.
+
+Neben neuen Tabellen wie zum Beispiel der Tabellen für Fakultät und Abteilung gab es einen erhöhten Arbeitsaufwand beim Hinzufügen der übersetzbaren Texte. Die in @dbschema geplante Art, die Übersetzungen abzuspeichern erwies sich als unpraktisch. Zwar konnte das Datenbankschema noch ohne viel Aufwand erstellt werden (@moduleprismanew), jedoch führten die verschiedenen Ids (nameId, descriptionId) zu einem Problem. Damit ein Modul im Frontend dargestellt werden kann, muss mit der bisherigen Planung für jedes einzelne übersetzte Feld ein Join auf die Tabelle "TranslationKey" und auf die Tabelle "Translation" gemacht werden, um den gewünschten Text zu erhalten. Dies führt bereits bei der Abfrage eines einzelnen Modules zu vielen Joins und einer recht komplizierten Codestruktur.
 
 #codeFigure("Beispiel für Relations-Felder", <moduleprismanew>, "modulePrismaNew")
 
@@ -26,7 +30,18 @@ Die Datenübernahme wurde mithilfe von Python umgesetzt. Bei der Erstellung des 
 
 === HTTP-Endpunkte <createEndpoints>
 
-Nachdem die Datenbank vorbereitet war, konnten nun die benötigten Endpoints im Backend angelegt werden. Hierbei war es wichtig, zwischen öffentlichen und privaten Endpunkten zu unterscheiden. Damit User im Frontend auch ohne Anmeldung die Module ansehen können, müssen manche Endpunkte ohne Authentisierung erreichbar sein. Hierzu wurde ein eigener Decorator (@publicDecorator) erstellt. Dieser kann einfach über einen Endpunkt geschrieben werden, um diesen als öffentlich zu markieren (@moduleController). Damit dies funktioniert, musste zusätzlich der AuthGuard durch eine eigene Implementierung (@authGuard) ersetzt werden. Diese neue Implmentierung überprüft, ob in den Metadaten "isPublic" steht. Wenn dies der Fall ist, kann die Anfrage mit `return true` genehmigt werden. Falls diese Metadaten nicht gesetzt sind, wird die ursprüngliche Implementierung von canActivate (Zeile 14) aufgerufen, um zu überprüfen, ob ein gültiger Token mitgesendet wurde. 
+Nachdem die Datenbank vorbereitet war, konnten nun die benötigten Endpunkte im Backend angelegt werden. 
+
+Hierzu wurden zunächst Controller-Klassen für die verschiedenen Entitäten angelegt. Beispielsweise wird ein DegreeController benötigt (@degreeController), um die benötigten Endpunkte für Studiengänge bereitzustellen. Innerhalb der Controller wurde anschließend für jeden benötigten Endpunkt eine Methode erstellt und mithilfe von Dekoratoren näher beschrieben. @ControllersDocumentationNestJS
+Der `@Controller`-Dekorator sorgt dafür, dass NestJs die Klasse als Controller identifiert und entsprechend die enthaltenen Endpunkte bereitstellt. Außerdem ist als Parameter angegeben, unter welchem Pfad die Endpunkte erreichbar sind (hier: /degrees).
+Der `@ApiTags`-Dekorator sorgt dafür, dass die Endpunkte in der Weboberfläche der API gruppiert in der Gruppe "Degrees" dargestellt werden. Weiterhin werden die Methoden für die Endpunkte mit einem Dekorator versehen, der die HTTP-Methode angibt, die genutzt werden muss, um den Endpunkt aufzurufen. Wenn der Endpunkt `/degrees` per GET-Request aufgerufen wird, wird also das Ergebnis der findAll-Methode zurückgegeben. Wenn der Endpunkt `/degrees/5` aufgerufen wird, wird das Ergebnis der findOne-Methode zurückgegeben. Die findOne-Methode erhält außerdem weitere Parameter, die auch in vielen anderen Methoden im Backend ähnlich genutzt werden. Der erste Parameter enthält die Id aus dem Pfad der Anfrage (im Beispiel /degrees/5, wäre das die 5). Der zweite Parameter enthält ein Request-Objekt. Dieses wird genutzt, um die in dem Request übergebenen Header auszulesen. Im aktuellen Beispiel wird die angefragte Sprache ausgelesen, um vom DegreeService Informationen in der Sprache des Benutzers zu erhalten.
+
+Über den Constructor werden per Dependency Injection @DependencyInjectionAngular die benötigten Services übergeben. Das Framework nest.js sorgt dafür, dass die Services einmalig instanziiert werden. 
+
+#codeFigure("degree.controller.ts (Auszug)", <degreeController>, "degree.controller")
+
+
+Des Weiteren ist es wichtig, zwischen öffentlichen und privaten Endpunkten zu unterscheiden. Damit User im Frontend auch ohne Anmeldung die Module ansehen können, müssen manche Endpunkte ohne Authentisierung erreichbar sein. Hierzu wurde ein eigener Dekorator (@publicDecorator) erstellt. Dieser kann einfach über einen Endpunkt geschrieben werden, um diesen als öffentlich zu markieren (@moduleController). Damit dies funktioniert, musste zusätzlich der AuthGuard durch eine eigene Implementierung (@authGuard) ersetzt werden. Diese neue Implmentierung überprüft, ob in den Metadaten "isPublic" steht. Wenn dies der Fall ist, kann die Anfrage mit `return true` genehmigt werden. Falls diese Metadaten nicht gesetzt sind, wird die ursprüngliche Implementierung von canActivate (@authGuard, Zeile 14) aufgerufen, um zu überprüfen, ob ein gültiger Token mitgesendet wurde. 
 
 #codeFigure("public.decorator.ts", <publicDecorator>, "publicDecorator")
 
@@ -34,11 +49,9 @@ Nachdem die Datenbank vorbereitet war, konnten nun die benötigten Endpoints im 
 
 #codeFigure("jwt-auth.guard.ts", <authGuard>, "authGuard")
 
-Außerdem erklären, wie die Endpoints gruppiert werden, damits in Swagger gut asussieht
 
 
-Die Eingabeelemente im Frontend mithilfe eines Dropdowns fertige Texte anbieten. 
-Dank der zuvor erstellen Relations-Felder (@schema), ist es einfach, hierfür Endpoints zu erstellen. Wird beispielsweise ein Vorschlag für den Eintrag Prüfungsleistungen (@exam) benötigt, kann einfach auf das Relations-Feld  `TranslationKey.moduleExams` geschaut werden, welches alle Einträge aus dem Feld Exam in der Tabelle Module vereint.
+
 
 Für die Generierung der PDF-Datei (@PDF), wird ein Python-Skript ausgeführt (@pythonScript). Da dies eine längere Laufzeit hat, meldet der Endpunkt zunächst den Status 202-Accepted zurück, und nennt eine Id. Das Frontend kann mithilfe der Id das fertige PDF abrufen. Solange das PDF noch nicht bereit steht, meldet das Backend einen Status 404-Not Found zurück. @restUndHTTP[Abschnitt 13.1]
 
@@ -58,7 +71,7 @@ Das Generieren einer Modulbeschreibung in Form einer PDF-Datei verläuft in mehr
 Die Schritte 2 bis 5 werden im Folgenden näher beschrieben.
 
 #heading("Generierung der .tex-Datei", level: 4, numbering: none, outlined: false)
-Die Grundlage für die Generierung der .tex-Datei bildet ein Python-Skript, welches von #heine bereitgestellt wurde. Dieses Script wurde im Rahmen dieser Arbeit an die veränderte Datenstruktur angepasst. Außerdem wurde das Skript erweitert, sodass es bei der Ausführung nicht für alle Studiengänge eine .tex-Datei generiert werden, sondern dass ein Studiengang in einer Sprache auswählbar ist.
+Die Grundlage für die Generierung der .tex-Datei bildet ein Python-Skript, welches von #heine bereitgestellt wurde. Dieses Script wurde im Rahmen dieser Arbeit an die veränderte Datenstruktur angepasst. Außerdem wurde das Skript erweitert, sodass es bei der Ausführung nicht für alle Studiengänge eine .tex-Datei generiert wird, sondern dass ein Studiengang in einer Sprache auswählbar ist.
 Das python-Script wird ausgeführt, sobald ein berechtigter User im Frontend die Generierung eines neuen PDFs beauftragt.
 
 #heading("Generierung der .pdf-Datei", level: 4, numbering: none, outlined: false)

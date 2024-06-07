@@ -45,7 +45,7 @@ Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzept
         - Prisma.Service   
 ]
 
-=== Struktur der bestehenden Datenbank
+=== Struktur der bestehenden Datenbank <dbstructure>
 Es gibt eine schema.prisma-Datei, in der die Struktur der relationalen Datenbank definiert ist. Somit muss kein SQL geschrieben werden, sondern es können Methoden von Prisma genutzt werden. Es gibt Tabellen für Module und Studiengänge. Die Tabellen werden von Prisma generiert. Änderungen an der Struktur müssen demnach an der schema.prisma-Datei erfolgen. Dadurch ist die Struktur der Datenbank versioniert und kann in einer Quellcodeverwaltung abgelegt werden.
 
 #codeFigure("Auszug aus schema.prisma", <moduletable>, "moduleTablePrisma")
