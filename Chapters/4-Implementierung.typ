@@ -83,11 +83,22 @@ Außerdem wurde ein weiteres python-Skript erstellt, welches einen Kompilierungs
 
 == Frontend <createFrontend>
 
-=== Komponenten
-Das Frontend ist auf zahlreiche möglichst kleine Komponenten aufgeteilt. Jede Komponente hat genau eine Aufgabe. 
+Im Gegensatz zum Backend ist das Frontend eine neue Anwendung, zu der es keinen Bestandscode gab. Für das Frontend wurde ein neues Angularprojekt erstellt und mithilfe des Paketmanagers npm die benötigten Pakete hinzugefügt, von denen in den folgenden Unterabschnitten noch einige vorgestellt werden.
 
-=== Subscriptions, Intervalle und Memory Leaks
-Muss alles wie in jobs.component im OnDestroy gecleart werden
+Der Code der Anwendung besteht aus Komponenten und Services. Die Komponenten werden in der Anwendung dargestellt und werden modular genutzt. Die Services können von allen Komponenten genutzt werden und bieten Methoden zum Laden von Daten aus dem Backend an. Damit die Services wissen, unter welcher URL das Backend erreichbar ist, ist diese URL in einer Datei `environment.ts` gespeichert und kann von da abgerufen werden. Dies ermöglicht den schnellen Austausch dieser URL. Für den produktiven Einsatz gibt es zudem eine `environment.prod.ts`, die die URL des produktiven Backends enthält. Sobald das Frontend mit dem Befehl `ng build --configuration=production` in der Produktiv-Version kompilliert wird, sorgt ein Eintrag in der `angular.json` (@angularJson) dafür, dass die Environment-Datei entsprechend ausgetauscht wird.
+
+Die Entscheidung, welche Komponente in der Anwendung gezeigt wird, wird vom RouterModule übernommen. In der main.component.ts der Anwendung (@mainComponent) wird lediglich die Topbar (welche auf jeder Seite gezeigt werden soll) und das Router-Outlet platziert. 
+
+Das Router-Outlet wird dann in Abhängigkeit der besuchten URL anhand eines Eintrages aus der app.routes.ts (@appRoutes) mit der dort gesetzten Komponente ausgetauscht.
+
+#codeFigure("angular.json (Auszug)", <angularJson>, "angular.json")
+
+#codeFigure("main.component.html", <mainComponent>, "main.component")
+
+#codeFigure("app.routes.ts (Auszug)", <appRoutes>, "app.routes")
+
+
+
 
 === PrimeNG
 Ein UI-Framework kann bei der Implementierung des Frontends unterstützen. Vom Framework angebotene vorgefertigte Komponenten müssen nicht selbst implementiert werden. Zunächst wurden die Frameworks `@ng-bootstrap/ng-bootstrap` @AngularPoweredBootstrap und `primeng` @PrimeNGAngularUI verglichen. Beide Frameworks haben hohe Downloadzahlen und eine gute Dokumentation. Da PrimeNG jedoch weitaus mehr Komponenten anbietet, wird in diesem Projekt PrimeNG verwendet. Dank der Nutzung von PrimeNG ist die Implementierung der verschiedenen Tabellen und Formularen weitaus effizienter. Außerdem sieht das System insgesamt einheitlich und modern aus, weil alle PrimeNG-Komponenten dem gleichen Theme folgen. @PrimeNGAngularUI     
@@ -125,6 +136,9 @@ Damit sich beim Wechsel der Sprache auch alle dynamischen Texte ändern, ist ein
 
 #codeFigure("language.interceptor.ts", <languageInterceptor>, "languageInterceptor")
 
+
+=== Subscriptions, Intervalle und Memory Leaks
+Muss alles wie in jobs.component im OnDestroy gecleart werden
 
 
 
