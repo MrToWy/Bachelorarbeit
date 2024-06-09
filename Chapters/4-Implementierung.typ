@@ -5,7 +5,7 @@
 Nachdem in @entwurf das System geplant wurde, soll nun in diesem Kapitel das System erstellt werden. Zunächst wird das Backend vorbereitet. Hierzu wird in @schema als erstes die Datenbank an das neue Schema angepasst, um im Anschluss die geplanten Endpunkte implementieren zu können. Sobald das Backend vollständig ist, kann das Frontend die benötigten Daten abrufen. Deshalb wird erst im zweiten Schritt dann in @createFrontend das Frontend erstellt. In @createDocumentation ist abschließend beschrieben, wie das System dokumentiert wurde. 
 
 == Backend <createBackend>
-Das Backend wird im folgenden auch als API bezeichnet und greift auf verschiedene andere Komponenten zu (@architectureDiagram). Es gibt eine Datenbank, in der die Informationen zu den Modulen, Usern und die Änderungshistorie gespeichert werden. Außerdem gibt es die API selbst, die Daten aus der Datenbank lädt und mithilfe von HTTP-Endpunkten an das Frontend weitergibt. Zuletzt gibt es zwei Python-Skripte und einen Docker-Container, welche aus der Datenbank für die einzelnen Studiengänge die Modulhandbücher im PDF-Format generieren. In den folgenden Unterabschnitten ist die Implementierung der genannten Komponenten beschrieben.
+Das Backend wird im Folgenden auch als API bezeichnet und greift auf verschiedene andere Komponenten zu (@architectureDiagram). Es gibt eine Datenbank, in der die Informationen zu den Modulen, Usern und die Änderungshistorie gespeichert werden. Außerdem gibt es die API selbst, die Daten aus der Datenbank lädt und mithilfe von HTTP-Endpunkten an das Frontend weitergibt. Zuletzt gibt es zwei Python-Skripte und einen Docker-Container, welche aus der Datenbank für die einzelnen Studiengänge die Modulhandbücher im PDF-Format generieren. In den folgenden Unterabschnitten ist die Implementierung der genannten Komponenten beschrieben.
 
 #imageFigure(<architectureDiagram>, "Architektur.png", "Komponenten des Systems")
 
@@ -68,7 +68,7 @@ Das Generieren einer Modulbeschreibung in Form einer PDF-Datei verläuft in mehr
 6. Der User prüft das Ergebnis und gibt es frei
 7. Die neue PDF Version steht bereit
 
-Die Schritte 2 bis 5 werden im Folgenden näher beschrieben.
+In den Schritten 2 bis 5 werden eine .tex-Datei und eine .pdf-Datei generiert. Dies wird im Folgenden näher beschrieben.
 
 #heading("Generierung der .tex-Datei", level: 4, numbering: none, outlined: false)
 Die Grundlage für die Generierung der .tex-Datei bildet ein Python-Skript, welches von #heine bereitgestellt wurde. Dieses Script wurde im Rahmen dieser Arbeit an die veränderte Datenstruktur angepasst. Außerdem wurde das Skript erweitert, sodass es bei der Ausführung nicht für alle Studiengänge eine .tex-Datei generiert wird, sondern dass ein Studiengang in einer Sprache auswählbar ist.
@@ -136,7 +136,7 @@ Damit sich beim Wechsel der Sprache auch alle dynamischen Texte ändern, ist ein
 
 #codeFigure("language.interceptor.ts", <languageInterceptor>, "languageInterceptor")
 
-
+#hide[
 === Subscriptions, Intervalle und Memory Leaks
 Muss alles wie in jobs.component im OnDestroy gecleart werden
 
@@ -147,6 +147,9 @@ Muss alles wie in jobs.component im OnDestroy gecleart werden
 ==== Website
 ==== PDF
 === UI: Module bearbeiten
+]
 
 == Dokumentation <createDocumentation>
 
+
+== Zwischenfazit
