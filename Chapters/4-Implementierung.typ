@@ -149,7 +149,22 @@ Muss alles wie in jobs.component im OnDestroy gecleart werden
 === UI: Module bearbeiten
 ]
 
+
 == Dokumentation <createDocumentation>
+
+Das neue System hat mehrere Komponenten, die zum einen bei der Einführung des Systems installiert werden müssen und zum anderen in Zukunft weiterentwickelt werden müssen. Um diese beiden Aufgaben zu unterstützen, wurden einige Informationen im Rahmen einer Dokumentation zusammengetragen. Die Dokumentation besteht aus drei Abschnitten: Frontend, Backend und API. Die Abschnitte Frontend und Backend sind ähnlich aufgebaut. Beide Enthalten Informationen zur erstmaligen Installation des Systems. Weiterhin ist beschrieben, wie neue Komponenten hinzugefügt werden können und was dabei zu beachten ist. Im Abschnitt API ist dahingegen beschrieben, wie die vom Backend bereitgestellte API genutzt werden kan, um verschiedene Datenabfragen durchzuführen. Kompliziertere Endpunkte sind hier außerdem aufgeführt. Es ist unter anderem beschrieben, wie der Login funktioniert und wie die Sprache der Antworten geändert werden kann.
+Die Erstellung der Dokumentation lief parallel zur Entwicklung des Systems (@createBackend und @createFrontend). Um sicherzustellen, dass die wichtigsten Informationen bereit stehen, wurde anschließend das System erneut auf einem Testserver mithilfe der Anleitungen aus der Dokumentation installiert.
+
+Die Texte sind im Markdown-Format verfasst, was bedeutet, dass sie von zahlreichen Editoren unterstützt werden. Zudem können die Plattformen GitHub und GitLab die Markdown-Dateien darstellen, wenn ein Entwickler dort den Quellcode durchsucht.
+
+Zusätzlich zu der Möglichkeit, die Markdown-Dateien mit einem beliebigen Texteditor oder einer der genannten Plattformen zu lesen, wurde in dieser Arbeit zusätzlich das Framework Docusaurus genutzt, um aus den Markdown-Dateien eine Website zu generieren (@documentation). Diese Website kann genutzt werden um durch die vollständige Dokumentation in einer Benutzeroberfläche zu navigieren. Der Aufbau der Website sollte auf viele Entwickler bekannt wirken, da zahlreiche Open-Source-Projekte ihre Dokumentation mithilfe von Docusaurus realisieren.
+
+Die Docusaurus-Website wurde überdies mit einer Suchfunktion erweitert, die von algolia bereitgestellt wird. Auch diese Suchfunktion sollte Entwickelnden bekannt sein, da sie in vielen Dokumentationen genutzt wird. Die Suchfunktion kann mit der Tastenkombination Strg/Ctrl+K aufgerufen werden. In die Suchfunktion können beliebige Texte eingegeben werden, um schnell relevante Dokumentationsinhalte zu finden. Damit zu den Texten dann geeignete Vorschläge gemacht werden können (@docSearch), wird ein Crawler von algolia genutzt, welcher die Website in regelmäßigen Abständen indiziert.
+
+#imageFigure(<documentation>, "../documentation.png", "Docusaurus-Website")
+
+#imageFigure(<docSearch>, "../docSearch.png", "Suchfunktion der Dokumentation")
 
 
 == Zwischenfazit
+Nachdem Frontend und Backend implementiert wurden und eine Dokumentation erstellt wurde, besteht nun ein erster Prototyp des Systems. Dieser Prototyp kann im folgenden @review verschiedenen Personen vorgestellt und anschließend evaluiert werden.
