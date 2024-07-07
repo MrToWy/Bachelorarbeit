@@ -40,6 +40,8 @@ Der `@ApiTags`-Dekorator sorgt dafür, dass die Endpunkte in der Weboberfläche 
 
 #codeFigure("degree.controller.ts (Auszug)", <degreeController>, "degree.controller")
 
+#todo[POST-Endpoints beschreiben]
+
 
 Des Weiteren ist es wichtig, zwischen öffentlichen und privaten Endpunkten zu unterscheiden. Damit User im Frontend auch ohne Anmeldung die Module ansehen können, müssen manche Endpunkte ohne Authentisierung erreichbar sein. Hierzu wurde ein eigener Dekorator (@publicDecorator) erstellt. Dieser kann einfach über einen Endpunkt geschrieben werden, um diesen als öffentlich zu markieren (@moduleController). Damit dies funktioniert, musste zusätzlich der AuthGuard durch eine eigene Implementierung (@authGuard) ersetzt werden. Diese neue Implmentierung überprüft, ob in den Metadaten "isPublic" steht. Wenn dies der Fall ist, kann die Anfrage mit `return true` genehmigt werden. Falls diese Metadaten nicht gesetzt sind, wird die ursprüngliche Implementierung von canActivate (@authGuard, Zeile 14) aufgerufen, um zu überprüfen, ob ein gültiger Token mitgesendet wurde. 
 
@@ -74,6 +76,8 @@ In den Schritten 2 bis 5 werden eine .tex-Datei und eine .pdf-Datei generiert. D
 Die Grundlage für die Generierung der .tex-Datei bildet ein Python-Skript, welches von #heine bereitgestellt wurde. Dieses Script wurde im Rahmen dieser Arbeit an die veränderte Datenstruktur angepasst. Außerdem wurde das Skript erweitert, sodass es bei der Ausführung nicht für alle Studiengänge eine .tex-Datei generiert wird, sondern dass ein Studiengang in einer Sprache auswählbar ist.
 Das python-Script wird ausgeführt, sobald ein berechtigter User im Frontend die Generierung eines neuen PDFs beauftragt. Sobald die .tex-Datei vorliegt, wird in der Datenbank ein Auftrag zur Kompilierung angelegt, der den Downloadlink zur .tex-Datei enthält.
 
+#todo["das hier wurde durch typescript ersetzt"]
+
 #heading("Generierung der .pdf-Datei", level: 4, numbering: none, outlined: false)
 Für die erfolgreiche Kompilierung der .tex-Datei muss die Server-Umgebung konfiguriert werden. Zusätzlich zur Möglichkeit, Latex kompilieren zu können, müssen die von der .tex-Datei benötigten Pakete bereitstehen. Um diesen Aufwand zu verringern wird ein Docker-Image eingesetzt, welches es ermöglicht, ohne weiteren Konfigurationsaufwand per HTTP-Request eine .tex-Datei zu kompilieren @YtoTechLatexonhttp2024.
 
@@ -104,7 +108,7 @@ Das Router-Outlet wird dann in Abhängigkeit der besuchten URL anhand eines Eint
 Ein UI-Framework kann bei der Implementierung des Frontends unterstützen. Vom Framework angebotene vorgefertigte Komponenten müssen nicht selbst implementiert werden. Zunächst wurden die Frameworks `@ng-bootstrap/ng-bootstrap` @AngularPoweredBootstrap und `primeng` @PrimeNGAngularUI verglichen. Beide Frameworks haben hohe Downloadzahlen und eine gute Dokumentation. Da PrimeNG jedoch weitaus mehr Komponenten anbietet, wird in diesem Projekt PrimeNG verwendet. Dank der Nutzung von PrimeNG ist die Implementierung der verschiedenen Tabellen und Formularen weitaus effizienter. Außerdem sieht das System insgesamt einheitlich und modern aus, weil alle PrimeNG-Komponenten dem gleichen Theme folgen. @PrimeNGAngularUI     
 
 
-=== Übersetzbarkeit
+=== Übersetzbarkeit <uebersetzbarkeit>
 
 Damit jede Komponente weiß, welche Sprache gerade dargestellt werden soll, wird ein Service genutzt (@languageService). Dieser kann per Dependency Injection @DependencyInjectionAngular im Konstruktor einer beliebigen Komponente genutzt werden. Wenn in der Topbar (@grundgerüst) eine andere Sprache ausgewählt wird, wird die Eigenschaft `languageCode` im LanguageService verändert (`this.languageService.languageCode = selectedLanguageCode;`). 
 
@@ -136,18 +140,17 @@ Damit sich beim Wechsel der Sprache auch alle dynamischen Texte ändern, ist ein
 
 #codeFigure("language.interceptor.ts", <languageInterceptor>, "languageInterceptor")
 
-#hide[
+
 === Subscriptions, Intervalle und Memory Leaks
+#todo[]
 Muss alles wie in jobs.component im OnDestroy gecleart werden
 
 
+=== Plausibilitätschecks
+#todo[]
 
-=== UI: Module anlegen
-=== UI: Module anzeigen 
-==== Website
-==== PDF
-=== UI: Module bearbeiten
-]
+
+
 
 
 == Dokumentation <createDocumentation>

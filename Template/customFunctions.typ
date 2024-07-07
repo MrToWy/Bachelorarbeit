@@ -3,9 +3,9 @@
 #import "../glossary.typ": *
 #import "@preview/treet:0.1.0": *
 #import "@preview/big-todo:0.2.0": *
-#import "@preview/gentle-clues:0.7.1": *
+#import "@preview/gentle-clues:0.9.0": *
 #import "@preview/wrap-it:0.1.0": wrap-content
-
+#import "@preview/hydra:0.3.0": hydra
 
 
 #let sidePadding = 1em
@@ -29,6 +29,7 @@
   let c = counter(type)
   c.step()
   [
+    #box[
   #context[
     #pad(top: padding, bottom: padding)[
     #text(weight: "semibold")[
@@ -44,7 +45,7 @@
   ] #linebreak()
   #content
   #exampleText(content: example)
-  ]]]
+  ]]]]
 }
 
 #let narrowTrack(title, type: "Info", label:none, content) = [
@@ -162,7 +163,7 @@
 
 
 // header
-#import "@preview/hydra:0.3.0": hydra
+
 
 #let getCurrentHeadingHydra(loc, topLevel: false, topMargin) = {
     if(topLevel){

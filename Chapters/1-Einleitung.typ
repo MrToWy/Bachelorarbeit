@@ -27,7 +27,7 @@ Es gibt verschiedene Zielgruppen für Modulhandbücher, die in @zielgruppen gena
 
  
 
-== Ähnliche Arbeiten
+== Ähnliche Arbeiten <verwandteArbeiten>
 Bevor mit der Planung des neuen Systems zur Verwaltung von Modulhandbüchern begonnen wurde, fand zunächst eine Recherche zu ähnlichen Arbeiten statt. Ein System, welches ein ähnliches Problem löst, ist der "Curriculum Designer" im #hone @hisinone der #his @his. Das #hone wird beispielsweise von der Universität Hohenheim zur Verwaltung der Modulhandbücher genutzt @hohenheimHIS. Weiterhin ist das #hone an der #hsh im Einsatz @hshHIS, um dort die Prüfungsanmeldungen zu realisieren. 
 
 

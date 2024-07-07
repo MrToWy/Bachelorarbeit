@@ -65,6 +65,7 @@ Das Interview wurde mit dem derzeitigen Studiendekan #heine durchgeführt. Das I
 
 Aus dem Interview ergaben sich zum einen die Konkretisierung der Zielgruppen in @zielgruppen. Zum Anderen wurde der aktuelle Arbeitsprozess klar definiert, sowie dessen Schwachstellen aufgezeigt (@oldProcess).
 
+
 == Analyse des aktuellen Arbeitsprozesses und Identifikation von Schwachstellen <oldProcess>
 Der Prozess um Modulhandbücher zu bearbeiten hat sich bereits in der Planungsphase dieser Arbeit verändert. Bisher hab es für die Modulhandbücher Word-Dokumente, welche in einem Git-Repository verwaltet wurden. Bei Änderungen mussten jeweils das deutsche und das englische Word Dokument bearbeitet werden. Anschließend kann es notwendig sein, die Änderungen auch im Curriculum des Studienganges (@mdiCurr) und im Anhang des besonderen Teils der Prüfungsordnung (@currTable) vorzunehmen.
 
@@ -78,18 +79,18 @@ Als Vorbereitung für ein neues System wurden vom Studiendekan die zuvor genannt
 Im folgenden Abschnitt sollen die verschiedenen Zielgruppen eines Modulhandbuches ermittelt und definiert werden. Die Übersicht der Zielgruppen wird für die später folgende Ermittlung der Use Cases benötigt (@usecases). Hierdurch wird ermöglicht zu verstehen, wer das Modulhandbuch verwenden wird und welche Anforderungen die verschiedenen Gruppen haben. Zur Ermittlung wurde zum einen im ECTS User-Guides @ects recherchiert und zum anderen das Interview (@interview) genutzt.
 
 
-=== Studieninteressierte
+=== Studieninteressierte <studieninteressiertePerson>
 Der ECTS User-Guide @ects beschreibt, dass Modulhandbücher bereits bei der Wahl eines Studiengangs helfen können. So können Personen die an einem bestimmten Studiengang interessiert sind, mithilfe der Beschreibungen in den Modulhandbüchern herausfinden, welche Inhalte gelehrt werden. Modulhandbücher sind demnach eine gute Anlaufstelle um einen ersten Eindruck zu den angebotenen Modulen eines Studienganges zu erhalten.
 
 
-=== Studierende
+=== Studierende <student>
 Eine weitere Zielgruppe sind Studierende. Diese können mithilfe der Modulbeschreibungen verstehen, welche Inhalte in einem Modul gelernt werden und welche Voraussetzungen es gibt. Dadurch können Studierende einschätzen, ob sie genug Vorwissen für ein bestimmtes Modul haben. Weiterhin können Studierende dank der Modulhandbücher zu jedem Modul den korrekten Ansprechpartner finden, einen Überblick über die zu erbringende Arbeitszeit erhalten, sowie Informationen zu den Prüfungsleistungen finden. 
 
 
 
 
 
-=== Modulverantwortliche und Studiengangverantwortliche
+=== Modulverantwortliche und Studiengangverantwortliche <modulverantwortlicher>
 Aus dem Interview mit dem Studiendekan (@interview) geht hervor, dass es neben den Studierenden noch andere zu betrachtende Zielgruppen gibt. Für die Bearbeitung von Modulhandbüchern sind an der #hsh verschiedene Personengruppen zuständig. Zum einen gibt es den Studiengangverantwortlichen. Dieser ist für die Veröffentlichung des Dokumentes verantwortlich. Der Studiengangverantwortliche ist nicht dafür zuständig, die Inhalte der einzelnen Modulbeschreibungen anzupassen. Für diese Anpassungen gibt es die Modulverantwortlichen. Jedes Modul hat eine Person, die die Informationen der Modulbeschreibung aktuell halten soll und gleichzeitig Ansprechpartner für Fragen ist. In der Abteilung Informatik ist aktuell der Studiendekan gleichzeitig auch Studiengangverantwortlicher. Modulverantwortliche sind die Professoren und Dozierenden der Abteilung.
 
 
@@ -117,65 +118,96 @@ Jede Anforderung in den folgenden Auflistungen enthält entweder das Wort "muss"
 
 #block(breakable: false)[
 === Funtionale Anforderungen
-#task(title:[Aus #link(<UseCaseSearch>)[Use-Case 1] ergeben sich folgende Anforderungen:])[
-  #narrowTrack("Studiengänge ansehen", type: "F", label: <SHOWCOURSES>)[Nicht angemeldete Person (NP) muss Studiengänge ansehen können.]
-  #narrowTrack("Curriculum anzeigen", type: "F", label: <CURR>)[NP könnte sich das Curriculum eines Studienganges anzeigen lassen.]
-  #narrowTrack("Suchfunktion", type: "F", label: <SEARCH>)[NP sollte Suche nutzen können, um einen Studiengang zu finden.]
+Die funktionalen Anforderungen ergeben sich aus den zuvor ermittelten Use-Cases (@usecases). 
+
+In #link(<UseCaseInfoDegree>)[Use-Case 1] ist beschrieben, wie eine nicht angemeldete Person (NP) Informationen zu einem Studiengang erhalten möchte. Damit die Übersicht eines Studienganges auf der Website der Hochschule verlinkt werden kann, muss das System einen Link bereitstellen können, der direkt zur Übersicht führt und sich nicht verändert. Außerdem muss es eine Funktion geben, um das Pdf mit dem Modulverzeichnis des Studienganges zu öffnen.
+
+#task(title:[Aus #link(<UseCaseInfoDegree>)[Use-Case 1] ergeben sich folgende Anforderungen:])[
+  #narrowTrack("Link zur Übersichtsseite anbieten", type: "F", label: <StaticLink>)[System muss einen statischen Link zur Übersicht eines Studienganges bereitstellen.]
   #narrowTrack("Pdf anzeigen", type: "F", label: <PDF>)[NP sollte ein PDF mit allen Modulbeschreibungen ansehen können.]
 ]
 ]
 
-#task(title: [Aus #link(<UseCaseFilter>)[Use-Case 2] ergeben sich folgende Anforderungen:])[
-  #narrowTrack("Module ansehen", type: "F", label: <SHOWMODULES>)[NP muss Module ansehen können.]
+#block(breakable: false)[
+  
+
+
+In #link(<UseCaseInfoModule>)[Use-Case 2] ist beschrieben, wie eine Person Informationen zu einem Modul erhalten möchte. Das System muss hierzu alle Module des ausgewählten Studiengangs auflisten. Im genannten Beispiel ist die Person auf der Suche nach einem Wahlpflichtmodul. Für diesen Fall muss das System die Möglichkeit bieten, nach bestimmten Informationen zu Filtern. Denkbar wären Filter für die Informationen "Wahlpflichtfach", "Semester", "Benötigter Zeitaufwand".
+
+
+#task(title: [Aus #link(<UseCaseInfoModule>)[Use-Case 2] ergeben sich folgende Anforderungen:])[
+  #narrowTrack("Module auflisten", type: "F", label: <SHOWMODULES>)[NP muss eine Liste aller Module sehen können.]
   #narrowTrack("Filterfunktion", type: "F", label: <FILTER>)[NP sollte Filter nutzen können, um das gesuchte Modul zu finden.]
+  #narrowTrack("Suchfunktion", type: "F", label: <SEARCH>)[NP sollte eine Suchfunktion nutzen können, um das gesuchte Modul zu finden.]
+  #narrowTrack("Module anzeigen", type: "F", label: <SHOWMODULEDETAIL>)[NP muss die Details eines Modules ansehen können.]
 ]
+]
+
+#block(breakable: false)[
+
+
+In #link(<UseCaseEditModule>)[Use-Case 3] ist beschrieben, wie eine Person Informationen zu einem Modul bearbeiten möchte. Damit dies nur vom genannten Akteuer erledigt werden kann, wird eine Login-Funktion benötigt. Aus der Loginfunktion ergeben sich weitere Anforderungen. So kann ein Logout-Button sinnvoll sein und es könnte praktisch sein das eigene Passwort ändern zu können. Weiterhin könnte es hilfreich sein, wenn die eingegebenen Informationen auf Plausibilität überprüft werden. Denkbar wäre beispielsweise eine Prüfung, ob die angegebenen ECTS mit dem angegebenen Zeitaufwand zusammenpasst.
 
 
 #task(title: [Aus #link(<UseCaseEditModule>)[Use-Case 3] ergeben sich folgende Anforderungen:])[
   #narrowTrack("Login", type: "F", label: <LOGIN>)[Ein User muss sich anmelden können.]
+    #narrowTrack("Logout", type: "F", label: <LOGOUT>)[Ein User sollte sich ausloggen können.]
+#narrowTrack("Passwörter zurücksetzen", type: "F", label: <RESETPW>)[SVP muss Passwörter zurücksetzen können.]
+#narrowTrack("Eigenes Passwort zurücksetzen", type: "F", label: <RESETMYPW>)[SVP sollte das eigene Passwort zurücksetzen können.]
   #narrowTrack("Module bearbeiten", type: "F", label: <EDIT>)[Modulverantwortliche Person muss Module bearbeiten können, für die Sie als Ansprechpartner hinterlegt ist.]
   #narrowTrack("Plausibilitätschecks bei Modulen", type: "F", label: <CHECKMOD>)[System sollte Änderungen an Modulen auf Plausibilität prüfen.]
 ]
-
-#task(title: [Aus #link(<UseCaseCreateUser>)[Use-Case 4] ergeben sich folgende Anforderungen:])[
-  #narrowTrack("User anlegen", type: "F", label: <CRUSER>)[Studiengangsverantwortliche Person (SVP) muss neue User anlegen können.]
-  #narrowTrack("Plausibilitätschecks bei Usern", type: "F", label: <CHECKUS>)[System sollte Änderungen an Usern auf Plausibilität prüfen.]
 ]
 
-#task(title: [Aus #link(<UseCaseCreateModule>)[Use-Case 5] ergeben sich folgende Anforderungen:])[
+#block(breakable: false)[
+
+In #link(<UseCaseCreate>)[Use-Case 4] ist beschrieben, dass die Studiengangsverantwortliche Person Datensätze erstellen können muss. Für die verschiedenen Entitäten im neuen System muss es dementsprechend jeweils eine Bearbeitungsmaske geben. Im System müssen die Datensätze sowohl erstellbar als auch bearbeitbar sein. Außerdem muss man Datensätze löschen können. Aus dem Interview mit dem Studiendekan hat sich außerdem ergeben, dass Studiengänge ausblendbar sein müssen, damit alte Prüfungsordnungen versteckt werden können. Diese werden von Studierenden nicht benötigt, weil darin enthaltene Veranstaltungen möglicherweise nicht mehr angeboten werden. Die veralteten Studiengänge sollen jedoch nicht direkt gelöscht werden, damit der Studiendekan bei Bedarf auf alte Modulbeschreibungen zugreifen kann. Für die Erstellung einer neuen Prüfungsordnung schlägt der Studiendekan eine Funktion vor, die bestehende Studiengänge oder Module duplizieren kann, da es manchmal zwischen den Prüfungsordnungen nur geringfügige Änderungen gibt.
+
+#task(title: [Aus #link(<UseCaseCreate>)[Use-Case 4] ergeben sich folgende Anforderungen:])[
   #narrowTrack("Module verwalten", type: "F", label: <MODULE>)[SVP muss Module verwalten (anlegen, bearbeiten, löschen) können.]
   #narrowTrack("Module duplizieren", type: "F", label: <DUPLICATE>)[SVP sollte Module duplizieren können.]
   #narrowTrack("Studiengänge verwalten", type: "F", label: <COURSE>)[SVP muss Studiengänge verwalten können.]
+  #narrowTrack("Studiengänge duplizieren", type: "F", label: <DUPLICATECourse>)[SVP sollte Studiengänge duplizieren können.]
+  #narrowTrack("Studiengänge ausblenden", type: "F", label: <hideCourse>)[SVP sollte Studiengänge ausblenden können.]
+  #narrowTrack("Ausgeblendete Studiengänge ansehen", type: "F", label: <showHiddenCourses>)[SVP sollte ausgeblendete Studiengänge ansehen können.]
+  
+  #narrowTrack("Benutzer verwalten", type: "F", label: <CRUSER>)[SVP muss User verwalten können.]
+  
+  #narrowTrack("Teilmodule verwalten", type: "F", label: <CreateSubmodules>)[SVP muss Teilmodule verwalten können.]
+  
+  #narrowTrack("Vorraussetzungen verwalten", type: "F", label: <CreateRequirements>)[SVP muss Vorraussetzungen verwalten können.]
 ]
 
-#task(title: [Aus #link(<UCRevertChanges>)[Use-Case 6] ergibt sich folgende Anforderung:])[
-  #narrowTrack("Änderungen anzeigen", type: "F", label: <SHOWCHANGES>)[SVP sollte sich einzelne Änderungen an einem Modul anzeigen lassen können.]
-  #narrowTrack("Änderungen widerrufen", type: "F", label: <REVERT>)[SVP könnte einzelne Änderungen an einem Modul rückgängig machen.]
 ]
-
-#task(title: [Aus #link(<UseCaseTable>)[Use-Case 7] ergibt sich folgende Anforderung:])[
-  #narrowTrack("Anhang der Prüfungsordnung", type: "F", label: <COMPARE>)[SVP könnte sich die Auflistung aller Module als Tabelle anzeigen lassen, um sie mit dem Anhang der Prüfungsordnung vergleichen zu können.]
-]
-
-#task(title: [Dadurch, dass die administrativen Bereiche nur ausgewählten Benutzern zur Verfügung stehen sollen, entstehen die folgenden Anforderungen:])[
-  #narrowTrack("Logout", type: "F", label: <LOGOUT>)[Ein User sollte sich ausloggen können.]
-#narrowTrack("Passwörter zurücksetzen", type: "F", label: <RESETPW>)[SVP muss Passwörter zurücksetzen können.]
-#narrowTrack("Eigenes Passwort zurücksetzen", type: "F", label: <RESETMYPW>)[SVP sollte das eigene Passwort zurücksetzen können.]
-]
-
 
 #block(breakable: false)[
+In #link(<UCRevertChanges>)[Use-Case 5] ist beschrieben, dass die Änderungen an einem Modul rückgängig gemacht werden können. Hierzu müssen diese natürlich zunächst angezeigt werden. Diese Funktion ist außerdem für Teilmodule und auch alle anderen Arten von Datensätzen sinnvoll.
+
+#task(title: [Aus #link(<UCRevertChanges>)[Use-Case 5] ergibt sich folgende Anforderung:])[
+  #narrowTrack("Änderungen anzeigen (Modul)", type: "F", label: <SHOWCHANGES>)[SVP sollte sich einzelne Änderungen an einem Modul anzeigen lassen können.]
+  #narrowTrack("Änderungen widerrufen (Modul)", type: "F", label: <REVERT>)[SVP könnte einzelne Änderungen an einem Modul rückgängig machen.]
+  #narrowTrack("Änderungen anzeigen", type: "F", label: <SHOWCHANGESmisc>)[SVP könnte sich einzelne Änderungen an beliebigen Datensätzen anzeigen lassen können.]
+  #narrowTrack("Änderungen widerrufen", type: "F", label: <REVERTmisc>)[SVP könnte einzelne Änderungen an beliebigen Datensätzen rückgängig machen.]
+]
+
+In #link(<UseCaseTable>)[Use-Case 6] ist beschrieben, wie die Studiengangsverantwortliche Person den Anhang der Prüfungsordnung erstellt. Da die Prüfungsordnung ein wichtiges Dokument ist, soll diese auch in Zukunft zunächst manuell erstellt werden. Die im Anhang der Prüfungsordnung enthaltene Tabelle kann dann im System generiert werden und kann mit der manuell erstellten Tabelle verglichen werden. Hiermit ist dann sichergestellt, dass die Daten im neuen System und in der Prüfungsordnung übereinstimmen.
+#task(title: [Aus #link(<UseCaseTable>)[Use-Case 6] ergibt sich folgende Anforderung:])[
+  #narrowTrack("Anhang der Prüfungsordnung", type: "F", label: <COMPARE>)[SVP könnte sich die Auflistung aller Module als Tabelle anzeigen lassen, um sie mit dem Anhang der Prüfungsordnung vergleichen zu können.]
+]
+]
+
+
+#pagebreak()
 === Nicht-Funtionale Anforderungen
 Die Nicht-Funktionalen Anforderungen ergeben sich aus einem Brainstorming unter der Berücksichtigung der ISO-Norm ISO/IEC 25000 @rupp_requirements-engineering_2014[Kapitel 12] und ergeben sich aus den Bedingungen aus @architecture.
 
-#linebreak()
 
 Die ISO-Norm 25000 beschreibt verschiedene Merkmale, die zur Messung von Softwarequalität genutzt werden können. Um eine gute Softwarequalität zu erreichen, sollten aus allen Merkmalen konkrete Anforderungen an das neue System abgeleitet werden. Die Merkmale sind jeweils in Submerkmale unterteilt. Nicht jedes Submerkmal ist für das neue System relevant, jedoch sollten möglichst viele Submerkmale in Anforderungen übersetzt werden, um eine gute Qualität sicherzustellen.
 
-Das Merkmal #emph("Änderbarkeit") besteht aus den Submerkmalen #emph("Analysierbarkeit"), #emph("Modifizierbarkeit"), #emph("Stabilität") und #emph("Testbarkeit").
+Das Merkmal #emph("Änderbarkeit") besteht aus den Submerkmalen #emph("Analysierbarkeit"), #emph("Modifizierbarkeit"), #emph("Stabilität") und #emph("Testbarkeit") @rupp_requirements-engineering_2014[12.4.1]. Damit Software diese Kriterien erfüllt, muss der Quellcode eine hohe Qualität aufweisen. Daher soll das System einigen Prinzipien folgen, die in von #cite(<clean_code_2012_robert_martin>, form: "author") beschrieben sind. @clean_code_2012_robert_martin Der Quellcode soll so geschrieben sein, dass mit geringem Aufwand jede Klasse und jede Methode verstanden werden kann. Alle Teile des Codes sollen selbsterklärend und möglichst kurz sein. Komplexe Abläufe sollen in Teilabläufe aufgeteilt werden, sodass Methoden und Klassen eine gewisse Größe und Komplexität nicht überschreiten und somit innerhalb kurzer Zeit von nachfolgenden Entwicklern verstanden werden können. @clean_code_2012_robert_martin[Kapitel 1] Der Quellcode kann dadurch auf eine effiziente Art von Entwickelnden analysiert werden (#emph("Analysierbarkeit")). Durch den Einsatz von Dependency Injection können Abhängigkeiten ausgetauscht werden (#emph("Modifizierbarkeit")). Durch das gezielte Einsetzen von Fehlermeldungen und Try-Catch-Blöcken wird für eine gute #emph("Stabilität") des Systems gesorgt. @clean_code_2012_robert_martin[Kapitel 7] Abschließend ergeben sich aus kleinen Komponenten mit genau einer Verantwortlichkeit und wenigen Abhängigkeiten gut testbare Einheiten, die mit automatisierten Tests getestet werden könnten. @clean_code_2012_robert_martin[Kapitel 9] 
+
 
 #task(title: [Änderbarkeit])[
-
   #narrowTrack("Modularität", type:"N", label: <MODULAR>)[
   Der Quellcode des Systems sollte aus Komponenten bestehen.
 ]
@@ -184,12 +216,24 @@ Das Merkmal #emph("Änderbarkeit") besteht aus den Submerkmalen #emph("Analysier
   Einzelne Komponenten sollten wiederverwendbar sein.
 ]
 
-  #narrowTrack("Eine Verantwortlichkeit", type:"N", label: <Verantwortlichkeit>)[
+  #narrowTrack("Hohe Kohärenz", type:"N", label: <Verantwortlichkeit>)[
   Die Komponenten sollten genau eine Verantwortlichkeit haben.
 ]
 
-  #narrowTrack("Testbarkeit", type:"N", label: <TESTABLE>)[
-  Die Komponenten sollten gut testbar sein.
+  #narrowTrack("Lose Kopplung", type:"N", label: <Kopplung>)[
+  Die Komponenten dürfen nicht zu viele Abhängigkeiten haben.
+]
+
+  #narrowTrack("Komplexität", type:"N", label: <Komplex>)[
+  Methoden und Klassen sollen eine geringe Komplexität haben.
+]
+
+  #narrowTrack("Dependency Injection", type:"N", label: <DepedencyInjection>)[
+  Durch die Nutzung von Dependency Injection sollen Abhängigkeiten austauschbar sein.
+]
+
+#narrowTrack("Stabilität", type:"N", label:<Stability>)[
+  Mithilfe von Fehlercodes und Try-Catch-Anweisungen sollen Fehler abgefangen werden.
 ]
 
 #narrowTrack("Unittests", type:"N", label:<TEST>)[
@@ -200,9 +244,12 @@ Das Merkmal #emph("Änderbarkeit") besteht aus den Submerkmalen #emph("Analysier
   System könnte mithilfe von e2e-Tests automatisiert getestet werden.
 ]
 ]
-]
 
-Das Merkmal #emph("Benutzbarkeit") besteht aus den Submerkmalen #emph("Verständlichkeit"), #emph("Erlernbarkeit"), #emph("Bedienbarkeit"), #emph("Attraktivität") und #emph("Konformität").
+
+Das Merkmal #emph("Benutzbarkeit") besteht aus den Submerkmalen #emph("Verständlichkeit"), #emph("Erlernbarkeit"), #emph("Bedienbarkeit"), #emph("Attraktivität") und #emph("Konformität"). @rupp_requirements-engineering_2014[12.4.1]
+Für die Ermittlung der folgenden Anforderungen wurde in einem Brainstorming überlegt, wie die Submerkmale der Benutzbarkeit in konkrete Anforderungen übersetzt werden können. Beispiel: Damit eine Oberfläche verständlich ist, sollte sie selbsterklärend sein und nicht das Lesen eines Benutzerhandbuches erfordern (#emph("Verständlichkeit")).
+
+Die folgenden Anforderungen sind kein 1:1-Abbild der zukünftigen Anwendung sondern legen eher die Grundprinzipien fest, die bei der Entwicklung beachtet werden sollen. Eine vollständige Spezifikation wäre an dieser Stelle sehr aufwändig und ist daher nicht notwendig. In @review kann dann überprüft werden, ob die Grundprinzipien eingehalten wurden und in Interviews kann festgestellt werden, ob die Anwendung im Gesamtbild benutzbar wirkt.
 
 #task(title: [Benutzbarkeit])[
   #narrowTrack("Aktueller Pfad", type:"N", label: <PATH>)[
@@ -243,7 +290,8 @@ Das Merkmal #emph("Benutzbarkeit") besteht aus den Submerkmalen #emph("Verständ
 ]
 ]
 
-Das Merkmal #emph("Effizienz") besteht aus den Submerkmalen #emph("Zeitverhalten"), #emph("Verbrauchsverhalten") und #emph("Konformität").
+Das Merkmal #emph("Effizienz") besteht aus den Submerkmalen #emph("Zeitverhalten"), #emph("Verbrauchsverhalten") und #emph("Konformität"). @rupp_requirements-engineering_2014[12.4.1]
+Damit das System eine gute Effizienz hat, müssen alle Anfragen performant gestaltet werden. In den Anforderungen werden Grenzwerte gesetzt, die das System erreichen soll. Falls einzelne Seiten viele Daten laden müssen, sodass die gesetzten Ziele nicht erreicht werden können, müssen diese Daten im Hintergrund geladen werden, sodass die Seite selbst geladen wird und fehlende Daten dann nachträglich eingesetzt werden können. Unter dem Begriff der Effizenz könnte auch die Effizienz des Entwicklungsprozesses oder die Effizienz der Aufgabenerledigung verstanden werden, weshalb zu diesen Gebieten auch Anforderungen erstellt wurden.
 
 #task(title: [Effizienz])[
   
@@ -260,11 +308,11 @@ Das Merkmal #emph("Effizienz") besteht aus den Submerkmalen #emph("Zeitverhalten
 ]
 
   #narrowTrack("Effizienz der Aufgabenerledigung", type:"N", label:<CLICKS>)[
-  Jeder Use-Case sollte mit möglichst wenigen Klicks erledigbar sein.
+  Jeder Schritt im Use-Case sollte mit möglichst wenigen Klicks erledigbar sein.
 ]
 ]
 
-Das Merkmal #emph("Funktionalität") besteht aus den Submerkmalen #emph("Angemessenheit"), #emph("Richtigkeit"), #emph("Interoperabilität"), #emph("Sicherheit") und #emph("Ordnungsmäßigkeit").
+Das Merkmal #emph("Funktionalität") besteht aus den Submerkmalen #emph("Angemessenheit"), #emph("Richtigkeit"), #emph("Interoperabilität"), #emph("Sicherheit") und #emph("Ordnungsmäßigkeit"). @rupp_requirements-engineering_2014[12.4.1]
 
 #task(title: [Funktionalität])[
   #narrowTrack("Zwei Sprachen", type:"N", label:<TRANSLATE>)[
@@ -282,7 +330,7 @@ Das Merkmal #emph("Funktionalität") besteht aus den Submerkmalen #emph("Angemes
 
 ]
 
-Das Merkmal #emph("Übertragbarkeit") besteht aus den Submerkmalen #emph("Anpassbarkeit"), #emph("Installierbarkeit"), #emph("Koexistenz"), #emph("Austauschbarkeit") und #emph("Konformität").
+Das Merkmal #emph("Übertragbarkeit") besteht aus den Submerkmalen #emph("Anpassbarkeit"), #emph("Installierbarkeit"), #emph("Koexistenz"), #emph("Austauschbarkeit") und #emph("Konformität"). @rupp_requirements-engineering_2014[12.4.1]
 
 #task(title: [Übertragbarkeit])[
   #narrowTrack("Dokumentation zur Installation", type:"N", label: <DOKBACK>)[
@@ -298,7 +346,9 @@ Das Merkmal #emph("Zuverlässigkeit") besteht aus den Submerkmalen #emph("Reife"
 ]
 ]
 
-#task(title: [Technische Anforderungen (ergeben sich aus @architecture)])[
+
+In @architecture sind die bereits bestehenden Anwendungen beschrieben. Aus diesen Erkenntnissen ergeben sich einige technische Anforderungen, die bei der Entwicklung beachtet werden müssen.
+#task(title: [Technische Anforderungen])[
   #narrowTrack("Neue Anwendung", type:"N", label: <FRONT>)[
   Das Frontend muss eine neue Anwendung sein.
 ]
