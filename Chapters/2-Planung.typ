@@ -379,6 +379,8 @@ Risiko, der Machbarkeit, Nützlichkeit und dem Begeisterungspotenzial.
 
 
 == Struktur eines Modulhandbuches <structure>
+In diesem Unterabschnitt soll die Struktur eines Modulhandbuches analysiert werden, um herauszufinden, wie die spätere Datenbank aufgebaut sein muss. Es müssen die verschiedenen Entitäten ermittelt werden, die Beziehung zwischen den Entitäten und die Attribute für jede Entität.
+
 Die Modulhandbücher der Abteilung Informatik haben für alle drei Studiengänge (BIN, MDI und MIN) dieselbe Struktur. Es gibt eine Aufteilung in Module und Teilmodule. Ein Modul kann dabei 0 bis n verschiedene Teilmodule haben und jedes Teilmodul kann zu 1 bis n Modulen gehören. Teilmodule können Studiengangsübergreifend mit Modulen verknüpft werden. #emph("Beispiel"): Es gibt das Modul "MDI-103 Grundlagen der Informatik" und das Modul "BIN-103 Grundlagen der Informatik". Beide verweisen auf das Teilmodul "BIN-103-01 Grundlagen der Informatik". Somit können Studiengangsübergreifende Module abgebildet werden. In der Regel hat jedoch jedes Modul genau ein Teilmodul und umgekehrt gehört in der Regel jedes Teilmodul zu genau einem Modul.
 
 === Moduleigenschaften <properties>
