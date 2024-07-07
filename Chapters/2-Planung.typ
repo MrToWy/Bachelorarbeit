@@ -106,7 +106,8 @@ Im folgenden Abschnitt werden die Ergebnisse aus den Interviews und der Recherch
 
 
 == Anforderungen <requirements>
-Zur besseren Übersichtlichkeit werden die Anforderungen in Funktional und Nicht-Funktional aufgeteilt. 
+Die Anforderungen an das System ergeben sich aus verschiedenen Quellen, die sich in die Kategorien funktional und nichtfunktional aufteilen lassen.
+Um die Herkunft der Anforderungen übersichtlich abzubilden, werden die Anforderungen in Funktional und Nicht-Funktional aufgeteilt. 
 
 Jede Anforderung in den folgenden Auflistungen enthält entweder das Wort "muss", "sollte", oder "könnte". @rupp_requirements-engineering_2014[Kapitel 1.5.2] Damit wird zwischen Anforderungen unterschieden, die zwingend erforderlich sind (muss), Anforderungen, die sehr sinnvoll sind (sollte) und Anforderungen, die nicht zwingend erforderlich sind, aber die Nutzer begeistern würden (könnte). Eine weitere Priorisierung wird an dieser Stelle nicht benötigt, sondern kann bei Bedarf erfolgen.
 
