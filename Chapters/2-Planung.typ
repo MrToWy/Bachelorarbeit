@@ -94,7 +94,7 @@ Aus dem Interview mit dem Studiendekan (@interview) geht hervor, dass es neben d
 
 
 == Use Cases <usecases>
-Im folgenden Abschnitt werden die Ergebnisse aus den vorherigen Abschnitten verwendet, um aufzuzeigen, welche Funktionen die einzelnen Akteure im neuen System verwenden können.@rupp_requirements-engineering_2014[Seite~192] Hierzu werden Use Cases bestimmt, damit im nächsten Abschnitt (@requirements) daraus Anforderungen abgeleitet werden können. So soll sichergestellt werden, dass alle zuvor bestimmten Akteure ihre Aufgaben vollständig mit dem neuen System erledigen können.
+Im folgenden Abschnitt werden die Ergebnisse aus den Interviews und der Recherche im ECTS User Guide @ects verwendet, um aufzuzeigen, welche Funktionen die einzelnen Akteure im neuen System verwenden können.@rupp_requirements-engineering_2014[Seite~192] Hierzu werden Use Cases bestimmt, damit im nächsten Abschnitt (@requirements) daraus Anforderungen abgeleitet werden können. So soll sichergestellt werden, dass alle zuvor bestimmten Akteure ihre Aufgaben vollständig mit dem neuen System erledigen können.
 
 
 
