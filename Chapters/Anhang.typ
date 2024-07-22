@@ -3,6 +3,12 @@
 
 #heading(numbering: none)[Anhang]
 
+
+#heading(numbering: none, level: 2)[Größere Codebeispiele]
+
+
+#codeFigure("Backend: Erstellen und Bearbeiten von Modulen", <endpointBefore>, "endpointBefore")
+
 #heading(numbering: none, level: 2)[Screenshots der Webanwendung]
 
 #imageFigure(<degreeProgramOverview>, "../Images/DegreeProgramOverview.png", "Übersicht der Studiengänge")

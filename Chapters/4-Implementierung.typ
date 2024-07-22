@@ -40,8 +40,28 @@ Der `@ApiTags`-Dekorator sorgt dafür, dass die Endpunkte in der Weboberfläche 
 
 #codeFigure("degree.controller.ts (Auszug)", <degreeController>, "degree.controller")
 
-#todo[POST-Endpoints beschreiben]
+#heading("Datenverändernde Endpunkte", level: 4, numbering: none, outlined: false)
+Die Endpunkte die Daten erstellen, oder bearbeiten sind verglichen mit den bisher vorgestellten Endpunkten weitaus komplexer, sodass es mehrere Design-Entscheidungen zu treffen gibt. 
 
+Das aufrufende System (hier das Frontend) sendet Daten im JSON-Format an das Backend.
+Ein naiver Ansatz zur Erstellung einer Methode für das Erstellen und Bearbeiten eines Modules ist es, das erhaltene JSON direkt an den Prisma-Client zu übergeben und zu hoffen, dass der Prisma-Client das JSON korrekt verarbeitet.
+Leider gibt es bei diesem Ansatz gleich mehrere Hindernisse.
+
+Wenn das JSON nur aus einfachen Datentypen wie Zeichenketten, Zahlen und Booleans bestehen würde, wäre der naive Ansatz ausreichend. Da das Modul-JSON jedoch auch Objekte und Arrays enthält, müssen diese zunächst herausgefiltert werden. Dies kann mithilfe von "destructuring assignment" @DestructuringAssignmentJavaScript2023 erledigt werden (siehe @extractComplexFields). Hierbei werden die Eigenschaften mit komplexeren Datentypen aus dem JSON (moduleDto) extrahiert und für die spätere Verwendung in eigene Variablen gespeichert. Die verbleibenden Eigenschaften befinden sich anschließend im Objekt "moduleData" (@moduleData).
+Dieses Objekt kann dann tatsächlich direkt an den Prisma-Client übergeben werden, um die darin enthaltenen Werte in die Datenbank zu schreiben (@moduleData2).
+Die zuvor extrahierten Daten können nun seperat behandelt werden.
+
+In @connectResponsible ist zu sehen, wie die Eigenschaft der Verantwortlichen Person (@responsible) gesetzt wird. Da beim Erstellen eines Modules eine verantwortliche Person aus einem Dropdown ausgewählt wird, muss im Backend kein neuer Eintrag für die Person angelegt werden. Stattdessen muss der Eintrag des Moduls nur eine Referenz auf die ausgewählte, bereits in der Datenbank bestehende Person erhalten. Dies ist wie im Beispiel gezeigt mit der Funktion connect @RelationQueriesConcepts möglich. Auf die gleiche Art kann auch bei der Bearbeitung eines Moduls eine andere Person gesetzt werden. Die Funktion connect ändert im Hintergrund einfach die Eigenschaft responsibleId in der Modultabelle.
+
+Auch für n-m-Beziehungen wird die connect-Funktion von Prisma genutzt. 
+Ein Modul hat Voraussetzungen (Requirements). Eine Voraussetzung könnte es sein, dass die Module BIN-100 und BIN-101 abgeschlossen sein müssen. Ein Modul hat also eine Requirement und eine Requirement hat 0 bis n viele Module. Übergibt man die gewünschten Modul-Ids mit der Funktion connect (wie in Zeile 34 zu sehen), erstellt Prisma die benötigten Einträge in einer Zwischentabelle, um die Beziehung abzubilden. Allerdings werden dabei die bereits vorhandenen Einträge nicht automatisch gelöscht. Das Löschen der bereits vorhandenen Einträge muss manuell angefordert werden. Dies ist beispielsweise möglich, indem der set-Methode ein leeres Array übergeben wird. (siehe @clearModules). Alternativ kann auch direkt die set-Methode genutzt werden, um die neuen Module zu setzen (siehe @clearModules2).
+
+Prisma bietet weiterhin eine Methode upsert an, die die Update-Methode und die Create-Methode kombiniert. Hierzu werden zunächst die Update und Create JSONs in eigene Variablen geschrieben. Anschließend können diese an die Upsert-Methode übergeben werden (siehe @upsert). Außerdem wird eine Filter-Abfrage benötigt, mit der Prisma ermitteln kann, ob ein Update, oder ein Create nötig ist (@upsertFilter). 
+
+Abschließend muss außerdem evaluiert werden, ob der entstandene Code verständlich und kompakt genug ist. Das vorgestellte Beispiel ist durch die vielen komplexen Datentypen stark gewachsen. Um den Code also wartbarer, lesbarer und verständlicher zu machen, wurde zuletzt noch die Codequalität optimiert. Hierzu wurden statt einer gemeinsamen Upsert-Methode zwei unterschiedliche Methoden (Create und Update) erstellt. Hierdurch wurde die Zuständigkeit klarer definiert. Außerdem wurden die verschiedenen Zuweisungen der komplexen Datentypen in jeweils eigene Methoden extrahiert. Dies hatte neben des nun weitaus besser lesbaren Codes den zusätzlichen Vorteil, dass die Methoden an verschiedenen Stellen verwendet werden konnten, sodass redundanter Code verringert wurde. Jedoch ergab sich daraus auch ein Nachteil. Durch das sequenzielle Verändern der Daten, konnte es passieren, dass die ersten Veränderungen erfolgreich sind, und dann beispielsweise beim Zuweisen der zuständigen Person ein Fehler auftritt. In dem Fall wäre das Update dann nur teilweise erfolgreich. In der frühereren Version als alle Updates in einer Abfrage stattfanden, wäre in so einem Fall das gesamte Update fehlgeschlagen. Ein nun mögliches Teilupdate kann zu unerwarteten Fehlern führen und ist für den Benutzer entweder nur schwer zu erkennen oder unverständlich. Um dieses Verhalten wiederherzustellen wurden letztlich alle Anweisungen in einer Transaktion @TransactionsBatchQueries zusammengefasst. Hierdurch konnte der Vorteil der besseren Codequalität bestehen bleiben und dennoch das gewünschte Verhalten erzielt werden. Im Falle eines Fehlers macht Prisma nun automatisch die bisher vorgenommenen Änderungen rückgängig, sodass keine inkonsistenten Daten entstehen können.
+
+
+#heading("Öffentliche Endpunkte", level: 4, numbering: none, outlined: false)
 
 Des Weiteren ist es wichtig, zwischen öffentlichen und privaten Endpunkten zu unterscheiden. Damit User im Frontend auch ohne Anmeldung die Module ansehen können, müssen manche Endpunkte ohne Authentisierung erreichbar sein. Hierzu wurde ein eigener Dekorator (@publicDecorator) erstellt. Dieser kann einfach über einen Endpunkt geschrieben werden, um diesen als öffentlich zu markieren (@moduleController). Damit dies funktioniert, musste zusätzlich der AuthGuard durch eine eigene Implementierung (@authGuard) ersetzt werden. Diese neue Implmentierung überprüft, ob in den Metadaten "isPublic" steht. Wenn dies der Fall ist, kann die Anfrage mit `return true` genehmigt werden. Falls diese Metadaten nicht gesetzt sind, wird die ursprüngliche Implementierung von canActivate (@authGuard, Zeile 14) aufgerufen, um zu überprüfen, ob ein gültiger Token mitgesendet wurde. 
 
@@ -53,7 +73,7 @@ Des Weiteren ist es wichtig, zwischen öffentlichen und privaten Endpunkten zu u
 
 
 
-
+#heading("Besondere Endpunkte", level: 4, numbering: none, outlined: false)
 
 Für die Generierung der PDF-Datei (@PDF), wird ein Python-Skript ausgeführt (@pythonScript). Da dies eine längere Laufzeit hat, meldet der Endpunkt zunächst den Status 202-Accepted zurück, und nennt eine Id. Das Frontend kann mithilfe der Id das fertige PDF abrufen. Solange das PDF noch nicht bereit steht, meldet das Backend einen Status 404-Not Found zurück. @restUndHTTP[Abschnitt 13.1]
 

@@ -6,7 +6,7 @@
 #import "@preview/gentle-clues:0.9.0": *
 #import "@preview/wrap-it:0.1.0": wrap-content
 #import "@preview/hydra:0.3.0": hydra
-
+#import "@preview/codly:1.0.0": *
 
 #let sidePadding = 1em
 #let topBotPadding = 3em
@@ -125,8 +125,11 @@
 ]]
 
 
-#let codeFigure(caption, plabel, filename) = [
+
+
+#let codeFigure(caption, plabel, filename, annotations: none) = [
   #pad(left: 0em, right: 0em, rest: topBotPadding/4)[
+    
   #figure(
     caption: caption,
     kind: "code",

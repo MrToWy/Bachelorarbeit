@@ -70,18 +70,22 @@
 
   show heading.where(level: 9): set heading(supplement: [])
 
-  // code styling
-  import "@preview/codly:0.2.1": *
-  let icon(codepoint) = {
-    box(
-      height: 0.8em,
-      baseline: 0.05em,
-      image(codepoint)
-    )
-    h(0.1em)
-  } 
+  show figure.where(kind: "code"): it => {
+  if "label" in it.fields() {
+    state("codly-label").update((_) => it.label)
+    it
+    state("codly-label").update((_) => none)
+  } else {
+    it
+  }
+}
+
   show: codly-init.with()
-  codly(zebra-color: white)
+  show figure: set block(breakable: true);
+  codly(
+    zebra-fill: white, 
+    breakable: true
+  )
 
 
   // Title page.
