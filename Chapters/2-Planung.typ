@@ -453,7 +453,7 @@ Das Modul enthält zunächst grundlegende Informationen:
   Studierende müssen alle Pflichtmodule absolvieren und müssen eine bestimmte Anzahl an selbst ausgewählten Wahlpflichtmodulen absolvieren.
 ]
 
-#track("Teilmodule")[
+#track("Teilmodule", label:<submodules>)[
   Eine Auflistung aller Teilmodule.
 ]
 
