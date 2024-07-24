@@ -9,6 +9,14 @@
 
 #codeFigure("Backend: Erstellen und Bearbeiten von Modulen", <endpointBefore>, "endpointBefore")
 
+#codeFigure("Backend: Erstellen und Bearbeiten von Modulen (Verbessert)", <endpointAfter>, "endpointAfter")
+
+#codeFigure("Vergleichsmethoden", <compareFields2>, "compareFields2")
+
+#codeFigure("Beispiel eines StructureItems", <structureItem>, "structureItem")
+
+#codeFigure("getValue-Methoden", <getValueMethods>, "getValue")
+
 #heading(numbering: none, level: 2)[Screenshots der Webanwendung]
 
 #imageFigure(<degreeProgramOverview>, "../Images/DegreeProgramOverview.png", "Übersicht der Studiengänge")
