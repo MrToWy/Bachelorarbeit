@@ -156,7 +156,12 @@ Das Router-Outlet wird dann in Abhängigkeit der besuchten URL anhand eines Eint
 
 #codeFigure("app.routes.ts (Auszug)", <appRoutes>, "app.routes")
 
+Das Wechseln auf eine andere Seite ist nun sehr einfach mithilfe eines Methodenaufrufes möglich. Um Beispielsweise auf die Seite /faculty/4/department/2/course/1/module/1 zu wechseln, wird dieser Aufruf benötigt: `await this.router.navigate(['faculty', module.facultyId, 'department', module.departmentId, 'course', module.courseId, 'module', module.id]);` 
 
+Verkürzen lässt sich dies dann noch, falls ein Teil der URL bereits korrekt ist. Befinden wir uns zum Beispiel bereits auf der Seite /faculty/4/department/2/course/1 und wollen nur noch /module/1 anhängen, so können wir das Argument "relativeTo" nutzen und müssen dann nicht mehr alle Segmente anhängen: `await this.router.navigate(['module', module.id], {relativeTo: this.route});`.
+    
+    
+  
 
 
 === PrimeNG
