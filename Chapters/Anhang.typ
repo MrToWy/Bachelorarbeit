@@ -17,6 +17,8 @@
 
 #codeFigure("getValue-Methoden", <getValueMethods>, "getValue")
 
+#codeFigure("compose-Datei", <compose>, "compose")
+
 #heading(numbering: none, level: 2)[Screenshots der Webanwendung]
 
 #imageFigure(<degreeProgramOverview>, "../Images/DegreeProgramOverview.png", "Übersicht der Studiengänge")
