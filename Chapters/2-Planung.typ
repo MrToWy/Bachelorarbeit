@@ -15,7 +15,7 @@ Für Studierende, die planen möchten, welches Modul sie in welchem Semester erl
 
 Die Entwicklung von #studyPlan läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt. Derzeit gibt es bereits einen ersten Prototyp, welcher allerdings noch nicht produktiv genutzt wird.
 
-Außerdem ist die Anwendung StudyGraph geplant, welche Studieninhalte visualisiert und somit auch die Informationen zu den angebotenen Modulen benötigt.
+Außerdem ist die Anwendung StudyGraph geplant, welche Studieninhalte visualisiert und somit auch die Informationen zu den angebotenen Modulen benötigt. @LernanwendungenAllerkampFakultat
 
 
 === Struktur des bestehenden Backends <backend>
