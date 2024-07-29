@@ -206,9 +206,29 @@ Damit sich beim Wechsel der Sprache auch alle dynamischen Texte ändern, ist ein
 Muss alles wie in jobs.component im OnDestroy gecleart werden
 
 
-=== Plausibilitätschecks
-#todo[]
+=== Anlegen und Bearbeiten von Modulen
+Die Masken zur Bearbeitung der Module und Teilmodule sind eine zentrale Stelle der Anwendung. Um hier eine gute Benutzbarkeit zu gewährleisten sind mehrere Konzepte genutzt worden. 
 
+Für die Anforderung der Übersetzbarkeit wurde in @addModule, @translateDropdown und @translatePopup eine Möglichkeit konzipiert, Texte in verschiedenen Sprachen zu hinterlegen. Nach erneuter Betrachtung des Problemes, ergab sich eine einfachere Lösung. Ein Nachteil der urspünglichen Lösung war, dass es für jedes Eingabefeld ein Popup gab. Dies erhöhte den Aufwand der Eingabe drastisch, da für jede Eingabe ein neues Fenster geöffnet wurde und auch wieder geschlossen werden musste. Um die Anzahl der Popups zu verringern, wurden stattdessen gewöhnliche Textfelder genutzt. Um dennoch verschiedene Sprachen zu unterstützen, wird die Eingabemaske nun für jede Sprache einmal wiederholt. Eine Anzeige im oberen Bereich zeigt die einzelnen Schritte des Bearbeitungsprozesses (@editModule).
+
+#heading("Automatische Vervollständigung von Eingaben", level: 4, numbering: none, outlined: false)<autocomplete>
+Um die Eingabe in Textfeldern zu erleichern, wurden eine automatische Vervollständigung implementiert. In Textfeldern mit kurzen Texten (beispielsweise @exam) erscheint ein Vorschlag, sobald der User mit der Eingabe beginnt. Es werden Texte vorgeschlagen, die in anderen Modulen für das selbe Eingabefeld verwendet werden. Somit kann der User zum Einen selbstständig einen neuen Wert eintragen, oder alternativ einen vorgeschlagenen Wert auswählen, um nicht den gesamten Text immer wieder eingeben zu müssen.
+In Textfeldern mit längeren Texten wurde dies nicht implementiert, da sich deren Inhalte nicht, oder nur sehr selten wiederholen (beispielsweise @literature).
+
+
+#heading("Umwandlung von Textfeldern zu interaktiven Auswahl-Elementen", level: 4, numbering: none, outlined: false)
+Des Weiteren wurden, wie bereits in @addModule konzipiert, einige Textfelder umgewandelt. In den ursprünglichen Daten, die für diese Arbeit vorlagen, bestanden alle Informationen aus Texten. Diese Informationen wurden teilweise umgewandet, um deren Eingaben zu vereinfachen. Ein Beispiel hierfür ist die verantwortliche Person (@responsible), welche zuvor in einem Textfeld abgelegt wurde. In der implementierten Oberfläche gibt es nun ein Dropdown, in dem aus einer Liste an Personen ausgewählt werden kann. Im Backend wird dann nur die Id der Person gespeichert, statt des gesamten Textes. Auf eine ähnliche Art wurden diverse weitere Felder umgewandelt, sodass bei der Eingabe nun weniger Fehler gemacht werden können. 
+
+
+
+#heading("Plausibilitätschecks", level: 4, numbering: none, outlined: false)
+Eingabgefehler können unentdeckt bleiben und sich somit mit der Zeit häufen. Um diesem Problem entgegenzuwirken, wurden (wie in @CHECKMOD gefordert) Plausibilitätschecks implementiert. Sobald alle Eingaben getätigt wurden, kann ein User per Klick auf "weiter" auf die nächste Seite wechseln. Bevor jedoch gewechselt wird, werden die eingebenen Daten überprüft. Fallen hierbei Umstimmigkeiten auf, wird der User darauf hingewiesen. Die entsprechenden Felder färben sich dann rot und zeigen in einem Tooltip den Grund dafür. Ein User kann nun entweder die Daten korrigieren, oder die Warnung ignorieren und das Modul dennoch abspeichern. Das System soll vermeindlich falsche Eingaben nicht vollständig verhindern, sondern nur darauf hinweisen, da davon ausgegangen wird, dass das System von Experten bedient werden.
+
+Neben der Prüfung, ob in jedes Feld ein Wert eingegeben wurde, gibt es folgende Überprüfungen:
+
+1. Felder, die wie #link(<autocomplete>)[oben] beschrieben eine Autovervollständigung haben, sollten einen Wert beinhalten, den es bereits gibt.
+2. Die Abkürzung eines (Teil-) Modules entspricht einem bestimmten Muster. Dieses wird mithilfe eines regulären Ausdruckes überprüft. Im Falle der Teilmodule wird dieser Ausdruck genutzt: `/^[A-Z]{3}-[0-9]{3}-[0-9]{2}$/` Der eingegebene Abkürzung muss mit drei Großbuchstaben (A-Z) beginnen, gefolgt von einem Bindestrich, drei Ziffern (0-9), einem weiteren Bindestrich und muss schließlich zwei Ziffern enden. Zeichen davor oder danach sind auch nicht zulässig. @RegularExpressionsJavaScript2024
+3. Der angegebene Zeitaufwand (@hours) muss zu den angegebenen ECTS (@credits) passen.
 
 
 
@@ -241,7 +261,7 @@ Im Dockerfile für das LaTeX-Poll-Skript (@latexDockerfile) ist ein einfaches Be
 #codeFigure("Docker File für das Latex-Poll-Skript", <latexDockerfile>, "latexDockerfile")
 
 
-Das Dockerfile des Frontends ist komplexer. Es besteht aus zwei Stages. Die erste Stage basiert auf einem node-alpine-Image und ist für das Kompilieren des Quellcodes zuständig. Die zweite Stage (ab Zeile 15) ist als Webserver für die Bereitstellung der Website zuständig und benutzt das Image nginx:alpine als Basis.
+Das Dockerfile des Frontends ist komplexer. Es besteht aus zwei Stages. Die erste Stage basiert auf einem node-alpine-Image und ist für das Kompilieren des Quellcodes zuständig. Die zweite Stage (ab Zeile 15) ist als Webserver für die Bereitstellung der Website zuständig und benutzt das Image nginx:alpine als Basis, beinhaltet also einen Webserver.
 
 Für das Builden in der ersten Stage wurde darauf geachtet, dass nicht direkt alle Dateien kopiert werden (Zeile 11). Stattdessen werden zunächst nur die package.json und die package-lock.json kopiert und ein npm ci ausgeführt um die Packages zu installieren. Dies hat den entscheidenen Vorteil, dass das Ergebnis gecacht werden kann. Docker arbeitet mit Layern, was in diesem Fall bedeutet, dass das Ergebnis nach dem Installieren der Packages in einem Layer abgespeichert wird. Dieses Layer kann nun beim Erneuten builden des Docker-Images aus dem Cache geladen werden (sofern sich die package.json nicht verändert hat). Hätten wir in Zeile 7 direkt alle Dateien in das Image geladen, müssten wir bei jedem build des Images erneut die Abhängigkeiten installieren, was zu einer erhöhten Laufzeit des Buildvorganges führen würde. @DockerBuildCache 
 
