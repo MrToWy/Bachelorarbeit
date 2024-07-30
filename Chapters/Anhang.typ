@@ -40,3 +40,7 @@
 #imageFigure(<hiddenCourse>, "../Images/HiddenCourse.png", "Ausgelendeter Studiengang")
 
 #imageFigure(<menu>, "../Images/Menu.png", "Menü - Studiengänge")
+
+#imageFigure(<errorMsg>, "../Images/errormsg.png", "Fehlermeldung vom error.service.ts")
+
+#imageFigure(<changelog>, "../Images/Changelog.png", "Änderungshistorie")

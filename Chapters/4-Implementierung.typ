@@ -202,9 +202,13 @@ Damit sich beim Wechsel der Sprache auch alle dynamischen Texte ändern, ist ein
 
 
 === Subscriptions, Intervalle und Memory Leaks
-#todo[]
-Muss alles wie in jobs.component im OnDestroy gecleart werden
+In @createPdfUI wurde beschrieben, wie der Status des Auftrages sekündlich aktualisiert wird. Hierzu wird ein Intervall genutzt, welches sekündlich eine Anfrage an das Backend sendet. Damit dieses Polling stoppt, sobald die Maske geschlossen wird, muss es gestoppt werden. 
 
+Außerdem werden beim Wechseln der Anzeigesprache die angezeigten Daten in jeder Maske neu geladen. Hierzu wird beim Öffnen der Maske wie in @uebersetzbarkeit beschrieben ein BehaviourObject genutzt. Auch dieses sollte beim Schließen der Maske deabboniert werden. Andernfalls gibt es die Gefahr von Memoryleaks - solange Events abboniert sind, kann die Maske nicht aus dem Arbeitsspeicher entladen werden. @AngularComponentLifecycle
+
+Aus diesen beiden Gründen, muss in einigen Masken das Interface OnDestroy @AngularComponentLifecycle implementiert werden. Dieses wird beim Schließen des Components aufgerufen. Der darin enthaltene Code (@onDestroy) ist dann recht simpel - das Intervall wird gestoppt und die Subcription auf das languageSubject wird deabboniert. 
+
+#codeFigure("onDestroy Implementierung", <onDestroy>, "onDestroy")
 
 === Anlegen und Bearbeiten von Modulen
 Die Masken zur Bearbeitung der Module und Teilmodule sind eine zentrale Stelle der Anwendung. Um hier eine gute Benutzbarkeit zu gewährleisten sind mehrere Konzepte genutzt worden. 
