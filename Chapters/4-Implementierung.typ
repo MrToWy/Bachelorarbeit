@@ -211,6 +211,15 @@ Die Masken zur Bearbeitung der Module und Teilmodule sind eine zentrale Stelle d
 
 Für die Anforderung der Übersetzbarkeit wurde in @addModule, @translateDropdown und @translatePopup eine Möglichkeit konzipiert, Texte in verschiedenen Sprachen zu hinterlegen. Nach erneuter Betrachtung des Problemes, ergab sich eine einfachere Lösung. Ein Nachteil der urspünglichen Lösung war, dass es für jedes Eingabefeld ein Popup gab. Dies erhöhte den Aufwand der Eingabe drastisch, da für jede Eingabe ein neues Fenster geöffnet wurde und auch wieder geschlossen werden musste. Um die Anzahl der Popups zu verringern, wurden stattdessen gewöhnliche Textfelder genutzt. Um dennoch verschiedene Sprachen zu unterstützen, wird die Eingabemaske nun für jede Sprache einmal wiederholt. Eine Anzeige im oberen Bereich zeigt die einzelnen Schritte des Bearbeitungsprozesses (@editModule).
 
+In @components sind die einzelnen Komponenten einer Bearbeitungsmaske (z.B. die Modulbearbeitung) zu sehen. Wenn auf "Bearbeiten" gedrückt wird, lädt der Router das Edit-Component (z.B. module-edit.component.ts). Das Edit-Component erhält das zu bearbeitende Modul mit allen Eingenschaften über einen \@Input-Parameter (siehe @twoWay). Dieses Objekt wird an die folgenden Komponenten weitergegeben. Hierzu wird das Two-Way-Binding von Angular verwendet, damit das Objekt in beide Richtungen synchronisiert wird. Dadurch kann das Preview-Component bei Änderungen im Editor automatisch aktualisiert werden, was eine Live-Vorschau der Änderungen ermöglicht. Damit das Two-Way-Binding funktioniert, muss zusätzlich ein \@Output-Parameter als EventEmitter definiert werden, der bei einer Änderung aufgerufen wird. 
+
+#codeFigure("Two-Way-Binding", <twoWay>, "two-way")
+
+Außerdem lädt das Edit-Component  für jede Sprache ein Translator-Component. 
+Das Translator-Component hat die Aufgabe die benötigte Sprache zu laden und im Translations-Array an die erste Stelle zu schieben. Dies ist notwendig, weil in den folgenden Editor- und Preview-Komponenten immer auf den ersten Eintrag im Array geschaut wird. Wenn im Preview-Component beispielsweise der Name des Modules gezeigt werden soll, wird `module.translations[0].name` aufgerufen.
+
+#imageFigure(<components>, "translator.svg", "Komponenten der Modulbearbeitung")
+
 #heading("Automatische Vervollständigung von Eingaben", level: 4, numbering: none, outlined: false)<autocomplete>
 Um die Eingabe in Textfeldern zu erleichern, wurden eine automatische Vervollständigung implementiert. In Textfeldern mit kurzen Texten (beispielsweise @exam) erscheint ein Vorschlag, sobald der User mit der Eingabe beginnt. Es werden Texte vorgeschlagen, die in anderen Modulen für das selbe Eingabefeld verwendet werden. Somit kann der User zum Einen selbstständig einen neuen Wert eintragen, oder alternativ einen vorgeschlagenen Wert auswählen, um nicht den gesamten Text immer wieder eingeben zu müssen.
 In Textfeldern mit längeren Texten wurde dies nicht implementiert, da sich deren Inhalte nicht, oder nur sehr selten wiederholen (beispielsweise @literature).

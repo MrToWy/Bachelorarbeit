@@ -461,11 +461,11 @@ Das Modul enthält zunächst grundlegende Informationen:
   Name der verantwortlichen Person. Diese Person ist für die Bearbeitung des Modulhandbuches zuständig.
 ]
 
-#track("Credits")[
+#track("Credits", label: <credits>)[
   Anzahl erreichbarer ECTS bei Absolvierung dieses Moduls. Eine Zahl zwischen 2 (Englisch) und 30 (z.B. Masterarbeit).
 ]
 
-#track("Präsenzstunden / Selbststudium", example: "68 h / 112 h")[
+#track("Präsenzstunden / Selbststudium", example: "68 h / 112 h", label:<hours>)[
   Aufwand des Studiums, aufgeteilt nach der Zeit, die in der Hochschule verbracht wird und der Zeit, die im Selbststudium verbracht wird (Arbeit an Übungen, Prüfungsvorbereitung …).
 ]
 
@@ -541,6 +541,6 @@ Die Teilmodule enthalten zusätzlich weitere Informationen:
 ]
 
 #track("Literatur", example: "Skript zur Vorlesung
-Reges, S., Stepp, M.: Building Java Programs, Prentice Hall")[
+Reges, S., Stepp, M.: Building Java Programs, Prentice Hall", label: <literature>)[
   Eine Auflistung empfohlener Literatur zur Vertiefung des behandelten Themas.
 ]
