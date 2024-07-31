@@ -42,7 +42,7 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   [@LOGOUT], [Im seitlichen Menü gibt es einen Logout-Button.], [Erfüllt],
   [@RESETPW], [Wurde nicht umgesetzt, da Accounts in der Einführungsphase erst direkt in der Datenbank verwaltet werden. Eventuell erfolgt später eine Anbindung an die SSO-Accounts der Hochschule. <nichtUmgesetzt>], [Nicht erfüllt],
   [@RESETMYPW], [Wurde nicht umgesetzt (siehe #link(<nichtUmgesetzt>)[Umsetzung F9])], [Nicht erfüllt],
-  [@EDIT], [Module können bearbeitet werden.], [Erfüllt #linebreak() (@editModule)],
+  [@EDIT], [Personen die für ein Modul verantwortlich sind, sowie die studiengangsverantwortliche Person können Module bearbeiten.], [Erfüllt #linebreak() (@editModule)],
   [@CHECKMOD], [Es wurden verschiedene Plausibilitätschecks eingebaut. Fehlerhafte Felder werden rot markiert. Der User erhält weitere Informationen über einen Tooltip.], [Erfüllt #linebreak() (@plausib)],
 
   table.cell(colspan: 3, align: center, [#emph("Use-Case 4")]),
@@ -94,10 +94,10 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   [@SELFEXPLAIN],[],[],
   
   table.cell(colspan: 3, align: center, [#emph("Effizienz")]),
-  [@STARTFRONTEND],[],[],
-  [@STARTBACKEND],[],[],
-  [@DEPLOY],[],[],
-  [@CLICKS],[],[],
+  [@STARTFRONTEND],[Alle Seiten im Frontend laden innerhalb einer Sekunde. Die geladenen Datenmengen werden reduziert, indem beim Laden der Modulübersicht zum Beispiel nicht direkt alle Informationen eines Modules geladen werden. Diese werden erst geladen, sobald die Detailansicht geöffnet wird.],[Erfüllt],
+  [@STARTBACKEND],[Während der Implementierung des Systems konnte kein Zustand ermittelt werden, zu dem das Backend nach einem Fehler nicht innerhalb einer Minute neustartet.],[Erfüllt],
+  [@DEPLOY],[Das Frontend wird mithilfe einer GitHub-Action bei jedem Push auf den Testserver deployt. Das Backend wird mithilfe eines Deploy-Skripts und einem Cronjob automatisch deployt. Diese Methodik ist auch für den Livebetrieb möglich.],[Vorbereitet],
+  [@CLICKS],[Es wurde versucht, die Arbeitsabläufe möglichst einfach zu gestalten. Ohne größeren Aufwand ist es nicht nachprüfbar, ob diese Anforderung vollständig erledigt ist.],[Vermutlich erfüllt],
 
   table.cell(colspan: 3, align: center, [#emph("Funktionalität")]),
   [@TRANSLATE],[Die Anwendung und die Pdfs die generiert werden stehen in Englisch und Deutsch bereit.],[Erfüllt],
