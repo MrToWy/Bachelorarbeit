@@ -79,13 +79,30 @@ Wenn das Feld einen primitiven Datentypen hat, ist der Vergleich sehr einfach �
 
 #heading("Öffentliche Endpunkte", level: 4, numbering: none, outlined: false)
 
-Des Weiteren ist es wichtig, zwischen öffentlichen und privaten Endpunkten zu unterscheiden. Damit User im Frontend auch ohne Anmeldung die Module ansehen können, müssen manche Endpunkte ohne Authentisierung erreichbar sein. Hierzu wurde ein eigener Dekorator (@publicDecorator) erstellt. Dieser kann einfach über einen Endpunkt geschrieben werden, um diesen als öffentlich zu markieren (@moduleController). Damit dies funktioniert, musste zusätzlich der AuthGuard durch eine eigene Implementierung (@authGuard) ersetzt werden. Diese neue Implmentierung überprüft, ob in den Metadaten "isPublic" steht. Wenn dies der Fall ist, kann die Anfrage mit `return true` genehmigt werden. Falls diese Metadaten nicht gesetzt sind, wird die ursprüngliche Implementierung von canActivate (@authGuard, Zeile 14) aufgerufen, um zu überprüfen, ob ein gültiger Token mitgesendet wurde. 
+Des Weiteren ist es wichtig, zwischen öffentlichen und privaten Endpunkten zu unterscheiden. Damit User im Frontend auch ohne Anmeldung die Module ansehen können, müssen manche Endpunkte ohne Authentisierung erreichbar sein. Hierzu wurde ein eigener Dekorator (@publicDecorator) erstellt. Dieser kann einfach über einen Endpunkt geschrieben werden, um diesen als öffentlich zu markieren (@moduleController). Damit dies funktioniert, musste zusätzlich der AuthGuard durch eine eigene Implementierung (@authGuard) ersetzt werden. Diese neue Implementierung überprüft, ob in den Metadaten "isPublic" steht. Wenn dies der Fall ist, kann die Anfrage mit `return true` genehmigt werden. Falls diese Metadaten nicht gesetzt sind, wird die ursprüngliche Implementierung von canActivate (@authGuard, Zeile 14) aufgerufen, um zu überprüfen, ob ein gültiger Token mitgesendet wurde. 
+
 
 #codeFigure("public.decorator.ts", <publicDecorator>, "publicDecorator")
 
 #codeFigure("module.controller.ts", <moduleController>, "getModule")
 
 #codeFigure("jwt-auth.guard.ts", <authGuard>, "authGuard")
+
+
+#heading("Informationen über den aufrufenden User", level: 4, numbering: none, outlined: false)
+
+Manche Endpunkte benötigen genauere Informationen über den aufrufenden User, also den User, der im Frontend angemeldet ist. Das Bearbeiten von Modulen soll beispielsweise nur Usern erlaubt sein, die entweder verantwortlich für den gesamten Studiengang sind, oder verantwortlich für das bearbeitete Modul. Da sich die User mithilfe eines Jwt-Tokens authentifizieren, kann dieser hierzu einfach genutzt werden. In der jeweiligen Controller-Methode muss dann als Parameter lediglich `@User() user:UserDto` hinzugefügt werden, um dann mithilfe von user.role die Rolle des Users zu erfahren oder mit user.id die Id des Users.
+
+Die Information über den User wird vom Framework nestjs beim Aufruf der Methode `canActivate` herausgefunden und wird dann automatisch als Parameter übergeben. In @authGuard ist jedoch zu sehen, dass der \@Public-Decorator aufgrund des frühen returns diese Anweisung überspringt. Für Methoden, die also für nicht angemeldete Benutzer zur Verfügung stehen sollen und die für angemeldete User anders funktionieren funktioniert der \@User-Parameter also nicht ohne weiteren Aufwand. Ein Beispiel hierfür ist die Auflistung aller Studiengänge. Diese sollen auch unangemeldeten Besuchern angezeigt werden, jedoch sollen angemeldete studiengangsverantwortliche Personen auch versteckte Studiengänge angezeigt bekommen. Um also trotzdem Zugriff auf die User-Informationen zu erhalten wird ein weiterer Guard benötigt (siehe @injectUser). @nestjs
+Damit der User im genannten Fall also verfügbar ist, wird der Guard mithilfe des \Use-Guards-Decorator aktiviert (@injectUserCall).
+
+#codeFigure("InjectUser-Implementierung", <injectUser>, "injectUser")
+
+#codeFigure("findOne() in department.controller.ts", <injectUserCall>, "injectUserAufruf")
+
+// https://docs.nestjs.com/recipes/passport#request-scoped-strategies
+
+#todo[die beispiel endpunkte verlinken (endpunkte sind doch in Planung aufgelistet)]
 
 
 
