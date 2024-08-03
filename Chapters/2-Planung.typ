@@ -471,7 +471,7 @@ Das Modul enthält zunächst grundlegende Informationen:
   Aufwand des Studiums, aufgeteilt nach der Zeit, die in der Hochschule verbracht wird und der Zeit, die im Selbststudium verbracht wird (Arbeit an Übungen, Prüfungsvorbereitung …).
 ]
 
-#track("Studiensemester", label: <recommendedSemester>)[
+#track("Studiensemester", label: <recommendedSemester>, example: "4-6")[
   Vorgeschlagenes Semester. Anhand dieser Information wird das Curriculum generiert (@mdiCurr). 
 ]
 
