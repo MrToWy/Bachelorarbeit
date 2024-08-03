@@ -257,8 +257,10 @@ Eingabgefehler können unentdeckt bleiben und sich somit mit der Zeit häufen. U
 Neben der Prüfung, ob in jedes Feld ein Wert eingegeben wurde, gibt es folgende Überprüfungen:
 
 1. Felder, die wie #link(<autocomplete>)[oben] beschrieben eine Autovervollständigung haben, sollten einen Wert beinhalten, den es bereits gibt.
-2. Die Abkürzung eines (Teil-) Modules entspricht einem bestimmten Muster. Dieses wird mithilfe eines regulären Ausdruckes überprüft. Im Falle der Teilmodule wird dieser Ausdruck genutzt: `/^[A-Z]{3}-[0-9]{3}-[0-9]{2}$/` Der eingegebene Abkürzung muss mit drei Großbuchstaben (A-Z) beginnen, gefolgt von einem Bindestrich, drei Ziffern (0-9), einem weiteren Bindestrich und muss schließlich zwei Ziffern enden. Zeichen davor oder danach sind auch nicht zulässig. @RegularExpressionsJavaScript2024
-3. Der angegebene Zeitaufwand (@hours) muss zu den angegebenen ECTS (@credits) passen.
+2. Die Abkürzung eines (Teil-) Moduls entspricht einem bestimmten Muster. Dieses wird mithilfe eines regulären Ausdruckes überprüft. Im Falle der Teilmodule wird dieser Ausdruck genutzt: `/^[A-Z]{3}-[0-9]{3}-[0-9]{2}$/`. Der eingegebene Abkürzung muss mit drei Großbuchstaben (A-Z) beginnen, gefolgt von einem Bindestrich, drei Ziffern (0-9), einem weiteren Bindestrich und muss schließlich zwei Ziffern enden. Zeichen davor oder danach sind auch nicht zulässig. @RegularExpressionsJavaScript2024
+3. Die Abkürzung sollte eindeutig, also noch nicht vergeben sein.
+4. Der angegebene Zeitaufwand (@hours) muss zu den angegebenen ECTS (@credits) passen. Ein ECTS entspricht laut StudAkkVO einem Zeitaufwand von 25 bis 30 Stunden. @studAkkVO
+5. Das Feld Semester (@recommendedSemester) kann einen Bindestrich enthalten (z.B. 4-6). In dem Fall muss die zweite Zahl größer als die erste Zahl sein.
 
 
 
