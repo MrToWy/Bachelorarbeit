@@ -227,6 +227,21 @@ Aus diesen beiden Gründen, muss in einigen Masken das Interface OnDestroy @Angu
 
 #codeFigure("onDestroy Implementierung", <onDestroy>, "onDestroy")
 
+=== Suchfunktion<implementSearch>
+
+Die Suchfunktion soll während der Eingabe geeignete Module vorschlagen (@SEARCH). Zur besseren Übersicht sollen diese nach Studiengang gruppiert werden. Hierzu müssen die aus dem Backend erhaltenen Daten auf das benötigte Format umgewandelt werden.
+Mit der `.map`-Funktion lässt sich in JavaScript der Aufbau eines Arrays verändern. @MapJavaScriptMDN In @searchCode ist zu sehen, wie das neue Array zusammengebaut wird. Als Erstes werden die Studiengänge hinzugefügt. Für jeden Studiengang werden die darin enthaltenen Module hinzugefügt. Hierbei ist zu beachten, dass als `value` ein Link gesetzt werden muss, welcher beim Anklicken des Eintrages geöffnet werden soll. 
+
+#codeFigure("Daten für die Suche ermitteln", <searchCode>, "searchGroup")
+
+=== URL-basierte Erkennung von Seitenelementen
+Wenn ein User ein Modul öffnet, ändert sich die URL. Für das Modul mit der Id 1 könnte der Pfad dann beispielsweise so aussehen: /faculty/4/department/2/course/1/module/1. Dies hat den Vorteil, dass der User den Link mit anderen Usern teilen kann. Außerdem funktionieren dadruch die Navigationstasten im Browser und der Browserverlauf zeigt hilfreiche Informationen.
+
+Für die Implementierung von verschiedenen Funktionen ergibt sich außerdem ein weiterer Vorteil. Durch die Angabe verschiedener Informationen in der URL können diese auch im Code verwendet werden. Mithilfe der Informationen aus der URL wird zum Beispiel der Breadcrumb in der oberen Leiste (@grundgerüst) befüllt (@PATH). Damit diese Funktionalität gekapselt ist und sich nicht wiederholt, wurde hierfür eine eigene Methode entworfen (@urlSegment). Mithilfe des Aufrufes von getIdFromSegment("faculty") kann dann beispielsweise herausgefunden werden, durch welche Faktultät der User gerade navigiert. Hierzu teilt die Methode getIdFromSegment() die aktuelle URL in Segmente auf, und gibt die Zahl nach dem gewünschten Segment zurück. Wenn der Pfad /faculty/4/department/2 wäre, würde getIdFromSegment("faculty") den Wert 4 zurückgeben.
+
+#codeFigure("url-segment.service.ts", <urlSegment>, "urlSegmentService")
+
+
 === Anlegen und Bearbeiten von Modulen
 Die Masken zur Bearbeitung der Module und Teilmodule sind eine zentrale Stelle der Anwendung. Um hier eine gute Benutzbarkeit zu gewährleisten sind mehrere Konzepte genutzt worden. 
 

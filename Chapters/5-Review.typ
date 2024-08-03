@@ -34,7 +34,7 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   table.cell(colspan: 3, align: center, [#emph("Use-Case 2")]),
   [@SHOWMODULES], [Es können alle Module eines Studienganges angezeigt werden.], [Erfüllt #linebreak() (@moduleOverviewResult)],
   [@FILTER], [In allen Spalten steht eine Filterfunktion bereit.], [Erfüllt #linebreak() (@filterResult)],
-  [@SEARCH], [], [],
+  [@SEARCH], [Die Suchfunktion wurde erfolgreich implementiert.], [Erfüllt #linebreak() @implementSearch],
   [@SHOWMODULEDETAIL], [Es gibt für jedes Modul eine Detailansicht mit allen verfügbaren Informationen.], [Erfüllt #linebreak() (@moduleDetailResult)],
 
   table.cell(colspan: 3, align: center, [#emph("Use-Case 3")]),
