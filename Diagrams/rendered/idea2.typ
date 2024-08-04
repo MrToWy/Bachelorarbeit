@@ -1,0 +1,1 @@
+#image("idea2.svg", width: 55%)

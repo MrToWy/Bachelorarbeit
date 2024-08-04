@@ -35,6 +35,7 @@ Da es keine öffentlichen Dokumentationen für die Nutzung der Schnittstellen vo
 Sollte die #hsh entscheiden, das #hone in Zukunft auch für die Verwaltung von Modulhandbüchern zu nutzen, könnten die Informationen der Handbücher über Webservices vom #hone und über die REST-Schnittstellen des neuen Systems synchronisiert werden.  
 
 
+
 == Aufbau der Arbeit
 In dieser Arbeit werden zunächst in @anforderungsanalyse die Anforderungen an das neue System ermittelt. Dafür wird der aktuelle Prozess analysiert, auf Schwachstellen geprüft und es werden die Zielgruppen ermittelt. Anschließend werden Use-Cases, sowie ein zukünftiger Arbeitsprozess entwickelt. Da es bereits Anwendungen gibt, die mit dem neuen System kommunizieren sollen, werden die Anwendungen und deren Struktur untersucht. Abschließend wird eine Liste der Anforderungen erstellt.
 

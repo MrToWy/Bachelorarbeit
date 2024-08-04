@@ -161,7 +161,7 @@ Außerdem wurde ein neues python-Skript erstellt, welches einen Kompilierungs-Se
 
 Im Gegensatz zum Backend ist das Frontend eine neue Anwendung, zu der es keinen Bestandscode gab. Für das Frontend wurde ein neues Angularprojekt erstellt und mithilfe des Paketmanagers npm die benötigten Pakete hinzugefügt, von denen in den folgenden Unterabschnitten noch einige vorgestellt werden.
 
-Der Code der Anwendung besteht aus Komponenten und Services. Die Komponenten werden in der Anwendung dargestellt und werden modular genutzt. Die Services können von allen Komponenten genutzt werden und bieten Methoden zum Laden von Daten aus dem Backend an. Damit die Services wissen, unter welcher URL das Backend erreichbar ist, ist diese URL in einer Datei `environment.ts` gespeichert und kann von da abgerufen werden. Dies ermöglicht den schnellen Austausch dieser URL. Für den produktiven Einsatz gibt es zudem eine `environment.prod.ts`, die die URL des produktiven Backends enthält. Sobald das Frontend mit dem Befehl `ng build --configuration=production` in der Produktiv-Version kompilliert wird, sorgt ein Eintrag in der `angular.json` (@angularJson) dafür, dass die Environment-Datei entsprechend ausgetauscht wird.
+Der Code der Anwendung besteht aus Komponenten und Services. Die Komponenten werden in der Anwendung dargestellt und werden modular genutzt. Die Services können von allen Komponenten genutzt werden und bieten Methoden zum Laden von Daten aus dem Backend an. Damit die Services wissen, unter welcher URL das Backend erreichbar ist, ist diese URL in einer Datei `environment.ts` gespeichert und kann von da abgerufen werden. Dies ermöglicht den schnellen Austausch dieser URL. Für den produktiven Einsatz gibt es zudem eine `environment.prod.ts`, die die URL des produktiven Backends enthält. Sobald das Frontend mit dem Befehl `ng build --configuration=production` in der Produktiv-Version kompiliert wird, sorgt ein Eintrag in der `angular.json` (@angularJson) dafür, dass die Environment-Datei entsprechend ausgetauscht wird.
 
 Die Entscheidung, welche Komponente in der Anwendung gezeigt wird, wird vom RouterModule übernommen. In der main.component.ts der Anwendung (@mainComponent) wird lediglich die Topbar (welche auf jeder Seite gezeigt werden soll) und das Router-Outlet platziert. 
 
@@ -176,7 +176,7 @@ Das Router-Outlet wird dann in Abhängigkeit der besuchten URL anhand eines Eint
 Das Wechseln auf eine andere Seite ist nun sehr einfach mithilfe eines Methodenaufrufes möglich. Um Beispielsweise auf die Seite /faculty/4/department/2/course/1/module/1 zu wechseln, wird dieser Aufruf benötigt: `await this.router.navigate(['faculty', module.facultyId, 'department', module.departmentId, 'course', module.courseId, 'module', module.id]);` 
 
 Verkürzen lässt sich dies dann noch, falls ein Teil der URL bereits korrekt ist. Befinden wir uns zum Beispiel bereits auf der Seite /faculty/4/department/2/course/1 und wollen nur noch /module/1 anhängen, so können wir das Argument "relativeTo" nutzen und müssen dann nicht mehr alle Segmente anhängen: `await this.router.navigate(['module', module.id], {relativeTo: this.route});`.
-    
+
     
   
 
@@ -243,7 +243,7 @@ Für die Implementierung von verschiedenen Funktionen ergibt sich außerdem ein 
 
 
 === Anlegen und Bearbeiten von Modulen
-Die Masken zur Bearbeitung der Module und Teilmodule sind eine zentrale Stelle der Anwendung. Um hier eine gute Benutzbarkeit zu gewährleisten sind mehrere Konzepte genutzt worden. 
+Die Masken zur Bearbeitung der Module und Teilmodule sind eine zentrale Stelle der Anwendung. Um hier eine gute Benutzbarkeit zu gewährleisten, sind mehrere Konzepte genutzt worden. 
 
 Für die Anforderung der Übersetzbarkeit wurde in @addModule, @translateDropdown und @translatePopup eine Möglichkeit konzipiert, Texte in verschiedenen Sprachen zu hinterlegen. Nach erneuter Betrachtung des Problemes, ergab sich eine einfachere Lösung. Ein Nachteil der urspünglichen Lösung war, dass es für jedes Eingabefeld ein Popup gab. Dies erhöhte den Aufwand der Eingabe drastisch, da für jede Eingabe ein neues Fenster geöffnet wurde und auch wieder geschlossen werden musste. Um die Anzahl der Popups zu verringern, wurden stattdessen gewöhnliche Textfelder genutzt. Um dennoch verschiedene Sprachen zu unterstützen, wird die Eingabemaske nun für jede Sprache einmal wiederholt. Eine Anzeige im oberen Bereich zeigt die einzelnen Schritte des Bearbeitungsprozesses (@editModule).
 
