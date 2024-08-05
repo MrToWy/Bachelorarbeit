@@ -218,6 +218,14 @@ Damit sich beim Wechsel der Sprache auch alle dynamischen Texte ändern, ist ein
 #codeFigure("language.interceptor.ts", <languageInterceptor>, "languageInterceptor")
 
 
+=== Erstellen eines neuen Pdfs<createPdfUI>
+Das Erstellen eines neuen Pdfs kann in der Studiengangsübersicht gestartet werden. Hierbei öffnet sich ein Popup, welches die Veränderungen seit der letzten Veröffentlichung anzeigt. Außerdem kann hier ausgewählt werden, für welche Sprachen das Pdf generiert werden soll. Während der Generierung wird dem User der Status angezeigt und sekündlich aktualisiert. Der User kann nun entweder auf das Ergebnis warten, oder die Maske schließen und in einer seperaten Maske die vergangenen Kompilierungsaufträge ansehen.
+
+Sobald das Pdf vorliegt, kann der User dieses ansehen und dann entweder verwerfen oder freigeben. Mit der Freigabe steht es dann auch für nicht angemeldete User bereit.
+
+#todo[Maske übersetzen und Screenshots anlegen]
+#todo[Changes in Popup korrekt laden]
+
 === Subscriptions, Intervalle und Memory Leaks
 In @createPdfUI wurde beschrieben, wie der Status des Auftrages sekündlich aktualisiert wird. Hierzu wird ein Intervall genutzt, welches sekündlich eine Anfrage an das Backend sendet. Damit dieses Polling stoppt, sobald die Maske geschlossen wird, muss es gestoppt werden. 
 
