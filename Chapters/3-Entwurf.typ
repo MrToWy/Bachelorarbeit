@@ -14,9 +14,50 @@ In diesem Kapitel werden die gesammelten Anforderungen aus @anforderungsanalyse 
 == Aufbau der Datenbank <dbschema>
 
 Die Erstellung eines Datenbankschemas ist ein wichtiger Schritt. Mit einem vollständigen Datenbankschema wird sichergestellt, dass alle benötigten Daten in der Datenbank gespeichert werden können, dass auf die Daten effizient zugegriffen werden kann und dass die Datenkonsistenz gewährleistet ist. @relationaleDb[Kapitel 3] \ Bei der Konzeption wurde darauf geachtet, dass die entstehende Datenbank in der dritten Normalform vorliegen wird, um Anomalien zu vermeiden (@normalized). @relationaleDb[Kapitel 9]\
-Im ersten Schritt wurden Tabellen für Module und Teilmodule geplant. Damit das System auch für alle Fakultäten und alle Studiengänge nutzbar ist, wurden zusätzlich die Tabellen Faculty und Course geplant.  
-Um die Anforderungen @SHOWCHANGES und @REVERT vorzubereiten, wurde die Tabelle Changelog genutzt.
-Die bestehende User-Tabelle wurden an verschiedenen Stellen referenziert, um beispielsweise die verantwortlichen Personen anzugeben.
+
+=== Benötigte Tabellen
+Für die Kernfunktionalität werden zunächst Tabellen für Module und Teilmodule benötigt. Um die Organisationsstruktur der Hochschule abbilden zu können, werden weiterhin Tabellen für Fakultäten, Abteilungen und Studiengänge benötigt. Damit ein Login möglich ist, kann die Tabelle User benutzt werden. Für die Anforderung @SHOWCHANGES wird eine Tabelle Changelog und eine Tabelle ChangelogItem benötigt. In der Tabelle Changelog wird für jede Änderung ein Eintrag eingetragen, welcher den ausführenden User und eine kurze Zusammenfassung beinhaltet. In den ChangelogItems stehen dann die konkreten geänderten Felder. Damit ein Modul einer Gruppe zugewiesen werden kann, wird eine Tabelle ModuleGroup benötigt, in der alle verfügbaren Gruppen aufgelistet sind. Desweiteren werden noch die Tabelle "Job" und verschiedene "PdfStructure"-Tabellen für die Generierung der Pdf-Dateien benötigt (dazu später mehr in @pythonScript).
+
+
+
+=== Überlegungen zur Übersetzbarkeit
+Um die Anforderung @TRANSLATEMULTIPLE umsetzen zu können wird eine Datenstruktur benötigt, welche die verschiedenen Texte in verschiedenen Sprachen aufbewahren kann. Hierzu wurden zunächst verschiedene Möglichkeiten evaluiert, um das beste Vorgehen zu ermitteln.
+
+#heading(level: 4, outlined: false, numbering: none)[Idee 1]
+Für die spätere Entwicklung des Frontends könnte es praktisch sein, alle Texte einer Art in einer eigenen Tabelle aufzubewahren (@idea1). Die Eingabe eines Textes könnte dann mit allen bisherigen Texten in der Tabelle abgeglichen werden, um Fehler zu finden. Für die erste Idee würde also pro Textfeld eine eigene Tabelle angelegt werden. Das Modul hätte beispielsweise für den Titel dann nur eine Id, die auf einen Eintrag in der Tabelle ModuleTitle verweist. ModuleTitle hätte dann einen Verweis auf TranslatedText. In TranslatedText könnten dann die konkreten Texte stehen.
+
+Diese Methodik hat den Nachteil, dass pro Textfeld eine neue Tabelle benötigt wird. Dadurch kann die Datenstruktur schnell unübersichtlich werden. Außerdem könnte der Zugriff kompliziert sein. Für die Entwicklung dieses Systems sollte eine einfachere Lösung gesucht werden. 
+
+#heading(level: 4, outlined: false, numbering: none)[Idee 2]
+Eine etwas einfachere Methode wäre es, die übersetzten Texte in einer zentalen Tabelle "Translations" abzulegen (@idea2). Die Tabelle Modul hätte dann z.B. die Spalten TitleTranslationId, welche ein Foreign-Key auf die Tabelle Translation wäre. In Translation würde das dann die Spalten "Id", "English" und "German" geben, um die Texte dort abzuspeichern.
+
+Für diese Lösung muss nur eine einzelne zusätzliche Tabelle erstellt werden, was den initialen Aufwand minimiert. Auch hat die zentrale Speicherung von Texten den Vorteil, dass diese sehr einfach verwaltet werden können. Bei der Einführung einer neuen Sprache müsste nur eine neue Spalte zur Tabelle hinzugefügt werden.
+
+Die Lösung hat allerdings einen entscheidenen Nachteil. Ein Teilmodul hat 12 zu übersetzende Felder. Wenn dieses nun auf der Oberfläche angezeigt werden soll, muss für jedes der Felder ein Datenbank-Join, oder eine Unterabfrage gemacht werden. In der Tabelle Modul wird für jedes Text-Feld ja nur eine Id abgelegt, die dann aus der Übersetzungstabelle abgerufen werden muss. Dies hätte einen sehr hohen Aufwand im zukünftigen Quellcode der Anwendungen zu Folge.
+
+
+
+#heading(level: 4, outlined: false, numbering: none)[Idee 3]
+Um Zugriffe auf die Texte einfacher zu gestalten wurde eine weitere Möglichkeit entwickelt (@idea3). Für Entität (z.B. Modul, Teilmodul...) wird neben der normalen Tabelle eine weitere Tabelle mit dem Suffix "\_Translations" angelegt. Diese Zusatztabelle enthält die übersetzten Textfelder. Für jede Sprache gibt es eine Zeile in der neuen Tabelle. Wenn es also zwei Sprachen gibt (Englisch & Deutsch) gibt es für jedes Modul zwei Einträge in der dazugehörigen Übersetzungstabelle.
+
+Um nun ein Teilmodul mit 12 Feldern aus der Datenbank zu erhalten wird mit dieser Lösung nur noch ein Join benötigt. Der Quellcode der zukünftigen Anwendung sollte dadurch deutlich besser wartbar sein.
+
+#diagramFigure("ER-Diagramm - Idee 1", <idea1>, "ER_Translation")
+#diagramFigure("ER-Diagramm - Idee 2", <idea2>, "idea1")
+#diagramFigure("ER-Diagramm - Idee 3", <idea3>, "idea2")
+
+
+
+=== Resultierendes Schema
+
+
+In @ER ist ein kleiner Teil des entstandenen ER-Diagramms zu sehen. Die vollständige Version des Diagramms ist sehr groß und findet daher hier leider keinen Platz. Die Abbildung ist in der Dokumentation des Systems zu finden (Pfad: #link("https://studymodules-docs.tobi.win/docs/backend/Architecture/Database")[/docs/backend/Architecture/Database]). 
+#diagramFigure("ER-Diagramm - Gesamtbild", <ER>, "simple_ER")
+
+
+#todo[Die Informationen E1, E2 wieder in das vollständige ER Diagramm eintragen
+
+
 Eigenschaften, die aus @requirements oder aus @properties hervorgehen, sind dementsprechend markiert.
 
 #diagramFigure("ER-Diagramm - Gesamtbild", <ER>, "ER")
