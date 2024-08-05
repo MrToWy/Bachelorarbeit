@@ -12,5 +12,4 @@ fields.forEach(field => {
     comparePrimitiveField(unchangedObject, newObject, baseFieldName, field);
   }
 });
-
 ```

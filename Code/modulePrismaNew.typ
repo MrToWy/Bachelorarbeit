@@ -2,18 +2,14 @@
   ```prisma
 model Module {
  id Int @id @default(autoincrement())
- name TranslationKey? @relation(name: "name", fields: [nameId], references: [id])
- nameId    Int?
- description TranslationKey? @relation(name: "description", fields: [descriptionId], references: [id])
- descriptionId Int?
+ name                String?
+ degreeProgram       DegreeProgram @relation(fields: [degreeProgramId], references: [id])
+ degreeProgramId     Int
 ...
 
-model TranslationKey {
+model DegreeProgram {
   id                 Int           @id @default(autoincrement())
-  translations       Translation[]
-  facultyNames       Faculty[]
-  moduleNames        Module[]      @relation("name")
-  moduleDescriptions Module[]      @relation("description")
+  modules            Module[]
 ...
 ```
 ]

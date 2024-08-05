@@ -51,7 +51,7 @@ Es gibt eine schema.prisma-Datei, in der die Struktur der relationalen Datenbank
 #codeFigure("Auszug aus schema.prisma", <moduletable>, "moduleTablePrisma")
 
 
-=== Struktur einer beispielhaften Angular Anwendung
+=== Struktur einer beispielhaften Angular Anwendung <angularStructureExample>
 Eine Angular Anwendung besteht aus Komponenten und Seiten. Auf einer Seite werden 0 bis n Komponenten in einer HTML-ähnlichen Struktur organisiert. 
 
 Eine Komponente ist ein wiederverwendbares Element auf einer Website – beispielsweise ein Drop-Down, oder eine Textbox. Eine Komponente ist ebenfalls in der HTML-ähnlichen Struktur organisiert. In der Komponente können sich HTML-Elemente und andere Angular-Komponenten befinden.
