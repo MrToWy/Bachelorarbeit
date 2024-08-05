@@ -182,6 +182,37 @@ Verkürzen lässt sich dies dann noch, falls ein Teil der URL bereits korrekt is
 Ein UI-Framework kann bei der Implementierung des Frontends unterstützen. Vom Framework angebotene vorgefertigte Komponenten müssen nicht selbst implementiert werden. Zunächst wurden die Frameworks `@ng-bootstrap/ng-bootstrap` @AngularPoweredBootstrap und `primeng` @PrimeNGAngularUI verglichen. Beide Frameworks haben hohe Downloadzahlen und eine gute Dokumentation. Da PrimeNG jedoch weitaus mehr Komponenten anbietet, wird in diesem Projekt PrimeNG verwendet. Dank der Nutzung von PrimeNG ist die Implementierung der verschiedenen Tabellen und Formularen weitaus effizienter. Außerdem sieht das System insgesamt einheitlich und modern aus, weil alle PrimeNG-Komponenten dem gleichen Theme folgen. @PrimeNGAngularUI     
 
 
+
+=== Styling
+Um die Darstellung der Inhalte von der Struktur der Inhalte zu trennen, werden in der Webentwicklung die Regeln zur Darstellung üblicherweise in CSS-Dateien definiert und dann in die HTML-Dateien eingebunden @css. Für dieses System wurde SASS @sass, eine Erweiterung von CSS verwendet, die zusätzlich Features einführt. Durch die Nutzung von Einrückungen kann der Code so etwas lesbarer gestaltet werden, da lange Selektoren übersichtlicher dargestellt werden können und nicht wiederholt werden müssen. @sassStyleRules
+
+Es wurde eine globale SASS-Datei erstellt, um Klassen die an vielen Stellen verwendet werden sollen zu definieren (siehe @sassMain). Es gibt in der Anwendung viele klickbare Elemente. Um darzustellen, dass diese klickbar sind, soll sich der Cursor verändern, wenn er sich über dem Element befindet. Hierzu muss nun einfach die Klasse .clickable auf das Element gelegt werden. Neben .clickable gibt es noch zahlreiche weitere Klassen wie zum Beispiel ("fullWidth", "smallPadding", "mediumPadding" und "largePadding"), die für eine konsistente Darstellung in der Anwendung sorgen. Außerdem wurde overwritePrimeNg.sass erstellt, welche ausgewählte Eigenschaften von PrimeNG überschreibt. SASS erlaubt die Nutzung von Import-Statements, sodass die zusätzliche Datei einfach in der globalen SASS-Datei mit der Anweisung `@import "overwritePrimeNg"` importiert werden kann. 
+
+#codeFigure("Auszug styles.sass", <sassMain>, "sassMain")
+
+Des Weiteren hat jede Komponente nochmal eine eigene .sass-Datei, in der Komponentenbezogene Darstellungseigenschaften gesetzt werden können. Diese .sass-Dateien werden nur auf die Elemente in der Komponente angewendet, sodass alle anderen Komponenten unverändert bleiben. @ViewEncapsulation 
+
+=== Responsive Design<responsiveImplemented>
+In verschiedenen Gesprächen mit zukünftigen Nutzern stellte sich heraus, dass die administrativen Oberflächen auf Desktop-PCs bedient werden. Für die administrativen Oberflächen muss die Ansicht auf mobilen Geräten also nicht optimiert werden. Die Übersicht der Studiengänge, die Übersicht der angebotenen Module sowie die moderne Ansicht der Moduldetails könnte jedoch von Studierenden auf mobilen Geräten geöffnet werden und sollte daher für die mobile Ansicht optimiert werden @RESPONSIVE.
+
+Damit die Anzeige der Studiengänge (@menu) auf mobilen Geräten gut aussieht musste nicht viel angepasst werden. Statt die Karten der Studiengänge nebeneinander aufzureihen werden diese in der mobilen Ansicht nun untereinander platziert. Für die Desktopansicht wird hier ein Grid @cssGrid mit drei Spalten genutzt genutzt. Damit es in der mobilen Ansicht nur eine Spalte gibt, kann der Wert `grid-template-columns` mithilfe von `unset` @cssUnset zurück auf den ursprünglichen Wert gesetzt werden (siehe @cssUnsetCode). Für die Erkennung, ob die mobile Ansicht benötigt wird, wird eine Media Query genutzt. Diese sorgt dafür, dass die genannte Spalteneingenschaft nur für Geräte mit einer Bildschirmbreite unter 850 Pixeln zurückgesetzt wird. @ertel_responsive_nodate
+
+#codeFigure("courses.component.sass", <cssUnsetCode>, "cssUnset")
+
+
+Die Anzeige aller Module ist in der Desktopansicht eine Tabelle. Diese wird auf mobilen Endgeräten zwar dargestellt, jedoch muss von links nach rechts gescrollt werden, um alle Felder sehen zu können. Um diese Ansicht zu optimieren, kann eine Funktion von PrimeNG genutzt werden, um für mobile Geräte aus der Tabelle eine Auflistung von Karten zu machen. Das Setzen von `responsiveLayout="stack"` reicht hier aus. Um die Felder auf den mobilen Karten noch zu beschriften muss für jedes Feld eine Beschriftung hinzugefügt werden. Die Klasse `p-column-title` muss dabei auf die entsprechende Beschriftung gesetzt werden, damit PrimeNg sie passend ein und ausblendet. @primengTable 
+
+
+//#imageFigure(<responsiveModules>, "responsiveModules.png", "Mobile Auflistung der Module", width:60%)
+
+//#imageFigure(<responsiveModuleDetails>, "../Images/responsiveModuleDetails.png", "Mobile Anzeige der Moduldetails", width:60%)
+
+Zuletzt muss noch die Anzeige der Moduldetails optimiert werden. Diese ist etwas komplexer aufgebaut, da sie aus vielen verschiedenen Komponenten besteht. Die Komponenten in der ersten Reihe in @moduleDetailResult sind beispielsweise Info-Card-Components und bestehen aus einem Icon, einem Label und einem Anzeigewert. Neben den Info-Cards gibt es noch Stat-Cards für die Anzeige des Kuchen-Diagrammes (siehe @moduleDetailResult), Text-Cards für die Anzeige von einfachen Texten (z.B. Vorraussetzungen) und Split-Text-Cards für die Anzeige von zwei verschiedenen Texten innerhalb einer Karte. Für die Optimierung bei kleinen Bildschirmgrößen können Info-Card und Text-Card ignoriert werden, da diese bereits vollständig anzeigbar sind. Die Split-Text-Card muss auf kleinen Bildschirmgrößen die Texte untereinander statt nebeneinander zeigen. Hierzu musste die Flex-Direction mithilfe einer Media Query auf "column" gesetzt werden. @noauthor_flex-direction_2024 Dies war auch bei der Stats-Card erforderlich. Hier wurden zusätzlich die Texte anders ausgerichtet, damit sie auf der Karte zentriert angezeigt werden.
+
+Die einzelnen Karten sind in der Ansicht der Moduldetails in einem Grid angeordnet. Dieses hat in der Desktopansicht 5 Spalten. Die Info-Karten passen in eine Spalte, während sich Karten mit mehr Inhalt auf mehrere Spalten verteilen dürfen. Damit auf der mobilen Ansicht die Karten vollständig angezeigt werden können, ohne dass ein horizontales Scrollen notwendig ist, wird die Eigenschaft `grid-column` von jeder Karte auf 5 gesetzt, sodass es pro Zeile jeweils eine Karte gibt. @cssGrid
+
+
+
 === Übersetzbarkeit <uebersetzbarkeit>
 
 Damit jede Komponente weiß, welche Sprache gerade dargestellt werden soll, wird ein Service genutzt (@languageService). Dieser kann per Dependency Injection @DependencyInjectionAngular im Konstruktor einer beliebigen Komponente genutzt werden. Wenn in der Topbar (@grundgerüst) eine andere Sprache ausgewählt wird, wird die Eigenschaft `languageCode` im LanguageService verändert (`this.languageService.languageCode = selectedLanguageCode;`). 
