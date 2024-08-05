@@ -12,5 +12,4 @@ this.courseService.getAll().subscribe(courses => {
     }
   });
 });
-
 ```

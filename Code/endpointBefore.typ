@@ -33,154 +33,151 @@ highlights:(
 
 ```ts
 async updateModule(moduleDto: ModuleDto) {
-    const {
-      id,
-      degreeProgramId,
-      groupId,
-      translations,
-      subModules,
-      responsibleId,
-      requirementsHardId,
-      requirementsSoftId,
-      requirementsSoft: requirementsSoftNew,
-      requirementsHard: requirementsHardNew,
-      ...moduleData
-    } = moduleDto;
+  const {
+    id,
+    degreeProgramId,
+    groupId,
+    translations,
+    subModules,
+    responsibleId,
+    requirementsHardId,
+    requirementsSoftId,
+    requirementsSoft: requirementsSoftNew,
+    requirementsHard: requirementsHardNew,
+    ...moduleData
+  } = moduleDto;
 
-    const updateArgs = {
-      where: { id },
-      data: {
-        ...moduleData,
-        
-        responsible: responsibleId ? {
-          connect: { id: responsibleId }
-        } : undefined,
+  const updateArgs = {
+    where: { id },
+    data: {
+      ...moduleData,
 
-        requirementsHard: {
+      responsible: responsibleId ? {
+        connect: { id: responsibleId }
+      } : undefined,
+
+      requirementsHard: {
+        update: {
+          requiredSemesters: requirementsHardNew.requiredSemesters,
+          translations: {
+            upsert: this.upsertTranslations(this.filterValidTranslations(requirementsHardNew.translations))
+          },
+          modules: {
+            set: [], // remove all modules, before adding the new ones
+            connect: requirementsHardNew.modules.map(module => ({
+              id: module.id
+            }))
+          }
+        }
+      },
+
+      requirementsSoft: {
+        update: {
+          requiredSemesters: requirementsSoftNew.requiredSemesters,
+          translations: {
+            upsert: this.upsertTranslations(this.filterValidTranslations(requirementsSoftNew.translations))
+          },
+          modules: {
+            set: requirementsSoftNew.modules.map(module => ({
+              id: module.id
+            }))
+          }
+        }
+      },
+
+      translations: {
+        upsert: translations.map(({ id: translationId, moduleId, languageId, ...translationData }) => ({
+          where: { id: translationId },
           update: {
-            requiredSemesters: requirementsHardNew.requiredSemesters,
-            translations: {
-              upsert: this.upsertTranslations (this.filterValidTranslations(requirementsHardNew.translations))
-            },
-            
-            modules: {
-              set: [], // remove all modules, before adding the new ones
-              connect: requirementsHardNew.modules.map(module => ({
-                id: module.id
-              }))
-            }
-          }
-        },
-
-        requirementsSoft: {
-          update: {
-            requiredSemesters: requirementsSoftNew.requiredSemesters,
-            translations: {
-              upsert: this.upsertTranslations(this.filterValidTranslations(requirementsSoftNew.translations))
-            },
-            
-            modules: {
-              set: requirementsSoftNew.modules.map(module => ({
-                id: module.id
-              }))
-            }
-          }
-        },
-
-        translations: {
-          upsert: translations.map(({ id: translationId, moduleId, languageId, ...translationData }) => ({
-            where: { id: translationId },
-            update: {
-              ...translationData,
-              language: { connect: { id: languageId } }
-            },
-            create: {
-              ...translationData,
-              language: { connect: { id: languageId } }
-            }
-          }))
-        },
-
-        subModules: {
-          connect: subModules.map(subModule => ({
-            id: subModule.id
-          }))
-        },
-
-        degreeProgram: {
-          connect: { id: degreeProgramId }
-        },
-
-        group: groupId ? {
-          connect: { id: groupId }
-        } : undefined
-      }
-    }
-
-    const createArgs = {
-      data: {
-        ...moduleData,
-        responsible: responsibleId ? {
-          connect: { id: responsibleId }
-        } : undefined,
-
-        requirementsHard: {
-          create: {
-            requiredSemesters: requirementsHardNew.requiredSemesters,
-            degreeProgram: { connect: { id: degreeProgramId } },
-            translations: {
-              create: createTranslations(this.filterValidTranslations(requirementsHardNew.translations))
-            },
-            modules: {
-              connect: requirementsHardNew.modules.map(module => ({
-                id: module.id
-              }))
-            }
-          }
-        },
-        requirementsSoft: {
-          create: {
-            requiredSemesters: requirementsSoftNew.requiredSemesters,
-            degreeProgram: { connect: { id: degreeProgramId } },
-            translations: {
-              create: createTranslations(this.filterValidTranslations(requirementsSoftNew.translations))
-            },
-            modules: {
-              connect: requirementsSoftNew.modules.map(module => ({
-                id: module.id
-              }))
-            }
-          }
-        },
-        translations: {
-          create: translations.map(({ id: translationId, languageId, moduleId, ...translationData }) => ({
             ...translationData,
             language: { connect: { id: languageId } }
-          }))
-        },
+          },
+          create: {
+            ...translationData,
+            language: { connect: { id: languageId } }
+          }
+        }))
+      },
 
-        subModules: {
-          connect: subModules.map(subModule => ({
-            id: subModule.id
-          })),
-        },
-        degreeProgram: {
-          connect: { id: degreeProgramId }
-        },
+      subModules: {
+        connect: subModules.map(subModule => ({
+          id: subModule.id
+        }))
+      },
 
-        group: groupId ? {
-          connect: { id: groupId }
-        } : undefined
-      }
-    };
+      degreeProgram: {
+        connect: { id: degreeProgramId }
+      },
 
-    const upsertArgs = {
-      where: { id },
-      update: updateArgs.data,
-      create: createArgs.data
+      group: groupId ? {
+        connect: { id: groupId }
+      } : undefined
     }
-
-    const upsertedModule = await this.prisma.module.upsert (upsertArgs);
   }
 
+  const createArgs = {
+    data: {
+      ...moduleData,
+      responsible: responsibleId ? {
+        connect: { id: responsibleId }
+      } : undefined,
+
+      requirementsHard: {
+        create: {
+          requiredSemesters: requirementsHardNew.requiredSemesters,
+          degreeProgram: { connect: { id: degreeProgramId } },
+          translations: {
+            create: this.createTranslations(this.filterValidTranslations(requirementsHardNew.translations))
+          },
+          modules: {
+            connect: requirementsHardNew.modules.map(module => ({
+              id: module.id
+            }))
+          }
+        }
+      },
+      requirementsSoft: {
+        create: {
+          requiredSemesters: requirementsSoftNew.requiredSemesters,
+          degreeProgram: { connect: { id: degreeProgramId } },
+          translations: {
+            create: this.createTranslations(this.filterValidTranslations(requirementsSoftNew.translations))
+          },
+          modules: {
+            connect: requirementsSoftNew.modules.map(module => ({
+              id: module.id
+            }))
+          }
+        }
+      },
+      translations: {
+        create: translations.map(({ id: translationId, languageId, moduleId, ...translationData }) => ({
+          ...translationData,
+          language: { connect: { id: languageId } }
+        }))
+      },
+
+      subModules: {
+        connect: subModules.map(subModule => ({
+          id: subModule.id
+        })),
+      },
+      degreeProgram: {
+        connect: { id: degreeProgramId }
+      },
+
+      group: groupId ? {
+        connect: { id: groupId }
+      } : undefined
+    }
+  };
+
+  const upsertArgs = {
+    where: { id },
+    update: updateArgs.data,
+    create: createArgs.data
+  }
+
+  const upsertedModule = await this.prisma.module.upsert(upsertArgs);
+}
 ```
