@@ -31,7 +31,7 @@ Nachdem die Datenbank vorbereitet war, konnten nun die benötigten Endpunkte im 
 
 Hierzu wurden zunächst Controller-Klassen für die verschiedenen Entitäten angelegt. Beispielsweise wird ein DegreeController benötigt (@degreeController), um die benötigten Endpunkte für Studiengänge bereitzustellen. Innerhalb der Controller wurde anschließend für jeden benötigten Endpunkt eine Methode erstellt und mithilfe von Dekoratoren näher beschrieben. @ControllersDocumentationNestJS
 Der `@Controller`-Dekorator sorgt dafür, dass NestJs die Klasse als Controller identifiert und entsprechend die enthaltenen Endpunkte bereitstellt. Außerdem ist als Parameter angegeben, unter welchem Pfad die Endpunkte erreichbar sind (hier: /degrees).
-Der `@ApiTags`-Dekorator sorgt dafür, dass die Endpunkte in der Weboberfläche der API gruppiert in der Gruppe "Degrees" dargestellt werden. Weiterhin werden die Methoden für die Endpunkte mit einem Dekorator versehen, der die HTTP-Methode angibt, die genutzt werden muss, um den Endpunkt aufzurufen. Wenn der Endpunkt `/degrees` per GET-Request aufgerufen wird, wird also das Ergebnis der findAll-Methode zurückgegeben. Wenn der Endpunkt `/degrees/5` aufgerufen wird, wird das Ergebnis der findOne-Methode zurückgegeben. Die findOne-Methode erhält außerdem weitere Parameter, die auch in vielen anderen Methoden im Backend ähnlich genutzt werden. Der erste Parameter enthält die Id aus dem Pfad der Anfrage (im Beispiel /degrees/5, wäre das die 5). Der zweite Parameter enthält ein Request-Objekt. Dieses wird genutzt, um die in dem Request übergebenen Header auszulesen. Im aktuellen Beispiel wird die angefragte Sprache ausgelesen, um vom DegreeService Informationen in der Sprache des Benutzers zu erhalten.
+Der `@ApiTags`-Dekorator sorgt dafür, dass die Endpunkte in der Weboberfläche der API gruppiert in der Gruppe "Degrees" dargestellt werden. Weiterhin werden die Methoden für die Endpunkte mit einem Dekorator versehen, der die HTTP-Methode angibt, die genutzt werden muss, um den Endpunkt aufzurufen. @nestjs Wenn der Endpunkt `/degrees` per GET-Request aufgerufen wird, wird also das Ergebnis der findAll-Methode zurückgegeben. Wenn der Endpunkt `/degrees/5` aufgerufen wird, wird das Ergebnis der findOne-Methode zurückgegeben. Die findOne-Methode erhält außerdem weitere Parameter, die auch in vielen anderen Methoden im Backend ähnlich genutzt werden. Der erste Parameter enthält die Id aus dem Pfad der Anfrage (im Beispiel /degrees/5, wäre das die 5). Der zweite Parameter enthält ein Request-Objekt. Dieses wird genutzt, um die in dem Request übergebenen Header auszulesen. Im aktuellen Beispiel wird die angefragte Sprache ausgelesen, um vom DegreeService Informationen in der Sprache des Benutzers zu erhalten.
 
 Über den Constructor werden per Dependency Injection @DependencyInjectionAngular die benötigten Services übergeben. Das Framework nest.js sorgt dafür, dass die Services einmalig instanziiert werden. 
 
@@ -103,10 +103,6 @@ Damit der User im genannten Fall also verfügbar ist, wird der Guard mithilfe de
 
 
 
-#heading("Besondere Endpunkte", level: 4, numbering: none, outlined: false)
-
-Für die Generierung der PDF-Datei (@PDF), wird ein Python-Skript ausgeführt (@pythonScript). Da dies eine längere Laufzeit hat, meldet der Endpunkt zunächst den Status 202-Accepted zurück, und nennt eine Id. Das Frontend kann mithilfe der Id das fertige PDF abrufen. Solange das PDF noch nicht bereit steht, meldet das Backend einen Status 404-Not Found zurück. @restUndHTTP[Abschnitt 13.1]
-
 
 === PDFs generieren <pythonScript>
 
@@ -123,6 +119,8 @@ Das Generieren einer Modulbeschreibung in Form einer PDF-Datei verläuft in mehr
 In den Schritten 2 bis 5 werden eine .tex-Datei und eine .pdf-Datei generiert. Dies wird im Folgenden näher beschrieben.
 
 #heading("Generierung der .tex-Datei", level: 4, numbering: none, outlined: false)
+
+
 Die Grundlage für die Generierung der .tex-Datei bildet ein Python-Skript, welches von #heine bereitgestellt wurde. Dieses Script wurde im Rahmen dieser Arbeit an die veränderte Datenstruktur angepasst. Anschließend wurde das Skript in TypeScript umgewandelt und in das neue Backend eingebaut. Hierzu wurde das Datenbankschema um die benötigten Einträge erweitert und es wurde ein neuer Controller mit dazugehörigem Service eingesetzt, welcher die Endpunkte und Methoden zur Generierung der .tex-Datei anbietet. 
 
 Das ursprüngliche Python-Skript enthielt eine statische Auflistung der Felder in der Tabelle des Modulhandbuches. Darin enthalten war der gewünschte Text (z.B. Moduldauer) und das dazugehörige Feld (module.courseLength). Diese statische Auflistung wurde im Rahmen der Umstellung in die Datenbank verschoben. Hierdurch soll der Wartungsaufwand reduziert werden. Mehrere Auslöser können dazu führen, dass sich die Struktur des zu generierenden Pdfs ändert. Es könnte neben Englisch und Deutsch eine zusätzliche Sprache angeboten werden. Auch ist es denkbar, dass zusätzliche Felder eingeführt werden. Für die Studiengänge an der Fakultät 3 wird beispielsweise die Information "Gewichtung" auf den Modulhandbüchern abgedruckt. Um nun verschiedene Pdf-Strukturen für verschiedene Studiengänge anzubieten, ist nun nur noch eine Veränderung der Datensätze in der Datenbank notwendig. Hierfür könnte eine zusätzliche Oberfäche erstellt werden, mit der die User selbst die Pdf-Struktur konfigurieren können.

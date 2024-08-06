@@ -33,12 +33,12 @@ Eine etwas einfachere Methode wäre es, die übersetzten Texte in einer zentalen
 
 Für diese Lösung muss nur eine einzelne zusätzliche Tabelle erstellt werden, was den initialen Aufwand minimiert. Auch hat die zentrale Speicherung von Texten den Vorteil, dass diese sehr einfach verwaltet werden können. Bei der Einführung einer neuen Sprache müsste nur eine neue Spalte zur Tabelle hinzugefügt werden.
 
-Die Lösung hat allerdings einen entscheidenen Nachteil. Ein Teilmodul hat 12 zu übersetzende Felder. Wenn dieses nun auf der Oberfläche angezeigt werden soll, muss für jedes der Felder ein Datenbank-Join, oder eine Unterabfrage gemacht werden. In der Tabelle Modul wird für jedes Text-Feld ja nur eine Id abgelegt, die dann aus der Übersetzungstabelle abgerufen werden muss. Dies hätte einen sehr hohen Aufwand im zukünftigen Quellcode der Anwendungen zu Folge.
+Die Lösung hat allerdings einen entscheidenen Nachteil. Ein Teilmodul hat 12 zu übersetzende Felder. Wenn dieses nun auf der Oberfläche angezeigt werden soll, muss für jedes der Felder ein Datenbank-Join, oder eine Unterabfrage gemacht werden. In der Tabelle Modul wird für jedes Text-Feld ja nur eine Id abgelegt, die dann aus der Übersetzungstabelle abgerufen werden muss. Dies hätte einen hohen Aufwand im zukünftigen Quellcode der Anwendungen zu Folge.
 
 
 
 #heading(level: 4, outlined: false, numbering: none)[Idee 3]
-Um Zugriffe auf die Texte einfacher zu gestalten wurde eine weitere Möglichkeit entwickelt (@idea3). Für Entität (z.B. Modul, Teilmodul...) wird neben der normalen Tabelle eine weitere Tabelle mit dem Suffix "\_Translations" angelegt. Diese Zusatztabelle enthält die übersetzten Textfelder. Für jede Sprache gibt es eine Zeile in der neuen Tabelle. Wenn es also zwei Sprachen gibt (Englisch & Deutsch) gibt es für jedes Modul zwei Einträge in der dazugehörigen Übersetzungstabelle.
+Um Zugriffe auf die Texte einfacher zu gestalten wurde eine weitere Möglichkeit entwickelt (@idea3). Für jede Entität (z.B. Modul, Teilmodul...) wird neben der normalen Tabelle eine weitere Tabelle mit dem Suffix "\_Translations" angelegt. Diese Zusatztabelle enthält die übersetzten Textfelder. Für jede Sprache gibt es eine Zeile in der neuen Tabelle. Wenn es also zwei Sprachen gibt (Englisch & Deutsch) gibt es für jedes Modul zwei Einträge in der dazugehörigen Übersetzungstabelle.
 
 Um nun ein Teilmodul mit 12 Feldern aus der Datenbank zu erhalten wird mit dieser Lösung nur noch ein Join benötigt. Der Quellcode der zukünftigen Anwendung sollte dadurch deutlich besser wartbar sein.
 
@@ -54,24 +54,6 @@ Um nun ein Teilmodul mit 12 Feldern aus der Datenbank zu erhalten wird mit diese
 In @ER ist ein kleiner Teil des entstandenen ER-Diagramms zu sehen. Die vollständige Version des Diagramms ist sehr groß und findet daher hier leider keinen Platz. Die Abbildung ist in der Dokumentation des Systems zu finden (Pfad: #link("https://studymodules-docs.tobi.win/docs/backend/Architecture/Database")[/docs/backend/Architecture/Database]). 
 #diagramFigure("ER-Diagramm - Gesamtbild", <ER>, "simple_ER")
 
-
-#todo[Die Informationen E1, E2 wieder in das vollständige ER Diagramm eintragen
-
-
-Eigenschaften, die aus @requirements oder aus @properties hervorgehen, sind dementsprechend markiert.
-
-#diagramFigure("ER-Diagramm - Gesamtbild", <ER>, "ER")
-
-
-#todo(inline:true)[
-  hier müssen die Überlegungen zur Übersetzbarkeit hin
-
-  Idee, alle Übersetzungen in eine Tabelle zu legen und in den einzelnen Tabellen dann nur Key-Ids zu speichern
-]
-
-Um die Anforderung @TRANSLATEMULTIPLE vorzubereiten, wurde die Tabelle TranslatedText für alle Eigenschaften mit dem Datentyp "TEXT" genutzt. Zur besseren Lesbarkeit wurde dies nur exemplarisch für die Eigenschaften E1-E3 dargestellt:
-
-#diagramFigure("ER-Diagramm - TranslatedText", <ER_TRANS>, "ER_Translation")
 
 
 
