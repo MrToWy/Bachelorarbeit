@@ -84,9 +84,7 @@ Der ECTS User-Guide @ects beschreibt, dass Modulhandbücher bereits bei der Wahl
 
 
 === Studierende <student>
-Eine weitere Zielgruppe sind Studierende. Diese können mithilfe der Modulbeschreibungen verstehen, welche Inhalte in einem Modul gelernt werden und welche Voraussetzungen es gibt. Dadurch können Studierende einschätzen, ob sie genug Vorwissen für ein bestimmtes Modul haben. Weiterhin können Studierende dank der Modulhandbücher zu jedem Modul den korrekten Ansprechpartner finden, einen Überblick über die zu erbringende Arbeitszeit erhalten, sowie Informationen zu den Prüfungsleistungen finden. 
-
-
+Eine weitere Zielgruppe sind Studierende. In Gesprächen mit verschiedenen Studierenden stellte sich heraus, dass es oft eine Unklarheit über das Angebot der Wahlpflichtfächer gibt. Das neue System könnte bei der Suche nach einem geeigneten Wahlpflichtfach unterstützen. Auch könnten Studierende mithilfe der Modulbeschreibungen verstehen, welche Inhalte in einem Modul gelernt werden und welche Voraussetzungen es gibt. Dadurch können Studierende einschätzen, ob sie genug Vorwissen für ein bestimmtes Modul haben. Weiterhin können Studierende dank der Modulhandbücher zu jedem Modul beispielsweise einen Überblick über die zu erbringende Arbeitszeit erhalten, sowie Informationen zu den Prüfungsleistungen finden. 
 
 
 
