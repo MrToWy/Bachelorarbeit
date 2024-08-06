@@ -13,10 +13,30 @@ In diesem Kapitel werden die gesammelten Anforderungen aus @anforderungsanalyse 
 
 == Aufbau der Datenbank <dbschema>
 
-Die Erstellung eines Datenbankschemas ist ein wichtiger Schritt. Mit einem vollständigen Datenbankschema wird sichergestellt, dass alle benötigten Daten in der Datenbank gespeichert werden können, dass auf die Daten effizient zugegriffen werden kann und dass die Datenkonsistenz gewährleistet ist. @relationaleDb[Kapitel 3] \ Bei der Konzeption wurde darauf geachtet, dass die entstehende Datenbank in der dritten Normalform vorliegen wird, um Anomalien zu vermeiden (@normalized). @relationaleDb[Kapitel 9]\
+Die Erstellung eines Datenbankschemas ist ein wichtiger Schritt. Mit einem vollständigen Datenbankschema wird sichergestellt, dass alle benötigten Daten in der Datenbank gespeichert werden können, dass auf die Daten effizient zugegriffen werden kann und dass die Datenkonsistenz gewährleistet ist. @relationaleDb[Kapitel 3] 
+
+Die Datenbankschemas werden mithilfe der Krähenfußnotation @relationaleDb[Seite 26] erstellt. Die Bedeutung der Kardinalitäten ist in @kardinalitäten erklärt. @EntityRelationshipDiagram
+
+#figure(caption: "Notation der Kardinalitäten")[
+  #table(
+  columns: (auto, auto),
+  inset: 10pt,
+  align: horizon,
+  table.header(
+    [*Zeichen*], [*Bedeutung*],
+  ),
+  [o|],[0 oder eins],
+  [||],[genau eins],
+  [o{],[0 oder mehrere],
+  [|{],[eins oder mehrere],
+)
+]<kardinalitäten> 
+
 
 === Benötigte Tabellen
 Für die Kernfunktionalität werden zunächst Tabellen für Module und Teilmodule benötigt. Um die Organisationsstruktur der Hochschule abbilden zu können, werden weiterhin Tabellen für Fakultäten, Abteilungen und Studiengänge benötigt. Damit ein Login möglich ist, kann die Tabelle User benutzt werden. Für die Anforderung @SHOWCHANGES wird eine Tabelle Changelog und eine Tabelle ChangelogItem benötigt. In der Tabelle Changelog wird für jede Änderung ein Eintrag eingetragen, welcher den ausführenden User und eine kurze Zusammenfassung beinhaltet. In den ChangelogItems stehen dann die konkreten geänderten Felder. Damit ein Modul einer Gruppe zugewiesen werden kann, wird eine Tabelle ModuleGroup benötigt, in der alle verfügbaren Gruppen aufgelistet sind. Desweiteren werden noch die Tabelle "Job" und verschiedene "PdfStructure"-Tabellen für die Generierung der Pdf-Dateien benötigt (dazu später mehr in @pythonScript).
+
+Jede Tabelle erhält eine Spalte "Id" als Primärschlüssel. @relationaleDb[Kapitel 3]  Über diese Id werden die Relationen zu anderen Tabellen ermöglicht. Zusätzlich wird für jede Eigenschaft aus @structure eine dazugehörige Spalte benötigt.
 
 
 
