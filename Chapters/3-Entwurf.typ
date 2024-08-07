@@ -7,6 +7,8 @@
 
 In diesem Kapitel werden die gesammelten Anforderungen aus @anforderungsanalyse verwendet, um die Implementierung in @implementierung vorzubereiten. Hierzu wird zunächst ein Datenbankschema erstellt, um die Datenbank fürs Backend anzupassen (@dbschema). Anschließend werden die Benutzeroberflächen prototypisch geplant (@UI). Im letzten Schritt werden die benötigten Endpunkte des Backends ermittelt (@endpoints).
 
+Die Entwurfsphase ist für die Entwicklung des Systems wichtig, damit grundlegende Entscheidungen möglichst früh getroffen werden. Wenn die Entwicklung des Systems bereits begonnen hat, benötigen nachträgliche Änderungen oft einen höheren Aufwand. Durch einen guten Entwurf soll die Implementierung beschleunigt werden, da in der Implementierungsphase dann weniger Entscheidungen getroffen werden müssen. @kleuker_grundkurs_2013 
+
 
 
 
@@ -71,8 +73,11 @@ Um nun ein Teilmodul mit 12 Feldern aus der Datenbank zu erhalten wird mit diese
 === Resultierendes Schema
 
 
-In @ER ist ein kleiner Teil des entstandenen ER-Diagramms zu sehen. Die vollständige Version des Diagramms ist sehr groß und findet daher hier leider keinen Platz. Die Abbildung ist in der Dokumentation des Systems zu finden (Pfad: #link("https://studymodules-docs.tobi.win/docs/backend/Architecture/Database")[/docs/backend/Architecture/Database]). 
+In @ER ist ein kleiner Teil des entstandenen ER-Diagramms zu sehen. Die vollständige Version des Diagramms ist sehr groß und findet daher hier leider keinen Platz. Die vollständige Abbildung ist in der Dokumentation des Systems zu finden (Pfad: #link("https://studymodules-docs.tobi.win/docs/backend/Architecture/Database")[/docs/backend/Architecture/Database]). 
+
+In dem Diagram ist beispielsweise auf der linken Seite zu sehen, das ein Modul immer einem Studiengang zugewiesen sein muss. Andersherum kann ein Studiengang 0 bis n verschiedene Module anbieten. Das Schema soll Entwickelnde dabei unterstützen, die Datenstruktur des Systems zu verstehen. Anhand des Schemas kann im folgenden Kapitel die Datenbank des Backends erstellt werden, sodass diese dann alle benötigten Daten abspeichern kann.
 #diagramFigure("ER-Diagramm - Gesamtbild", <ER>, "simple_ER")
+
 
 
 

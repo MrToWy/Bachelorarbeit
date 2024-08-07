@@ -103,6 +103,26 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   [@TRANSLATE],[Die Anwendung und die Pdfs die generiert werden stehen in Englisch und Deutsch bereit.],[Erfüllt],
   [@TRANSLATEMULTIPLE],[Der Code ist so vorbereitet, dass ohne großen Aufwand weitere Sprachen hinzugefügt werden können. Aktuell liegen die Modulhandbücher nur in Englisch und Deutsch vor, weshalb die neue Anwendung auch nur in Deutsch und Englisch entwickelt wurde.],[Vorbereitet],
   [@lookup],[In den Bearbeitungsmasken werden Eingabefelder verwendet, welche den User bei der Eingabe unterstützen. Wenn beispielsweise eine Zahl erwartet wird, können keine Buchstaben eingegeben werden. Außerdem werden wenn möglich Dropdowns statt Textfeldern genutzt.],[Erfüllt #linebreak() (@editModule)],
+  [@similarPdf], [], [],
+  [@security], [], [],
+
+  table.cell(colspan: 3, align: center, [#emph("Übertragbarkeit")]),
+  [@DOKBACK], [], [],
+  [@containerAnf], [], [],
+  [@austauschbarkeit], [], [],
+
+  table.cell(colspan: 3, align: center, [#emph("Zuverlässigkeit")]),
+  [@ERRORSTABLE], [], [],
+  [@reife], [], [],
+  [@robustheit], [], [],
+
+  table.cell(colspan: 3, align: center, [#emph("Technische Anforderungen")]),
+  [@FRONT], [], [],
+  [@FRONT_TECH], [], [],
+  [@BACK], [], [],
+  [@BACK_TECH], [], [],
+  [@DB], [], [],
+  
 )
 
 #pagebreak()
