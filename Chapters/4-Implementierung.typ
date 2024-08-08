@@ -166,7 +166,10 @@ Außerdem wurde ein neues python-Skript erstellt, welches einen Kompilierungs-Se
 
 Im Gegensatz zum Backend ist das Frontend eine neue Anwendung, zu der es keinen Bestandscode gab. Für das Frontend wurde ein neues Angularprojekt erstellt und mithilfe des Paketmanagers npm die benötigten Pakete hinzugefügt, von denen in den folgenden Unterabschnitten noch einige vorgestellt werden.
 
+Die generelle Struktur des Frontends wurde wie folgt konzipiert. Der User befindet sich beispielsweise in der Übersicht aller Module. Hier kann ein Modul angeklickt werden, um die Detailansicht aufzurufen. Wenn der User angemeldet ist und entsprechende Rechte besitzt, kann dann noch der Bearbeiten-Button gedrückt werden, um in die Bearbeitungsansicht zu wechseln. Es gibt also immer eine Auflistung, gefolgt von einer Detailansicht und gegebenenfalls einer Bearbeitungsansicht.
+
 Der Code der Anwendung besteht aus Komponenten und Services. Die Komponenten werden in der Anwendung dargestellt und werden modular genutzt. Die Services können von allen Komponenten genutzt werden und bieten Methoden zum Laden von Daten aus dem Backend an. Damit die Services wissen, unter welcher URL das Backend erreichbar ist, ist diese URL in einer Datei `environment.ts` gespeichert und kann von da abgerufen werden. Dies ermöglicht den schnellen Austausch dieser URL. Für den produktiven Einsatz gibt es zudem eine `environment.prod.ts`, die die URL des produktiven Backends enthält. Sobald das Frontend mit dem Befehl `ng build --configuration=production` in der Produktiv-Version kompiliert wird, sorgt ein Eintrag in der `angular.json` (@angularJson) dafür, dass die Environment-Datei entsprechend ausgetauscht wird.
+
 
 Die Entscheidung, welche Komponente in der Anwendung gezeigt wird, wird vom RouterModule übernommen. In der main.component.ts der Anwendung (@mainComponent) wird lediglich die Topbar (welche auf jeder Seite gezeigt werden soll) und das Router-Outlet platziert. 
 
