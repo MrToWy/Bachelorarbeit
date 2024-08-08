@@ -307,12 +307,25 @@ Der Endpunkt /modules soll zusätzlich POST-Anfragen entgegen nehmen können, um
 #heading(level: 4, numbering: none)[Endpunkt /modules/{id}]
   Hier sollten alle Informationen zur Verfügung gestellt werden, die für die Detailansichten eines einzelnen Moduls benötigt werden. Es müssen also alle Informationen aus @properties enthalten sein.
 
-  Der Endpunkt /modules/{id} soll zusätzlich PUT-Anfragen entgegen nehmen können, um bestehende Module bearbeiten zu können. 
+  Der Endpunkt /modules/{id} soll zusätzlich PUT-Anfragen entgegennehmen können, um bestehende Module bearbeiten zu können. 
 
 #heading(level: 4, numbering: none)[Endpunkt /modules/{id}/changes]
   Hier sollten alle Informationen zur Verfügung gestellt werden, die für die Änderungshistorie eines Moduls benötigt werden (@changelogImage). Dazu gehört die Auflistung aller vorgenommenen Änderungen, der Autor der Änderung, sowie der erklärende Text, der bei einer Änderung angegeben werden muss (@changeMsgImg).
+
   
-#heading(level: 4, numbering: none)[Endpunkt /translations/{type}]
+#heading(level: 4, numbering: none)[Endpunkte für Teilmodule]
+Die bisher vorgestellten Endpunkte von Modulen werden ebenfalls für Teilmodule benötigt.
+
+#heading(level: 4, numbering: none)[Endpunkt /group]
+Für das Dropdown in dem die Gruppe eines Modules (@group) angegeben wird, wird ein eigener Endpunkt benötigt.  
+Der Endpunkt /group soll zusätzlich POST-Anfragen entgegennehmen können, um neue Gruppen anzulegen.
+
+#heading(level: 4, numbering: none)[Endpunkt /language]
+Die Anwendung soll mehrere Sprachen unterstützen (@TRANSLATEMULTIPLE). Damit ein Wechsel der Sprache möglich ist, liefert dieser Endpunkt eine Liste der unterstützten Sprachen.
+
+
+
+#heading(level: 4, numbering: none)[Endpunkt /autocomplete/{languageId}?type={type}]
 Dieser Endpunkt soll alle verfügbaren Übersetzungen des angegebenen Typs zurückgeben. Ein Typ ist hier beispielsweise "EXAM_TYPE", für das Dropdown in dem die Prüfungsart angegeben wird (@exam). Mithilfe der Information sollen die verschiedenen Dropdowns in der Modulbearbeitung (@addModule), oder der Usererstellung (@createUser) befüllt werden.
 
 #heading(level: 4, numbering: none)[Endpunkt /faculties]
@@ -321,8 +334,20 @@ Dieser Endpunkt ist für die Übersicht aller Fakultäten (@navigationMockup) zu
 #heading(level: 4, numbering: none)[Endpunkt /faculty/{id}]
 Für die Auswahl des Studiengangs (@navigationMockupLevel2) müssen alle Abteilungen der gewählten Fakultät geladen werden. Außerdem muss für jede Abteilung übermittelt werden, welche Studiengänge angeboten werden. Die Studiengänge müssen ein Feld enthalten, welches zwischen Bachelor- und Masterstudiengang unterscheidet, damit nach dieser Information gefiltert werden kann.
 
-#heading(level: 4, numbering: none)[Endpunkt /user/login]
+#heading(level: 4, numbering: none)[Endpunkt /department]
+Dieser Endpunkt bietet eine Auflistung aller Abteilungen an. Zusätzlich sollten POST-Requests angenommen werden, um neue Abteilungen hinzufügen zu können.
+
+#heading(level: 4, numbering: none)[Endpunkt /degrees]<degreesEndpoint>
+Dieser Endpunkt bietet eine Auflistung aller Studiengänge an. Zusätzlich sollten POST-Requests angenommen werden, um neue Studiengänge hinzufügen zu können.
+
+#heading(level: 4, numbering: none)[Endpunkt /auth/login]
 Für den Login (@login) wird ein Endpunkt benötigt, der E-Mail und Passwort entgegennimmt, validiert und einen gültigen Token zurückgibt. Mithilfe des Tokens können die administrativen Funktionen genutzt werden, ohne sich jedes Mal mit E-Mail und Passwort autorisieren zu müssen.
+
+#heading(level: 4, numbering: none)[Endpunkt /job]
+Für die Pdf-Generierung wird ein Endpunkt benötigt, der eine Auflistung der Kompilierungsaufträge anbietet. Dieser Endpunkt muss außerdem POST-Anfragen annehmen, damit neue Aufträge angelegt werden können. Außerdem müssen PATCH-Anfragen angenommen werden, um den Status des Jobs zu verändern.
+
+
+
 
 
 == Zwischenfazit
