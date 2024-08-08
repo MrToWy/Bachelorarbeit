@@ -81,10 +81,11 @@ In dem Diagram ist beispielsweise auf der linken Seite zu sehen, das ein Modul i
 
 
 
-
+#block(breakable:false)[
 == Benutzeroberflächen <UI>
 
 Im Folgenden wird mithilfe von Mockups entworfen, wie die Benutzeroberflächen der neuen Anwendung aussehen sollen. Da an Mockups schnell Änderungen vorgenommen werden können, soll dieser Prozess dabei helfen, zeiteffizient gute Lösungen zu finden. Es werden zunächst in @scaffold die Elemente zur Navigation durch die Anwendung vorgestellt. Anschließend werden in @views die verschiedenen Komponenten der Anwendung, sowie die daraus zusammengesetzten Ansichten skizziert.
+]
 
 In den Mockups wird darauf geachtet, die von  #cite(<designInterfaces>, form: "prose") beschriebenen bekannten UI-Patterns anzuwenden. Dadurch sollen die Ansichten der neuen Anwendung selbsterklärend sein, da sie anderen modernen Websites ähneln. Weiterhin soll jede Ansicht wenn möglich genau einen Zweck verfolgen – entweder soll eine Übersicht mehrere Elemente zeigen, oder ein einzelnes Element soll im Fokus stehen und detailliert gezeigt werden, oder ein neues Element soll erstellt werden, oder eine Aufgabe soll erledigt werden. Das Mischen dieser Zuständigkeiten kann zu einer überladenen Website führen und wird deshalb wenn möglich vermieden. @designInterfaces[Seite 35 ff.]
 
@@ -117,10 +118,10 @@ Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) n
 
 #let boxedToolbarImage = box(toolbarImage, inset: 0.5em)
 
-#wrap-content(align: bottom + right,
-column-gutter: 1em,
-boxedToolbarImage, toolbarText)
+//#wrap-content(align: bottom + right,column-gutter: 1em,boxedToolbarImage, toolbarText)
 
+#toolbarText
+#toolbarImage
 
 
 #let drawerText = [
@@ -131,9 +132,9 @@ boxedToolbarImage, toolbarText)
 #let drawerImage = imageFigureNoPad(width: 40%,
   <drawer>, "mockups/Drawer.png", "Drawer")
 
-#wrap-content(align: bottom + right, drawerImage, drawerText)
-//#drawerText
-//#drawerImage
+//#wrap-content(align: bottom + right, drawerImage, drawerText)
+#drawerText
+#drawerImage
 
 
 #box[
@@ -151,7 +152,7 @@ Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächs
 
 #box[
 
-#let searchFunctionImage = imageFigureNoPad(<search>, "mockups/Search.png", "Suche mit Dropdown", width: 6em)
+#let searchFunctionImage = imageFigureNoPad(<search>, "mockups/Search.svg", "Suche mit Dropdown", width: 6.7em)
 
 #let searchFunctionText = [
   #heading(level: 4, numbering:none, "Suchfunktion")
@@ -165,6 +166,24 @@ Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächs
 ]
 
 
+
+#box[
+  #heading(level: 4, numbering:none, "Navigation")
+
+Auf der Startseite der neuen Anwendung soll nicht direkt die zuvor vorgestellte Modulübersicht präsentiert werden, weil diese ohne gesetzte Filter überladen wirken könnte. Stattdessen wird der User zunächst auf eine Übersicht aller Fakultäten geleitet (@navigationMockup). Hier kann entweder eine Fakultät ausgewählt werden, oder es kann per Klick auf "Alle Module" direkt zur Modulübersicht gewechselt werden. Die Farben der einzelnen Fakultäten sind dieselben wie auf der Website der #hsh @HochschuleHannover und sollen den User dabei unterstützen, schnell die richtige Fakultät zu finden. Diese Ansicht wird übersprungen, falls der User einen direkten Link zu einem bestimmten Studiengang aufruft. Dieser Link könnte beispielsweise auf der Website der Hochschule platziert sein. Der User wird dann direkt zur Modulübersicht geleitet.
+  
+#imageFigureNoPad(<navigationMockup>, "mockups/Navigation.png", "Startseite - Auswahl Fakultät")
+]
+
+#box[
+Wenn in der Fakultätsauswahl eine Fakultät ausgewählt wurde, geht es weiter auf die Detailansicht der jeweiligen Fakultät (@navigationMockupLevel2). Hier werden alle Studiengänge der Fakultät aufgelistet. Die Studiengänge sind gruppiert nach der Abteilung, zu der sie zugehörig sind. Zur besseren Übersicht sind die Bachelorstudiengänge über den Masterstudiengängen angeordnet und zusätzlich farblich markiert. Des weiteren gibt es die Möglichkeit in der oberen Leiste gezielt nach einem Studiengang zu suchen, oder nach Bachelor/Master zu filtern. Sobald auf dieser Übersicht ein Studiengang angeklickt wird, öffnet sich die Modulübersicht. In der Modulübersicht sind dann die Filter automatisch an die zuvor ausgewählte Fakultät und den ausgewählten Studiengang angepasst.
+
+#imageFigureNoPad(<navigationMockupLevel2>, "mockups/NavigationLevel2.png", "Startseite - Auswahl Studiengang")
+]
+
+#box()[
+  
+
 #heading(level: 4, numbering:none, "Modulübersicht")
 #let moduleOverviewText = [
   In der Modulübersicht sollen alle Module in einer tabellarischen Übersicht angezeigt werden. In der Tabelle sollen nur die für #link(<UseCaseInfoModule>)[Use-Case 2] benötigten Daten gezeigt werden. Alle weiteren Informationen sind dann in der detaillierten Ansicht zu finden. Die detaillierte Ansicht soll sich durch Anklicken eines Eintrags öffnen. Über der Tabelle gibt es mehrere Filtermöglichkeiten, um die gesuchten Module schneller finden zu können.
@@ -176,20 +195,14 @@ Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächs
 #wrap-content(align: bottom + right, moduleOverview, moduleOverviewText)
 //#moduleOverviewText
 //#moduleOverview
-
-#box[
-  #heading(level: 4, numbering:none, "Navigation")
-
-Auf der Startseite der neuen Anwendung soll nicht direkt die zuvor vorgestellte Modulübersicht präsentiert werden, weil diese ohne gesetzte Filter überladen wirken könnte. Stattdessen wird der User zunächst auf eine Übersicht aller Fakultäten geleitet (@navigationMockup). Hier kann entweder eine Fakultät ausgewählt werden, oder es kann per Klick auf "Alle Module" direkt zur Modulübersicht gewechselt werden. Die Farben der einzelnen Fakultäten sind dieselben wie auf der Website der #hsh @HochschuleHannover und sollen den User dabei unterstützen, schnell die richtige Fakultät zu finden.
-  
-#imageFigureNoPad(<navigationMockup>, "mockups/Navigation.png", "Startseite - Auswahl Fakultät")
 ]
 
-#box[
-Wenn in der Fakultätsauswahl eine Fakultät ausgewählt wurde, geht es weiter auf die Detailansicht der jeweiligen Fakultät (@navigationMockupLevel2). Hier werden alle Studiengänge der Fakultät aufgelistet. Die Studiengänge sind gruppiert nach der Abteilung, zu der sie zugehörig sind. Zur besseren Übersicht sind die Bachelorstudiengänge über den Masterstudiengängen angeordnet und zusätzlich farblich markiert. Des weiteren gibt es die Möglichkeit in der oberen Leiste gezielt nach einem Studiengang zu suchen, oder nach Bachelor/Master zu filtern. Sobald auf dieser Übersicht ein Studiengang angeklickt wird, öffnet sich die Modulübersicht. In der Modulübersicht sind dann die Filter automatisch an die zuvor ausgewählte Fakultät und den ausgewählten Studiengang angepasst.
 
-#imageFigureNoPad(<navigationMockupLevel2>, "mockups/NavigationLevel2.png", "Startseite - Auswahl Studiengang")
-]
+#heading(level: 4, numbering:none, "Detailansicht eines Modules")
+Sobald ein Modul ausgewählt wurde, wird die Detailansicht eines Modules (@preview) präsentiert. Hier sollen die Details des Modules übersichtlich dargestellt werden. Einzelne Informationen können beispielsweise mithilfe eines Graphen oder anhand von Icons visualisiert werden. Hierdurch können Studierende oder Studieninteressierte Personen innerhalb kurzer Zeit einen Eindruck erhalten, was die Rahmenbedingungen des Modules sind.
+
+
+#imageFigure(<preview>, "modern-preview.png", "Detailansicht Modul")
 
 
 #box[
@@ -197,7 +210,7 @@ Wenn in der Fakultätsauswahl eine Fakultät ausgewählt wurde, geht es weiter a
 
 Angemeldete User sehen auf verschiedenen Seiten Buttons, mit denen sie Module anlegen und bearbeiten können. Damit die Dateneingabe für den User möglichst intuitiv ist, orientiert sich die Sortierung der Eingabefelder an der Sortierung der Felder im resultierenden PDF. Um eine einheitliche Optik zu erreichen wurden anschließend die Felder geringfügig umsortiert, sodass gleiche Datentypen, oder Felder die thematisch zueinander passen, nah beieinander sind. Das resultierende PDF wird in der Vorschau imitiert. Hier werden die Eingaben des Users in Echtzeit angezeigt, sodass der User jederzeit sehen kann, wie die Modulbeschreibung aussehen wird.
   
-#imageFigureNoPad(<addModule>, "mockups/AddModule.png", "Modul hinzufügen")
+#imageFigure(<addModule>, "mockups/AddModule.png", "Modul hinzufügen")
 ]
 
 #let changeMessageText = [Damit in der Auflistung der Änderungen eine hilfreiche Nachricht steht, sollen die vorgenommenen Änderungen beim Speichern eines Moduls zusammengefasst werden. Hierzu fragt ein Popup nach der Zusammenfassung und erklärt dem User kurz wo dieser Text zu sehen sein wird.]
@@ -208,24 +221,31 @@ Angemeldete User sehen auf verschiedenen Seiten Buttons, mit denen sie Module an
 
  
 #let translateText = [
-Für die Erstellung oder Bearbeitung eines Moduls kann entweder ein vorhandener Text aus einem Dropdown ausgewählt werden (@lookup), oder ein neuer Text durch klicken auf den "Neu"-Button angelegt werden. Dies ist besonders praktisch, da sich bestimmte Texte oft wiederholen. 
+Für die Erstellung oder Bearbeitung eines Moduls kann entweder eine vorhandener Vorlage aus einem Dropdown ausgewählt werden (@lookup), oder ein neuer Text durch klicken auf den "Neu"-Button angelegt werden. Dies ist besonders praktisch, da sich bestimmte Texte oft wiederholen. 
 
 Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im Dropdown angezeigt wird, sowie die tatsächlichen Texte, die später im Modulhandbuch abgebildet werden. 
 ]
 
 
-#let translateDropdownImage = imageFigureNoPad(<translateDropdown>, "mockups/ÜbersetzbarkeitDropdown.svg", "Dropdown zur Textauswahl", width: 12em)
+#let translateDropdownImage = imageFigure(<translateDropdown>, "mockups/ÜbersetzbarkeitDropdown.svg", "Dropdown zur Textauswahl", width: 12em)
 
-#let translateImage = imageFigureNoPad(<translatePopup>, "mockups/Übersetzbarkeit.svg", "Neuen Text hinzufügen", width: 12em)
 
-#let translationBoxed = box(inset: 0.4em)[#translateDropdownImage #translateImage]
 
-#wrap-content(align: top + right, translationBoxed, translateText)
 
-//#translateText
-//#translateDropdownImage
-//#translateImage
 
+
+
+#translateText
+
+#translateDropdownImage
+
+#imageFigure(<translatePopup>, "mockups/Übersetzbarkeit.svg", "Neuen Text hinzufügen", width: 16em)
+
+
+
+
+
+#block(breakable:false)[
 #heading(level: 4, numbering:none, "Userverwaltung")
 
 #let userText = [
@@ -237,6 +257,7 @@ Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im 
 //#userText
 //#userImage
 #wrap-content(align: top + right, userImage, userText)
+]
 
 #box[
 #heading(level: 4, numbering:none, "Änderungshistorie")
@@ -247,13 +268,14 @@ Alle Änderungen sollen nachverfolgbar sein (@SHOWCHANGES). Hierzu wird eine Üb
 
 
 
-#let changeLogImage = imageFigureNoPad(<changelogImage>, "mockups/Änderungshistorie.png", "Änderungshistorie", width: 16em)
+#let changeLogImage = imageFigure(<changelogImage>, "mockups/Änderungshistorie.png", "Änderungshistorie", width: 24em)
 
 
-#wrap-content(align: top + right, changeLogImage, changeLogText)
+#changeLogText
+#changeLogImage
 ]
 
-#imageFigure(<preview>, "modern-preview.png", "")
+
 
 #box[
 == Benötigte Endpunkte im Backend <endpoints>
