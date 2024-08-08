@@ -107,6 +107,9 @@ Die Auflistung der Use Cases bildet eine Grundlage für die folgenden Abschnitte
 
 
 == Anforderungen <requirements>
+Als nächstes sollen konkrete Anforderungen an das zukünftige System aufgestellt werden. Diese Anforderungen sollen zum Einen dabei helfen, in der Entwurfs- und Implementierungsphase (@entwurf,~ @implementierung) konkrete Vorgaben zu haben, die abgearbeitet werden können und zum anderen in @review ermitteln zu können, ob das System einsetzbar ist.
+
+
 Die Anforderungen an das System ergeben sich aus verschiedenen Quellen, die sich in die Kategorien funktional und nichtfunktional aufteilen lassen.
 Um die Herkunft der Anforderungen übersichtlich abzubilden, werden die Anforderungen in Funktional und Nicht-Funktional aufgeteilt. Diese Aufteilung ist fachlich nicht notwendig, soll aber die folgende Auflistung übersichtlicher gestalten.
 
