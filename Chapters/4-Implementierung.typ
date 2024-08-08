@@ -378,9 +378,9 @@ Für die anderen Container ist mehr Konfigurationsaufwand nötig. Hier muss zum 
 
 Das Backend benötigt außerdem eine Möglichkeit, Daten langfristig aufzubewahren. Bei einem Update des Images muss der Container des Backends neu erstellt werden, sodass darin enthaltene Daten verloren gehen. Um dieses Problem zu umgehen, können Volumes genutzt werden. @VolumesDockerDocs In der Compose-Datei ist in Zeile 20 zu sehen, wie eine Volume definiert wird. Hierzu wird einfach ein Ordner vom Hostsystem auf einen Ordner innerhalb des Containers gemappt. Beide Ordner werden automatisch synchronisiert. Wenn ein Container zerstört wird, bleibt die Volume bestehen und kann für den nächsten Container weiterverwendet werden. Als zusätzlichen Vorteil kann nun auch vom Hostsystem auf die Dateien in der Volume zugegriffen werden. In der Volume wird beispielsweise der Inhalt der Datenbank aufbewahrt.
 
-Nachdem die Images nun erstellt sind und die Compose-Datei die Struktur der Container definiert kann `podman compose up -d` ausgeführt werden, um die Container zu erstellen und zu starten. In der Desktopanwendung von podman ist dies nachzuvollziehen:
+Nachdem die Images nun erstellt sind und die Compose-Datei die Struktur der Container definiert kann `podman compose up -d` ausgeführt werden, um die Container zu erstellen und zu starten. In der Desktopanwendung von Podman ist dies nachzuvollziehen (@podmanDesktop).
 
-#imageFigure(<a>, "podman.png", "Podman Desktop")
+#imageFigure(<podmanDesktop>, "podman.png", "Podman Desktop")
 
 
 
