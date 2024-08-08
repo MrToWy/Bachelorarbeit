@@ -502,6 +502,10 @@ Das Modul enthält zunächst grundlegende Informationen:
   Eine stichpunktartige, kommagetrennte Auflistung der Kompetenzen, die in diesem Modul erworben werden.
 ]
 
+#track("Gruppe", example: "Wahlpflichtmodule 2. Studienabschnitt", label:<group>)[
+  Jedes Modul gehört zu einer Gruppe. Anhand der Gruppe werden die Module im Pdf gedruckt.
+]
+
 #text(" ")<EndOfChapter>
 
 === Teilmoduleigenschaften
