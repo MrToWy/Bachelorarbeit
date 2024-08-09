@@ -7,18 +7,52 @@
 
 
 = Review <review>
-In diesem Kapitel wird das erstellte System überprüft. Hierzu werden zunächst Interviews durchgeführt um anschließend die in @anforderungsanalyse aufgestellten Anforderungen zu überprüfen. Abschließend gibt es ein Fazit und einen kleinen Ausblick.
+In diesem Kapitel wird das erstellte System überprüft. Es soll herausgefunden werden, ob das neue System einsetzbar ist. Hierzu wird ein Interview geführt und die in @anforderungsanalyse aufgestellten Anforderungen überprüft. 
+
+
+
+
 
 == Interview mit Modulverantwortlicher Person
+Im Laufe der Implementierungsphase wurde ein Prototyp einer modulverantwortlichen Person vorgestellt, um einschätzen zu können, ob das entstehende System eine Erleichterung des bisherigen Arbeitsprozesses darstellen könnte. Aus dem Interview ergaben sich kleinere Anpassungen an den Anforderungen, jedoch konnten keine groben Fehler am Gesamtsystem festgestellt werden. Ergebnis des Interviews war, dass die Anwendung benutzbar wirkt und den Arbeitsprozess vermutlich verbessern wird.
 
-
-== Interview mit zukünftigem Dekan 
 
 == Abweichungen zum Prototypen
+Um sicherzustellen, dass keine wichtigen Details aus den Entwürfen übersehen wurden, wurde das neue System in diesem Abschnitt mit den Entwürfen aus @UI verglichen.
+
+Das in @drawer gezeigte Menü enthält in der tatsächlichen Implementierung andere Einträge. Es gibt beispielsweise in der aktuellen Version des Systems noch keine Möglichkeit, einen neuen Studiengang oder eine neue Abteilung anzulegen. Dies muss aktuell noch per Datenbankzugriff erledigt werden. Da das System im ersten Schritt jedoch nur von der Abteilung Informatik genutzt werden soll, ist dies zunächst in Ordnung. Eine Implementierung entsprechender Funktionen sollte zudem nicht aufwändig sein, da es bereits ähnliche Implementierungen für das Erstellen von Modulen und Teilmodulen gibt. Des Weiteren entfällt die geplante Benutzerverwaltung (@createUser), da in Zukunft eventuell direkt das LDAP der Hochschule verwendet werden könnte. Stattdessen gibt es im Drawer jetzt die Möglichkeit, Pdf-Kompilierungsanträge und Teilmodule zu verwalten. 
+
+
+Die Filter in @moduleoverview wurden direkt in die Tabellenüberschrift integriert (@filterResult). Außerdem wurden weitere Spalten eingeführt, um #link(<UseCaseInfoModule>)[Use-Case 2] abbilden zu können.
+
+Die in @translateDropdown und @translatePopup zu sehenden Steuerelemente zum Hinzufügen von Übersetzungen wurden zugunsten einer besseren Usability ersetzt (siehe @createEditModules)
+
+Alle nicht genannten Abbildungen aus @UI ähneln den tatsächlichen Implementierungen.
+
+Bei dem Vergleich sind keine unerklärten Abweichungen gefunden worden. Alle vorgenommenen Änderungen verbessern entweder das System, oder sind nicht für die Erfüllung der wesentlichen Use Cases erforderlich, sodass davon ausgegangen wird, dass alle wichtigen Anforderungen an das Design erfüllt wurden.
+
+
+== Vergleich der Pdfs<pdfComparision>
+Da die Generierung eines Modulhandbuchkataloges im Pdf-Format ein zentraler Bestandteil dieser Arbeit war, sollte das Ergebnis genauer geprüft werden. Hierzu wurden aktuelle Modulhandbücher von der Website der Hochschule mit den neu generierten Handbüchern aus dem System verglichen. Bei der Ersten Überprüfung (siehe @pdfA und @pdfB @ilovepdf.comILovePDFOnlinePDF) sind dabei noch einige ToDos aufgefallen, die im Anschluss behoben wurden. So fehlten beispielsweise bei den Semesterwochenstunden ein Komma und das Suffix "SWS". Bei den längeren Texten (z.B. "Inhalt") fällt außerdem auf, dass die neuen Texte im Blocksatz dargestellt sind, während die ursprünglichen Texte lediglich linksbündig ausgerichtet sind. 
+
+#imageFigure(<pdfA>, "PdfCompareA.png", "Ursprüngliches Pdf")
+
+#imageFigure(<pdfB>, "PdfCompareB.png", "Neues Pdf")
+
+Nachdem die kleineren Anpassungen vorgenommen und mit einer erneuten Überprüfung verifiziert wurden, ähnelt das neue Pdf nun dem ursprünglichen Pdf. Die Nutzung des neuen Pdfs sollte dementsprechend möglich sein. 
+
+
+
+
+
+
+
+
+
 
 == Überprüfung, ob Anforderungen erfüllt sind
 
-Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anforderungen in Zukunft noch umgesetzt werden müssen.
+Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anforderungen in Zukunft noch umgesetzt werden müssen. Dies hilft für die spätere Einschätzung, ob das System bereits eingeführt werden könnte, oder ob es noch kritische offene Aufgaben gibt. Die Anforderungen enthalten gegebenenfalls einen Verweis auf Abbildungen oder Passagen im vorangegangenen Text, um die aufgestellten Behauptungen zu beweisen.
 
 
 #table(
@@ -103,36 +137,36 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   [@TRANSLATE],[Die Anwendung und die Pdfs die generiert werden stehen in Englisch und Deutsch bereit.],[Erfüllt],
   [@TRANSLATEMULTIPLE],[Der Code ist so vorbereitet, dass ohne großen Aufwand weitere Sprachen hinzugefügt werden können. Aktuell liegen die Modulhandbücher nur in Englisch und Deutsch vor, weshalb die neue Anwendung auch nur in Deutsch und Englisch entwickelt wurde.],[Vorbereitet],
   [@lookup],[In den Bearbeitungsmasken werden Eingabefelder verwendet, welche den User bei der Eingabe unterstützen. Wenn beispielsweise eine Zahl erwartet wird, können keine Buchstaben eingegeben werden. Außerdem werden wenn möglich Dropdowns statt Textfeldern genutzt.],[Erfüllt #linebreak() (@editModule)],
-  [@similarPdf], [], [],
-  [@security], [], [],
+  [@similarPdf], [Das neue Pdf ähnelt dem bisherigen Pdf.], [Erfüllt #linebreak() @pdfComparision],
+  [@security], [Nur autorisierte Benutzer können datenverändernde Endpunkte verwenden.], [Erfüllt],
 
   table.cell(colspan: 3, align: center, [#emph("Übertragbarkeit")]),
-  [@DOKBACK], [], [],
-  [@containerAnf], [], [],
-  [@austauschbarkeit], [], [],
+  [@DOKBACK], [Es gibt eine Dokumentation, welche unter anderem erklärt, wie das System einzurichten ist.], [Erfüllt #linebreak() @createDocumentation],
+  [@containerAnf], [Das neue System kann mithilfe von Podman-Containern deployt werden.], [Erfüllt #linebreak() @podman],
+  [@austauschbarkeit], [Durch die Verwendung von Prisma ist der Zugriff auf die Datenbank abstrahiert, daher kann die tatsächliche Datenbank ohne größeren Aufwand ausgetauscht werden. Der LaTeX-Kompilierungs-Server wird über einen einzelnen REST-Endpunkt angesprochen und ist dadurch nur sehr lose gekoppelt. Das Frontend arbeitet hingegen mit mehreren REST-Endpunkten des Backends und ist daher zwar austauschbar, jedoch wäre das verglichen mit den zuvor genannten Komponenten aufwändig.], [Erfüllt],
 
   table.cell(colspan: 3, align: center, [#emph("Zuverlässigkeit")]),
-  [@ERRORSTABLE], [], [],
-  [@reife], [], [],
-  [@robustheit], [], [],
+  [@ERRORSTABLE], [Fehler die während des Testens aufgefallen sind, haben die Systeme nicht zum Absturz gebracht.], [Vermutlich erfüllt],
+  [@reife], [Beim Erledigen der Use Cases sind keine Fehler aufgefallen.], [Erfüllt],
+  [@robustheit], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
 
   table.cell(colspan: 3, align: center, [#emph("Technische Anforderungen")]),
-  [@FRONT], [], [],
-  [@FRONT_TECH], [], [],
-  [@BACK], [], [],
-  [@BACK_TECH], [], [],
-  [@DB], [], [],
+  [@FRONT], [Das Frontend ist eine neue Anwendung.], [Erfüllt],
+  [@FRONT_TECH], [Das Frontend nutzt Angular.], [Erfüllt],
+  [@BACK], [Das bestehende Backend wurde erweitert.], [Erfüllt],
+  [@BACK_TECH], [Das Backend nutzt (weiterhin) NestJs und Prisma.], [Erfüllt],
+  [@DB], [Die bestehende Datenbank wurde erweitert.], [Erfüllt],
   
 )
 
+
+
+
+== Zwischenfazit
+Nachdem die aufgestellten Anforderungen überprüft wurden, kann nun eine Aussage zum neuen System getroffen werden. 
+
+Von den 64 Anforderungen wurden 15 Anforderungen nicht erfüllt. Unter den nicht erfüllten Anforderungen befinden sich keine Anforderungen mit dem Schlüsselwort "muss". Es wurden also alle Anforderungen, die für das System zwingend erforderlich sind, erfüllt. Aus diesem Grund ist davon auszugehen, dass das System für die in @usecases erstellten Use Cases nutzbar ist (mit Ausnahme des ausgelassen #link(<UseCaseTable>)[Use Case 6]).
+
+
+
 #pagebreak()
-== Fazit
-
-Im Rahmen dieser Bachelorarbeit sollte der Prozess der Bearbeitung des Modulkataloges verbessert werden. Die hierzu aufgestellten Anforderungen wurden größtenteils erfüllt. Unter den nicht erfüllten Anforderungen befinden sich keine Anforderungen, die die produktive Nutzung der Anwendung verhindern. Zwar wäre es gut, wenn die ausstehenden Arbeiten in Zukunft umgesetzt werden, jedoch kann mit dem bestehenden System bereits der aktuell bestehende Arbeitsablauf ersetzt werden. Das System ermöglicht das Anzeigen von Modulkatalogen im PDF-Format und das Anzeigen von Moduldetails in einer modernen Oberfläche. Außerdem können die Informationen der Module im System bearbeitet werden, wobei das System mithilfe von Dropdowns und Plausibilitätschecks unterstützt. Das resultierende Pdf wird automatisch generiert und den Interessierten zur Verfügung gestellt. Außerdem sind wesentliche Informationen zur Einrichtung und Weiterentwicklung des Systems in einer Dokumentation erfasst.
-
-== Ausblick
-
-Für die Zukunft ist es denkbar, dass abgesehen von den bereits erfassten nicht erfüllten Anforderungen weitere Funktionen geplant werden. So könnte die moderne Anzeige von einzelnen Modulen um verschiedene Informationen erweitert werden. Es könnte beispielsweise eine Anbindung an den Stundenplan geben, sodass auf der Modulseite auch angezeigt wird, zu welchen Zeiten und an welchem Ort die Lehrveranstaltungen stattfinden. Auch wäre die Anbindung weiterer Abteilungen und Fakultäten denkbar. Dies ist durch die Datenstruktur bereits vorbereitet, jedoch könnte es erforderlich sein, die PDF-Dokumente optisch anders darzustellen. 
-Auch wäre eine Anbindung an das #hone denkbar, wie bereits in @verwandteArbeiten beschrieben.
-Die Zielgruppe der Studierenden könnte zudem von einer Verbesserung der mobilen Ansichten profitieren.
-In der Bearbeitungsansicht könnte statt der derzeitigen HTML-Vorschau das tatsächliche Pdf angezeigt werden. Dies wurde durch die Umstellung auf TypeScript bereits vorbereitet und könnte eine sinnvolle Änderung sein, um zum einen eine genauere Vorschau zu ermöglichen und zum anderen die Code-Qualität zu verbessern, indem Abhängigkeiten verringert werden.
