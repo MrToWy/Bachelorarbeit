@@ -210,10 +210,16 @@ In verschiedenen Gesprächen mit zukünftigen Nutzern stellte sich heraus, dass 
 
 Damit die Anzeige der Studiengänge (@menu) auf mobilen Geräten gut aussieht musste nicht viel angepasst werden. Statt die Karten der Studiengänge nebeneinander aufzureihen werden diese in der mobilen Ansicht nun untereinander platziert. Für die Desktopansicht wird hier ein Grid @cssGrid mit drei Spalten genutzt genutzt. Damit es in der mobilen Ansicht nur eine Spalte gibt, kann der Wert `grid-template-columns` mithilfe von `unset` @cssUnset zurück auf den ursprünglichen Wert gesetzt werden (siehe @cssUnsetCode). Für die Erkennung, ob die mobile Ansicht benötigt wird, wird eine Media Query genutzt. Diese sorgt dafür, dass die genannte Spalteneingenschaft nur für Geräte mit einer Bildschirmbreite unter 850 Pixeln zurückgesetzt wird. @ertel_responsive_nodate
 
+#imageFigure(<degreeProgramOverview>, "../Images/DegreeProgramOverview.png", "Übersicht der Studiengänge")
+
+#imageFigure(<menu>, "../Images/Menu.png", "Menü - Studiengänge")
+
 #codeFigure("courses.component.sass", <cssUnsetCode>, "cssUnset")
 
 
-Die Anzeige aller Module ist in der Desktopansicht eine Tabelle. Diese wird auf mobilen Endgeräten zwar dargestellt, jedoch muss von links nach rechts gescrollt werden, um alle Felder sehen zu können. Um diese Ansicht zu optimieren, kann eine Funktion von PrimeNG genutzt werden, um für mobile Geräte aus der Tabelle eine Auflistung von Karten zu machen. Das Setzen von `responsiveLayout="stack"` reicht hier aus. Um die Felder auf den mobilen Karten noch zu beschriften muss für jedes Feld eine Beschriftung hinzugefügt werden. Die Klasse `p-column-title` muss dabei auf die entsprechende Beschriftung gesetzt werden, damit PrimeNg sie passend ein und ausblendet. @primengTable 
+Die Anzeige aller Module ist in der Desktopansicht eine Tabelle (@moduleOverviewResult). Diese wird auf mobilen Endgeräten zwar dargestellt, jedoch muss von links nach rechts gescrollt werden, um alle Felder sehen zu können. Um diese Ansicht zu optimieren, kann eine Funktion von PrimeNG genutzt werden, um für mobile Geräte aus der Tabelle eine Auflistung von Karten zu machen. Das Setzen von `responsiveLayout="stack"` reicht hier aus. Um die Felder auf den mobilen Karten noch zu beschriften muss für jedes Feld eine Beschriftung hinzugefügt werden. Die Klasse `p-column-title` muss dabei auf die entsprechende Beschriftung gesetzt werden, damit PrimeNg sie passend ein und ausblendet. @primengTable 
+
+#imageFigure(<moduleOverviewResult>, "../Images/ModuleOverview.png", "Übersicht aller Module")
 
 
 //#imageFigure(<responsiveModules>, "responsiveModules.png", "Mobile Auflistung der Module", width:60%)
@@ -223,6 +229,8 @@ Die Anzeige aller Module ist in der Desktopansicht eine Tabelle. Diese wird auf 
 Zuletzt muss noch die Anzeige der Moduldetails optimiert werden. Diese ist etwas komplexer aufgebaut, da sie aus vielen verschiedenen Komponenten besteht. Die Komponenten in der ersten Reihe in @moduleDetailResult sind beispielsweise Info-Card-Components und bestehen aus einem Icon, einem Label und einem Anzeigewert. Neben den Info-Cards gibt es noch Stat-Cards für die Anzeige des Kuchen-Diagrammes (siehe @moduleDetailResult), Text-Cards für die Anzeige von einfachen Texten (z.B. Vorraussetzungen) und Split-Text-Cards für die Anzeige von zwei verschiedenen Texten innerhalb einer Karte. Für die Optimierung bei kleinen Bildschirmgrößen können Info-Card und Text-Card ignoriert werden, da diese bereits vollständig anzeigbar sind. Die Split-Text-Card muss auf kleinen Bildschirmgrößen die Texte untereinander statt nebeneinander zeigen. Hierzu musste die Flex-Direction mithilfe einer Media Query auf "column" gesetzt werden. @noauthor_flex-direction_2024 Dies war auch bei der Stats-Card erforderlich. Hier wurden zusätzlich die Texte anders ausgerichtet, damit sie auf der Karte zentriert angezeigt werden.
 
 Die einzelnen Karten sind in der Ansicht der Moduldetails in einem Grid angeordnet. Dieses hat in der Desktopansicht 5 Spalten. Die Info-Karten passen in eine Spalte, während sich Karten mit mehr Inhalt auf mehrere Spalten verteilen dürfen. Damit auf der mobilen Ansicht die Karten vollständig angezeigt werden können, ohne dass ein horizontales Scrollen notwendig ist, wird die Eigenschaft `grid-column` von jeder Karte auf 5 gesetzt, sodass es pro Zeile jeweils eine Karte gibt. @cssGrid
+
+#imageFigure(<moduleDetailResult>, "../Images/ModulDetails.png", "Desktopansicht Moduldetails")
 
 
 
@@ -302,6 +310,8 @@ Die Masken zur Bearbeitung der Module und Teilmodule sind eine zentrale Stelle d
 
 Für die Anforderung der Übersetzbarkeit wurde in @addModule, @translateDropdown und @translatePopup eine Möglichkeit konzipiert, Texte in verschiedenen Sprachen zu hinterlegen. Nach erneuter Betrachtung des Problemes, ergab sich eine einfachere Lösung. Ein Nachteil der urspünglichen Lösung war, dass es für jedes Eingabefeld ein Popup gab. Dies erhöhte den Aufwand der Eingabe drastisch, da für jede Eingabe ein neues Fenster geöffnet wurde und auch wieder geschlossen werden musste. Um die Anzahl der Popups zu verringern, wurden stattdessen gewöhnliche Textfelder genutzt. Um dennoch verschiedene Sprachen zu unterstützen, wird die Eingabemaske nun für jede Sprache einmal wiederholt. Eine Anzeige im oberen Bereich zeigt die einzelnen Schritte des Bearbeitungsprozesses (@editModule). 
 
+#imageFigure(<editModule>, "../Images/EditModule.png", "Modul bearbeiten")
+
 In @components sind die einzelnen Komponenten einer Bearbeitungsmaske (z.B. die Modulbearbeitung) zu sehen. Wenn auf "Bearbeiten" gedrückt wird, lädt der Router das Edit-Component (z.B. module-edit.component.ts). Das Edit-Component erhält das zu bearbeitende Modul mit allen Eingenschaften über einen \@Input-Parameter (siehe @twoWay). Dieses Objekt wird an die folgenden Komponenten weitergegeben. Hierzu wird das Two-Way-Binding von Angular verwendet, damit das Objekt in beide Richtungen synchronisiert wird. Dadurch kann das Preview-Component bei Änderungen im Editor automatisch aktualisiert werden, was eine Live-Vorschau der Änderungen ermöglicht. Damit das Two-Way-Binding funktioniert, muss zusätzlich ein \@Output-Parameter als EventEmitter definiert werden, der bei einer Änderung aufgerufen wird. 
 
 #codeFigure("Two-Way-Binding", <twoWay>, "two-way")
@@ -322,18 +332,18 @@ Des Weiteren wurden, wie bereits in @addModule konzipiert, einige Textfelder umg
 
 
 #heading("Plausibilitätschecks", level: 4, numbering: none, outlined: false)
-Eingabgefehler können unentdeckt bleiben und sich somit mit der Zeit häufen. Um diesem Problem entgegenzuwirken, wurden (wie in @CHECKMOD gefordert) Plausibilitätschecks implementiert. Sobald alle Eingaben getätigt wurden, kann ein User per Klick auf "weiter" auf die nächste Seite wechseln. Bevor jedoch gewechselt wird, werden die eingebenen Daten überprüft. Fallen hierbei Umstimmigkeiten auf, wird der User darauf hingewiesen. Die entsprechenden Felder färben sich dann rot und zeigen in einem Tooltip den Grund dafür. Ein User kann nun entweder die Daten korrigieren, oder die Warnung ignorieren und das Modul dennoch abspeichern. Das System soll vermeindlich falsche Eingaben nicht vollständig verhindern, sondern nur darauf hinweisen, da davon ausgegangen wird, dass das System von Experten bedient werden.
+Eingabgefehler können unentdeckt bleiben und sich somit mit der Zeit häufen. Um diesem Problem entgegenzuwirken, wurden (wie in @CHECKMOD gefordert) Plausibilitätschecks implementiert. Sobald alle Eingaben getätigt wurden, kann ein User per Klick auf "weiter" auf die nächste Seite wechseln. Bevor jedoch gewechselt wird, werden die eingebenen Daten überprüft. Fallen hierbei Umstimmigkeiten auf, wird der User darauf hingewiesen. Die entsprechenden Felder färben sich dann rot und zeigen in einem Tooltip den Grund dafür (@plausib). Ein User kann entweder die Daten korrigieren, oder die Warnung ignorieren und das Modul dennoch abspeichern. Das System soll vermeintlich falsche Eingaben nicht vollständig verhindern, sondern nur darauf hinweisen, da davon ausgegangen wird, dass das System von Experten bedient werden.
 
 Neben der Prüfung, ob in jedes Feld ein Wert eingegeben wurde, gibt es folgende Überprüfungen:
 
 1. Felder, die wie #link(<autocomplete>)[oben] beschrieben eine Autovervollständigung haben, sollten einen Wert beinhalten, den es bereits gibt.
-2. Die Abkürzung eines (Teil-) Moduls entspricht einem bestimmten Muster. Dieses wird mithilfe eines regulären Ausdruckes überprüft. Im Falle der Teilmodule wird dieser Ausdruck genutzt: `/^[A-Z]{3}-[0-9]{3}-[0-9]{2}$/`. Der eingegebene Abkürzung muss mit drei Großbuchstaben (A-Z) beginnen, gefolgt von einem Bindestrich, drei Ziffern (0-9), einem weiteren Bindestrich und muss schließlich zwei Ziffern enden. Zeichen davor oder danach sind auch nicht zulässig. @RegularExpressionsJavaScript2024
+2. Die Abkürzung eines (Teil-) Moduls entspricht einem bestimmten Muster. Dieses wird mithilfe eines regulären Ausdruckes überprüft. Im Falle der Teilmodule wird dieser Ausdruck genutzt: `/^[A-Z]{3}-[0-9]{3}-[0-9]{2}$/`. Die eingegebene Abkürzung muss mit drei Großbuchstaben (A-Z) beginnen, gefolgt von einem Bindestrich, drei Ziffern (0-9), einem weiteren Bindestrich und muss schließlich zwei Ziffern enden. Zeichen davor oder danach sind auch nicht zulässig. @RegularExpressionsJavaScript2024
 3. Die Abkürzung sollte eindeutig, also noch nicht vergeben sein.
 4. Der angegebene Zeitaufwand (@hours) muss zu den angegebenen ECTS (@credits) passen. Ein ECTS entspricht laut StudAkkVO einem Zeitaufwand von 25 bis 30 Stunden. @studAkkVO
 5. Das Feld Semester (@recommendedSemester) kann einen Bindestrich enthalten (z.B. 4-6). In dem Fall muss die zweite Zahl größer als die erste Zahl sein.
 
 
-
+#imageFigure(<plausib>, "../Images/Plausib.png", "Plausibilitätschecks")
 
 
 == Dokumentation <createDocumentation>
@@ -380,9 +390,11 @@ Das Backend benötigt außerdem eine Möglichkeit, Daten langfristig aufzubewahr
 
 Nachdem die Images nun erstellt sind und die Compose-Datei die Struktur der Container definiert kann `podman compose up -d` ausgeführt werden, um die Container zu erstellen und zu starten. In der Desktopanwendung von Podman ist dies nachzuvollziehen (@podmanDesktop).
 
+#codeFigure("compose-Datei", <compose>, "compose")
 #imageFigure(<podmanDesktop>, "podman.png", "Podman Desktop")
 
-
+#imageFigure(<dockerDiagram>, "Docker.png", "Diagramm der eingesetzten Dockercontainer")
 
 == Zwischenfazit
 Nachdem Frontend und Backend implementiert wurden und eine Dokumentation erstellt wurde, besteht nun eine erste lauffähige Version des Systems. Diese Version kann im folgenden @review verschiedenen Personen vorgestellt und anschließend evaluiert werden.
+
