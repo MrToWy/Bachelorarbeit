@@ -11,8 +11,8 @@
   1. Die Person besucht die Website der #hsh
   2. Der gesuchte Studiengang wird aufgerufen
   3. Die Seite des Studiengangs enthält eine Verlinkung zum System StudyModules
-  4. Die Person klickt im neuen System auf "Pdf anzeigen"
-  5. Das System zeigt das Pdf an
+  4. Die Person klickt im neuen System auf "PDF anzeigen"
+  5. Das System zeigt das PDF an
 ]<UseCaseInfoDegree>
 
 #useCase(2, "Informationen zu Modul")[
@@ -51,7 +51,7 @@
 
 #useCase(4, "Datensatz anlegen")[
   Der Use Case beschreibt, wie ein neuer Datensatz angelegt werden kann. 
-  Das System prüft dabei, ob die angegebenen Informationen plausibel sind. Ein Datensatz kann zum Beispiel ein Modul sein, ein Teilmodul oder ein Studiengang. Zur Übersichtlichkeit wurde nicht für jede Art ein einzelner Use-Case erstellt.
+  Das System prüft dabei, ob die angegebenen Informationen plausibel sind. Ein Datensatz kann zum Beispiel ein Modul sein, ein Teilmodul oder ein Studiengang. Zur Übersichtlichkeit wurde nicht für jede Art ein einzelner Use Case erstellt.
 ][
   Studiengangsverantwortliche Person
 ][
@@ -71,7 +71,7 @@
 
 
 #useCase(5, "Änderungen rückgängig machen")[
-  Der Use-Case beschreibt, wie Änderungen an einem Modul rückgängig gemacht werden können. Damit können sowohl eigene Änderungen, als auch die Änderungen anderer User zurückgesetzt werden.
+  Der Use Case beschreibt, wie Änderungen an einem Modul rückgängig gemacht werden können. Damit können sowohl eigene Änderungen, als auch die Änderungen anderer User zurückgesetzt werden.
 ][
   Studiengangsverantwortliche Person
 ][
@@ -85,7 +85,7 @@
 ]<UCRevertChanges>
 
 #useCase(6, "Prüfungsordnung verifizieren")[
-  Der Use-Case beschreibt, wie das System bei der Erstellung der Prüfungsordnung unterstützen kann. Die hierzu erforderliche Tabelle kann im System generiert werden, um zu vergleichen, ob alle Daten korrekt hinterlegt sind.
+  Der Use Case beschreibt, wie das System bei der Erstellung der Prüfungsordnung unterstützen kann. Die hierzu erforderliche Tabelle kann im System generiert werden, um zu vergleichen, ob alle Daten korrekt hinterlegt sind.
 ][
   Studiengangsverantwortliche Person
 ][

@@ -5,7 +5,7 @@
 Die Planung des neuen Systems für Modulhandbücher beginnt mit der Anforderungsanalyse. Der Schritt der Anforderungsanalyse hat eine besondere Wichtigkeit, da es mit fortlaufender Projektlaufzeit immer aufwändiger wird, Fehler zu korrigieren oder Anpassungen vorzunehmen. @kleuker_grundkurs_2013[Seite 55] Damit diese wichtige Phase gründlich absolviert wird, folgt der Ablauf der Anforderungsanalyse den Empfehlungen von Chris Rupp und den #sophisten @rupp_requirements-engineering_2014. Es werden zunächst der aktuelle Arbeitsprozess und die Architektur benachbarter Systeme analysiert und deren Probleme erkundet. Anschließend werden die Zielgruppen des neuen Systems ermittelt. Abschließend werden Ziele definiert.
 
 
-== Architektur <architecture>
+== Systemkontext <architecture>
 In der Abteilung Informatik der #hsh gibt es bereits mehrere Anwendungen, die ein gemeinsames Backend nutzen. Dieses Backend soll in dieser Arbeit erweitert werden, um auch den anderen Anwendungen die Auflistung der Modulhandbücher anbieten zu können. Zusätzlich wird eine neue Anwendung erstellt, die mit dem angepassten Backend kommunizieren wird.
 
 
@@ -13,7 +13,7 @@ In der Abteilung Informatik der #hsh gibt es bereits mehrere Anwendungen, die ei
 
 Für Studierende, die planen möchten, welches Modul sie in welchem Semester erledigen, wird es die Anwendung #studyPlan geben. Hier können Studierende vom vorgeschlagenen Studienverlauf abweichen und dabei sicherstellen, trotzdem alle Module in der gewünschten Zeit zu erledigen. #studyPlan wird von dem angepassten Backend profitieren, weil #studyPlan eine stets aktuelle Auflistung aller Module inklusive deren Zeitaufwände benötigt.
 
-Die Entwicklung von #studyPlan läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt. Derzeit gibt es bereits einen ersten Prototyp, welcher allerdings noch nicht produktiv genutzt wird.
+Die Entwicklung von #studyPlan läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt. Derzeit gibt es bereits einen ersten Prototypen von #studyPlan, welcher allerdings noch nicht produktiv genutzt wird.
 
 Außerdem ist die Anwendung StudyGraph geplant, welche Studieninhalte visualisiert und somit auch die Informationen zu den angebotenen Modulen benötigt. @LernanwendungenAllerkampFakultat
 
@@ -26,7 +26,7 @@ Jede in @andereAnwendungen beschriebene Anwendung stellt im Backend ein Modul da
 
 Zusätzlich gibt es Module, die zwischen allen Anwendungen geteilt werden. Diese Shared-Modules bieten beispielsweise Funktionen zur Benutzerverwaltung und zum Versand von Emails an.
 
-Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzepte. Damit ein Modul beispielsweise eine HTTP-GET-Anfrage bearbeiten kann, muss es eine #text(controller)-Klasse haben. Ein #controller nimmt die Anfrage an und verarbeitet sie. Falls hierbei Daten benötigt werden, ruft der #controller eine Service-Klasse auf. Diese lädt die angefragten Daten aus der Datenbank und gibt sie an den #controller zurück. Für die Datenbankzugriffe wird Prisma genutzt. 
+Um Funktionalitäten anbieten zu können, nutzen Module verschiedene Konzepte. Damit ein Modul beispielsweise eine HTTP-GET-Anfrage bearbeiten kann, muss es eine #text(controller)-Klasse haben. Ein #controller nimmt die Anfrage an und verarbeitet sie. Falls hierbei Daten benötigt werden, ruft der #controller eine Service-Klasse auf. Diese lädt die angefragten Daten aus der Datenbank und gibt sie an den #controller zurück. Für die Datenbankzugriffe wird Prisma genutzt. 
 
 #treeFigure(<backendFiles>, "Ordnerstruktur der StudyBase")[
   - StudyBase/src
@@ -46,7 +46,9 @@ Damit Module Funktionalitäten anbieten können, nutzen sie verschiedene Konzept
 ]
 
 === Struktur der bestehenden Datenbank <dbstructure>
-Es gibt eine schema.prisma-Datei, in der die Struktur der relationalen Datenbank definiert ist. Somit muss kein SQL geschrieben werden, sondern es können Methoden von Prisma genutzt werden. Es gibt Tabellen für Module und Studiengänge. Die Tabellen werden von Prisma generiert. Änderungen an der Struktur müssen demnach an der schema.prisma-Datei erfolgen. Dadurch ist die Struktur der Datenbank versioniert und kann in einer Quellcodeverwaltung abgelegt werden.
+Es gibt eine schema.prisma-Datei (@moduletable), in der die Struktur der relationalen Datenbank definiert ist. Somit muss kein SQL geschrieben werden, sondern es können Methoden von Prisma genutzt werden. Es gibt Tabellen für Module und Studiengänge. Die Tabellen werden von Prisma generiert. Änderungen an der Struktur müssen demnach an der schema.prisma-Datei erfolgen. Dadurch ist die Struktur der Datenbank versioniert und kann in einer Quellcodeverwaltung abgelegt werden.
+
+In @moduletable ist beispielsweise zu sehen, wie eine Tabelle mit dem Namen "Module" definiert ist. Die Tabelle hat unter anderem eine Spalte id, mit dem Datentypen Int und einen name mit dem Datentypen String.
 
 #codeFigure("Auszug aus schema.prisma", <moduletable>, "moduleTablePrisma")
 
@@ -63,15 +65,15 @@ Da die Anforderungen sowie der aktuelle Arbeitsablauf noch unklar waren, musste 
 
 Das Interview wurde mit dem derzeitigen Studiendekan #heine durchgeführt. Das Interview orientierte sich an den Vorschlägen der #sophisten. Bereits bei der Einladung zum Interview wurden einige der Vorschläge beachtet. Der Studiendekan konnte sich den Interviewort selbst auswählen und erhielt die geplanten Fragen vorab zur Einsicht. @rupp_requirements-engineering_2014[Seite 107-109]
 
-Aus dem Interview ergaben sich zum einen die Konkretisierung der Zielgruppen in @zielgruppen. Zum Anderen wurde der aktuelle Arbeitsprozess klar definiert, sowie dessen Schwachstellen aufgezeigt (@oldProcess).
+Aus dem Interview ergab sich zum einen die Konkretisierung der Zielgruppen, welche in @zielgruppen zu finden sind. Zum Anderen wurde der aktuelle Arbeitsprozess klar definiert, sowie dessen Schwachstellen aufgezeigt (@oldProcess).
 
 
 == Analyse des aktuellen Arbeitsprozesses und Identifikation von Schwachstellen <oldProcess>
-Der Prozess um Modulhandbücher zu bearbeiten hat sich bereits in der Planungsphase dieser Arbeit verändert. Bisher hab es für die Modulhandbücher Word-Dokumente, welche in einem Git-Repository verwaltet wurden. Bei Änderungen mussten jeweils das deutsche und das englische Word Dokument bearbeitet werden. Anschließend kann es notwendig sein, die Änderungen auch im Curriculum des Studienganges (@mdiCurr) und im Anhang des besonderen Teils der Prüfungsordnung (@currTable) vorzunehmen.
+Der Prozess um Modulhandbücher zu bearbeiten hat sich bereits in der Planungsphase dieser Arbeit verändert. Bisher gab es für die Modulhandbücher Word-Dokumente, welche in einem Git-Repository verwaltet wurden. Bei Änderungen mussten jeweils das deutsche und das englische Word Dokument bearbeitet werden. Anschließend kann es notwendig sein, die Änderungen auch im Curriculum des Studienganges (@mdiCurr) und im Anhang des besonderen Teils der Prüfungsordnung (@currTable) vorzunehmen.
 
 Die kritischste Schwachstelle sind hier Redundanzen. Die Eigenschaften eines Modulhandbuches sind an mehreren verschiedenen Stellen hinterlegt und müssen überall von Hand angepasst werden. Bei dem manuellen Eintragen von Daten können schnell Fehler auftreten, da die verschiedenen Stellen nicht automatisch synchronisiert werden. @goll_entwurfsprinzipien_2018 
 
-Als Vorbereitung für ein neues System wurden vom Studiendekan die zuvor genannten Word Dokumente maschinell eingelesen, in ein JSON-Format umgewandelt und anschließend in eine PostgresSQL-Datenbank eingespielt. Weiterhin wurde ein Python Script erstellt, welches aus den Datensätzen in der Datenbank mithilfe von LaTeX ein PDF-Dokument für die Modulhandbücher generieren kann. Die Datenbank enthält jedoch weiterhin Redundanzen und ist nicht vollständig normalisiert. 
+Als Vorbereitung für ein neues System wurden vom Studiendekan die zuvor genannten Word Dokumente maschinell eingelesen, in ein JSON-Format umgewandelt und anschließend in eine PostgresSQL-Datenbank eingespielt. Weiterhin wurde ein Python Script erstellt, welches aus den Datensätzen in der Datenbank mithilfe von LaTeX ein PDF-Dokument für die Modulhandbücher generieren kann. Die Datenbank enthält jedoch weiterhin Redundanzen und könnte daher optimiert werden. 
 
 
 
@@ -88,22 +90,22 @@ Eine weitere Zielgruppe sind Studierende. In Gesprächen mit verschiedenen Studi
 
 
 
-=== Modulverantwortliche und Studiengangverantwortliche <modulverantwortlicher>
+=== Modulverantwortliche und Studiengangsverantwortliche <modulverantwortlicher>
 Aus dem Interview mit dem Studiendekan (@interview) geht hervor, dass es neben den Studierenden noch andere zu betrachtende Zielgruppen gibt. Für die Bearbeitung von Modulhandbüchern sind an der #hsh verschiedene Personengruppen zuständig. Zum einen gibt es den Studiengangverantwortlichen. Dieser ist für die Veröffentlichung des Dokumentes verantwortlich. Der Studiengangverantwortliche ist nicht dafür zuständig, die Inhalte der einzelnen Modulbeschreibungen anzupassen. Für diese Anpassungen gibt es die Modulverantwortlichen. Jedes Modul hat eine Person, die die Informationen der Modulbeschreibung aktuell halten soll und gleichzeitig Ansprechpartner für Fragen ist. In der Abteilung Informatik ist aktuell der Studiendekan gleichzeitig auch Studiengangverantwortlicher. Modulverantwortliche sind die Professoren und Dozierenden der Abteilung.
 
 
 == Use Cases <usecases>
-Im folgenden Abschnitt werden die Ergebnisse aus dem Interview und der Recherche im ECTS User Guide @ects verwendet, um aufzuzeigen, welche Funktionen die einzelnen Akteure im neuen System verwenden können.@rupp_requirements-engineering_2014[Seite~192] Hierzu werden Use Cases bestimmt, damit im nächsten Abschnitt (@requirements) daraus Anforderungen abgeleitet werden können. Die Use-Cases wurden hergeleitet, indem die Bedürfnisse und Aufgaben der Akteure analysiert und mit den im ECTS User Guide beschriebenen Funktionen abgeglichen wurden. So soll sichergestellt werden, dass alle zuvor bestimmten Akteure ihre Aufgaben vollständig mit dem neuen System erledigen können. 
+Im folgenden Abschnitt werden die Ergebnisse aus dem Interview und der Recherche im ECTS User Guide @ects verwendet, um aufzuzeigen, welche Funktionen die einzelnen Akteure im neuen System verwenden können.@rupp_requirements-engineering_2014[Seite~192] Hierzu werden Use Cases bestimmt, damit im nächsten Abschnitt (@requirements) daraus Anforderungen abgeleitet werden können. Die Use Cases wurden hergeleitet, indem die Bedürfnisse und Aufgaben der Akteure analysiert und mit den im ECTS User Guide beschriebenen Funktionen abgeglichen wurden. So soll sichergestellt werden, dass alle zuvor bestimmten Akteure ihre Aufgaben vollständig mit dem neuen System erledigen können. 
 
 
 
 /*
-  "Sie können Use-Case-Beschreibungen als Ergänzung zu Use-Case-Diagrammen erstellen, etwa um jeden einzelnen Use-Case aus dem Diagramm genauer zu beleuchten. Use-Case Beschreibungen können aber auch ohne Diagramm für sich stehen."
+  "Sie können Use Case-Beschreibungen als Ergänzung zu Use Case-Diagrammen erstellen, etwa um jeden einzelnen Use Case aus dem Diagramm genauer zu beleuchten. Use Case Beschreibungen können aber auch ohne Diagramm für sich stehen."
 */
 
 #include("Planung/use-cases.typ")
 
-Die Auflistung der Use Cases bildet eine Grundlage für die folgenden Abschnitte. Aus den Use-Cases können nun konkrete Anforderungen ermittelt werden. Sicherlich können verschiedene Menschen noch weitere Ideen zur Verwendung des Systems haben, jedoch sollte diese Auflistung die wichtigsten Punkte umfassen, um ein System abzubilden, welches den aktuellen Workflow verbessert. Es ist wichtig zu betonen, dass sich Anforderungen stetig verändern können und dass es möglich ist in Zukunft auch andere Use Cases durch das System abzudecken. Das System soll deshalb so implementiert werden, dass zukünftige Änderungen einfach möglich sind.  
+Die Auflistung der Use Cases bildet eine Grundlage für die folgenden Abschnitte. Aus den Use Cases können nun konkrete Anforderungen ermittelt werden. Sicherlich können verschiedene Menschen noch weitere Ideen zur Verwendung des Systems haben, jedoch sollte diese Auflistung die wichtigsten Punkte umfassen, um ein System abzubilden, welches den aktuellen Workflow verbessert. Es ist wichtig zu betonen, dass sich Anforderungen stetig verändern können und dass es möglich ist in Zukunft auch andere Use Cases durch das System abzudecken. Das System soll deshalb so implementiert werden, dass zukünftige Änderungen einfach möglich sind.  
 
 
 == Anforderungen <requirements>
@@ -123,11 +125,11 @@ Jede Anforderung in den folgenden Auflistungen enthält entweder das Wort "muss"
 === Funtionale Anforderungen
 Die funktionalen Anforderungen ergeben sich aus den zuvor ermittelten Use Cases (@usecases). Hierbei wurde überlegt, welche Anforderungen erfüllt sein müssen, um einen Use Case vollständig abbilden zu können.
 
-In #link(<UseCaseInfoDegree>)[Use-Case 1] ist beschrieben, wie eine nicht angemeldete Person (NP) Informationen zu einem Studiengang erhalten möchte. Damit die Übersicht eines Studienganges auf der Website der Hochschule verlinkt werden kann, muss das System einen Link bereitstellen können, der direkt zur Übersicht führt und sich nicht verändert. Außerdem muss es eine Funktion geben, um das Pdf mit dem Modulverzeichnis des Studienganges zu öffnen.
+In #link(<UseCaseInfoDegree>)[Use Case 1] ist beschrieben, wie eine nicht angemeldete Person (NP) Informationen zu einem Studiengang erhalten möchte. Damit die Übersicht eines Studienganges auf der Website der Hochschule verlinkt werden kann, muss das System einen Link bereitstellen können, der direkt zur Übersicht führt und sich nicht verändert. Außerdem muss es eine Funktion geben, um das PDF mit dem Modulverzeichnis des Studienganges zu öffnen.
 
-#task(title:[Aus #link(<UseCaseInfoDegree>)[Use-Case 1] ergeben sich folgende Anforderungen:])[
+#task(title:[Aus #link(<UseCaseInfoDegree>)[Use Case 1] ergeben sich folgende Anforderungen:])[
   #narrowTrack("Link zur Übersichtsseite anbieten", type: "F", label: <StaticLink>)[System muss einen statischen Link zur Übersicht eines Studienganges bereitstellen.]
-  #narrowTrack("Pdf anzeigen", type: "F", label: <PDF>)[NP sollte ein PDF mit allen Modulbeschreibungen ansehen können.]
+  #narrowTrack("PDF anzeigen", type: "F", label: <PDF>)[NP muss ein PDF mit allen Modulbeschreibungen ansehen können.]
 ]
 ]
 
@@ -137,10 +139,10 @@ In #link(<UseCaseInfoDegree>)[Use-Case 1] ist beschrieben, wie eine nicht angeme
   
 
 
-In #link(<UseCaseInfoModule>)[Use-Case 2] ist beschrieben, wie eine Person Informationen zu einem Modul erhalten möchte. Das System muss hierzu alle Module des ausgewählten Studiengangs auflisten. Im genannten Beispiel ist die Person auf der Suche nach einem Wahlpflichtmodul. Für diesen Fall muss das System die Möglichkeit bieten, nach bestimmten Informationen zu Filtern. Denkbar wären Filter für die Informationen "Wahlpflichtfach", "Semester", "Erreichbare Credits".
+In #link(<UseCaseInfoModule>)[Use Case 2] ist beschrieben, wie eine Person Informationen zu einem Modul erhalten möchte. Das System muss hierzu alle Module des ausgewählten Studiengangs auflisten. Im genannten Beispiel ist die Person auf der Suche nach einem Wahlpflichtmodul. Für diesen Fall muss das System die Möglichkeit bieten, nach bestimmten Informationen zu Filtern. Denkbar wären Filter für die Informationen "Wahlpflichtfach", "Semester", "Erreichbare Credits".
 
 
-#task(title: [Aus #link(<UseCaseInfoModule>)[Use-Case 2] ergeben sich folgende Anforderungen:])[
+#task(title: [Aus #link(<UseCaseInfoModule>)[Use Case 2] ergeben sich folgende Anforderungen:])[
   #narrowTrack("Module auflisten", type: "F", label: <SHOWMODULES>)[NP muss eine Liste aller Module sehen können.]
   #narrowTrack("Filterfunktion", type: "F", label: <FILTER>)[NP sollte Filter nutzen können, um das gesuchte Modul zu finden.]
   #narrowTrack("Suchfunktion", type: "F", label: <SEARCH>)[NP sollte eine Suchfunktion nutzen können, um das gesuchte Modul zu finden.]
@@ -153,10 +155,10 @@ In #link(<UseCaseInfoModule>)[Use-Case 2] ist beschrieben, wie eine Person Infor
 #block(breakable: true)[
 
 
-In #link(<UseCaseEditModule>)[Use-Case 3] ist beschrieben, wie eine Person Informationen zu einem Modul bearbeiten möchte. Damit dies nur vom genannten Akteuer erledigt werden kann, wird eine Login-Funktion benötigt. Aus der Loginfunktion ergeben sich weitere Anforderungen. So kann ein Logout-Button sinnvoll sein und es könnte praktisch sein das eigene Passwort ändern zu können. Weiterhin könnte es hilfreich sein, wenn die eingegebenen Informationen auf Plausibilität überprüft werden. Denkbar wäre beispielsweise eine Prüfung, ob die angegebenen ECTS mit dem angegebenen Zeitaufwand zusammenpasst.
+In #link(<UseCaseEditModule>)[Use Case 3] ist beschrieben, wie eine Person Informationen zu einem Modul bearbeiten möchte. Damit dies nur vom genannten Akteuer erledigt werden kann, wird eine Login-Funktion benötigt. Aus der Loginfunktion ergeben sich weitere Anforderungen. So kann ein Logout-Button sinnvoll sein und es könnte praktisch sein das eigene Passwort ändern zu können. Weiterhin könnte es hilfreich sein, wenn die eingegebenen Informationen auf Plausibilität überprüft werden. Denkbar wäre beispielsweise eine Prüfung, ob die angegebenen ECTS mit dem angegebenen Zeitaufwand zusammenpasst.
 
 
-#task(title: [Aus #link(<UseCaseEditModule>)[Use-Case 3] ergeben sich folgende Anforderungen:])[
+#task(title: [Aus #link(<UseCaseEditModule>)[Use Case 3] ergeben sich folgende Anforderungen:])[
 #narrowTrack("Login", type: "F", label: <LOGIN>)[Ein User muss sich anmelden können.] #linebreak()
 #narrowTrack("Logout", type: "F", label: <LOGOUT>)[Ein User sollte sich ausloggen können.] #linebreak()
 #narrowTrack("Passwörter zurücksetzen", type: "F", label: <RESETPW>)[SVP muss Passwörter zurücksetzen können.]
@@ -170,9 +172,9 @@ In #link(<UseCaseEditModule>)[Use-Case 3] ist beschrieben, wie eine Person Infor
 
 #block(breakable: true)[
 
-In #link(<UseCaseCreate>)[Use-Case 4] ist beschrieben, dass die Studiengangsverantwortliche Person Datensätze erstellen können muss. Für die verschiedenen Entitäten im neuen System muss es dementsprechend jeweils eine Bearbeitungsmaske geben. Im System müssen die Datensätze sowohl erstellbar als auch bearbeitbar sein. Außerdem muss man Datensätze löschen können. Aus dem Interview mit dem Studiendekan hat sich außerdem ergeben, dass Studiengänge ausblendbar sein müssen, damit alte Prüfungsordnungen versteckt werden können. Diese werden von Studierenden nicht benötigt, weil darin enthaltene Veranstaltungen möglicherweise nicht mehr angeboten werden. Die veralteten Studiengänge sollen jedoch nicht direkt gelöscht werden, damit der Studiendekan bei Bedarf auf alte Modulbeschreibungen zugreifen kann. Für die Erstellung einer neuen Prüfungsordnung schlägt der Studiendekan eine Funktion vor, die bestehende Studiengänge oder Module duplizieren kann, da es manchmal zwischen den Prüfungsordnungen nur geringfügige Änderungen gibt.
+In #link(<UseCaseCreate>)[Use Case 4] ist beschrieben, dass die Studiengangsverantwortliche Person Datensätze erstellen können muss. Für die verschiedenen Entitäten im neuen System muss es dementsprechend jeweils eine Bearbeitungsmaske geben. Im System müssen die Datensätze sowohl erstellbar als auch bearbeitbar sein. Außerdem muss man Datensätze löschen können. Aus dem Interview mit dem Studiendekan hat sich außerdem ergeben, dass Studiengänge ausblendbar sein müssen, damit alte Prüfungsordnungen versteckt werden können. Diese werden von Studierenden nicht benötigt, weil darin enthaltene Veranstaltungen möglicherweise nicht mehr angeboten werden. Die veralteten Studiengänge sollen jedoch nicht direkt gelöscht werden, damit der Studiendekan bei Bedarf auf alte Modulbeschreibungen zugreifen kann. Für die Erstellung einer neuen Prüfungsordnung schlägt der Studiendekan eine Funktion vor, die bestehende Studiengänge oder Module duplizieren kann, da es manchmal zwischen den Prüfungsordnungen nur geringfügige Änderungen gibt.
 
-#task(title: [Aus #link(<UseCaseCreate>)[Use-Case 4] ergeben sich folgende Anforderungen:])[
+#task(title: [Aus #link(<UseCaseCreate>)[Use Case 4] ergeben sich folgende Anforderungen:])[
   #narrowTrack("Module verwalten", type: "F", label: <MODULE>)[SVP muss Module verwalten (anlegen, bearbeiten, löschen) können.]
   #narrowTrack("Module duplizieren", type: "F", label: <DUPLICATE>)[SVP sollte Module duplizieren können.]#linebreak()
   #narrowTrack("Studiengänge verwalten", type: "F", label: <COURSE>)[SVP muss Studiengänge verwalten können.]
@@ -187,9 +189,9 @@ In #link(<UseCaseCreate>)[Use-Case 4] ist beschrieben, dass die Studiengangsvera
 ]
 
 #block(breakable: false)[
-In #link(<UCRevertChanges>)[Use-Case 5] ist beschrieben, dass die Änderungen an einem Modul rückgängig gemacht werden können. Hierzu müssen diese natürlich zunächst angezeigt werden. Diese Funktion ist außerdem für Teilmodule und auch alle anderen Arten von Datensätzen sinnvoll.
+In #link(<UCRevertChanges>)[Use Case 5] ist beschrieben, dass die Änderungen an einem Modul rückgängig gemacht werden können. Hierzu müssen diese zunächst angezeigt werden. Diese Funktion ist außerdem für Teilmodule und auch alle anderen Arten von Datensätzen sinnvoll.
 
-#task(title: [Aus #link(<UCRevertChanges>)[Use-Case 5] ergibt sich folgende Anforderung:])[
+#task(title: [Aus #link(<UCRevertChanges>)[Use Case 5] ergibt sich folgende Anforderung:])[
   #narrowTrack("Änderungen anzeigen (Modul)", type: "F", label: <SHOWCHANGES>)[SVP sollte sich einzelne Änderungen an einem Modul anzeigen lassen können.]
   #narrowTrack("Änderungen widerrufen (Modul)", type: "F", label: <REVERT>)[SVP könnte einzelne Änderungen an einem Modul rückgängig machen.]
   #narrowTrack("Änderungen anzeigen", type: "F", label: <SHOWCHANGESmisc>)[SVP könnte sich einzelne Änderungen an beliebigen Datensätzen anzeigen lassen können.]
@@ -198,8 +200,8 @@ In #link(<UCRevertChanges>)[Use-Case 5] ist beschrieben, dass die Änderungen an
 
 #linebreak()
 
-In #link(<UseCaseTable>)[Use-Case 6] ist beschrieben, wie die Studiengangsverantwortliche Person den Anhang der Prüfungsordnung erstellt. Da die Prüfungsordnung ein wichtiges Dokument ist, soll diese auch in Zukunft zunächst manuell erstellt werden. Die im Anhang der Prüfungsordnung enthaltene Tabelle kann dann im System generiert werden und kann mit der manuell erstellten Tabelle verglichen werden. Hiermit ist dann sichergestellt, dass die Daten im neuen System und in der Prüfungsordnung übereinstimmen.
-#task(title: [Aus #link(<UseCaseTable>)[Use-Case 6] ergibt sich folgende Anforderung:])[
+In #link(<UseCaseTable>)[Use Case 6] ist beschrieben, wie die Studiengangsverantwortliche Person den Anhang der Prüfungsordnung erstellt. Da die Prüfungsordnung ein wichtiges Dokument ist, soll diese auch in Zukunft zunächst manuell erstellt werden. Die im Anhang der Prüfungsordnung enthaltene Tabelle kann dann im System generiert werden und kann mit der manuell erstellten Tabelle verglichen werden. Hiermit ist dann sichergestellt, dass die Daten im neuen System und in der Prüfungsordnung übereinstimmen.
+#task(title: [Aus #link(<UseCaseTable>)[Use Case 6] ergibt sich folgende Anforderung:])[
   #narrowTrack("Anhang der Prüfungsordnung", type: "F", label: <COMPARE>)[SVP könnte sich die Auflistung aller Module als Tabelle anzeigen lassen, um sie mit dem Anhang der Prüfungsordnung vergleichen zu können.]
 ]
 ]
@@ -315,12 +317,12 @@ Damit das System eine gute Effizienz hat, müssen alle Anfragen performant gesta
   Das Deployment könnte automatisiert sein.
 ]
   #narrowTrack("Effizienz der Aufgabenerledigung", type:"N", label:<CLICKS>)[
-  Jeder Schritt im Use-Case sollte mit möglichst wenigen Klicks erledigbar sein.
+  Jeder Schritt im Use Case sollte mit möglichst wenigen Klicks erledigbar sein.
 ]
 ]
 
 
-Das Merkmal #emph("Funktionalität") besteht aus den Submerkmalen #emph("Angemessenheit"), #emph("Richtigkeit"), #emph("Interoperabilität"), #emph("Sicherheit") und #emph("Ordnungsmäßigkeit"). @rupp_requirements-engineering_2014[12.4.1] Da die Modulhandbücher bisher in Englisch und Deutsch bereitstehen, muss diese Funktionalität bestehen bleiben. Für die Zukunft wäre auch die Einführung weiterer Sprachen denkbar, weshalb die Mehrsprachenfähigkeit vorbereitet werden sollte. Um den Arbeitsaufwand gering zu halten, sollte das System sinnvolle Eingaben vorschlagen und das generierte Pdf sollte dem ursprüngichen Pdf ähneln. Außerdem muss sichergestellt sein, dass bestimmte Endpunkte nur von autorisierten Nutzern verwendet werden können.
+Das Merkmal #emph("Funktionalität") besteht aus den Submerkmalen #emph("Angemessenheit"), #emph("Richtigkeit"), #emph("Interoperabilität"), #emph("Sicherheit") und #emph("Ordnungsmäßigkeit"). @rupp_requirements-engineering_2014[12.4.1] Da die Modulhandbücher bisher in Englisch und Deutsch bereitstehen, muss diese Funktionalität bestehen bleiben. Für die Zukunft wäre auch die Einführung weiterer Sprachen denkbar, weshalb die Mehrsprachenfähigkeit vorbereitet werden sollte. Um den Arbeitsaufwand gering zu halten, sollte das System sinnvolle Eingaben vorschlagen und das generierte PDF sollte dem ursprüngichen PDF ähneln. Außerdem muss sichergestellt sein, dass bestimmte Endpunkte nur von autorisierten Nutzern verwendet werden können.
 
 #task(title: [Funktionalität])[
   #narrowTrack("Zwei Sprachen", type:"N", label:<TRANSLATE>)[
@@ -332,8 +334,8 @@ Das Merkmal #emph("Funktionalität") besteht aus den Submerkmalen #emph("Angemes
 #narrowTrack("Auswahlmöglichkeiten", type:"N", label: <lookup>)[
   System sollte möglichst oft vorschlagen, welche Eingaben sinnvoll wären.
 ]
-#narrowTrack("Ähnlichkeit zum ursprünglichen Pdf", type:"N", label: <similarPdf>)[
-  Das generierte Pdf sollte dem ursprünglichen Pdf ähneln.
+#narrowTrack("Ähnlichkeit zum ursprünglichen PDF", type:"N", label: <similarPdf>)[
+  Das generierte PDF sollte dem ursprünglichen PDF ähneln.
 ]
 #narrowTrack("Sicherheit", type:"N", label: <security>)[
   Es muss verhindert werden, dass nichtautorisierte Benutzer datenverändernde Endpunkte nutzen.
@@ -354,7 +356,7 @@ Das Merkmal #emph("Übertragbarkeit") besteht aus den Submerkmalen #emph("Anpass
 ]
 ]
 
-Das Merkmal #emph("Zuverlässigkeit") besteht aus den Submerkmalen #emph("Reife"), #emph("Fehlertoleranz"), #emph("Robustheit"), #emph("Wiederherstellbarkeit") und #emph("Konformität"). Zum Einen sollte das System mit Fehlern umgehen können. Diese sollten entweder abgefangen, oder dem Benutzer mitgeteilt werden. Besser wäre es, wenn während der Erledigung der Use-Cases keine Fehler auftreten würden. Gegen den Schutz vor Angriffen könnten Rate-Limits ein sinnvoller Mechanismus sein, um beispielsweise nach mehreren fehlgeschlagenen Loginversuchen, weitere Versuche zu unterbinden.
+Das Merkmal #emph("Zuverlässigkeit") besteht aus den Submerkmalen #emph("Reife"), #emph("Fehlertoleranz"), #emph("Robustheit"), #emph("Wiederherstellbarkeit") und #emph("Konformität"). Zum Einen sollte das System mit Fehlern umgehen können. Diese sollten entweder abgefangen, oder dem Benutzer mitgeteilt werden. Besser wäre es, wenn während der Erledigung der Use Cases keine Fehler auftreten würden. Gegen den Schutz vor Angriffen könnten Rate-Limits ein sinnvoller Mechanismus sein, um beispielsweise nach mehreren fehlgeschlagenen Loginversuchen, weitere Versuche zu unterbinden.
 
 #task(title: [Zuverlässigkeit])[
   #narrowTrack("Stabilität", type:"N", label: <ERRORSTABLE>)[
@@ -440,7 +442,7 @@ Risiko, der Machbarkeit, Nützlichkeit und dem Begeisterungspotenzial.
 == Struktur eines Modulhandbuches <structure>
 In diesem Unterabschnitt soll die Struktur eines Modulhandbuches analysiert werden, um herauszufinden, wie die spätere Datenbank aufgebaut sein muss. Damit ein Datenbankschema erstellt werden kann, müssen die verschiedenen Entitäten ermittelt werden, die Beziehung zwischen den Entitäten und die Attribute für jede Entität.
 
-Die Modulhandbücher der Abteilung Informatik haben für alle drei Studiengänge (BIN, MDI und MIN) dieselbe Struktur. Es gibt eine Aufteilung in Module und Teilmodule. Ein Modul kann dabei 0 bis n verschiedene Teilmodule haben und jedes Teilmodul kann zu 1 bis n Modulen gehören. Teilmodule können Studiengangsübergreifend mit Modulen verknüpft werden. #emph("Beispiel"): Es gibt das Modul "MDI-103 Grundlagen der Informatik" und das Modul "BIN-103 Grundlagen der Informatik". Beide verweisen auf das Teilmodul "BIN-103-01 Grundlagen der Informatik". Somit können Studiengangsübergreifende Module abgebildet werden. In der Regel hat an der Abteilugn Informatik jedes Modul genau ein Teilmodul und umgekehrt gehört in der Regel jedes Teilmodul zu genau einem Modul.
+Die Modulhandbücher der Abteilung Informatik haben für alle drei Studiengänge (BIN, MDI und MIN) dieselbe Struktur. Es gibt eine Aufteilung in Module und Teilmodule. Ein Modul kann dabei 0 bis n verschiedene Teilmodule haben und jedes Teilmodul kann zu 1 bis n Modulen gehören. Teilmodule können Studiengangsübergreifend mit Modulen verknüpft werden. #emph("Beispiel"): Es gibt das Modul "MDI-103 Grundlagen der Informatik" und das Modul "BIN-103 Grundlagen der Informatik". Beide verweisen auf das Teilmodul "BIN-103-01 Grundlagen der Informatik". Somit können Studiengangsübergreifende Module abgebildet werden. In der Regel hat an der Abteilung Informatik jedes Modul genau ein Teilmodul und umgekehrt gehört in der Regel jedes Teilmodul zu genau einem Modul.
 
 === Moduleigenschaften <properties>
 Das Modul enthält zunächst grundlegende Informationen:
@@ -503,7 +505,7 @@ Das Modul enthält zunächst grundlegende Informationen:
 ]
 
 #track("Gruppe", example: "Wahlpflichtmodule 2. Studienabschnitt", label:<group>)[
-  Jedes Modul gehört zu einer Gruppe. Anhand der Gruppe werden die Module im Pdf gedruckt.
+  Jedes Modul gehört zu einer Gruppe. Anhand der Gruppe werden die Module im PDF gedruckt.
 ]
 
 #text(" ")<EndOfChapter>

@@ -20,10 +20,10 @@ Im Laufe der Implementierungsphase wurde ein Prototyp einer modulverantwortliche
 == Abweichungen zum Prototypen
 Um sicherzustellen, dass keine wichtigen Details aus den Entwürfen übersehen wurden, wurde das neue System in diesem Abschnitt mit den Entwürfen aus @UI verglichen.
 
-Das in @drawer gezeigte Menü enthält in der tatsächlichen Implementierung andere Einträge. Es gibt beispielsweise in der aktuellen Version des Systems noch keine Möglichkeit, einen neuen Studiengang oder eine neue Abteilung anzulegen. Dies muss aktuell noch per Datenbankzugriff erledigt werden. Da das System im ersten Schritt jedoch nur von der Abteilung Informatik genutzt werden soll, ist dies zunächst in Ordnung. Eine Implementierung entsprechender Funktionen sollte zudem nicht aufwändig sein, da es bereits ähnliche Implementierungen für das Erstellen von Modulen und Teilmodulen gibt. Des Weiteren entfällt die geplante Benutzerverwaltung (@createUser), da in Zukunft eventuell direkt das LDAP der Hochschule verwendet werden könnte. Stattdessen gibt es im Drawer jetzt die Möglichkeit, Pdf-Kompilierungsanträge und Teilmodule zu verwalten. 
+Das in @drawer gezeigte Menü enthält in der tatsächlichen Implementierung andere Einträge. Es gibt beispielsweise in der aktuellen Version des Systems noch keine Möglichkeit, einen neuen Studiengang oder eine neue Abteilung anzulegen. Dies muss aktuell noch per Datenbankzugriff erledigt werden. Da das System im ersten Schritt jedoch nur von der Abteilung Informatik genutzt werden soll, ist dies zunächst in Ordnung. Eine Implementierung entsprechender Funktionen sollte zudem nicht aufwändig sein, da es bereits ähnliche Implementierungen für das Erstellen von Modulen und Teilmodulen gibt. Des Weiteren entfällt die geplante Benutzerverwaltung (@createUser), da in Zukunft eventuell direkt das LDAP der Hochschule verwendet werden könnte. Stattdessen gibt es im Drawer jetzt die Möglichkeit, PDF-Kompilierungsanträge und Teilmodule zu verwalten. 
 
 
-Die Filter in @moduleoverview wurden direkt in die Tabellenüberschrift integriert (@filterResult). Außerdem wurden weitere Spalten eingeführt, um #link(<UseCaseInfoModule>)[Use-Case 2] abbilden zu können.
+Die Filter in @moduleoverview wurden direkt in die Tabellenüberschrift integriert (@filterResult). Außerdem wurden weitere Spalten eingeführt, um #link(<UseCaseInfoModule>)[Use Case 2] abbilden zu können.
 
 Die in @translateDropdown und @translatePopup zu sehenden Steuerelemente zum Hinzufügen von Übersetzungen wurden zugunsten einer besseren Usability ersetzt (siehe @createEditModules)
 
@@ -32,14 +32,14 @@ Alle nicht genannten Abbildungen aus @UI ähneln den tatsächlichen Implementier
 Bei dem Vergleich sind keine unerklärten Abweichungen gefunden worden. Alle vorgenommenen Änderungen verbessern entweder das System, oder sind nicht für die Erfüllung der wesentlichen Use Cases erforderlich, sodass davon ausgegangen wird, dass alle wichtigen Anforderungen an das Design erfüllt wurden.
 
 
-== Vergleich der Pdfs<pdfComparision>
-Da die Generierung eines Modulhandbuchkataloges im Pdf-Format ein zentraler Bestandteil dieser Arbeit war, sollte das Ergebnis genauer geprüft werden. Hierzu wurden aktuelle Modulhandbücher von der Website der Hochschule mit den neu generierten Handbüchern aus dem System verglichen. Bei der Ersten Überprüfung (siehe @pdfA und @pdfB @ilovepdf.comILovePDFOnlinePDF) sind dabei noch einige ToDos aufgefallen, die im Anschluss behoben wurden. So fehlten beispielsweise bei den Semesterwochenstunden ein Komma und das Suffix "SWS". Bei den längeren Texten (z.B. "Inhalt") fällt außerdem auf, dass die neuen Texte im Blocksatz dargestellt sind, während die ursprünglichen Texte lediglich linksbündig ausgerichtet sind. 
+== Vergleich der PDFs<pdfComparision>
+Da die Generierung eines Modulhandbuchkataloges im PDF-Format ein zentraler Bestandteil dieser Arbeit war, sollte das Ergebnis genauer geprüft werden. Hierzu wurden aktuelle Modulhandbücher von der Website der Hochschule mit den neu generierten Handbüchern aus dem System verglichen. Bei der Ersten Überprüfung (siehe @pdfA und @pdfB @ilovepdf.comILovePDFOnlinePDF) sind dabei noch einige ToDos aufgefallen, die im Anschluss behoben wurden. So fehlten beispielsweise bei den Semesterwochenstunden ein Komma und das Suffix "SWS". Bei den längeren Texten (z.B. "Inhalt") fällt außerdem auf, dass die neuen Texte im Blocksatz dargestellt sind, während die ursprünglichen Texte lediglich linksbündig ausgerichtet sind. 
 
-#imageFigure(<pdfA>, "PdfCompareA.png", "Ursprüngliches Pdf")
+#imageFigure(<pdfA>, "PdfCompareA.png", "Ursprüngliches PDF")
 
-#imageFigure(<pdfB>, "PdfCompareB.png", "Neues Pdf")
+#imageFigure(<pdfB>, "PdfCompareB.png", "Neues PDF")
 
-Nachdem die kleineren Anpassungen vorgenommen und mit einer erneuten Überprüfung verifiziert wurden, ähnelt das neue Pdf nun dem ursprünglichen Pdf. Die Nutzung des neuen Pdfs sollte dementsprechend möglich sein. 
+Nachdem die kleineren Anpassungen vorgenommen und mit einer erneuten Überprüfung verifiziert wurden, ähnelt das neue PDF nun dem ursprünglichen PDF. Die Nutzung des neuen PDFs sollte dementsprechend möglich sein. 
 
 
 
@@ -61,17 +61,17 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
     [*Anf.*], [*Umsetzung*], [*Bewertung*],
   ),
 
-  table.cell(colspan: 3, align: center, [#link(<UseCaseInfoDegree>)[#emph("Use-Case 1")]]),
+  table.cell(colspan: 3, align: center, [#link(<UseCaseInfoDegree>)[#emph("Use Case 1")]]),
   [@StaticLink], [Durch die Nutzung von Routen kann ein Studiengang mithilfe eines Links aufgerufen werden.], [Erfüllt #linebreak() (@appRoutes)],
-  [@PDF], [In der Übersicht aller Studiengänge der Abteilung kann ein Pdf für jeden Studiengang aufgerufen werden. ], [Erfüllt #linebreak() (@degreeProgramOverview)],
+  [@PDF], [In der Übersicht aller Studiengänge der Abteilung kann ein PDF für jeden Studiengang aufgerufen werden. ], [Erfüllt #linebreak() (@degreeProgramOverview)],
   
-  table.cell(colspan: 3, align: center, [#emph("Use-Case 2")]),
+  table.cell(colspan: 3, align: center, [#emph("Use Case 2")]),
   [@SHOWMODULES], [Es können alle Module eines Studienganges angezeigt werden.], [Erfüllt #linebreak() (@moduleOverviewResult)],
   [@FILTER], [In allen Spalten steht eine Filterfunktion bereit.], [Erfüllt #linebreak() (@filterResult)],
   [@SEARCH], [Die Suchfunktion wurde erfolgreich implementiert.], [Erfüllt #linebreak() @implementSearch],
   [@SHOWMODULEDETAIL], [Es gibt für jedes Modul eine Detailansicht mit allen verfügbaren Informationen.], [Erfüllt #linebreak() (@moduleDetailResult)],
 
-  table.cell(colspan: 3, align: center, [#emph("Use-Case 3")]),
+  table.cell(colspan: 3, align: center, [#emph("Use Case 3")]),
   [@LOGIN], [Im seitlichen Menü gibt es einen Login-Button.], [Erfüllt],
   [@LOGOUT], [Im seitlichen Menü gibt es einen Logout-Button.], [Erfüllt],
   [@RESETPW], [Wurde nicht umgesetzt, da Accounts in der Einführungsphase erst direkt in der Datenbank verwaltet werden. Eventuell erfolgt später eine Anbindung an die SSO-Accounts der Hochschule. <nichtUmgesetzt>], [Nicht erfüllt],
@@ -79,7 +79,7 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   [@EDIT], [Personen die für ein Modul verantwortlich sind, sowie die studiengangsverantwortliche Person können Module bearbeiten.], [Erfüllt #linebreak() (@editModule)],
   [@CHECKMOD], [Es wurden verschiedene Plausibilitätschecks eingebaut. Fehlerhafte Felder werden rot markiert. Der User erhält weitere Informationen über einen Tooltip.], [Erfüllt #linebreak() (@plausib)],
 
-  table.cell(colspan: 3, align: center, [#emph("Use-Case 4")]),
+  table.cell(colspan: 3, align: center, [#emph("Use Case 4")]),
   [@MODULE], [Module können bearbeitet werden.], [Erfüllt  #linebreak() (@editModule)],
   [@DUPLICATE], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
   [@COURSE], [Studiengänge können verwaltet werden], [Erfüllt  #linebreak() (@menu)],
@@ -90,13 +90,13 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   [@CreateSubmodules], [Teilmodule können verwaltet werden. ], [Erfüllt],
   [@CreateRequirements], [Vorraussetzungen haben keine eigenständige Verwaltungsmaske, sondern sind ein Teil der Modulbearbeitungsmaske und können dort bearbeitet werden. ], [Erfüllt],
 
-  table.cell(colspan: 3, align: center, [#emph("Use-Case 5")]),
+  table.cell(colspan: 3, align: center, [#emph("Use Case 5")]),
   [@SHOWCHANGES], [Die Änderungen an einem Modul werden automatisch protokolliert. Dabei ist der Benutzter angegeben, sowie alle modifizierten Felder.], [Erfüllt #linebreak() @changelog #linebreak() #link(<implementChangelog>)[Implementierung]],
   [@REVERT], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
   [@SHOWCHANGESmisc], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
   [@REVERTmisc], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
 
-  table.cell(colspan: 3, align: center, [#emph("Use-Case 6")]),
+  table.cell(colspan: 3, align: center, [#emph("Use Case 6")]),
   [@COMPARE], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
 )
 
@@ -120,7 +120,7 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   [@PATH], [Der aktuelle Pfad wird in der Anwendung angezeigt (siehe @moduleDetailResult). Durch Anklicken eines Elementes kann zurückgesprungen werden (Beispielsweise von der Detailansicht eines Moduls zurück zur Auflistung aller Module)], [Erfüllt],
   [@ASK], [Das Löschen von Datensätzen muss vom User bestätigt werden. Hierzu erscheint ein Popup mit den Buttons "Ja" und "Nein".], [Erfüllt],
   [@SOFTDELETE], [Diese Anforderung wurde nicht umgesetzt. Das Löschen eines Datensatzes könnte in Zukunft angepasst werden, sodass nur eine Eigenschaft "deleted" auf True gesetzt wird. Beim Laden von Daten werden nur Datensätze geladen, die "deleted=false" sind. Die Oberfläche könnte angepasst werden, sodass angemeldete User auch gelöschte Elemente ansehen können.], [Konzept liegt vor],
-  [@QUICK], [Das Generieren eines Pdfs dauert recht lange. Hier wird ein Statusindikator eingesetzt, der dem User anzeigt, in welchem Status sich der Kompilierungsauftrag befindet. Abgesehen davon gibt es keine Stellen in der Anwendung, die eine erhöhte Ladezeit haben. Ein Ladebalken wurde daher nicht eingebaut, das Ziel einer guten Benutzbarkeit aber trotzdem erreicht.], [Erfüllt],
+  [@QUICK], [Das Generieren eines PDFs dauert recht lange. Hier wird ein Statusindikator eingesetzt, der dem User anzeigt, in welchem Status sich der Kompilierungsauftrag befindet. Abgesehen davon gibt es keine Stellen in der Anwendung, die eine erhöhte Ladezeit haben. Ein Ladebalken wurde daher nicht eingebaut, das Ziel einer guten Benutzbarkeit aber trotzdem erreicht.], [Erfüllt],
   [@ERROR], [Mögliche Fehler werden abgefangen und mithilfe einer verständlichen Fehlermeldung an den User übermittelt.], [Erfüllt #linebreak() @errorMsg],
   [@ERRORSOLVE],[Bisher nicht umgesetzt, aber durch @ERROR vorbereitet.],[Vorbereitet],
   [@RESPONSIVE],[Die Übersicht der Studiengänge, aller Module und die Moduldetails wurden für mobile Endgeräte optimiert.],[Teilweise erfüllt #linebreak() @responsiveImplemented],
@@ -134,10 +134,10 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   [@CLICKS],[Es wurde versucht, die Arbeitsabläufe möglichst einfach zu gestalten. Ohne größeren Aufwand ist es nicht nachprüfbar, ob diese Anforderung vollständig erledigt ist.],[Vermutlich erfüllt],
 
   table.cell(colspan: 3, align: center, [#emph("Funktionalität")]),
-  [@TRANSLATE],[Die Anwendung und die Pdfs die generiert werden stehen in Englisch und Deutsch bereit.],[Erfüllt],
+  [@TRANSLATE],[Die Anwendung und die PDFs die generiert werden stehen in Englisch und Deutsch bereit.],[Erfüllt],
   [@TRANSLATEMULTIPLE],[Der Code ist so vorbereitet, dass ohne großen Aufwand weitere Sprachen hinzugefügt werden können. Aktuell liegen die Modulhandbücher nur in Englisch und Deutsch vor, weshalb die neue Anwendung auch nur in Deutsch und Englisch entwickelt wurde.],[Vorbereitet],
   [@lookup],[In den Bearbeitungsmasken werden Eingabefelder verwendet, welche den User bei der Eingabe unterstützen. Wenn beispielsweise eine Zahl erwartet wird, können keine Buchstaben eingegeben werden. Außerdem werden wenn möglich Dropdowns statt Textfeldern genutzt.],[Erfüllt #linebreak() (@editModule)],
-  [@similarPdf], [Das neue Pdf ähnelt dem bisherigen Pdf.], [Erfüllt #linebreak() @pdfComparision],
+  [@similarPdf], [Das neue PDF ähnelt dem bisherigen PDF.], [Erfüllt #linebreak() @pdfComparision],
   [@security], [Nur autorisierte Benutzer können datenverändernde Endpunkte verwenden.], [Erfüllt],
 
   table.cell(colspan: 3, align: center, [#emph("Übertragbarkeit")]),

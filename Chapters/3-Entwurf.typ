@@ -36,7 +36,7 @@ Die Datenbankschemas werden mithilfe der Krähenfußnotation @relationaleDb[Seit
 
 
 === Benötigte Tabellen
-Für die Kernfunktionalität werden zunächst Tabellen für Module und Teilmodule benötigt. Um die Organisationsstruktur der Hochschule abbilden zu können, werden weiterhin Tabellen für Fakultäten, Abteilungen und Studiengänge benötigt. Damit ein Login möglich ist, kann die Tabelle User benutzt werden. Für die Anforderung @SHOWCHANGES wird eine Tabelle Changelog und eine Tabelle ChangelogItem benötigt. In der Tabelle Changelog wird für jede Änderung ein Eintrag eingetragen, welcher den ausführenden User und eine kurze Zusammenfassung beinhaltet. In den ChangelogItems stehen dann die konkreten geänderten Felder. Damit ein Modul einer Gruppe zugewiesen werden kann, wird eine Tabelle ModuleGroup benötigt, in der alle verfügbaren Gruppen aufgelistet sind. Desweiteren werden noch die Tabelle "Job" und verschiedene "PdfStructure"-Tabellen für die Generierung der Pdf-Dateien benötigt (dazu später mehr in @pythonScript).
+Für die Kernfunktionalität werden zunächst Tabellen für Module und Teilmodule benötigt. Um die Organisationsstruktur der Hochschule abbilden zu können, werden weiterhin Tabellen für Fakultäten, Abteilungen und Studiengänge benötigt. Damit ein Login möglich ist, kann die Tabelle User benutzt werden. Für die Anforderung @SHOWCHANGES wird eine Tabelle Changelog und eine Tabelle ChangelogItem benötigt. In der Tabelle Changelog wird für jede Änderung ein Eintrag eingetragen, welcher den ausführenden User und eine kurze Zusammenfassung beinhaltet. In den ChangelogItems stehen dann die konkreten geänderten Felder. Damit ein Modul einer Gruppe zugewiesen werden kann, wird eine Tabelle ModuleGroup benötigt, in der alle verfügbaren Gruppen aufgelistet sind. Desweiteren werden noch die Tabelle "Job" und verschiedene "PDFStructure"-Tabellen für die Generierung der PDF-Dateien benötigt (dazu später mehr in @pythonScript).
 
 Jede Tabelle erhält eine Spalte "Id" als Primärschlüssel. @relationaleDb[Kapitel 3]  Über diese Id werden die Relationen zu anderen Tabellen ermöglicht. Zusätzlich wird für jede Eigenschaft aus @structure eine dazugehörige Spalte benötigt.
 
@@ -55,7 +55,7 @@ Eine etwas einfachere Methode wäre es, die übersetzten Texte in einer zentalen
 
 Für diese Lösung muss nur eine einzelne zusätzliche Tabelle erstellt werden, was den initialen Aufwand minimiert. Auch hat die zentrale Speicherung von Texten den Vorteil, dass diese sehr einfach verwaltet werden können. Bei der Einführung einer neuen Sprache müsste nur eine neue Spalte zur Tabelle hinzugefügt werden.
 
-Die Lösung hat allerdings einen entscheidenen Nachteil. Ein Teilmodul hat 12 zu übersetzende Felder. Wenn dieses nun auf der Oberfläche angezeigt werden soll, muss für jedes der Felder ein Datenbank-Join, oder eine Unterabfrage gemacht werden. In der Tabelle Modul wird für jedes Text-Feld ja nur eine Id abgelegt, die dann aus der Übersetzungstabelle abgerufen werden muss. Dies hätte einen hohen Aufwand im zukünftigen Quellcode der Anwendungen zu Folge.
+Die Lösung hat allerdings einen entscheidenen Nachteil. Ein Teilmodul hat 12 zu übersetzende Felder. Wenn dieses nun auf der Oberfläche angezeigt werden soll, muss für jedes der Felder ein Datenbank-Join, oder eine Unterabfrage gemacht werden. In der Tabelle Modul wird für jedes Text-Feld nur eine Id abgelegt, die dann aus der Übersetzungstabelle abgerufen werden muss. Dies hätte einen hohen Aufwand im zukünftigen Quellcode der Anwendungen zu Folge.
 
 
 
@@ -73,7 +73,7 @@ Um nun ein Teilmodul mit 12 Feldern aus der Datenbank zu erhalten wird mit diese
 === Resultierendes Schema
 
 
-In @ER ist ein kleiner Teil des entstandenen ER-Diagramms zu sehen. Die vollständige Version des Diagramms ist sehr groß und findet daher hier leider keinen Platz. Die vollständige Abbildung ist in der Dokumentation des Systems zu finden (Pfad: #link("https://studymodules-docs.tobi.win/docs/backend/Architecture/Database")[/docs/backend/Architecture/Database]). 
+In @ER ist ein kleiner Teil des entstandenen ER-Diagramms zu sehen. Die vollständige Version des Diagramms ist sehr groß und findet daher hier keinen Platz. Die vollständige Abbildung ist in der Dokumentation des Systems zu finden (Pfad: #link("https://studymodules-docs.tobi.win/docs/backend/Architecture/Database")[/docs/backend/Architecture/Database]). 
 
 In dem Diagram ist beispielsweise auf der linken Seite zu sehen, das ein Modul immer einem Studiengang zugewiesen sein muss. Andersherum kann ein Studiengang 0 bis n verschiedene Module anbieten. Das Schema soll Entwickelnde dabei unterstützen, die Datenstruktur des Systems zu verstehen. Anhand des Schemas kann im folgenden Kapitel die Datenbank des Backends erstellt werden, sodass diese dann alle benötigten Daten abspeichern kann.
 #diagramFigure("ER-Diagramm - Gesamtbild", <ER>, "simple_ER")
@@ -107,7 +107,7 @@ Miller, George A. (1956). The Magical Number 7, Plus or Minus Two: Some Limits o
 
 
 === Grundgerüst <scaffold>
-Die Oberfläche der Anwendung besteht aus einer oberen Leiste (Toolbar) und einem ausklappbaren Drawer. Unter der Toolbar ist die eigentliche Anwendung zu sehen, die aus verschiedenen Ansichten besteht. Die Toolbar ist in jeder Ansicht zu sehen. Diese Art der Navigation ist mittlerweile Standard und sollte für den Großteil der User selbsterklärend sein. @designInterfaces[Seite 131] 
+Die Oberfläche der Anwendung besteht aus einer oberen Leiste (Toolbar) und einer ausklappbaren Seitenleiste (Drawer). Unter der Toolbar ist die eigentliche Anwendung zu sehen, die aus verschiedenen Ansichten besteht. Die Toolbar ist in jeder Ansicht zu sehen. Diese Art der Navigation ist mittlerweile Standard und sollte für den Großteil der User selbsterklärend sein. @designInterfaces[Seite 131] 
 
 #let toolbarText = [
   #heading(level: 4, numbering:none, "Toolbar")
@@ -126,7 +126,7 @@ Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) n
 
 #let drawerText = [
   #heading(level: 4, numbering:none, "Drawer")
-  Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seitenleiste (Drawer) platziert. Die Seitenleiste kann mithilfe eines Knopfes ausgeklappt werden, welcher sich auf der Toolbar befindet. Somit können auch diese Funktionen mit wenig Aufwand (@CLICKS) von jeder Ansicht aus erreicht werden. Im Drawer sind die Masken zur Verwaltung der Benutzer (@CRUSER), zur Anzeige gelöschter Module (@SOFTDELETE) und zur Ansicht alter Prüfungsordnungen. Außerdem wird hier die Versionsnummer angezeigt, damit jederzeit überprüft werden kann, mit welcher Version des Systems gearbeitet wird.]
+  Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seitenleiste (Drawer) platziert. Der Drawer kann mithilfe eines Knopfes ausgeklappt werden, welcher sich auf der Toolbar befindet. Somit können auch diese Funktionen mit wenig Aufwand (@CLICKS) von jeder Ansicht aus erreicht werden. Im Drawer sind die Masken zur Verwaltung der Benutzer (@CRUSER), zur Anzeige gelöschter Module (@SOFTDELETE) und zur Ansicht alter Prüfungsordnungen. Außerdem wird hier die Versionsnummer angezeigt, damit jederzeit überprüft werden kann, mit welcher Version des Systems gearbeitet wird.]
 
 
 #let drawerImage = imageFigureNoPad(width: 40%,
@@ -186,7 +186,7 @@ Wenn in der Fakultätsauswahl eine Fakultät ausgewählt wurde, geht es weiter a
 
 #heading(level: 4, numbering:none, "Modulübersicht")
 #let moduleOverviewText = [
-  In der Modulübersicht sollen alle Module in einer tabellarischen Übersicht angezeigt werden. In der Tabelle sollen nur die für #link(<UseCaseInfoModule>)[Use-Case 2] benötigten Daten gezeigt werden. Alle weiteren Informationen sind dann in der detaillierten Ansicht zu finden. Die detaillierte Ansicht soll sich durch Anklicken eines Eintrags öffnen. Über der Tabelle gibt es mehrere Filtermöglichkeiten, um die gesuchten Module schneller finden zu können.
+  In der Modulübersicht sollen alle Module in einer tabellarischen Übersicht angezeigt werden. In der Tabelle sollen nur die für #link(<UseCaseInfoModule>)[Use Case 2] benötigten Daten gezeigt werden. Alle weiteren Informationen sind dann in der detaillierten Ansicht zu finden. Die detaillierte Ansicht soll sich durch Anklicken eines Eintrags öffnen. Über der Tabelle gibt es mehrere Filtermöglichkeiten, um die gesuchten Module schneller finden zu können.
 ]
 
 
@@ -249,7 +249,7 @@ Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im 
 #heading(level: 4, numbering:none, "Userverwaltung")
 
 #let userText = [
-  Das Hinzufügen eines neuen Users benötigt wenige Eingaben. Der Inhalt des Feldes "E-Mail Adresse" wird automatisch anhand des eingegebenen Vor- und Nachnames ausgefüllt, kann aber anschließend auch manuell bearbeitet werden, falls die E-Mail Adresse vom bekannten Schema (vorname.nachname\@hs-hannover.de) einer Adresse der #hsh abweicht. Dies ist beispielsweise der Fall, wenn mehrere Personen den selben Vor- und Nachnamen haben.
+  Das Hinzufügen eines neuen Users benötigt wenige Eingaben. Der Inhalt des Feldes "E-Mail Adresse" wird automatisch anhand des eingegebenen Vor- und Nachnamens ausgefüllt, kann aber anschließend auch manuell bearbeitet werden, falls die E-Mail Adresse vom bekannten Schema (vorname.nachname\@hs-hannover.de) einer Adresse der #hsh abweicht. Dies ist beispielsweise der Fall, wenn mehrere Personen den selben Vor- und Nachnamen haben.
 ]
 
 #let userImage = imageFigureNoPad(<createUser>, "mockups/CreateUser.png", "Neuen User hinzufügen", width: 8em)
@@ -344,7 +344,7 @@ Dieser Endpunkt bietet eine Auflistung aller Studiengänge an. Zusätzlich sollt
 Für den Login (@login) wird ein Endpunkt benötigt, der E-Mail und Passwort entgegennimmt, validiert und einen gültigen Token zurückgibt. Mithilfe des Tokens können die administrativen Funktionen genutzt werden, ohne sich jedes Mal mit E-Mail und Passwort autorisieren zu müssen.
 
 #heading(level: 4, numbering: none)[Endpunkt /job]
-Für die Pdf-Generierung wird ein Endpunkt benötigt, der eine Auflistung der Kompilierungsaufträge anbietet. Dieser Endpunkt muss außerdem POST-Anfragen annehmen, damit neue Aufträge angelegt werden können. Außerdem müssen PATCH-Anfragen angenommen werden, um den Status des Jobs zu verändern.
+Für die PDF-Generierung wird ein Endpunkt benötigt, der eine Auflistung der Kompilierungsaufträge anbietet. Dieser Endpunkt muss außerdem POST-Anfragen annehmen, damit neue Aufträge angelegt werden können. Außerdem müssen PATCH-Anfragen angenommen werden, um den Status des Jobs zu verändern.
 
 
 

@@ -133,7 +133,7 @@ In den Schritten 2 bis 5 werden eine .tex-Datei und eine .pdf-Datei generiert. D
 
 Die Grundlage für die Generierung der .tex-Datei bildet ein Python-Skript, welches von #heine bereitgestellt wurde. Dieses Script wurde im Rahmen dieser Arbeit an die veränderte Datenstruktur angepasst. Anschließend wurde das Skript in TypeScript umgewandelt und in das neue Backend eingebaut. Hierzu wurde das Datenbankschema um die benötigten Einträge erweitert und es wurde ein neuer Controller mit dazugehörigem Service eingesetzt, welcher die Endpunkte und Methoden zur Generierung der .tex-Datei anbietet. 
 
-Das ursprüngliche Python-Skript enthielt eine statische Auflistung der Felder in der Tabelle des Modulhandbuches. Darin enthalten war der gewünschte Text (z.B. Moduldauer) und das dazugehörige Feld (module.courseLength). Diese statische Auflistung wurde im Rahmen der Umstellung in die Datenbank verschoben. Hierdurch soll der Wartungsaufwand reduziert werden. Mehrere Auslöser können dazu führen, dass sich die Struktur des zu generierenden Pdfs ändert. Es könnte neben Englisch und Deutsch eine zusätzliche Sprache angeboten werden. Auch ist es denkbar, dass zusätzliche Felder eingeführt werden. Für die Studiengänge an der Fakultät 3 wird beispielsweise die Information "Gewichtung" auf den Modulhandbüchern abgedruckt. Um nun verschiedene Pdf-Strukturen für verschiedene Studiengänge anzubieten, ist nun nur noch eine Veränderung der Datensätze in der Datenbank notwendig. Hierfür könnte eine zusätzliche Oberfäche erstellt werden, mit der die User selbst die Pdf-Struktur konfigurieren können.
+Das ursprüngliche Python-Skript enthielt eine statische Auflistung der Felder in der Tabelle des Modulhandbuches. Darin enthalten war der gewünschte Text (z.B. Moduldauer) und das dazugehörige Feld (module.courseLength). Diese statische Auflistung wurde im Rahmen der Umstellung in die Datenbank verschoben. Hierdurch soll der Wartungsaufwand reduziert werden. Mehrere Auslöser können dazu führen, dass sich die Struktur des zu generierenden PDFs ändert. Es könnte neben Englisch und Deutsch eine zusätzliche Sprache angeboten werden. Auch ist es denkbar, dass zusätzliche Felder eingeführt werden. Für die Studiengänge an der Fakultät 3 wird beispielsweise die Information "Gewichtung" auf den Modulhandbüchern abgedruckt. Um nun verschiedene PDF-Strukturen für verschiedene Studiengänge anzubieten, ist nun nur noch eine Veränderung der Datensätze in der Datenbank notwendig. Hierfür könnte eine zusätzliche Oberfäche erstellt werden, mit der die User selbst die PDF-Struktur konfigurieren können.
 
 In @appendStructureItems ist zu sehen, wie der LateX-Code für ein SubModul generiert wird. Ein reduziertes Beispiel für ein StructureItem ist in @structureItem zu sehen. Mit der Eigenschaft takeTwoColumns (@structureItemTakeTwoColumns) können gewünschte Eigenschaften in @appendStructureItemsTakeTwoColumns breiter dargestellt werden. Dies passiert im Modulhandbuch der Abteilung Informatik beispielsweise für das Feld @erg, da dort in der Regel viel Text enthalten ist. In @structureItemSuffix ist zu sehen, wie an die gespeicherte Information ein Suffix angehangen werden kann. Dies ist beispielsweise wie im gezeigten Beispiel für Zeitdauern interessant, wird aber auch für die Anzeige der Dauer (z. B. 1 Semester) genutzt. In @structureItemName ist abschließend die Übersetzung für die Zeilenüberschrift angegeben.
 
@@ -267,14 +267,14 @@ Damit sich beim Wechsel der Sprache auch alle dynamischen Texte ändern, ist ein
 #codeFigure("language.interceptor.ts", <languageInterceptor>, "languageInterceptor")
 
 
-=== Erstellen eines neuen Pdfs<createPdfUI>
-Das Erstellen eines neuen Pdfs kann in der Studiengangsübersicht gestartet werden. Hierbei öffnet sich ein Popup, welches anzeigt, wann für den Studiengang zuletzt ein Pdf veröffentlicht wurde. In Zukunft könnten hier auch die Veränderungen seit der letzten Veröffentlichung aus dem Changelog angezeigt werden. Im Popup kann ausgewählt werden, für welche Sprachen das Pdf generiert werden soll @createPdfStep1. Während der Generierung wird dem User der Status angezeigt und sekündlich aktualisiert (@createPdfStep2). Der User kann nun entweder auf das Ergebnis warten, oder die Maske schließen und in einer seperaten Maske die vergangenen Kompilierungsaufträge ansehen.
+=== Erstellen eines neuen PDFs<createPdfUI>
+Das Erstellen eines neuen PDFs kann in der Studiengangsübersicht gestartet werden. Hierbei öffnet sich ein Popup, welches anzeigt, wann für den Studiengang zuletzt ein PDF veröffentlicht wurde. In Zukunft könnten hier auch die Veränderungen seit der letzten Veröffentlichung aus dem Changelog angezeigt werden. Im Popup kann ausgewählt werden, für welche Sprachen das PDF generiert werden soll @createPdfStep1. Während der Generierung wird dem User der Status angezeigt und sekündlich aktualisiert (@createPdfStep2). Der User kann nun entweder auf das Ergebnis warten, oder die Maske schließen und in einer seperaten Maske die vergangenen Kompilierungsaufträge ansehen.
 
-Sobald das Pdf vorliegt, kann der User dieses ansehen und dann entweder verwerfen oder freigeben. Mit der Freigabe steht es dann auch für nicht angemeldete User bereit.
+Sobald das PDF vorliegt, kann der User dieses ansehen und dann entweder verwerfen oder freigeben. Mit der Freigabe steht es dann auch für nicht angemeldete User bereit.
 
-#imageFigure(<createPdfStep1>, "createPdf.png",  "Pdf veröffentlichen - Schritt 1", width: 90%)
+#imageFigure(<createPdfStep1>, "createPdf.png",  "PDF veröffentlichen - Schritt 1", width: 90%)
 
-#imageFigure(<createPdfStep2>, "CreatePdfStep2.png", "Pdf veröffentlichen - Schritt 2")
+#imageFigure(<createPdfStep2>, "CreatePdfStep2.png", "PDF veröffentlichen - Schritt 2")
 
 
 

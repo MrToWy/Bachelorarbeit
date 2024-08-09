@@ -104,6 +104,7 @@
 
   align(right, image("Logo.svg", width: 26%))
   pagebreak()
+  pagebreak()
 
   // Author
   grid(
@@ -138,6 +139,7 @@
   ]
   
   pagebreak()
+  
 
 
   // Table of contents.
