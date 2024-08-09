@@ -1,16 +1,13 @@
+#import("../Template/customFunctions.typ"): *
+
+#codly(skips: ((5, 6), (19, 7)))
+
 ```yml
 name: studymodules_project
 
 services:
   frontend:
     image: localhost/studymodules-frontend
-    ports:
-      - "80:80"
-    environment:
-      - NODE_ENV=production
-    depends_on:
-      - backend
-
   backend:
     image: localhost/studybase-backend
     ports:
@@ -25,14 +22,6 @@ services:
     ports:
       - "8080:80"
       - "443:443"
-    environment:
-      - NODE_ENV=production
-      - DOCUSAURUS_DOMAIN=localhost
-      - DOCUSAURUS_EMAIL=letsencrypt@docusaurus.example
-    volumes:
-      - caddy_data:/data
-      - caddy_config:/config
-
   latex-api:
     image: localhost/latex-api:latest
     ports:
