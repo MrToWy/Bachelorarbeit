@@ -104,7 +104,7 @@ Als erste Möglichkeit könnte ein weiterer Guard erstellt werden (siehe @inject
 
 Eine zweite Möglichkeit wäre, den Aufruf von canActivate vorzuziehen. Wenn dieser direkt als erstes durchgeführt wird, wird in jedem Fall der User injectet und öffentliche Endpunkte sind trotzdem möglich. Diese Möglichkeit hat den Vorteil, dass nicht daran gedacht werden muss, wie in @injectUserCall den InjectUser-Guard an die verschiedenen Methoden zu setzen. Aus diesem Grund wird diese Möglichkeit favorisiert.
 
-Da canActivate eine Exception wirft, falls der User nicht eingeloggt ist, muss diese angefangen werden, damit trotzdem geprüft werden kann, ob es den \@Public-Decorator gibt. Außerdem kann canActivate ein Observable zurückgeben. Da wir jedoch einen Boolean-Wert benötigen, können wir die Methode lastValueFrom() aus der rxjs-Bibliothek (@RxJSLastValueFrom) nutzen, um einen konkreten Wert zu erhalten.
+Da canActivate eine Exception wirft, falls der User nicht eingeloggt ist, muss diese angefangen werden, damit trotzdem geprüft werden kann, ob es den \@Public-Decorator gibt. Außerdem kann canActivate ein Observable zurückgeben. Da wir jedoch einen Boolean-Wert benötigen, können wir die Methode lastValueFrom() aus der rxjs-Bibliothek  nutzen, um einen konkreten Wert zu erhalten. @RxJSLastValueFrom
 
 #codeFigure("canActivate() - Verbessert", <canActivateNew>, "canActivateNew")
 
