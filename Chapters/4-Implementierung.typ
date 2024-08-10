@@ -57,7 +57,12 @@ Ein Modul hat Voraussetzungen (Requirements). Eine Voraussetzung könnte es sein
 
 Prisma bietet weiterhin eine Methode upsert an, die die Update-Methode und die Create-Methode kombiniert. Hierzu werden zunächst die Update und Create JSONs in eigene Variablen geschrieben. Anschließend können diese an die Upsert-Methode übergeben werden (siehe @upsert). Außerdem wird eine Filter-Abfrage benötigt, mit der Prisma ermitteln kann, ob ein Update, oder ein Create nötig ist (@upsertFilter). 
 
-Abschließend muss außerdem evaluiert werden, ob der entstandene Code verständlich und kompakt genug ist. Das vorgestellte Beispiel ist durch die vielen komplexen Datentypen stark gewachsen. Um den Code also wartbarer, lesbarer und verständlicher zu machen, wurde zuletzt noch die Codequalität optimiert. Hierzu wurden statt einer gemeinsamen Upsert-Methode zwei unterschiedliche Methoden (Create und Update) erstellt. Hierdurch wurde die Zuständigkeit klarer definiert. Außerdem wurden die verschiedenen Zuweisungen der komplexen Datentypen in jeweils eigene Methoden extrahiert. Dies hatte neben des nun weitaus besser lesbaren Codes den zusätzlichen Vorteil, dass die Methoden an verschiedenen Stellen verwendet werden konnten, sodass redundanter Code verringert wurde. Jedoch ergab sich daraus auch ein Nachteil. Durch das sequenzielle Verändern der Daten innerhalb der Methode bestand die Gefahr, dass die ersten Veränderungen erfolgreich sind, aber beispielsweise beim Zuweisen der zuständigen Person ein Fehler auftritt. In diesem Fall wäre das Update nur teilweise erfolgreich. In der früheren Version als alle Updates in einer Abfrage stattfanden, wäre in so einem Fall das gesamte Update fehlgeschlagen. Ein mögliches Teilupdate kann zu unerwarteten Fehlern führen und ist für den Benutzer des Systems entweder nur schwer zu erkennen oder unverständlich. Um dieses Verhalten wiederherzustellen, wurden letztlich alle Anweisungen in einer Transaktion @TransactionsBatchQueries zusammengefasst. Hierdurch konnte der Vorteil der besseren Codequalität bestehen bleiben und dennoch das gewünschte Verhalten erzielt werden. Im Falle eines Fehlers macht Prisma nun automatisch die bisher vorgenommenen Änderungen rückgängig, sodass keine inkonsistenten Daten entstehen können. Der neue Code ist deutlich lesbarer (siehe @endpointAfter).
+#codeFigure("Backend: Erstellen und Bearbeiten von Modulen", <endpointBefore>, "endpointBefore")
+
+
+Abschließend muss evaluiert werden, ob der entstandene Code verständlich und kompakt genug ist. Das vorgestellte Beispiel ist durch die vielen komplexen Datentypen stark gewachsen. Um den Code also wartbarer, lesbarer und verständlicher zu machen, wurde zuletzt noch die Codequalität optimiert. Hierzu wurden statt einer gemeinsamen Upsert-Methode zwei unterschiedliche Methoden (Create und Update) erstellt. Hierdurch wurde die Zuständigkeit klarer definiert. Außerdem wurden die verschiedenen Zuweisungen der komplexen Datentypen in jeweils eigene Methoden extrahiert. Dies hatte neben des nun weitaus besser lesbaren Codes den zusätzlichen Vorteil, dass die Methoden an verschiedenen Stellen verwendet werden konnten, sodass redundanter Code verringert wurde. Jedoch ergab sich daraus auch ein Nachteil. Durch das sequenzielle Verändern der Daten innerhalb der Methode bestand die Gefahr, dass die ersten Veränderungen erfolgreich sind, aber beispielsweise beim Zuweisen der zuständigen Person ein Fehler auftritt. In diesem Fall wäre das Update nur teilweise erfolgreich. In der früheren Version als alle Updates in einer Abfrage stattfanden, wäre in so einem Fall das gesamte Update fehlgeschlagen. Ein mögliches Teilupdate kann zu unerwarteten Fehlern führen und ist für den Benutzer des Systems entweder nur schwer zu erkennen oder unverständlich. Um dieses Verhalten wiederherzustellen, wurden letztlich alle Anweisungen in einer Transaktion @TransactionsBatchQueries zusammengefasst. Hierdurch konnte der Vorteil der besseren Codequalität bestehen bleiben und dennoch das gewünschte Verhalten erzielt werden. Im Falle eines Fehlers macht Prisma nun automatisch die bisher vorgenommenen Änderungen rückgängig, sodass keine inkonsistenten Daten entstehen können. Der neue Code ist deutlich lesbarer (siehe @endpointAfter).
+
+#codeFigure("Backend: Erstellen und Bearbeiten von Modulen (Verbessert)", <endpointAfter>, "endpointAfter")
 
 
 #heading("Changelog", level: 4, numbering: none, outlined: false)<implementChangelog>
@@ -70,6 +75,8 @@ Damit die ermittelten Felder jetzt verglichen werden können, sind verschiedene 
 
 Wenn das Feld einen primitiven Datentypen hat, kann der Feldinhalt miteinander verglichen werden (@comparePrimitiveField). Wenn es sich bei dem Feld jedoch um ein Array handelt, wird der Vergleich etwas komplizierter. In dem Fall muss herausgefunden werden, ob es neue Einträge gibt, oder ob Einträge entfernt wurden. Hierzu müssen dann die Ids verglichen werden (@compareArrayField). Für das Array translations, in dem die übersetzten Texte abgelegt werden, gibt es eine weitere Ausnahme. Hierbei müssen die Inhalte der Objekte im Array miteinander verglichen werden, die zu derselben Sprache gehören. Hierzu wird das entsprechende zu vergleichende Objekt mithilfe der filter-Methode @ArrayPrototypeFilter2023 herausgesucht (@compareTranslations) und die darin enthaltenen Eigenschaften verglichen.
 
+
+#codeFigure("Vergleichsmethoden", <compareFields2>, "compareFields2")
 
 
 
@@ -139,6 +146,8 @@ In @appendStructureItems ist zu sehen, wie der LaTeX-Code für ein SubModul gene
 
 #codeFigure("appendStructureItems()", <appendStructureItems>, "appendStructureItems")
 
+#codeFigure("Beispiel eines StructureItems", <structureItem>, "structureItem")
+
 Damit zu den Zeilenüberschriften auch die dazugehörigen Werte gedruckt werden können, wird die Methode getValue genutzt (@getValueCall). Hierzu wird die Eigenschaft path genutzt, die jedes Field besitzt (@structureItemPath). Im genannten Beispiel ist die Ermittlung noch einfach - hoursPresence ist ein Feld im Submodul und kann daher einfach ausgelesen werden. Es gibt jedoch auch komplexere Fälle, die betrachtet werden müssen. Es gibt zum Beispiel den Pfad responsible.firstName, bei dem auf das Attribut firstName des Objekts responsible zugegriffen wird. Im Falle der translations wird außerdem ein Zugriff auf ein Array benötigt (z. B. requirementsSoft.translations[0].name). Als letzte Art gibt es die Methodenaufrufe. Für das Feld @submodules wird beispielsweise eine Auflistung der Submodule benötigt. Diese benötigt zur Bereitstellung der gewünschten Informationen einen Zugriff auf die Datenbank und wird daher in einer eigenen Methode absolviert. Im Feld path steht dann der Name der aufzurufenden Methode "submodules()". Manche dieser Methoden könnten asynchron sein, weshalb hier auch noch einmal unterschieden werden muss (siehe @getValueFromPath). Die Methoden haben alle dieselbe Signatur, damit sie auf die gleiche Art aufgerufen werden können. 
 
 Der Wert für das komplexeste Beispiel "requirementsSoft.translations[0].name" wird wie folgt ermittelt:
@@ -154,6 +163,7 @@ Die Methode getNestedProperty (@getNestedProperty) sorgt für den soeben beschri
 
 
 
+#codeFigure("getValue-Methoden", <getValueMethods>, "getValue")
 
 #heading("Generierung der .pdf-Datei", level: 4, numbering: none, outlined: false)
 Für die erfolgreiche Kompilierung der .tex-Datei muss die Server-Umgebung konfiguriert werden. Zusätzlich zur Möglichkeit, Latex kompilieren zu können, müssen die von der .tex-Datei benötigten Pakete bereitstehen. Um diesen Aufwand zu verringern wird ein Docker-Image eingesetzt, welches es ermöglicht, ohne weiteren Konfigurationsaufwand per HTTP-Request eine .tex-Datei zu kompilieren @YtoTechLatexonhttp2024.
@@ -403,3 +413,5 @@ Nachdem die Images nun erstellt sind und die Compose-Datei die Struktur der Cont
 == Zwischenfazit
 Nachdem Frontend und Backend implementiert wurden und eine Dokumentation erstellt wurde, besteht eine erste lauffähige Version des Systems. Diese Version kann im folgenden @review evaluiert werden, um herauszufinden, ob alle Anforderungen umgesetzt wurden.
 
+#pagebreak()
+#hide("grr")

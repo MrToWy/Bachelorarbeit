@@ -246,6 +246,8 @@ pagebreak()
   // bibliography
   bibliography(("../sources.bib", "../sources.yaml"), style: "institute-of-electrical-and-electronics-engineers", title: "Literaturverzeichnis")
 
+  pagebreak()
+  hide("white page")
 
   //todo_outline
 }

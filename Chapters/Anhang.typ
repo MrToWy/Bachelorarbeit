@@ -69,24 +69,6 @@ _Falls diese Informationen nicht vorliegen - ist ein geeigneter Ansprechpartner 
 #pagebreak()
 
 
-#heading(numbering: none, level: 2)[Größere Codebeispiele]
-
-
-#codeFigure("Backend: Erstellen und Bearbeiten von Modulen", <endpointBefore>, "endpointBefore")
-
-#codeFigure("Backend: Erstellen und Bearbeiten von Modulen (Verbessert)", <endpointAfter>, "endpointAfter")
-
-#codeFigure("Vergleichsmethoden", <compareFields2>, "compareFields2")
-
-#codeFigure("Beispiel eines StructureItems", <structureItem>, "structureItem")
-
-#codeFigure("getValue-Methoden", <getValueMethods>, "getValue")
-
-
-
-
-
-
 #heading(numbering: none, level: 2)[Screenshots der Webanwendung]
 
 
@@ -94,10 +76,6 @@ _Falls diese Informationen nicht vorliegen - ist ein geeigneter Ansprechpartner 
 
 
 #imageFigure(<filterResult>, "../Images/filter.png", "Filtermöglichkeit")
-
-
-
-
 
 #imageFigure(<hiddenCourse>, "../Images/HiddenCourse.png", "Ausgelendeter Studiengang")
 

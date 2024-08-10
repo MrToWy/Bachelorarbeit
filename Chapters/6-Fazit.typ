@@ -12,6 +12,8 @@ Durch die modernen Oberflächen sollte es Studierenden und studieninteressierten
 
 Alles in allem wurde durch die Erfüllung der wesentlichen Anforderungen und durch die Bereitstellung des neuen Systems das aufgestellte Ziel erreicht. Es gibt eine Webanwendung, die die Verwaltung und Erstellung von Modulhandbüchern ermöglicht.
 
+#pagebreak()
+#hide("grr")
 
 
 = Ausblick<ausblick>
@@ -29,3 +31,6 @@ In der Bearbeitungsansicht könnte statt der derzeitigen HTML-Vorschau das tats�
 
 
 Das neu entworfene System könnte zudem Vorlage für weitere Entwicklungen sein. Die genutzten Technologien, sowie die entworfene Struktur könnte für eine Vielzahl von Projekten interessant sein.
+
+#pagebreak()
+#hide("grr")
