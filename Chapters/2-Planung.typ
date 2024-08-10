@@ -2,16 +2,20 @@
 
 = Anforderungsanalyse <anforderungsanalyse>
 
-Die Planung des neuen Systems für Modulhandbücher beginnt mit der Anforderungsanalyse. Der Schritt der Anforderungsanalyse hat eine besondere Wichtigkeit, da es mit fortlaufender Projektlaufzeit immer aufwändiger wird, Fehler zu korrigieren oder Anpassungen vorzunehmen. @kleuker_grundkurs_2013[Seite 55] Damit diese wichtige Phase gründlich absolviert wird, folgt der Ablauf der Anforderungsanalyse den Empfehlungen von Chris Rupp und den #sophisten @rupp_requirements-engineering_2014. Es werden zunächst der aktuelle Arbeitsprozess und die Architektur benachbarter Systeme analysiert und deren Probleme erkundet. Anschließend werden die Zielgruppen des neuen Systems ermittelt. Abschließend werden Ziele definiert.
+Die Planung des neuen Systems für Modulhandbücher beginnt mit der Anforderungsanalyse. Der Schritt der Anforderungsanalyse hat eine besondere Wichtigkeit, da es mit fortlaufender Projektlaufzeit immer aufwändiger wird, Fehler zu korrigieren oder Anpassungen vorzunehmen. @kleuker_grundkurs_2013[Seite 55] Damit diese wichtige Phase gründlich absolviert wird, folgt der Ablauf der Anforderungsanalyse den Empfehlungen von Chris Rupp und den #sophisten @rupp_requirements-engineering_2014. Es wird zunächst in @architecture die Umgebung des Systems erkundet. Anschließend wird mithilfe eines Interviews (@interview) der aktuelle Arbeitsprozess analysiert (@oldProcess) und dessen Probleme erkundet. Dann werden die Zielgruppen des neuen Systems ermittelt (@zielgruppen). Aus den Zielgruppen ergeben sich Use Cases und dazugehörige Anforderungen. Zuletzt wird in @structure die Struktur eines Modulhandbuches untersucht. 
 
 
-== Systemkontext <architecture>
+== Systemumgebung <architecture>
+In diesem Abschnitt soll zunächst die Umgebung des neuen Systems ermittelt werden. Hierzu werden die bestehenden Anwendungen untersucht. Das neue System soll dieselben Technologien wie die bestehenden Anwendungen verwenden. Dies hat den Vorteil, dass ein Entwickler nach Einarbeitung in die Technologien alle Anwendungen weiterentwickeln kann. Damit die Anforderungen an das neue System klar definiert werden können, muss also zunächst die Umgebung untersucht werden.
+
+
 In der Abteilung Informatik der #hsh gibt es bereits mehrere Anwendungen, die ein gemeinsames Backend nutzen. Dieses Backend soll in dieser Arbeit erweitert werden, um auch den anderen Anwendungen die Auflistung der Modulhandbücher anbieten zu können. Zusätzlich wird eine neue Anwendung erstellt, die mit dem angepassten Backend kommunizieren wird.
 
 
 === Geplante Anwendungen <andereAnwendungen>
+Zusätzlich zur Entwicklung dieses Projektes gibt es noch zwei weitere Anwendungen, die jedoch kein Teil dieser Arbeit sind. Im Folgenden werden die geplanten Anwendungen kurz erklärt.
 
-Für Studierende, die planen möchten, welches Modul sie in welchem Semester erledigen, wird es die Anwendung #studyPlan geben. Hier können Studierende vom vorgeschlagenen Studienverlauf abweichen und dabei sicherstellen, trotzdem alle Module in der gewünschten Zeit zu erledigen. #studyPlan wird von dem angepassten Backend profitieren, weil #studyPlan eine stets aktuelle Auflistung aller Module inklusive deren Zeitaufwände benötigt.
+Für Studierende, die planen möchten, welches Modul sie in welchem Semester erledigen, wird es die Anwendung #studyPlan geben. Hier können Studierende vom vorgeschlagenen Studienverlauf abweichen und dabei sicherstellen, trotzdem alle Module in der gewünschten Zeit zu erledigen. #studyPlan wird von dem angepassten Backend profitieren, weil #studyPlan eine stets aktuelle Auflistung aller Module inklusive deren Zeitaufwände benötigt, um die Planung des Studienverlaufs zu ermöglichen.
 
 Die Entwicklung von #studyPlan läuft parallel zur Entwicklung dieser Bachelorarbeit – es muss also sichergestellt werden, dass es rechtzeitig nutzbare Ergebnisse gibt. Derzeit gibt es bereits einen ersten Prototypen von #studyPlan, welcher allerdings noch nicht produktiv genutzt wird.
 
@@ -54,6 +58,8 @@ In @moduletable ist beispielsweise zu sehen, wie eine Tabelle mit dem Namen "Mod
 
 
 === Struktur einer beispielhaften Angular Anwendung <angularStructureExample>
+Eine Vorgabe dieser Arbeit ist es, Angular für die Entwicklung der Weboberfläche zu nutzen. Durch die Nutzung von Angular gibt es einen einheitlichen Techstack, da die geplanten Anwendungen (@andereAnwendungen) ebenfalls in Angular entwickelt werden sollen. 
+
 Eine Angular Anwendung besteht aus Komponenten und Seiten. Auf einer Seite werden 0 bis n Komponenten in einer HTML-ähnlichen Struktur organisiert. 
 
 Eine Komponente ist ein wiederverwendbares Element auf einer Website – beispielsweise ein Drop-Down, oder eine Textbox. Eine Komponente ist ebenfalls in der HTML-ähnlichen Struktur organisiert. In der Komponente können sich HTML-Elemente und andere Angular-Komponenten befinden.
@@ -61,11 +67,14 @@ Eine Komponente ist ein wiederverwendbares Element auf einer Website – beispie
 Komponenten und Seiten haben eine .HTML-Datei für die Beschreibung der Struktur, eine .SCSS-Datei für die Beschreibung des Aussehens, sowie eine .TS-Datei für kleinere Logiken. Geschäftslogik wird meist in seperate #service#text("-Klassen") ausgelagert – ähnlich wie schon in @backend beschrieben. @angularStructure
   
 == Interview mit Studiendekan <interview>
-Da die Anforderungen sowie der aktuelle Arbeitsablauf noch unklar waren, musste eine Methode gefunden werden, um beides gründlich zu durchleuchten. Ein Interview hat den entscheidenden Vorteil, dass der Verlauf des Gesprächs individuell angepasst werden kann. Wenn sich neue Fragen ergeben, oder Fragen nicht ausreichend beantwortet wurden, kann im Interview direkt nachgefragt werden. @rupp_requirements-engineering_2014[Kapitel 6.3.3] 
+Da die Anforderungen sowie der aktuelle Arbeitsablauf noch unklar waren, musste eine Methode gefunden werden, um beides gründlich zu durchleuchten. Hierzu soll im Folgenden ein Interview durchgeführt werden. Ein Interview hat den entscheidenden Vorteil, dass der Verlauf des Gesprächs individuell angepasst werden kann. Wenn sich neue Fragen ergeben, oder Fragen nicht ausreichend beantwortet wurden, kann im Interview direkt nachgefragt werden. @rupp_requirements-engineering_2014[Kapitel 6.3.3] 
 
-Das Interview wurde mit dem derzeitigen Studiendekan #heine durchgeführt. Das Interview orientierte sich an den Vorschlägen der #sophisten. Bereits bei der Einladung zum Interview wurden einige der Vorschläge beachtet. Der Studiendekan konnte sich den Interviewort selbst auswählen und erhielt die geplanten Fragen vorab zur Einsicht. @rupp_requirements-engineering_2014[Seite 107-109]
+Das Interview wurde mit dem derzeitigen Studiendekan #heine durchgeführt. Das Interview orientierte sich an den Vorschlägen der #sophisten. Bereits bei der Einladung zum Interview wurden einige der Vorschläge beachtet. Der Studiendekan konnte sich den Interviewort selbst auswählen und erhielt die geplanten Fragen vorab zur Einsicht. Dadurch soll für den Interviewpartner eine möglichst angenehme Umgebung geschaffen werden, was zu einer erhöhten Kooperationsbereitschaft führen soll. @rupp_requirements-engineering_2014[Seite 107-109]
+Die übersendeten Fragen können bei Interesse #link(<interviewFragen>)[im Anhang] nachgelesen werden.
 
-Aus dem Interview ergab sich zum einen die Konkretisierung der Zielgruppen, welche in @zielgruppen zu finden sind. Zum Anderen wurde der aktuelle Arbeitsprozess klar definiert, sowie dessen Schwachstellen aufgezeigt (@oldProcess).
+Die Ergebnisse des Interviews siind in den Folgenden Abschnitten zu lesen. Es ergaben sich zum einen die Konkretisierung der Zielgruppen, welche in @zielgruppen zu finden sind. Zum Anderen wurde der aktuelle Arbeitsprozess klar definiert, sowie dessen Schwachstellen aufgezeigt (@oldProcess).
+
+
 
 
 == Analyse des aktuellen Arbeitsprozesses und Identifikation von Schwachstellen <oldProcess>
@@ -86,12 +95,12 @@ Der ECTS User-Guide @ects beschreibt, dass Modulhandbücher bereits bei der Wahl
 
 
 === Studierende <student>
-Eine weitere Zielgruppe sind Studierende. In Gesprächen mit verschiedenen Studierenden stellte sich heraus, dass es oft eine Unklarheit über das Angebot der Wahlpflichtfächer gibt. Das neue System könnte bei der Suche nach einem geeigneten Wahlpflichtfach unterstützen. Auch könnten Studierende mithilfe der Modulbeschreibungen verstehen, welche Inhalte in einem Modul gelernt werden und welche Voraussetzungen es gibt. Dadurch können Studierende einschätzen, ob sie genug Vorwissen für ein bestimmtes Modul haben. Weiterhin können Studierende dank der Modulhandbücher zu jedem Modul beispielsweise einen Überblick über die zu erbringende Arbeitszeit erhalten, sowie Informationen zu den Prüfungsleistungen finden. 
+Eine weitere Zielgruppe sind Studierende. Das neue System könnte bei der Suche nach einem geeigneten Wahlpflichtfach unterstützen. Auch könnten Studierende mithilfe der Modulbeschreibungen verstehen, welche Inhalte in einem Modul gelernt werden und welche Voraussetzungen es gibt. Dadurch können Studierende einschätzen, ob sie genug Vorwissen für ein bestimmtes Modul haben. Weiterhin können Studierende mithilfe der Modulhandbücher zu jedem Modul einen Überblick über die zu erbringende Arbeitszeit erhalten, sowie Informationen zu den Prüfungsleistungen finden. 
 
 
 
 === Modulverantwortliche und Studiengangsverantwortliche <modulverantwortlicher>
-Aus dem Interview mit dem Studiendekan (@interview) geht hervor, dass es neben den Studierenden noch andere zu betrachtende Zielgruppen gibt. Für die Bearbeitung von Modulhandbüchern sind an der #hsh verschiedene Personengruppen zuständig. Zum einen gibt es den Studiengangverantwortlichen. Dieser ist für die Veröffentlichung des Dokumentes verantwortlich. Der Studiengangverantwortliche ist nicht dafür zuständig, die Inhalte der einzelnen Modulbeschreibungen anzupassen. Für diese Anpassungen gibt es die Modulverantwortlichen. Jedes Modul hat eine Person, die die Informationen der Modulbeschreibung aktuell halten soll und gleichzeitig Ansprechpartner für Fragen ist. In der Abteilung Informatik ist aktuell der Studiendekan gleichzeitig auch Studiengangverantwortlicher. Modulverantwortliche sind die Professoren und Dozierenden der Abteilung.
+Aus dem Interview mit dem Studiendekan (@interview) geht hervor, dass es neben den Studierenden noch andere zu betrachtende Zielgruppen gibt. Für die Bearbeitung von Modulhandbüchern sind an der #hsh verschiedene Personengruppen zuständig. Zum einen gibt es die studiengangverantwortliche Person (SVP). Diese ist für die Veröffentlichung des Dokumentes verantwortlich. Die SVP ist nicht dafür zuständig, die Inhalte der einzelnen Modulbeschreibungen anzupassen. Für diese Anpassungen gibt es die Modulverantwortlichen. Jedes Modul hat eine Person, die die Informationen der Modulbeschreibung aktuell halten soll und gleichzeitig Ansprechpartner für Fragen ist. In der Abteilung Informatik ist aktuell der Studiendekan gleichzeitig auch Studiengangverantwortlicher. Modulverantwortliche sind die Professoren und Dozierenden der Abteilung.
 
 
 == Use Cases <usecases>
@@ -112,8 +121,9 @@ Die Auflistung der Use Cases bildet eine Grundlage für die folgenden Abschnitte
 Als nächstes sollen konkrete Anforderungen an das zukünftige System aufgestellt werden. Diese Anforderungen sollen zum Einen dabei helfen, in der Entwurfs- und Implementierungsphase (@entwurf,~ @implementierung) konkrete Vorgaben zu haben, die abgearbeitet werden können und zum anderen in @review ermitteln zu können, ob das System einsetzbar ist.
 
 
-Die Anforderungen an das System ergeben sich aus verschiedenen Quellen, die sich in die Kategorien funktional und nichtfunktional aufteilen lassen.
-Um die Herkunft der Anforderungen übersichtlich abzubilden, werden die Anforderungen in Funktional und Nicht-Funktional aufgeteilt. Diese Aufteilung ist fachlich nicht notwendig, soll aber die folgende Auflistung übersichtlicher gestalten.
+Die Anforderungen an das System leiten sich aus den Use Cases, einer ISO-Norm und der Systemumgebung ab. Diese lassen sich in zwei Kategorien unterteilen: funktionale Anforderungen (basierend auf den Use Cases) und nicht-funktionale Anforderungen (abgeleitet aus der ISO-Norm und der Systemumgebung).
+
+Um die Herkunft der Anforderungen klar darzustellen, werden sie in funktionale und nicht-funktionale Anforderungen gegliedert. Obwohl diese Trennung fachlich nicht zwingend erforderlich ist, dient sie der besseren Übersichtlichkeit der folgenden Auflistung.
 
 Jede Anforderung in den folgenden Auflistungen enthält entweder das Wort "muss", "sollte", oder "könnte". @rupp_requirements-engineering_2014[Kapitel 1.5.2] Damit wird zwischen Anforderungen unterschieden, die zwingend erforderlich sind (muss), Anforderungen, die sehr sinnvoll sind (sollte) und Anforderungen, die nicht zwingend erforderlich sind, aber die Nutzer begeistern würden (könnte). Eine weitere Priorisierung wird an dieser Stelle nicht benötigt, sondern kann bei Bedarf erfolgen.
 
@@ -139,14 +149,14 @@ In #link(<UseCaseInfoDegree>)[Use Case 1] ist beschrieben, wie eine nicht angeme
   
 
 
-In #link(<UseCaseInfoModule>)[Use Case 2] ist beschrieben, wie eine Person Informationen zu einem Modul erhalten möchte. Das System muss hierzu alle Module des ausgewählten Studiengangs auflisten. Im genannten Beispiel ist die Person auf der Suche nach einem Wahlpflichtmodul. Für diesen Fall muss das System die Möglichkeit bieten, nach bestimmten Informationen zu Filtern. Denkbar wären Filter für die Informationen "Wahlpflichtfach", "Semester", "Erreichbare Credits".
+In #link(<UseCaseInfoModule>)[Use Case 2] ist beschrieben, wie eine Person Informationen zu einem Modul erhalten möchte. Das System muss hierzu alle Module des ausgewählten Studiengangs auflisten. Die Module müssen auswählbar sein, damit weitere Details angezeigt werden können. Im genannten Beispiel ist die Person auf der Suche nach einem Wahlpflichtmodul. Für diesen Fall muss das System die Möglichkeit bieten, nach bestimmten Informationen zu Filtern. Denkbar wären Filter für die Informationen "Wahlpflichtfach", "Semester", "Erreichbare Credits".
 
 
 #task(title: [Aus #link(<UseCaseInfoModule>)[Use Case 2] ergeben sich folgende Anforderungen:])[
   #narrowTrack("Module auflisten", type: "F", label: <SHOWMODULES>)[NP muss eine Liste aller Module sehen können.]
   #narrowTrack("Filterfunktion", type: "F", label: <FILTER>)[NP sollte Filter nutzen können, um das gesuchte Modul zu finden.]
   #narrowTrack("Suchfunktion", type: "F", label: <SEARCH>)[NP sollte eine Suchfunktion nutzen können, um das gesuchte Modul zu finden.]
-  #narrowTrack("Module anzeigen", type: "F", label: <SHOWMODULEDETAIL>)[NP muss die Details eines Modules ansehen können.]
+  #narrowTrack("Module anzeigen", type: "F", label: <SHOWMODULEDETAIL>)[NP muss die Details eines Moduls ansehen können.]
 ]
 ]
 
@@ -445,13 +455,14 @@ In diesem Unterabschnitt soll die Struktur eines Modulhandbuches analysiert werd
 Die Modulhandbücher der Abteilung Informatik haben für alle drei Studiengänge (BIN, MDI und MIN) dieselbe Struktur. Es gibt eine Aufteilung in Module und Teilmodule. Ein Modul kann dabei 0 bis n verschiedene Teilmodule haben und jedes Teilmodul kann zu 1 bis n Modulen gehören. Teilmodule können Studiengangsübergreifend mit Modulen verknüpft werden. #emph("Beispiel"): Es gibt das Modul "MDI-103 Grundlagen der Informatik" und das Modul "BIN-103 Grundlagen der Informatik". Beide verweisen auf das Teilmodul "BIN-103-01 Grundlagen der Informatik". Somit können Studiengangsübergreifende Module abgebildet werden. In der Regel hat an der Abteilung Informatik jedes Modul genau ein Teilmodul und umgekehrt gehört in der Regel jedes Teilmodul zu genau einem Modul.
 
 === Moduleigenschaften <properties>
-Das Modul enthält zunächst grundlegende Informationen:
 
-#track("Titel", example: "BIN-100 Mathematik 1")[
+Das Modul enthält zunächst grundlegende Informationen. Diese werden aufgelistet, um ein besseres Verständnis der benötigten Datenstruktur zu erhalten. Jedes aufgelistete Feld soll später in @schema implementiert werden, daher ist es notwendig, die benötigten Felder und deren Inhalt herauszufinden. 
+
+#track("Titel", example: "BIN-100 Mathematik 1", label:<title>)[
   Zusammengesetzt aus einem Kürzel des Studiengangs,  einer eindeutigen Zahl und dem Namen des Moduls.
 ]
 
-#track("Untertitel", example: "Mathematische Grundlagen der Informatik (BIN-MAT1) oder C/C++ (BIN-PR3)")[
+#track("Untertitel", example: "Mathematische Grundlagen der Informatik (BIN-MAT1) oder C/C++ (BIN-PR3)", label:<subTitle>)[
   Ein alternativer, ggf. etwas präziserer Name des Moduls, sowie ein Kürzel. In den aktuell veröffentlichten Handbüchern ist hier oft nur das Kürzel angegeben.
 ]
 
@@ -492,7 +503,7 @@ Das Modul enthält zunächst grundlegende Informationen:
   Für die Absolvierung des Moduls zwingend erforderliche Voraussetzungen.
 ]
 
-#track("Empfohlene Voraussetzungen", example: "Alle Module der Semester 1 bis 3 sowie BIN-112 und BIN-202")[
+#track("Empfohlene Voraussetzungen", example: "Alle Module der Semester 1 bis 3 sowie BIN-112 und BIN-202", label: <recommendedRequirements>)[
   Für die Absolvierung des Moduls empfohlene Voraussetzungen.
 ]
 
@@ -510,8 +521,9 @@ Das Modul enthält zunächst grundlegende Informationen:
 
 #text(" ")<EndOfChapter>
 
-=== Teilmoduleigenschaften
-Die Teilmodule enthalten zusätzlich weitere Informationen:
+=== Teilmoduleigenschaften<submoduleProps>
+Die Teilmodule haben ebenfalls die Informationen: @subTitle, @responsible, @credits, @hours, @recommendedSemester, @recommendedRequirements, @exam und @erg.
+Zusätzlich gibt es noch weitere benötigte Felder.
 
 #context [
   #for (value) in (range(counter(heading).at(<EndOfChapter>).last())) {
@@ -564,5 +576,4 @@ Reges, S., Stepp, M.: Building Java Programs, Prentice Hall", label: <literature
 In diesem Kapitel wurden mithilfe verschiedener Methoden die Schwachstellen des alten Prozesses ermittelt und daraus im Anschluss Anforderungen an das neue System ermittelt. Hierbei half die Aufstellung von Zielgruppen und Anwendungsfällen. Die aufgestellten Anforderungen helfen zum Einen bei der folgenden Planung der Anwendung und werden auch später im @review hilfreich, um zu ermitteln, ob das neue System eingesetzt werden kann. Die zum Ende des Kapitels herausgearbeitete Struktur der Modulhandbücher kann im Folgenden zur Entwicklung einer passenden Datenstruktur helfen. 
 
 #pagebreak()
-#todo[leere Seite ohoh]
 #hide("grr")

@@ -15,7 +15,8 @@ Der nächste Schritt für das neue System könnte die Einführung sein. Hierzu m
 
 
 Für die nähere Zukunft ist es außerdem denkbar, dass abgesehen von den bereits erfassten nicht erfüllten Anforderungen weitere Funktionen geplant werden. So könnte die moderne Anzeige von einzelnen Modulen um verschiedene Informationen erweitert werden. Es könnte beispielsweise eine Anbindung an den Stundenplan geben, sodass auf der Modulseite auch angezeigt wird, zu welchen Zeiten und an welchem Ort die Lehrveranstaltungen stattfinden. Auch wäre die Anbindung weiterer Abteilungen und Fakultäten denkbar. Dies ist durch die Datenstruktur bereits vorbereitet, jedoch könnte es erforderlich sein, die PDF-Dokumente optisch anders darzustellen. 
-Auch wäre eine Anbindung an das #hone denkbar, wie bereits in @verwandteArbeiten beschrieben.
+Auch wäre eine Anbindung an das #hone denkbar, wie bereits in @verwandteArbeiten beschrieben. 
+Zusätzlich zu den Modulhandbüchern und des Anhangs der Prüfungsordnung könnte ebenso die in @definition genannte Abbildung des Curriculums (@mdiCurr) generiert und im neuen System angezeigt werden.
 
 In der Bearbeitungsansicht könnte statt der derzeitigen HTML-Vorschau das tatsächliche PDF angezeigt werden. Dies wurde durch die Umstellung auf TypeScript bereits vorbereitet und könnte eine sinnvolle Änderung sein, um zum einen eine genauere Vorschau zu ermöglichen und zum anderen die Code-Qualität zu verbessern, indem Abhängigkeiten verringert werden.
 

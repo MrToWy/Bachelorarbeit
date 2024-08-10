@@ -84,7 +84,9 @@
   show figure: set block(breakable: true);
   codly(
     zebra-fill: white, 
-    breakable: true
+    breakable: true,
+    reference-sep: ", Zeile ",
+    
   )
 
 

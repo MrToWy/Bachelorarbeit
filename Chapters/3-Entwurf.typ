@@ -87,7 +87,7 @@ In dem Diagram ist beispielsweise auf der linken Seite zu sehen, das ein Modul i
 Im Folgenden wird mithilfe von Mockups entworfen, wie die Benutzeroberflächen der neuen Anwendung aussehen sollen. Da an Mockups schnell Änderungen vorgenommen werden können, soll dieser Prozess dabei helfen, zeiteffizient gute Lösungen zu finden. Es werden zunächst in @scaffold die Elemente zur Navigation durch die Anwendung vorgestellt. Anschließend werden in @views die verschiedenen Komponenten der Anwendung, sowie die daraus zusammengesetzten Ansichten skizziert.
 ]
 
-In den Mockups wird darauf geachtet, die von  #cite(<designInterfaces>, form: "prose") beschriebenen bekannten UI-Patterns anzuwenden. Dadurch sollen die Ansichten der neuen Anwendung selbsterklärend sein, da sie anderen modernen Websites ähneln. Weiterhin soll jede Ansicht wenn möglich genau einen Zweck verfolgen – entweder soll eine Übersicht mehrere Elemente zeigen, oder ein einzelnes Element soll im Fokus stehen und detailliert gezeigt werden, oder ein neues Element soll erstellt werden, oder eine Aufgabe soll erledigt werden. Das Mischen dieser Zuständigkeiten kann zu einer überladenen Website führen und wird deshalb wenn möglich vermieden. @designInterfaces[Seite 35 ff.]
+In den Mockups wird darauf geachtet, die von  #cite(<designInterfaces>, form: "prose") beschriebenen bekannten UI-Patterns anzuwenden. Dadurch sollen die Ansichten der neuen Anwendung selbsterklärend sein, da sie anderen modernen Websites ähneln. Weiterhin soll jede Ansicht, wenn möglich, genau einen Zweck verfolgen. Entweder soll eine Übersicht mehrere Elemente zeigen, oder ein einzelnes Element soll im Fokus stehen und detailliert gezeigt werden. Alternativ kann ein neues Element erstellt werden, oder eine Aufgabe soll erledigt werden. Das Mischen dieser Zuständigkeiten kann zu einer überladenen Website führen und wird deshalb, wenn möglich vermieden. @designInterfaces[Seite 35 ff.]
 
 
 
@@ -147,7 +147,11 @@ Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächs
 #let loginImage = imageFigureNoPad(<login>, "mockups/Login.png", "Login", width: 20em)
 
 
-#wrap-content(align: top + right, loginImage, loginText)
+//#wrap-content(align: top + right, loginImage, loginText)
+
+#loginText
+#loginImage
+
 ]
 
 #box[
@@ -213,7 +217,7 @@ Angemeldete User sehen auf verschiedenen Seiten Buttons, mit denen sie Module an
 #imageFigure(<addModule>, "mockups/AddModule.png", "Modul hinzufügen")
 ]
 
-#let changeMessageText = [Damit in der Auflistung der Änderungen eine hilfreiche Nachricht steht, sollen die vorgenommenen Änderungen beim Speichern eines Moduls zusammengefasst werden. Hierzu fragt ein Popup nach der Zusammenfassung und erklärt dem User kurz wo dieser Text zu sehen sein wird.]
+#let changeMessageText = [Damit in der Auflistung der Änderungen eine hilfreiche Nachricht steht, sollen die vorgenommenen Änderungen beim Speichern eines Moduls zusammengefasst werden. Hierzu fragt ein Pop-up nach der Zusammenfassung und erklärt dem User, wo dieser Text zu sehen sein wird.]
 
 #let changeMessageImg = imageFigureNoPad(<changeMsgImg>, "mockups/ÄnderungsMessage.png", "Text für Änderungshistorie", width: 12em)
 
@@ -221,7 +225,7 @@ Angemeldete User sehen auf verschiedenen Seiten Buttons, mit denen sie Module an
 
  
 #let translateText = [
-Für die Erstellung oder Bearbeitung eines Moduls kann entweder eine vorhandener Vorlage aus einem Dropdown ausgewählt werden (@lookup), oder ein neuer Text durch klicken auf den "Neu"-Button angelegt werden. Dies ist besonders praktisch, da sich bestimmte Texte oft wiederholen. 
+Für die Erstellung oder Bearbeitung eines Moduls kann entweder eine vorhandene Vorlage aus einem Dropdown ausgewählt werden (@lookup), oder ein neuer Text durch Klicken auf den "Neu"-Button angelegt werden. Dies ist besonders praktisch, da sich bestimmte Texte oft wiederholen. 
 
 Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im Dropdown angezeigt wird, sowie die tatsächlichen Texte, die später im Modulhandbuch abgebildet werden. 
 ]
@@ -313,8 +317,14 @@ Der Endpunkt /modules soll zusätzlich POST-Anfragen entgegen nehmen können, um
   Hier sollten alle Informationen zur Verfügung gestellt werden, die für die Änderungshistorie eines Moduls benötigt werden (@changelogImage). Dazu gehört die Auflistung aller vorgenommenen Änderungen, der Autor der Änderung, sowie der erklärende Text, der bei einer Änderung angegeben werden muss (@changeMsgImg).
 
   
-#heading(level: 4, numbering: none)[Endpunkte für Teilmodule]
-Die bisher vorgestellten Endpunkte von Modulen werden ebenfalls für Teilmodule benötigt.
+#heading(level: 4, numbering: none)[/submodules]
+Ähnlich wie schon bei /modules wird eine Auflistung aller Teilmodule benötigt. Damit Teilmodule auffindbar sind, sollte die Auflistung den Namen des Teilmodules enthalten. Außerdem könnte die verantwortliche Person enthalten sein, damit Modulverantwortliche Personen nach den Teilmodulen filtern können, für die sie verantwortlich sind.
+Der Endpunkt /submodules soll zusätzlich POST-Anfragen entgegen nehmen können, um neue Teilmodule anzulegen. 
+
+#heading(level: 4, numbering: none)[Endpunkt /submodules/{id}]
+  Hier sollten alle Informationen zur Verfügung gestellt werden, die für die Detailansichten eines einzelnen Teilmoduls benötigt werden. Es müssen also alle Informationen aus @submoduleProps enthalten sein.
+
+  Der Endpunkt /submodules/{id} soll zusätzlich PUT-Anfragen entgegennehmen können, um bestehende Teilmodule bearbeiten zu können. 
 
 #heading(level: 4, numbering: none)[Endpunkt /group]
 Für das Dropdown in dem die Gruppe eines Modules (@group) angegeben wird, wird ein eigener Endpunkt benötigt.  
