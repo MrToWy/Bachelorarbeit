@@ -36,14 +36,14 @@ Die Datenbankschemas werden mithilfe der Krähenfußnotation @relationaleDb[Seit
 
 
 === Benötigte Tabellen
-Für die Kernfunktionalität werden zunächst Tabellen für Module und Teilmodule benötigt. Um die Organisationsstruktur der Hochschule abbilden zu können, werden weiterhin Tabellen für Fakultäten, Abteilungen und Studiengänge benötigt. Damit ein Login möglich ist, kann die Tabelle User benutzt werden. Für die Anforderung @SHOWCHANGES wird eine Tabelle Changelog und eine Tabelle ChangelogItem benötigt. In der Tabelle Changelog wird für jede Änderung ein Eintrag eingetragen, welcher den ausführenden User und eine kurze Zusammenfassung beinhaltet. In den ChangelogItems stehen dann die konkreten geänderten Felder. Damit ein Modul einer Gruppe zugewiesen werden kann, wird eine Tabelle ModuleGroup benötigt, in der alle verfügbaren Gruppen aufgelistet sind. Desweiteren werden noch die Tabelle "Job" und verschiedene "PDFStructure"-Tabellen für die Generierung der PDF-Dateien benötigt (dazu später mehr in @pythonScript).
+Für die Kernfunktionalität werden zunächst Tabellen für Module und Teilmodule benötigt. Um die Organisationsstruktur der Hochschule abbilden zu können, werden weiterhin Tabellen für Fakultäten, Abteilungen und Studiengänge benötigt. Damit ein Login möglich ist, kann die Tabelle User benutzt werden. Für die Anforderung @SHOWCHANGES wird eine Tabelle Changelog und eine Tabelle ChangelogItem benötigt. In der Tabelle Changelog wird für jede Änderung ein Eintrag eingetragen, welcher den ausführenden User und eine kurze Zusammenfassung beinhaltet. In den ChangelogItems stehen dann die konkreten geänderten Felder. Damit ein Modul einer Gruppe zugewiesen werden kann, wird eine Tabelle ModuleGroup benötigt, in der alle verfügbaren Gruppen aufgelistet sind. Des Weiteren werden noch die Tabelle "Job" und verschiedene "PDFStructure"-Tabellen für die Generierung der PDF-Dateien benötigt (dazu später mehr in @pythonScript).
 
 Jede Tabelle erhält eine Spalte "Id" als Primärschlüssel. @relationaleDb[Kapitel 3]  Über diese Id werden die Relationen zu anderen Tabellen ermöglicht. Zusätzlich wird für jede Eigenschaft aus @structure eine dazugehörige Spalte benötigt.
 
 
 
 === Überlegungen zur Übersetzbarkeit
-Um die Anforderung @TRANSLATEMULTIPLE umsetzen zu können wird eine Datenstruktur benötigt, welche die verschiedenen Texte in verschiedenen Sprachen aufbewahren kann. Hierzu wurden zunächst verschiedene Möglichkeiten evaluiert, um das beste Vorgehen zu ermitteln.
+Um die Anforderung @TRANSLATEMULTIPLE umsetzen zu können, wird eine Datenstruktur benötigt, welche die verschiedenen Texte in verschiedenen Sprachen aufbewahren kann. Hierzu wurden zunächst verschiedene Möglichkeiten evaluiert, um das beste Vorgehen zu ermitteln.
 
 #heading(level: 4, outlined: false, numbering: none)[Idee 1]
 Für die spätere Entwicklung des Frontends könnte es praktisch sein, alle Texte einer Art in einer eigenen Tabelle aufzubewahren (@idea1). Die Eingabe eines Textes könnte dann mit allen bisherigen Texten in der Tabelle abgeglichen werden, um Fehler zu finden. Für die erste Idee würde also pro Textfeld eine eigene Tabelle angelegt werden. Das Modul hätte beispielsweise für den Titel dann nur eine Id, die auf einen Eintrag in der Tabelle ModuleTitle verweist. ModuleTitle hätte dann einen Verweis auf TranslatedText. In TranslatedText könnten dann die konkreten Texte stehen.
@@ -51,18 +51,18 @@ Für die spätere Entwicklung des Frontends könnte es praktisch sein, alle Text
 Diese Methodik hat den Nachteil, dass pro Textfeld eine neue Tabelle benötigt wird. Dadurch kann die Datenstruktur schnell unübersichtlich werden. Außerdem könnte der Zugriff kompliziert sein. Für die Entwicklung dieses Systems sollte eine einfachere Lösung gesucht werden. 
 
 #heading(level: 4, outlined: false, numbering: none)[Idee 2]
-Eine etwas einfachere Methode wäre es, die übersetzten Texte in einer zentalen Tabelle "Translations" abzulegen (@idea2). Die Tabelle Modul hätte dann z.B. die Spalten TitleTranslationId, welche ein Foreign-Key auf die Tabelle Translation wäre. In Translation würde das dann die Spalten "Id", "English" und "German" geben, um die Texte dort abzuspeichern.
+Eine etwas einfachere Methode wäre es, die übersetzten Texte in einer zentalen Tabelle "Translations" abzulegen (@idea2). Die Tabelle Modul hätte dann z. B. die Spalten TitleTranslationId, welche ein Foreign-Key auf die Tabelle Translation wäre. In Translation würde das dann die Spalten "Id", "English" und "German" geben, um die Texte dort abzuspeichern.
 
 Für diese Lösung muss nur eine einzelne zusätzliche Tabelle erstellt werden, was den initialen Aufwand minimiert. Auch hat die zentrale Speicherung von Texten den Vorteil, dass diese sehr einfach verwaltet werden können. Bei der Einführung einer neuen Sprache müsste nur eine neue Spalte zur Tabelle hinzugefügt werden.
 
-Die Lösung hat allerdings einen entscheidenen Nachteil. Ein Teilmodul hat 12 zu übersetzende Felder. Wenn dieses nun auf der Oberfläche angezeigt werden soll, muss für jedes der Felder ein Datenbank-Join, oder eine Unterabfrage gemacht werden. In der Tabelle Modul wird für jedes Text-Feld nur eine Id abgelegt, die dann aus der Übersetzungstabelle abgerufen werden muss. Dies hätte einen hohen Aufwand im zukünftigen Quellcode der Anwendungen zu Folge.
+Die Lösung hat allerdings einen entscheidenen Nachteil. Ein Teilmodul hat 12 zu übersetzende Felder. Wenn dieses nun auf der Oberfläche angezeigt werden soll, muss für jedes der Felder ein Datenbank-Join, oder eine Unterabfrage gemacht werden. In der Tabelle Modul wird für jedes Textfeld nur eine Id abgelegt, die dann aus der Übersetzungstabelle abgerufen werden muss. Dies hätte einen hohen Aufwand im zukünftigen Quellcode der Anwendungen zu Folge.
 
 
 
 #heading(level: 4, outlined: false, numbering: none)[Idee 3]
-Um Zugriffe auf die Texte einfacher zu gestalten wurde eine weitere Möglichkeit entwickelt (@idea3). Für jede Entität (z.B. Modul, Teilmodul...) wird neben der normalen Tabelle eine weitere Tabelle mit dem Suffix "\_Translations" angelegt. Diese Zusatztabelle enthält die übersetzten Textfelder. Für jede Sprache gibt es eine Zeile in der neuen Tabelle. Wenn es also zwei Sprachen gibt (Englisch & Deutsch) gibt es für jedes Modul zwei Einträge in der dazugehörigen Übersetzungstabelle.
+Um Zugriffe auf die Texte einfacher zu gestalten, wurde eine weitere Möglichkeit entwickelt (@idea3). Für jede Entität (z.B. Modul, Teilmodul...) wird neben der normalen Tabelle eine weitere Tabelle mit dem Suffix "\_Translations" angelegt. Diese Zusatztabelle enthält die übersetzten Textfelder. Für jede Sprache gibt es eine Zeile in der neuen Tabelle. Wenn es also zwei Sprachen gibt (Englisch & Deutsch) gibt es für jedes Modul zwei Einträge in der dazugehörigen Übersetzungstabelle.
 
-Um nun ein Teilmodul mit 12 Feldern aus der Datenbank zu erhalten wird mit dieser Lösung nur noch ein Join benötigt. Der Quellcode der zukünftigen Anwendung sollte dadurch deutlich besser wartbar sein.
+Um nun ein Teilmodul mit 12 Feldern aus der Datenbank zu erhalten, wird mit dieser Lösung nur noch ein Join benötigt. Der Quellcode der zukünftigen Anwendung sollte dadurch deutlich besser wartbar sein.
 
 #diagramFigure("ER-Diagramm - Idee 1", <idea1>, "ER_Translation")
 #diagramFigure("ER-Diagramm - Idee 2", <idea2>, "idea1")
@@ -75,7 +75,7 @@ Um nun ein Teilmodul mit 12 Feldern aus der Datenbank zu erhalten wird mit diese
 
 In @ER ist ein kleiner Teil des entstandenen ER-Diagramms zu sehen. Die vollständige Version des Diagramms ist sehr groß und findet daher hier keinen Platz. Die vollständige Abbildung ist in der Dokumentation des Systems zu finden (Pfad: #link("https://studymodules-docs.tobi.win/docs/backend/Architecture/Database")[/docs/backend/Architecture/Database]). 
 
-In dem Diagram ist beispielsweise auf der linken Seite zu sehen, das ein Modul immer einem Studiengang zugewiesen sein muss. Andersherum kann ein Studiengang 0 bis n verschiedene Module anbieten. Das Schema soll Entwickelnde dabei unterstützen, die Datenstruktur des Systems zu verstehen. Anhand des Schemas kann im folgenden Kapitel die Datenbank des Backends erstellt werden, sodass diese dann alle benötigten Daten abspeichern kann.
+In dem Diagramm ist beispielsweise auf der linken Seite zu sehen, dass ein Modul immer einem Studiengang zugewiesen sein muss. Andersherum kann ein Studiengang 0 bis n verschiedene Module anbieten. Das Schema soll Entwickelnde dabei unterstützen, die Datenstruktur des Systems zu verstehen. Anhand des Schemas kann im folgenden Kapitel die Datenbank des Backends erstellt werden, sodass diese dann alle benötigten Daten abspeichern kann.
 #diagramFigure("ER-Diagramm - Gesamtbild", <ER>, "simple_ER")
 
 
@@ -143,7 +143,7 @@ Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) n
 #heading(level: 4, numbering:none, "Login")
 
 #let loginText = [
-Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächst über den Login-Button im Drawer (@drawer) anmelden (@LOGIN). Hierzu wird ein Screen benötigt, auf dem der User seine Email und sein Passwort eingeben kann. Da Accounts von der studiengangsverantwortlichen Person erstellt werden (@CRUSER), wird auf dieser Seite keine Möglichkeit benötigt, sich selbst zu registrieren. Damit verständlich ist, wie ein Account erstellt werden kann, wird diese Information als Infotext unter dem Login-Button platziert.]
+Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächst über den Login-Button im Drawer (@drawer) anmelden (@LOGIN). Hierzu wird ein Screen benötigt, auf dem der User seine E-Mail und sein Passwort eingeben kann. Da Accounts von der studiengangsverantwortlichen Person erstellt werden (@CRUSER), wird auf dieser Seite keine Möglichkeit benötigt, sich selbst zu registrieren. Damit verständlich ist, wie ein Account erstellt werden kann, wird diese Information als Infotext unter dem Login-Button platziert.]
 #let loginImage = imageFigureNoPad(<login>, "mockups/Login.png", "Login", width: 20em)
 
 
@@ -160,7 +160,7 @@ Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächs
 
 #let searchFunctionText = [
   #heading(level: 4, numbering:none, "Suchfunktion")
-  Für die Suchfunktion wird eine Komponente benötigt, mit der ein bestimmtes Modul gefunden werden kann. In die Suchleiste soll der User den Namen des gesuchten Modules eingeben können. Dabei muss der Modulname nicht vollständig eingegeben werden. Module, die zu dem eingebenen Text passen, sollen vorgeschlagen werden. Durch die Vorschläge spart der User Zeit, da nicht der vollständige Modulname eingegeben werden muss und auch nicht erst zu einer Ergebnisseite weitergeleitet wird. @designInterfaces[Seite 502 ff.] Der User kann einen Vorschlag anklicken, um sich dieses Modul anzusehen.
+  Für die Suchfunktion wird eine Komponente benötigt, mit der ein bestimmtes Modul gefunden werden kann. In die Suchleiste soll der User den Namen des gesuchten Moduls eingeben können. Dabei muss der Modulname nicht vollständig eingegeben werden. Module, die zu dem eingegebenen Text passen, sollen vorgeschlagen werden. Durch die Vorschläge spart der User Zeit, da nicht der vollständige Modulname eingegeben werden muss und auch nicht erst zu einer Ergebnisseite weitergeleitet wird. @designInterfaces[Seite 502 ff.] Der User kann einen Vorschlag anklicken, um sich dieses Modul anzusehen.
 
 ]
 
@@ -180,7 +180,7 @@ Auf der Startseite der neuen Anwendung soll nicht direkt die zuvor vorgestellte 
 ]
 
 #box[
-Wenn in der Fakultätsauswahl eine Fakultät ausgewählt wurde, geht es weiter auf die Detailansicht der jeweiligen Fakultät (@navigationMockupLevel2). Hier werden alle Studiengänge der Fakultät aufgelistet. Die Studiengänge sind gruppiert nach der Abteilung, zu der sie zugehörig sind. Zur besseren Übersicht sind die Bachelorstudiengänge über den Masterstudiengängen angeordnet und zusätzlich farblich markiert. Des weiteren gibt es die Möglichkeit in der oberen Leiste gezielt nach einem Studiengang zu suchen, oder nach Bachelor/Master zu filtern. Sobald auf dieser Übersicht ein Studiengang angeklickt wird, öffnet sich die Modulübersicht. In der Modulübersicht sind dann die Filter automatisch an die zuvor ausgewählte Fakultät und den ausgewählten Studiengang angepasst.
+Wenn in der Fakultätsauswahl eine Fakultät ausgewählt wurde, geht es weiter auf die Detailansicht der jeweiligen Fakultät (@navigationMockupLevel2). Hier werden alle Studiengänge der Fakultät aufgelistet. Die Studiengänge sind gruppiert nach der Abteilung, zu der sie zugehörig sind. Zur besseren Übersicht sind die Bachelorstudiengänge über den Masterstudiengängen angeordnet und zusätzlich farblich markiert. Des Weiteren gibt es die Möglichkeit in der oberen Leiste gezielt nach einem Studiengang zu suchen, oder nach Bachelor/Master zu filtern. Sobald auf dieser Übersicht ein Studiengang angeklickt wird, öffnet sich die Modulübersicht. In der Modulübersicht sind dann die Filter automatisch an die zuvor ausgewählte Fakultät und den ausgewählten Studiengang angepasst.
 
 #imageFigureNoPad(<navigationMockupLevel2>, "mockups/NavigationLevel2.png", "Startseite - Auswahl Studiengang")
 ]
@@ -212,7 +212,7 @@ Sobald ein Modul ausgewählt wurde, wird die Detailansicht eines Modules (@previ
 #box[
   #heading(level: 4, numbering:none, "Modul anlegen / bearbeiten")
 
-Angemeldete User sehen auf verschiedenen Seiten Buttons, mit denen sie Module anlegen und bearbeiten können. Damit die Dateneingabe für den User möglichst intuitiv ist, orientiert sich die Sortierung der Eingabefelder an der Sortierung der Felder im resultierenden PDF. Um eine einheitliche Optik zu erreichen wurden anschließend die Felder geringfügig umsortiert, sodass gleiche Datentypen, oder Felder die thematisch zueinander passen, nah beieinander sind. Das resultierende PDF wird in der Vorschau imitiert. Hier werden die Eingaben des Users in Echtzeit angezeigt, sodass der User jederzeit sehen kann, wie die Modulbeschreibung aussehen wird.
+Angemeldete User sehen auf verschiedenen Seiten Buttons, mit denen sie Module anlegen und bearbeiten können. Damit die Dateneingabe für den User möglichst intuitiv ist, orientiert sich die Sortierung der Eingabefelder an der Sortierung der Felder im resultierenden PDF. Um eine einheitliche Optik zu erreichen wurden anschließend die Felder geringfügig umsortiert, sodass gleiche Datentypen, oder Felder, die thematisch zueinander passen, nah beieinander sind. Das resultierende PDF wird in der Vorschau imitiert. Hier werden die Eingaben des Users in Echtzeit angezeigt, sodass der User jederzeit sehen kann, wie die Modulbeschreibung aussehen wird.
   
 #imageFigure(<addModule>, "mockups/AddModule.png", "Modul hinzufügen")
 ]
@@ -253,7 +253,7 @@ Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im 
 #heading(level: 4, numbering:none, "Userverwaltung")
 
 #let userText = [
-  Das Hinzufügen eines neuen Users benötigt wenige Eingaben. Der Inhalt des Feldes "E-Mail Adresse" wird automatisch anhand des eingegebenen Vor- und Nachnamens ausgefüllt, kann aber anschließend auch manuell bearbeitet werden, falls die E-Mail Adresse vom bekannten Schema (vorname.nachname\@hs-hannover.de) einer Adresse der #hsh abweicht. Dies ist beispielsweise der Fall, wenn mehrere Personen den selben Vor- und Nachnamen haben.
+  Das Hinzufügen eines neuen Users benötigt wenige Eingaben. Der Inhalt des Feldes "E-Mail-Adresse" wird automatisch anhand des eingegebenen Vor- und Nachnamens ausgefüllt, kann aber anschließend auch manuell bearbeitet werden, falls die E-Mail-Adresse vom bekannten Schema (vorname.nachname\@hs-hannover.de) einer Adresse der #hsh abweicht. Dies ist beispielsweise der Fall, wenn mehrere Personen denselben Vor- und Nachnamen haben.
 ]
 
 #let userImage = imageFigureNoPad(<createUser>, "mockups/CreateUser.png", "Neuen User hinzufügen", width: 8em)
@@ -284,14 +284,14 @@ Alle Änderungen sollen nachverfolgbar sein (@SHOWCHANGES). Hierzu wird eine Üb
 #box[
 == Benötigte Endpunkte im Backend <endpoints>
 
-Damit das zukünftige Frontend mit dem  Backend kommunizieren kann, muss das Backend Endpunkte (auch genannt Ressourcen, Endpoints, Routen...) bereitstellen, die das Frontent nutzen kann. Ein Endpunkt ist beispielsweise die Auflistung aller Module und ist mithilfe einer URI aufrufbar (hier z.B. /modules). Ein einzelnes Modul könnte über den Endpunkt #box[/modules/{id}] aufgerufen werden. @restUndHTTP[Abschnitt 3.2] 
+Damit das zukünftige Frontend mit dem  Backend kommunizieren kann, muss das Backend Endpunkte (auch genannt Ressourcen, Endpoints, Routen...) bereitstellen, die das Frontend nutzen kann. Ein Endpunkt ist beispielsweise die Auflistung aller Module und ist mithilfe einer URI aufrufbar (hier z.B. /modules). Ein einzelnes Modul könnte über den Endpunkt #box[/modules/{id}] aufgerufen werden. @restUndHTTP[Abschnitt 3.2] 
 ]
 
 In der vorliegenden Version des "StudyBase-"Backends gibt es bereits mehrere Endpunkte. Im Folgenden soll ermittelt werden, welche Endpunkte für das neue System benötigt werden. Nach dem YAGNI-Prinzip sollen dann in 
 @implementierung nur die Endpunkte ausgearbeitet werden, die für das neue System benötigt werden. @restUndHTTP[Unterabschnitt 4.2.8] Durch die Planung, welche Endpunkte benötigt werden und wie diese aussehen sollen,  wird die spätere Implementierung in @createEndpoints beschleunigt, da dann dort weniger Entscheidungen getroffen werden müssen.
 
 #heading(level: 4, numbering: none)[Endpunkt /modules]
-Im zukünftigen Frontend sollen an verschiedenen Stellen die Module aufgelistet werden. Die Suchfunktion soll Vorschläge anhand der Modulliste machen, die Studiengänge sollen ihre Module anzeigen und die studiengangsverantwortliche Person soll alle Module verwalten können. Es wird also eine Resource benötigt, die alle Module auflistet. Für die Suchfunktion muss die Resource allerdings weniger Informationen anzeigen, als für die Detailansicht eines Moduls. Beispielsweise ist für die Suche zunächst uninteressant, was die angestrebten Lernergebnisse eines Modules sind. Durch die Begrenzung der übersendeten Informationen, müssen weniger Daten vom Backend ans Frontend gesendet werden. Dies trägt zu einer besseren Performance bei, weil weniger Daten über das Internet übertragen werden.
+Im zukünftigen Frontend sollen an verschiedenen Stellen die Module aufgelistet werden. Die Suchfunktion soll Vorschläge anhand der Modulliste machen, die Studiengänge sollen ihre Module anzeigen und die studiengangsverantwortliche Person soll alle Module verwalten können. Es wird also eine Ressource benötigt, die alle Module auflistet. Für die Suchfunktion muss die Ressource allerdings weniger Informationen anzeigen, als für die Detailansicht eines Moduls. Beispielsweise ist für die Suche zunächst uninteressant, was die angestrebten Lernergebnisse eines Moduls sind. Durch die Begrenzung der übersendeten Informationen müssen weniger Daten vom Backend ans Frontend gesendet werden. Dies trägt zu einer besseren Performance bei, weil weniger Daten über das Internet übertragen werden.
 
 
   Die Suchfunktion benötigt:
@@ -301,11 +301,11 @@ Im zukünftigen Frontend sollen an verschiedenen Stellen die Module aufgelistet 
 Die Tabellen im restlichen System profitieren dahingegen von zusätzlichen Informationen. Diese können dabei helfen, die Module zu filtern (@FILTER), oder schnell Informationen zu einem Modul herauszufinden, ohne dieses aufrufen zu müssen. 
 
 Es werden also die folgenden Informationen zusätzlich benötigt:
-4. Semester, in dem das Modul vorgeschlagen ist (@recommendedSemester), um beispielsweise nur die Module des aktuellen Semester zu filtern 
+4. Semester, in dem das Modul vorgeschlagen ist (@recommendedSemester), um beispielsweise nur die Module des aktuellen Semesters zu filtern 
 5. Ansprechpartner (@responsible), um schnell eine Kontaktinformation zu erhalten
 
 
-Der Endpunkt /modules soll zusätzlich POST-Anfragen entgegen nehmen können, um neue Module anzulegen. 
+Der Endpunkt /modules soll zusätzlich POST-Anfragen entgegennehmen können, um neue Module anzulegen. 
 
 
 #heading(level: 4, numbering: none)[Endpunkt /modules/{id}]
@@ -319,7 +319,7 @@ Der Endpunkt /modules soll zusätzlich POST-Anfragen entgegen nehmen können, um
   
 #heading(level: 4, numbering: none)[/submodules]
 Ähnlich wie schon bei /modules wird eine Auflistung aller Teilmodule benötigt. Damit Teilmodule auffindbar sind, sollte die Auflistung den Namen des Teilmodules enthalten. Außerdem könnte die verantwortliche Person enthalten sein, damit Modulverantwortliche Personen nach den Teilmodulen filtern können, für die sie verantwortlich sind.
-Der Endpunkt /submodules soll zusätzlich POST-Anfragen entgegen nehmen können, um neue Teilmodule anzulegen. 
+Der Endpunkt /submodules soll zusätzlich POST-Anfragen entgegennehmen können, um neue Teilmodule anzulegen. 
 
 #heading(level: 4, numbering: none)[Endpunkt /submodules/{id}]
   Hier sollten alle Informationen zur Verfügung gestellt werden, die für die Detailansichten eines einzelnen Teilmoduls benötigt werden. Es müssen also alle Informationen aus @submoduleProps enthalten sein.
@@ -354,7 +354,7 @@ Dieser Endpunkt bietet eine Auflistung aller Studiengänge an. Zusätzlich sollt
 Für den Login (@login) wird ein Endpunkt benötigt, der E-Mail und Passwort entgegennimmt, validiert und einen gültigen Token zurückgibt. Mithilfe des Tokens können die administrativen Funktionen genutzt werden, ohne sich jedes Mal mit E-Mail und Passwort autorisieren zu müssen.
 
 #heading(level: 4, numbering: none)[Endpunkt /job]
-Für die PDF-Generierung wird ein Endpunkt benötigt, der eine Auflistung der Kompilierungsaufträge anbietet. Dieser Endpunkt muss außerdem POST-Anfragen annehmen, damit neue Aufträge angelegt werden können. Außerdem müssen PATCH-Anfragen angenommen werden, um den Status des Jobs zu verändern.
+Für die PDF-Generierung wird ein Endpunkt benötigt, der eine Auflistung der Kompilierungsaufträge anbietet. Dieser Endpunkt muss POST-Anfragen annehmen, damit neue Aufträge angelegt werden können. Außerdem müssen PATCH-Anfragen angenommen werden, um den Status des Jobs zu verändern.
 
 
 

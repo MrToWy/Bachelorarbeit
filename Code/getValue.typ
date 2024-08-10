@@ -55,7 +55,7 @@ private getNestedProperty(obj: any, path: string): any {
 private getSubmodules(module: any, lang: string): string {
   if (module.subModules && module.subModules.length > 0) {
     return module.subModules.map((subModule: any) => {
-      return `${subModule.abbreviation}$\\quad$${subModule.translations[0].name}, ${this.translations[lang]?.submoduleRequired.true}`;
+      return `${subModule.abbreviation}$\\quad$${subModule.translations[activeTranslationIndex].name}, ${this.translations[lang]?.submoduleRequired.true}`;
     }).join(" \\\\ ");
   } else {
     return "-";

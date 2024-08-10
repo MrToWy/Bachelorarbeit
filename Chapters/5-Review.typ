@@ -29,11 +29,11 @@ Die in @translateDropdown und @translatePopup zu sehenden Steuerelemente zum Hin
 
 Alle nicht genannten Abbildungen aus @UI ähneln den tatsächlichen Implementierungen.
 
-Bei dem Vergleich sind keine unerklärten Abweichungen gefunden worden. Alle vorgenommenen Änderungen verbessern entweder das System, oder sind nicht für die Erfüllung der wesentlichen Use Cases erforderlich, sodass davon ausgegangen wird, dass alle wichtigen Anforderungen an das Design erfüllt wurden.
+Bei dem Vergleich sind keine unerklärten Abweichungen gefunden worden. Alle vorgenommenen Änderungen verbessern entweder das System oder sind nicht für die Erfüllung der wesentlichen Use Cases erforderlich, sodass davon ausgegangen wird, dass alle wichtigen Anforderungen an das Design erfüllt wurden.
 
 
 == Vergleich der PDFs<pdfComparision>
-Da die Generierung eines Modulhandbuchkataloges im PDF-Format ein zentraler Bestandteil dieser Arbeit war, sollte das Ergebnis genauer geprüft werden. Hierzu wurden aktuelle Modulhandbücher von der Website der Hochschule mit den neu generierten Handbüchern aus dem System verglichen. Bei der Ersten Überprüfung (siehe @pdfA und @pdfB @ilovepdf.comILovePDFOnlinePDF) sind dabei noch einige ToDos aufgefallen, die im Anschluss behoben wurden. So fehlten beispielsweise bei den Semesterwochenstunden ein Komma und das Suffix "SWS". Bei den längeren Texten (z.B. "Inhalt") fällt außerdem auf, dass die neuen Texte im Blocksatz dargestellt sind, während die ursprünglichen Texte lediglich linksbündig ausgerichtet sind. 
+Da die Generierung eines Modulhandbuchkataloges im PDF-Format ein zentraler Bestandteil dieser Arbeit war, sollte das Ergebnis genauer geprüft werden. Hierzu wurden aktuelle Modulhandbücher von der Website der Hochschule mit den neu generierten Handbüchern aus dem System verglichen. Bei der ersten Überprüfung (siehe @pdfA und @pdfB @ilovepdf.comILovePDFOnlinePDF) sind dabei noch einige Aufgaben aufgefallen, die im Anschluss behoben wurden. So fehlten beispielsweise bei den Semesterwochenstunden ein Komma und das Suffix "SWS". Bei den längeren Texten (z. B. "Inhalt") fällt außerdem auf, dass die neuen Texte im Blocksatz dargestellt sind, während die ursprünglichen Texte lediglich linksbündig ausgerichtet sind. 
 
 #imageFigure(<pdfA>, "PdfCompareA.png", "Ursprüngliches PDF")
 
@@ -85,13 +85,13 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   [@COURSE], [Studiengänge können verwaltet werden], [Erfüllt  #linebreak() (@menu)],
   [@DUPLICATECourse], [Studiengänge können dupliziert werden. Dabei werden darin enthaltene Module und Teilmodule ebenfalls dupliziert. Ansprechpartner werden nicht dupliziert, sondern auf die bestehenden Einträge verwiesen.], [Erfüllt #linebreak() (@menu)],
   [@hideCourse], [Studiengänge können im Menü in der Abteilungsübersicht ausgeblendet werden.], [Erfüllt #linebreak() (@menu)],
-  [@showHiddenCourses], [Wenn ein User angemeldet ist, werden ausgeblendete Studiengänge angezeigt. Die für nicht angemeldete User ausgeblendeten Studiengänge erhalten eine Markierung die darauf hinweist. ], [Erfüllt #linebreak() @hiddenCourse],
+  [@showHiddenCourses], [Wenn ein User angemeldet ist, werden ausgeblendete Studiengänge angezeigt. Die für nicht angemeldete User ausgeblendeten Studiengänge erhalten eine Markierung, die darauf hinweist. ], [Erfüllt #linebreak() @hiddenCourse],
   [@CRUSER], [Wurde nicht umgesetzt (siehe #link(<nichtUmgesetzt>)[Umsetzung F9])], [Nicht erfüllt],
   [@CreateSubmodules], [Teilmodule können verwaltet werden. ], [Erfüllt],
   [@CreateRequirements], [Vorraussetzungen haben keine eigenständige Verwaltungsmaske, sondern sind ein Teil der Modulbearbeitungsmaske und können dort bearbeitet werden. ], [Erfüllt],
 
   table.cell(colspan: 3, align: center, [#emph("Use Case 5")]),
-  [@SHOWCHANGES], [Die Änderungen an einem Modul werden automatisch protokolliert. Dabei ist der Benutzter angegeben, sowie alle modifizierten Felder.], [Erfüllt #linebreak() @changelog #linebreak() #link(<implementChangelog>)[Implementierung]],
+  [@SHOWCHANGES], [Die Änderungen an einem Modul werden automatisch protokolliert. Dabei ist der Benutzer angegeben, sowie alle modifizierten Felder.], [Erfüllt #linebreak() @changelog #linebreak() #link(<implementChangelog>)[Implementierung]],
   [@REVERT], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
   [@SHOWCHANGESmisc], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
   [@REVERTmisc], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
@@ -108,35 +108,35 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   ),
   
   table.cell(colspan: 3, align: center, [#emph("Änderbarkeit")]),
-  [@MODULAR], [Frontend und Backend nutzen wiederverwendbare Services (z.B. UserService zum Abrufen der Daten aller User). Außerdem gibt es im Frontend wiederverwendbare Komponenten (z.B. ResponsibleAvatarComponent)], [Erfüllt],
+  [@MODULAR], [Frontend und Backend nutzen wiederverwendbare Services (z. B. UserService zum Abrufen der Daten aller User). Außerdem gibt es im Frontend wiederverwendbare Komponenten (z. B. ResponsibleAvatarComponent)], [Erfüllt],
   [@TESTABLE], [Durch Erfüllung der Anforderungen @MODULAR, @Verantwortlichkeit, @Kopplung, @Komplex und @DepedencyInjection sollte der vorliegende Code gut testbar sein, sodass die Anforderungen @TEST und @TESTUI umgesetzt werden können.], [Erfüllt],
   [@Verantwortlichkeit], [Bei der Entwicklung wurde darauf geachtet, dass es für die verschiedenen Arten von Daten jeweils eigene Services gibt. Es gibt nicht eine große Klasse "DatabaseAccess", sondern einen ModuleService, einen SubModuleService, einen RequirementService und so weiter.], [Erfüllt],
   [@Kopplung], [Aus der Trennung von Frontend und Backend ergibt sich eine lose Kopplung, da das Frontend keine Abhängigkeit zur Datenbank hat, weil nur über die REST-Schnittstellte kommuniziert wird. Außerdem kommen die meisten Komponenten im Quellcode mit einer geringen Anzahl an Abhängigkeiten aus. Als Beispiel ist hier das ModuleGridComponent zu nennen, welches als zentrales Element der Anwendung die Module in einer Tabelle auf der Oberfläche anzeigt. Diese Komponente hat Abhängigkeiten zum ModuleService (um alle Module abzurufen), zum Router (um den ausgewählten Studiengang aus der URL auslesen zu können), zum AuthService (um zu ermitteln, ob der User eingeloggt ist) und zum LanguageService (um die Website in der gewünschten Sprache zu zeigen)], [Erfüllt],
   [@Komplex], [Mithilfe eines externen Tools wurde die zyklomatische Komplexität der einzelnen Methoden betrachtet. Hierbei wurden keine Methoden mit einer höheren Komplexität als 10 gefunden.], [Erfüllt],
-  [@DepedencyInjection], [In Frontend und Backend werden Abhängkeiten mithilfe von Dependency Injection eingesetzt. Siehe @createEndpoints und @uebersetzbarkeit], [Erfüllt],
+  [@DepedencyInjection], [In Frontend und Backend werden Abhängigkeiten mithilfe von Dependency Injection eingesetzt. Siehe @createEndpoints und @uebersetzbarkeit], [Erfüllt],
   [@TEST], [Bisher nicht umgesetzt, aber durch @TESTABLE vorbereitet.], [Vorbereitet],
   [@TESTUI], [Bisher nicht umgesetzt, aber durch @TESTABLE vorbereitet.], [Vorbereitet],
   table.cell(colspan: 3, align: center, [#emph("Benutzbarkeit")]),
-  [@PATH], [Der aktuelle Pfad wird in der Anwendung angezeigt (siehe @moduleDetailResult). Durch Anklicken eines Elementes kann zurückgesprungen werden (Beispielsweise von der Detailansicht eines Moduls zurück zur Auflistung aller Module)], [Erfüllt],
+  [@PATH], [Der aktuelle Pfad wird in der Anwendung angezeigt (siehe @moduleDetailResult). Durch Anklicken eines Elementes kann zurückgesprungen werden (beispielsweise von der Detailansicht eines Moduls zurück zur Auflistung aller Module)], [Erfüllt],
   [@ASK], [Das Löschen von Datensätzen muss vom User bestätigt werden. Hierzu erscheint ein Popup mit den Buttons "Ja" und "Nein".], [Erfüllt],
   [@SOFTDELETE], [Diese Anforderung wurde nicht umgesetzt. Das Löschen eines Datensatzes könnte in Zukunft angepasst werden, sodass nur eine Eigenschaft "deleted" auf True gesetzt wird. Beim Laden von Daten werden nur Datensätze geladen, die "deleted=false" sind. Die Oberfläche könnte angepasst werden, sodass angemeldete User auch gelöschte Elemente ansehen können.], [Konzept liegt vor],
   [@QUICK], [Das Generieren eines PDFs dauert recht lange. Hier wird ein Statusindikator eingesetzt, der dem User anzeigt, in welchem Status sich der Kompilierungsauftrag befindet. Abgesehen davon gibt es keine Stellen in der Anwendung, die eine erhöhte Ladezeit haben. Ein Ladebalken wurde daher nicht eingebaut, das Ziel einer guten Benutzbarkeit aber trotzdem erreicht.], [Erfüllt],
   [@ERROR], [Mögliche Fehler werden abgefangen und mithilfe einer verständlichen Fehlermeldung an den User übermittelt.], [Erfüllt #linebreak() @errorMsg],
   [@ERRORSOLVE],[Bisher nicht umgesetzt, aber durch @ERROR vorbereitet.],[Vorbereitet],
-  [@RESPONSIVE],[Die Übersicht der Studiengänge, aller Module und die Moduldetails wurden für mobile Endgeräte optimiert.],[Teilweise erfüllt #linebreak() @responsiveImplemented],
+  [@RESPONSIVE],[Die Übersicht der Studiengänge, aller Module und die Moduldetails wurden für mobile Endgeräte optimiert.],[Teilweise erfüllt #linebreak() @design],
   [@KEYBOARD],[Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
   [@SELFEXPLAIN],[Ohne eine Studie oder ähnliches ist es schwer zu beweisen, dass das System selbsterklärend ist. In der Implementierung wurde darauf geachtet, möglichst selbsterklärende Beschriftungen, Icons und Steuerelemente zu verwenden. In den Bearbeitungsmasken gibt es eine Live-Vorschau, sodass ersichtlich ist, welches Eingabefeld was verändert. Außerdem wurden an verschiedenen Stellen Tooltips, Dialoge und Einblendungen verwendet, um möglicherweise unklare Details genauer zu erklären.],[Vermutlich erfüllt],
   
   table.cell(colspan: 3, align: center, [#emph("Effizienz")]),
-  [@STARTFRONTEND],[Alle Seiten im Frontend laden innerhalb einer Sekunde. Die geladenen Datenmengen werden reduziert, indem beim Laden der Modulübersicht zum Beispiel nicht direkt alle Informationen eines Modules geladen werden. Diese werden erst geladen, sobald die Detailansicht geöffnet wird.],[Erfüllt],
-  [@STARTBACKEND],[Während der Implementierung des Systems konnte kein Zustand ermittelt werden, zu dem das Backend nach einem Fehler nicht innerhalb einer Minute neustartet.],[Erfüllt],
+  [@STARTFRONTEND],[Alle Seiten im Frontend laden innerhalb einer Sekunde. Die geladenen Datenmengen werden reduziert, indem beim Laden der Modulübersicht zum Beispiel nicht direkt alle Informationen eines Moduls geladen werden. Diese werden erst geladen, sobald die Detailansicht geöffnet wird.],[Erfüllt],
+  [@STARTBACKEND],[Während der Implementierung des Systems konnte kein Zustand ermittelt werden, zu dem das Backend nach einem Fehler nicht innerhalb einer Minute neu startet.],[Erfüllt],
   [@DEPLOY],[Das Frontend wird mithilfe einer GitHub-Action bei jedem Push auf den Testserver deployt. Das Backend wird mithilfe eines Deploy-Skripts und einem Cronjob automatisch deployt. Diese Methodik ist auch für den Livebetrieb möglich.],[Vorbereitet],
   [@CLICKS],[Es wurde versucht, die Arbeitsabläufe möglichst einfach zu gestalten. Ohne größeren Aufwand ist es nicht nachprüfbar, ob diese Anforderung vollständig erledigt ist.],[Vermutlich erfüllt],
 
   table.cell(colspan: 3, align: center, [#emph("Funktionalität")]),
   [@TRANSLATE],[Die Anwendung und die PDFs die generiert werden stehen in Englisch und Deutsch bereit.],[Erfüllt],
   [@TRANSLATEMULTIPLE],[Der Code ist so vorbereitet, dass ohne großen Aufwand weitere Sprachen hinzugefügt werden können. Aktuell liegen die Modulhandbücher nur in Englisch und Deutsch vor, weshalb die neue Anwendung auch nur in Deutsch und Englisch entwickelt wurde.],[Vorbereitet],
-  [@lookup],[In den Bearbeitungsmasken werden Eingabefelder verwendet, welche den User bei der Eingabe unterstützen. Wenn beispielsweise eine Zahl erwartet wird, können keine Buchstaben eingegeben werden. Außerdem werden wenn möglich Dropdowns statt Textfeldern genutzt.],[Erfüllt #linebreak() (@editModule)],
+  [@lookup],[In den Bearbeitungsmasken werden Eingabefelder verwendet, welche den User bei der Eingabe unterstützen. Wenn beispielsweise eine Zahl erwartet wird, können keine Buchstaben eingegeben werden. Außerdem werden, wenn möglich, Dropdowns statt Textfeldern genutzt.],[Erfüllt #linebreak() (@editModule)],
   [@similarPdf], [Das neue PDF ähnelt dem bisherigen PDF.], [Erfüllt #linebreak() @pdfComparision],
   [@security], [Nur autorisierte Benutzer können datenverändernde Endpunkte verwenden.], [Erfüllt],
 
@@ -154,7 +154,7 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   [@FRONT], [Das Frontend ist eine neue Anwendung.], [Erfüllt],
   [@FRONT_TECH], [Das Frontend nutzt Angular.], [Erfüllt],
   [@BACK], [Das bestehende Backend wurde erweitert.], [Erfüllt],
-  [@BACK_TECH], [Das Backend nutzt (weiterhin) NestJs und Prisma.], [Erfüllt],
+  [@BACK_TECH], [Das Backend nutzt (weiterhin) NestJS und Prisma.], [Erfüllt],
   [@DB], [Die bestehende Datenbank wurde erweitert.], [Erfüllt],
   
 )

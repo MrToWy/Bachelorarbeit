@@ -12,7 +12,7 @@ highlights:(
 private async appendStructureItems(items: any[], entity: any, languageAbbreviation: string): Promise<string> {
   let latexString = "";
   for (const line of items) {
-    const col1 = line.translations[0].name;
+    const col1 = line.translations[activeTranslationIndex].name;
     const col2 = await this.getValue(entity, languageAbbreviation, line.paths as PdfStructureItemPathIncludingField[]);
 
     if (!line.takeTwoColumns) {

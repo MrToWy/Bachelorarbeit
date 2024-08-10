@@ -2,7 +2,7 @@
 
 
 #useCase(1, "Informationen zu Studiengang")[
-  Der Use Case beschreibt, wie eine Studieninteressierte Person einen Überblick über alle Module eines Studienganges erhalten kann. Die Person möchte hierzu ein PDF erhalten, in dem alle Module und deren Eigenschaften aufgelistet sind.
+  Der Use Case beschreibt, wie eine studieninteressierte Person einen Überblick über alle Module eines Studienganges erhalten kann. Die Person möchte hierzu ein PDF erhalten, in dem alle Module und deren Eigenschaften aufgelistet sind.
 ][
   Studieninteressierte Person (@studieninteressiertePerson)
 ][
@@ -93,5 +93,5 @@
 ][
   1. User erstellt die Tabelle manuell
   2. User öffnet die generierte Tabelle im System
-  3. User vergleicht beide Tabellen, um sicherzustellen dass sie korrekt sind
+  3. User vergleicht beide Tabellen, um sicherzustellen, dass sie korrekt sind
 ]<UseCaseTable>
