@@ -19,9 +19,8 @@ jobs:
             fc-cache -f -v
             fc-list -f '%{file}\n' | sort
 
-      - name: Setup Typst
-        uses: typst-community/setup-typst@v3
-        run: typst compile main.typ main.pdf --font-path ~/.fonts
+      - uses: typst-community/setup-typst@v3
+      -  run: typst compile main.typ main.pdf --font-path ~/.fonts
 
       - name: Upload PDF
         uses: actions/upload-artifact@v3
