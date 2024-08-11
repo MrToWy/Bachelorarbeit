@@ -1,3 +1,14 @@
+
+#import("../Template/customFunctions.typ"): *
+
+#codly(
+highlights:(
+  (line:4, fill:red, label: <getLanguage>),
+  (line:6, fill:blue, label: <refreshLanguage>),
+),
+)
+
+
 ```ts
 export class LanguageInterceptor implements HttpInterceptor {
   private language: string;

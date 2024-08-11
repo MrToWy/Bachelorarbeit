@@ -2,7 +2,7 @@
 
 = Anforderungsanalyse <anforderungsanalyse>
 
-Die Planung des neuen Systems für Modulhandbücher beginnt mit der Anforderungsanalyse. Der Schritt der Anforderungsanalyse hat eine besondere Wichtigkeit, da es mit fortlaufender Projektlaufzeit immer aufwändiger wird, Fehler zu korrigieren oder Anpassungen vorzunehmen. @kleuker_grundkurs_2013[Seite 55] Damit diese wichtige Phase gründlich absolviert wird, folgt der Ablauf der Anforderungsanalyse den Empfehlungen von Chris Rupp und den #sophisten @rupp_requirements-engineering_2014. Es wird zunächst in @architecture die Umgebung des Systems erkundet. Anschließend wird mithilfe eines Interviews (@interview) der aktuelle Arbeitsprozess analysiert (@oldProcess) und dessen Probleme erkundet. Dann werden die Zielgruppen des neuen Systems ermittelt (@zielgruppen). Aus den Zielgruppen ergeben sich Use Cases und dazugehörige Anforderungen. Zuletzt wird in @structure die Struktur eines Modulhandbuches untersucht. 
+Die Planung des neuen Systems für Modulhandbücher beginnt mit der Anforderungsanalyse. Der Schritt der Anforderungsanalyse hat eine besondere Wichtigkeit, da es mit fortlaufender Projektlaufzeit immer aufwändiger wird, Fehler zu korrigieren oder Anpassungen vorzunehmen. @kleuker_grundkurs_2013[Seite 55] Damit diese wichtige Phase gründlich absolviert wird, folgt der Ablauf der Anforderungsanalyse den Empfehlungen von Chris Rupp und den #sophisten @rupp_requirements-engineering_2014. Es wird zunächst in @architecture die Umgebung des Systems erkundet. Anschließend wird mithilfe eines Interviews (@interview) der aktuelle Arbeitsprozess analysiert (@oldProcess) und dessen Probleme erkundet. Dann werden die Zielgruppen des neuen Systems ermittelt (@zielgruppen). Aus den Zielgruppen ergeben sich Use Cases (@usecases) und dazugehörige Anforderungen (@requirements). Zuletzt wird in @structure die Struktur eines Modulhandbuches untersucht. 
 
 
 == Systemumgebung <architecture>
@@ -32,6 +32,7 @@ Zusätzlich gibt es Module, die zwischen allen Anwendungen geteilt werden. Diese
 
 Um Funktionalitäten anbieten zu können, nutzen Module verschiedene Konzepte. Damit ein Modul beispielsweise eine HTTP-GET-Anfrage bearbeiten kann, muss es eine #text(controller)-Klasse haben. Ein #controller nimmt die Anfrage an und verarbeitet sie. Falls hierbei Daten benötigt werden, ruft der #controller eine Service-Klasse auf. Diese lädt die angefragten Daten aus der Datenbank und gibt sie an den #controller zurück. Für die Datenbankzugriffe wird Prisma genutzt. 
 
+#pagebreak()
 #treeFigure(<backendFiles>, "Ordnerstruktur der StudyBase")[
   - StudyBase/src
     - Plan
@@ -87,7 +88,7 @@ Als Vorbereitung für ein neues System wurden vom Studiendekan die zuvor genannt
 
 
 == Zielgruppen <zielgruppen>
-Im folgenden Abschnitt sollen die verschiedenen Zielgruppen eines Modulhandbuches ermittelt und definiert werden. Die Übersicht der Zielgruppen wird für die später folgende Ermittlung der Use Cases benötigt (@usecases). Hierdurch wird ermöglicht zu verstehen, wer das Modulhandbuch verwenden wird und welche Anforderungen die verschiedenen Gruppen haben. Zur Ermittlung wurde zum einen im ECTS User-Guides @ects recherchiert und zum anderen das Interview (@interview) genutzt.
+Im folgenden Abschnitt sollen die verschiedenen Zielgruppen eines Modulhandbuches ermittelt und definiert werden. Die Übersicht der Zielgruppen wird für die später folgende Ermittlung der Use Cases benötigt (@usecases). Hierdurch wird ermöglicht zu verstehen, wer das Modulhandbuch verwenden wird und welche Anforderungen die verschiedenen Gruppen haben. Zur Ermittlung wurde zum einen im ECTS User-Guide @ects recherchiert und zum anderen das Interview (@interview) genutzt.
 
 
 === Studieninteressierte <studieninteressiertePerson>
@@ -171,7 +172,7 @@ In #link(<UseCaseEditModule>)[Use Case 3] ist beschrieben, wie eine Person Infor
 #task(title: [Aus #link(<UseCaseEditModule>)[Use Case 3] ergeben sich folgende Anforderungen:])[
 #narrowTrack("Login", type: "F", label: <LOGIN>)[Ein User muss sich anmelden können.] #linebreak()
 #narrowTrack("Logout", type: "F", label: <LOGOUT>)[Ein User sollte sich ausloggen können.] #linebreak()
-#narrowTrack("Passwörter zurücksetzen", type: "F", label: <RESETPW>)[SVP muss Passwörter zurücksetzen können.]
+#narrowTrack("Passwörter zurücksetzen", type: "F", label: <RESETPW>)[SVP sollte Passwörter zurücksetzen können.]
 #narrowTrack("Eigenes Passwort zurücksetzen", type: "F", label: <RESETMYPW>)[SVP sollte das eigene Passwort zurücksetzen können.]
   #narrowTrack("Module bearbeiten", type: "F", label: <EDIT>)[Modulverantwortliche Person muss Module bearbeiten können, für die Sie als Ansprechpartner hinterlegt ist.]
   #narrowTrack("Plausibilitätschecks bei Modulen", type: "F", label: <CHECKMOD>)[System sollte Änderungen an Modulen auf Plausibilität prüfen.]
@@ -187,11 +188,11 @@ In #link(<UseCaseCreate>)[Use Case 4] ist beschrieben, dass die Studiengangsvera
 #task(title: [Aus #link(<UseCaseCreate>)[Use Case 4] ergeben sich folgende Anforderungen:])[
   #narrowTrack("Module verwalten", type: "F", label: <MODULE>)[SVP muss Module verwalten (anlegen, bearbeiten, löschen) können.]
   #narrowTrack("Module duplizieren", type: "F", label: <DUPLICATE>)[SVP sollte Module duplizieren können.]#linebreak()
-  #narrowTrack("Studiengänge verwalten", type: "F", label: <COURSE>)[SVP muss Studiengänge verwalten können.]
+  #narrowTrack("Studiengänge verwalten", type: "F", label: <COURSE>)[SVP sollte Studiengänge verwalten können.]
   #narrowTrack("Studiengänge duplizieren", type: "F", label: <DUPLICATECourse>)[SVP sollte Studiengänge duplizieren können.]
   #narrowTrack("Studiengänge ausblenden", type: "F", label: <hideCourse>)[SVP sollte Studiengänge ausblenden können.]
   #narrowTrack("Ausgeblendete Studiengänge ansehen", type: "F", label: <showHiddenCourses>)[SVP sollte ausgeblendete Studiengänge ansehen können.]
-  #narrowTrack("Benutzer verwalten", type: "F", label: <CRUSER>)[SVP muss User verwalten können.]#linebreak()
+  #narrowTrack("Benutzer verwalten", type: "F", label: <CRUSER>)[SVP sollte User verwalten können.]#linebreak()
   #narrowTrack("Teilmodule verwalten", type: "F", label: <CreateSubmodules>)[SVP muss Teilmodule verwalten können.]  
   #narrowTrack("Voraussetzungen verwalten", type: "F", label: <CreateRequirements>)[SVP muss Voraussetzungen verwalten können.]
 ]

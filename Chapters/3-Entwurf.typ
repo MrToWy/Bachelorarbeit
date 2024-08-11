@@ -51,7 +51,7 @@ Für die spätere Entwicklung des Frontends könnte es praktisch sein, alle Text
 Diese Methodik hat den Nachteil, dass pro Textfeld eine neue Tabelle benötigt wird. Dadurch kann die Datenstruktur schnell unübersichtlich werden. Außerdem könnte der Zugriff kompliziert sein. Für die Entwicklung dieses Systems sollte eine einfachere Lösung gesucht werden. 
 
 #heading(level: 4, outlined: false, numbering: none)[Idee 2]
-Eine etwas einfachere Methode wäre es, die übersetzten Texte in einer zentalen Tabelle "Translations" abzulegen (@idea2). Die Tabelle Modul hätte dann z. B. die Spalten TitleTranslationId, welche ein Foreign-Key auf die Tabelle Translation wäre. In Translation würde das dann die Spalten "Id", "English" und "German" geben, um die Texte dort abzuspeichern.
+Eine etwas einfachere Methode wäre es, die übersetzten Texte in einer zentalen Tabelle "Translations" abzulegen (@idea2). Die Tabelle Modul hätte dann z. B. die Spalten TitleTranslationId, welche ein Foreign-Key auf die Tabelle Translation wäre. In Translation würde es dann die Spalten "Id", "English" und "German" geben, um die Texte dort abzuspeichern.
 
 Für diese Lösung muss nur eine einzelne zusätzliche Tabelle erstellt werden, was den initialen Aufwand minimiert. Auch hat die zentrale Speicherung von Texten den Vorteil, dass diese sehr einfach verwaltet werden können. Bei der Einführung einer neuen Sprache müsste nur eine neue Spalte zur Tabelle hinzugefügt werden.
 
@@ -174,7 +174,7 @@ Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächs
 #box[
   #heading(level: 4, numbering:none, "Navigation")
 
-Auf der Startseite der neuen Anwendung soll nicht direkt die zuvor vorgestellte Modulübersicht präsentiert werden, weil diese ohne gesetzte Filter überladen wirken könnte. Stattdessen wird der User zunächst auf eine Übersicht aller Fakultäten geleitet (@navigationMockup). Hier kann entweder eine Fakultät ausgewählt werden, oder es kann per Klick auf "Alle Module" direkt zur Modulübersicht gewechselt werden. Die Farben der einzelnen Fakultäten sind dieselben wie auf der Website der #hsh @HochschuleHannover und sollen den User dabei unterstützen, schnell die richtige Fakultät zu finden. Diese Ansicht wird übersprungen, falls der User einen direkten Link zu einem bestimmten Studiengang aufruft. Dieser Link könnte beispielsweise auf der Website der Hochschule platziert sein. Der User wird dann direkt zur Modulübersicht geleitet.
+Auf der Startseite der neuen Anwendung soll nicht direkt die Modulübersicht präsentiert werden, weil diese ohne gesetzte Filter überladen wirken könnte. Stattdessen wird der User zunächst auf eine Übersicht aller Fakultäten geleitet (@navigationMockup). Hier kann entweder eine Fakultät ausgewählt werden, oder es kann per Klick auf "Alle Module" direkt zur Modulübersicht gewechselt werden. Die Farben der einzelnen Fakultäten sind dieselben wie auf der Website der #hsh @HochschuleHannover und sollen den User dabei unterstützen, schnell die richtige Fakultät zu finden. Diese Ansicht wird übersprungen, falls der User einen direkten Link zu einem bestimmten Studiengang aufruft. Dieser Link könnte beispielsweise auf der Website der Hochschule platziert sein. Der User wird dann direkt zur Modulübersicht geleitet.
   
 #imageFigureNoPad(<navigationMockup>, "mockups/Navigation.png", "Startseite - Auswahl Fakultät")
 ]
@@ -190,7 +190,7 @@ Wenn in der Fakultätsauswahl eine Fakultät ausgewählt wurde, geht es weiter a
 
 #heading(level: 4, numbering:none, "Modulübersicht")
 #let moduleOverviewText = [
-  In der Modulübersicht sollen alle Module in einer tabellarischen Übersicht angezeigt werden. In der Tabelle sollen nur die für #link(<UseCaseInfoModule>)[Use Case 2] benötigten Daten gezeigt werden. Alle weiteren Informationen sind dann in der detaillierten Ansicht zu finden. Die detaillierte Ansicht soll sich durch Anklicken eines Eintrags öffnen. Über der Tabelle gibt es mehrere Filtermöglichkeiten, um die gesuchten Module schneller finden zu können.
+  In der Modulübersicht (@moduleoverview) sollen alle Module in einer tabellarischen Übersicht angezeigt werden. In der Tabelle sollen nur die für #link(<UseCaseInfoModule>)[Use Case 2] benötigten Daten gezeigt werden. Alle weiteren Informationen sind dann in der detaillierten Ansicht zu finden. Die detaillierte Ansicht soll sich durch Anklicken eines Eintrags öffnen. Über der Tabelle gibt es mehrere Filtermöglichkeiten, um die gesuchten Module schneller finden zu können.
 ]
 
 
@@ -203,7 +203,7 @@ Wenn in der Fakultätsauswahl eine Fakultät ausgewählt wurde, geht es weiter a
 
 
 #heading(level: 4, numbering:none, "Detailansicht eines Modules")
-Sobald ein Modul ausgewählt wurde, wird die Detailansicht eines Modules (@preview) präsentiert. Hier sollen die Details des Modules übersichtlich dargestellt werden. Einzelne Informationen können beispielsweise mithilfe eines Graphen oder anhand von Icons visualisiert werden. Hierdurch können Studierende oder Studieninteressierte Personen innerhalb kurzer Zeit einen Eindruck erhalten, was die Rahmenbedingungen des Modules sind.
+Sobald ein Modul ausgewählt wurde, wird die Detailansicht eines Modules (@preview) präsentiert. Hier sollen die Details des Modules übersichtlich dargestellt werden. Einzelne Informationen können beispielsweise mithilfe eines Graphen oder anhand von Icons visualisiert werden. Hierdurch können Studierende oder studieninteressierte Personen innerhalb kurzer Zeit einen Eindruck erhalten, was die Rahmenbedingungen des Modules sind.
 
 
 #imageFigure(<preview>, "modern-preview.png", "Detailansicht Modul")
@@ -302,7 +302,10 @@ Die Tabellen im restlichen System profitieren dahingegen von zusätzlichen Infor
 
 Es werden also die folgenden Informationen zusätzlich benötigt:
 4. Semester, in dem das Modul vorgeschlagen ist (@recommendedSemester), um beispielsweise nur die Module des aktuellen Semesters zu filtern 
-5. Ansprechpartner (@responsible), um schnell eine Kontaktinformation zu erhalten
+5. Credits, um nach Modulen filtern zu können, die einen bestimmten Aufwand haben
+6. Gruppe, um beispielsweise ein interessantes Wahlpflichtfach zu finden
+7. Ansprechpartner (@responsible), um schnell eine Kontaktinformation zu erhalten
+
 
 
 Der Endpunkt /modules soll zusätzlich POST-Anfragen entgegennehmen können, um neue Module anzulegen. 
@@ -351,7 +354,7 @@ Dieser Endpunkt bietet eine Auflistung aller Abteilungen an. Zusätzlich sollten
 Dieser Endpunkt bietet eine Auflistung aller Studiengänge an. Zusätzlich sollten POST-Requests angenommen werden, um neue Studiengänge hinzufügen zu können.
 
 #heading(level: 4, numbering: none)[Endpunkt /auth/login]
-Für den Login (@login) wird ein Endpunkt benötigt, der E-Mail und Passwort entgegennimmt, validiert und einen gültigen Token zurückgibt. Mithilfe des Tokens können die administrativen Funktionen genutzt werden, ohne sich jedes Mal mit E-Mail und Passwort autorisieren zu müssen.
+Für den Login (@login) wird ein Endpunkt benötigt, der E-Mail und Passwort entgegennimmt, validiert und einen gültigen Token zurückgibt. Mithilfe des Tokens können die administrativen Funktionen genutzt werden, ohne sich jedes Mal mit E-Mail und Passwort autorisieren zu müssen. Dieser Endpunkt bestand bereits und wurde im Rahmen dieser Arbeit nicht verändert.
 
 #heading(level: 4, numbering: none)[Endpunkt /job]
 Für die PDF-Generierung wird ein Endpunkt benötigt, der eine Auflistung der Kompilierungsaufträge anbietet. Dieser Endpunkt muss POST-Anfragen annehmen, damit neue Aufträge angelegt werden können. Außerdem müssen PATCH-Anfragen angenommen werden, um den Status des Jobs zu verändern.

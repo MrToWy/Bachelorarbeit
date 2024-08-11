@@ -1,4 +1,8 @@
-#text(size: 8.5pt)[
+#import("../Template/customFunctions.typ"): *
+
+
+
+#text(size: 9.5pt)[
   ```prisma
 model Module {
  id Int @id @default(autoincrement())

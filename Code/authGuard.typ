@@ -1,3 +1,12 @@
+#import("../Template/customFunctions.typ"): *
+
+#codly(
+highlights:(
+  (line:13, label: <canActivateLine>),
+)
+)
+
+
 ```ts
 export class JwtAuthGuard extends AuthGuard('jwt') {
 

@@ -1,3 +1,18 @@
+#import("../Template/customFunctions.typ"): *
+
+#codly(
+highlights:(
+  (line:0, fill:blue, label: <fromNodeAlpine>),
+  (line:6, fill:red, label: <copyPackage>),
+  (line:10, fill:blue, label: <copyAll>),
+  (line:15, fill:blue, label: <copyFromBuild>),
+),
+annotations:(
+  (start: 14, end: 18, label: <secondStage>),
+)
+)
+
+
 ```Dockerfile
 FROM node:alpine as build
 

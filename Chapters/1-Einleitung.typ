@@ -37,7 +37,7 @@ Sollte die #hsh entscheiden, das #hone in Zukunft auch für die Verwaltung von M
 
 
 == Aufbau der Arbeit
-In dieser Arbeit werden zunächst in @anforderungsanalyse die Anforderungen an das neue System ermittelt. Dafür wird der aktuelle Prozess analysiert, auf Schwachstellen geprüft und es werden die Zielgruppen ermittelt. Anschließend werden Use Cases, sowie ein zukünftiger Arbeitsprozess entwickelt. Da es bereits Anwendungen gibt, die mit dem neuen System kommunizieren sollen, werden die Anwendungen und deren Struktur untersucht. Abschließend wird eine Liste der Anforderungen erstellt.
+In dieser Arbeit werden zunächst in @anforderungsanalyse die Anforderungen an das neue System ermittelt. Dafür wird der aktuelle Prozess analysiert, auf Schwachstellen geprüft und es werden die Zielgruppen ermittelt. Anschließend werden Use Cases, sowie ein zukünftiger Arbeitsprozess entwickelt. Abschließend wird eine Liste der Anforderungen erstellt und die Struktur eines Modulhandbuchs analysiert.
 
 In @entwurf werden die Strukturen verschiedener Modulhandbücher untersucht und verglichen. Aus den Ergebnissen der Untersuchung soll dann ein Datenbankschema erstellt werden. Außerdem werden Entwürfe für die Benutzeroberflächen erstellt.
 

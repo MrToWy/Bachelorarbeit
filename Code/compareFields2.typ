@@ -2,13 +2,13 @@
 
 #codly(annotations:(
    (
-    start: 21,
-    end: 38,
+    start: 12,
+    end: 26,
     label: <compareArrayField>
   ),
    (
-    start: 40,
-    end: 50,
+    start: 28,
+    end: 37,
     label: <comparePrimitiveField>
   ),
 ),
@@ -29,18 +29,7 @@ const compareTranslations = (unchangedObject: any, newObject: any, baseFieldName
     }
   });
 };
-
-const compareTranslationFields = (oldTranslationObject: any, newTranslationObject: any, baseFieldName: string, languageAbbreviation: string | undefined) => {
-  Object.keys(oldTranslationObject).forEach(transField => {
-    if (oldTranslationObject[transField] !== newTranslationObject[transField]) {
-      changes.push({
-        field: `${baseFieldName}.translations[${languageAbbreviation}].${transField}`,
-        oldValue: oldTranslationObject[transField],
-        newValue: newTranslationObject[transField]
-      });
-    }
-  });
-};
+...
 
 const compareArrayField = (unchangedObject: any, newObject: any, baseFieldName: string, field: string) => {
   const unchangedObjectIds = unchangedObject[field].map((obj: any) => obj.id);
@@ -56,6 +45,8 @@ const compareArrayField = (unchangedObject: any, newObject: any, baseFieldName: 
   }
 };
 
+
+
 const comparePrimitiveField = (unchangedObject: any, newObject: any, baseFieldName: string, field: string) => {
   if (unchangedObject[field] !== newObject[field]) {
     changes.push({
@@ -65,5 +56,4 @@ const comparePrimitiveField = (unchangedObject: any, newObject: any, baseFieldNa
     });
   }
 };
-
 ```

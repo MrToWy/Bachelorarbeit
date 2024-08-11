@@ -1,6 +1,11 @@
 #import("../Template/customFunctions.typ"): *
 
-#codly(skips: ((5, 6), (19, 7)))
+#codly(
+  skips: ((5, 6), (19, 7)),
+  highlights:(
+    (line: 12, fill: red, label: <volume>),
+  )
+)
 
 ```yml
 name: studymodules_project
