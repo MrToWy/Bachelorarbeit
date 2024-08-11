@@ -14,7 +14,7 @@ jobs:
       - name: Install Cascadia Code font
         run: |
             mkdir -p ~/.fonts
-            wget -O ~/.fonts/CascadiaCode.ttf https://objects.githubusercontent.com/github-production-release-asset-2e65be/196284711/770192d0-a5b1-4374-90e6-c6a626c8c441?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20240811%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240811T073355Z&X-Amz-Expires=300&X-Amz-Signature=e4bc6f26c3347f4d4694d787f6263c23f3ab72ecf08e667c35c64ceff40f0f14&X-Amz-SignedHeaders=host&actor_id=44198402&key_id=0&repo_id=196284711&response-content-disposition=attachment%3B%20filename%3DCascadiaCode-2404.23.zip&response-content-type=application%2Foctet-stream
+            wget -O ~/.fonts/CascadiaCode.ttf https://github.com/microsoft/cascadia-code/releases/download/v2404.23/CascadiaCode-2404.23.zip
             unzip ~/.fonts/CascadiaCode.zip -d ~/.fonts
             fc-cache -f -v
 
