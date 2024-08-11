@@ -19,13 +19,9 @@ jobs:
             fc-cache -f -v
             fc-list -f '%{file}\n' | sort
 
-      - name: Compile PDF
-        uses: lvignoli/typst-action@main
-        env:
-          TYPST_FONT_PATHS: ./fonts
-        with:
-          source_file: |
-            main.typ
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v3
+        run: typst compile main.typ main.pdf --font-path ~/.fonts
 
       - name: Upload PDF
         uses: actions/upload-artifact@v3
