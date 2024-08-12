@@ -110,7 +110,7 @@ Als erste Möglichkeit könnte ein weiterer Guard erstellt werden (siehe @inject
 #codeFigure("findOne() in department.controller.ts", <injectUserCall>, "injectUserAufruf")
 
 
-Eine zweite Möglichkeit wäre, den Aufruf von canActivate vorzuziehen. Wenn dieser direkt als erstes durchgeführt wird, wird in jedem Fall der User verfügbar gemacht und öffentliche Endpunkte sind trotzdem möglich. Diese Möglichkeit hat den Vorteil, dass nicht daran gedacht werden muss, wie in @injectUserCall den InjectUser-Guard an die verschiedenen Methoden zu setzen. Aus diesem Grund wird diese Möglichkeit favorisiert.
+Eine zweite Möglichkeit wäre, den Aufruf von canActivate vorzuziehen (@canActivateNew). Wenn dieser direkt als erstes durchgeführt wird, wird in jedem Fall der User verfügbar gemacht und öffentliche Endpunkte sind trotzdem möglich. Diese Möglichkeit hat den Vorteil, dass nicht daran gedacht werden muss, wie in @injectUserCall den InjectUser-Guard an die verschiedenen Methoden zu setzen. Aus diesem Grund wird diese Möglichkeit favorisiert.
 
 Da canActivate eine Exception wirft, falls der User nicht eingeloggt ist, muss diese abgefangen werden, damit trotzdem geprüft werden kann, ob es den \@Public-Decorator gibt. Außerdem kann canActivate ein Observable zurückgeben. Da der Rückgabewert jedoch ein Boolean-Wert sein muss, wird die Methode lastValueFrom() aus der rxjs-Bibliothek  genutzt, um einen konkreten Wert zu erhalten. @RxJSLastValueFrom
 
@@ -222,11 +222,11 @@ Des Weiteren hat jede Komponente nochmal eine eigene .sass-Datei, in der Kompone
 
 In verschiedenen Gesprächen mit zukünftigen Nutzern stellte sich heraus, dass die administrativen Oberflächen auf Desktop-PCs bedient werden. Für die administrativen Oberflächen muss die Ansicht auf mobilen Geräten also nicht optimiert werden. Die Übersicht der Studiengänge, die Übersicht der angebotenen Module sowie die moderne Ansicht der Moduldetails könnte jedoch von Studierenden auf mobilen Geräten geöffnet werden und sollte daher für die mobile Ansicht optimiert werden (@RESPONSIVE).
 
-Damit die Anzeige der Studiengänge (@menu) auf mobilen Geräten gut aussieht, musste nicht viel angepasst werden. Statt die Karten der Studiengänge nebeneinander aufzureihen, werden diese in der mobilen Ansicht nun untereinander platziert. Für die Desktopansicht wird hier ein Grid @cssGrid mit drei Spalten genutzt. Damit es in der mobilen Ansicht nur eine Spalte gibt, kann der Wert `grid-template-columns` mithilfe von `unset` @cssUnset zurück auf den ursprünglichen Wert gesetzt werden (siehe @cssUnsetCode). Für die Erkennung, ob die mobile Ansicht benötigt wird, wird eine Media Query genutzt. Diese sorgt dafür, dass die genannte Spalteneingenschaft nur für Geräte mit einer Bildschirmbreite unter 850 Pixeln zurückgesetzt wird. @ertel_responsive_nodate
+Damit die Anzeige der Studiengänge (@degreeProgramOverview) auf mobilen Geräten gut aussieht, musste nicht viel angepasst werden. Statt die Karten der Studiengänge nebeneinander aufzureihen, werden diese in der mobilen Ansicht nun untereinander platziert. Für die Desktopansicht wird hier ein Grid @cssGrid mit drei Spalten genutzt. Damit es in der mobilen Ansicht nur eine Spalte gibt, kann der Wert `grid-template-columns` mithilfe von `unset` @cssUnset zurück auf den ursprünglichen Wert gesetzt werden (siehe @cssUnsetCode). Für die Erkennung, ob die mobile Ansicht benötigt wird, wird eine Media Query genutzt. Diese sorgt dafür, dass die genannte Spalteneingenschaft nur für Geräte mit einer Bildschirmbreite unter 850 Pixeln zurückgesetzt wird. @ertel_responsive_nodate
 
 #imageFigure(<degreeProgramOverview>, "../Images/DegreeProgramOverview.png", "Übersicht der Studiengänge")
 
-#imageFigure(<menu>, "../Images/Menu.png", "Menü - Studiengänge")
+
 
 #codeFigure("courses.component.sass", <cssUnsetCode>, "cssUnset")
 
@@ -282,9 +282,11 @@ Damit sich beim Wechsel der Sprache auch alle dynamischen Texte ändern, ist ein
 
 
 === Erstellen eines neuen PDFs<createPdfUI>
-Das Erstellen eines neuen PDFs kann in der Studiengangsübersicht gestartet werden. Hierbei öffnet sich ein Popup, welches anzeigt, wann für den Studiengang zuletzt ein PDF veröffentlicht wurde. In Zukunft könnten hier auch die Details der Veränderungen seit der letzten Veröffentlichung aus dem Changelog angezeigt werden. Im Popup kann ausgewählt werden, für welche Sprachen das PDF generiert werden soll (@createPdfStep1). Während der Generierung wird dem User der Status angezeigt und sekündlich aktualisiert (@createPdfStep2). Der User kann nun entweder auf das Ergebnis warten, oder die Maske schließen und in einer separaten Maske die vergangenen Kompilierungsaufträge ansehen.
+Das Erstellen eines neuen PDFs kann in der Studiengangsübersicht gestartet werden (@menu). Hierbei öffnet sich ein Popup, welches anzeigt, wann für den Studiengang zuletzt ein PDF veröffentlicht wurde. In Zukunft könnten hier auch die Details der Veränderungen seit der letzten Veröffentlichung aus dem Changelog angezeigt werden. Im Popup kann ausgewählt werden, für welche Sprachen das PDF generiert werden soll (@createPdfStep1). Während der Generierung wird dem User der Status angezeigt und sekündlich aktualisiert (@createPdfStep2). Der User kann nun entweder auf das Ergebnis warten, oder die Maske schließen und in einer separaten Maske die vergangenen Kompilierungsaufträge ansehen.
 
 Sobald das PDF vorliegt, kann der User dieses ansehen und dann entweder verwerfen oder freigeben. Mit der Freigabe steht es dann auch für nicht angemeldete User bereit.
+
+#imageFigure(<menu>, "../Images/Menu.png", "Menü - Studiengänge")
 
 #imageFigure(<createPdfStep1>, "createPdf.png",  "PDF veröffentlichen - Schritt 1", width: 90%)
 

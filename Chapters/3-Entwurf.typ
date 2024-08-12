@@ -111,7 +111,7 @@ Die Oberfläche der Anwendung besteht aus einer oberen Leiste (Toolbar) und eine
 
 #let toolbarText = [
   #heading(level: 4, numbering:none, "Toolbar")
-Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) nutzen zu können, wird diese in der Toolbar platziert. Neben der Suche ist ein Dropdown, mit dem die angezeigte Sprache umgestellt werden kann (@TRANSLATEMULTIPLE).  Damit jederzeit erkenntlich ist, in welcher Ansicht sich der User befindet (@PATH), wird diese Information als Breadcrumb auf der Toolbar platziert. @designInterfaces[Seite 193 f.]
+Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) nutzen zu können, wird diese in der Toolbar platziert (siehe @grundgerüst). Neben der Suche ist ein Dropdown, mit dem die angezeigte Sprache umgestellt werden kann (@TRANSLATEMULTIPLE).  Damit jederzeit erkenntlich ist, in welcher Ansicht sich der User befindet (@PATH), wird diese Information als Breadcrumb auf der Toolbar platziert. @designInterfaces[Seite 193 f.]
 ]
 
 #let toolbarImage = imageFigureNoPad(<grundgerüst>, "mockups/Grundgerüst.svg", "Toolbar")
@@ -126,7 +126,7 @@ Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) n
 
 #let drawerText = [
   #heading(level: 4, numbering:none, "Drawer")
-  Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seitenleiste (Drawer) platziert. Der Drawer kann mithilfe eines Knopfes ausgeklappt werden, welcher sich auf der Toolbar befindet. Somit können auch diese Funktionen mit wenig Aufwand (@CLICKS) von jeder Ansicht aus erreicht werden. Im Drawer sind die Masken zur Verwaltung der Benutzer (@CRUSER), zur Anzeige gelöschter Module (@SOFTDELETE) und zur Ansicht alter Prüfungsordnungen. Außerdem wird hier die Versionsnummer angezeigt, damit jederzeit überprüft werden kann, mit welcher Version des Systems gearbeitet wird.]
+  Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seitenleiste (Drawer) platziert. Der Drawer kann mithilfe eines Knopfes ausgeklappt werden, welcher sich auf der Toolbar befindet. Somit können auch diese Funktionen mit wenig Aufwand (@CLICKS) von jeder Ansicht aus erreicht werden. Im Drawer sind die Masken zur Verwaltung der Benutzer (@CRUSER), zur Anzeige gelöschter Module (@SOFTDELETE) und zur Ansicht alter Prüfungsordnungen (siehe @drawer). Außerdem wird hier die Versionsnummer angezeigt, damit jederzeit überprüft werden kann, mit welcher Version des Systems gearbeitet wird.]
 
 
 #let drawerImage = imageFigureNoPad(width: 40%,
@@ -143,7 +143,7 @@ Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) n
 #heading(level: 4, numbering:none, "Login")
 
 #let loginText = [
-Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächst über den Login-Button im Drawer (@drawer) anmelden (@LOGIN). Hierzu wird ein Screen benötigt, auf dem der User seine E-Mail und sein Passwort eingeben kann. Da Accounts von der studiengangsverantwortlichen Person erstellt werden (@CRUSER), wird auf dieser Seite keine Möglichkeit benötigt, sich selbst zu registrieren. Damit verständlich ist, wie ein Account erstellt werden kann, wird diese Information als Infotext unter dem Login-Button platziert.]
+Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächst über den Login-Button im Drawer (@drawer) anmelden (@LOGIN). Hierzu wird ein Screen benötigt, auf dem der User seine E-Mail und sein Passwort eingeben kann. Da Accounts von der studiengangsverantwortlichen Person erstellt werden (@CRUSER), wird auf dieser Seite keine Möglichkeit benötigt, sich selbst zu registrieren. Damit verständlich ist, wie ein Account erstellt werden kann, wird diese Information als Infotext unter dem Login-Button platziert (siehe @login).]
 #let loginImage = imageFigureNoPad(<login>, "mockups/Login.png", "Login", width: 20em)
 
 
@@ -160,7 +160,7 @@ Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächs
 
 #let searchFunctionText = [
   #heading(level: 4, numbering:none, "Suchfunktion")
-  Für die Suchfunktion wird eine Komponente benötigt, mit der ein bestimmtes Modul gefunden werden kann. In die Suchleiste soll der User den Namen des gesuchten Moduls eingeben können. Dabei muss der Modulname nicht vollständig eingegeben werden. Module, die zu dem eingegebenen Text passen, sollen vorgeschlagen werden. Durch die Vorschläge spart der User Zeit, da nicht der vollständige Modulname eingegeben werden muss und auch nicht erst zu einer Ergebnisseite weitergeleitet wird. @designInterfaces[Seite 502 ff.] Der User kann einen Vorschlag anklicken, um sich dieses Modul anzusehen.
+  Für die Suchfunktion wird eine Komponente benötigt, mit der ein bestimmtes Modul gefunden werden kann. In die Suchleiste soll der User den Namen des gesuchten Moduls eingeben können. Dabei muss der Modulname nicht vollständig eingegeben werden. Module, die zu dem eingegebenen Text passen, sollen vorgeschlagen werden. Durch die Vorschläge (siehe @search) spart der User Zeit, da nicht der vollständige Modulname eingegeben werden muss und auch nicht erst zu einer Ergebnisseite weitergeleitet wird. @designInterfaces[Seite 502 ff.] Der User kann einen Vorschlag anklicken, um sich dieses Modul anzusehen.
 
 ]
 
@@ -217,7 +217,7 @@ Angemeldete User sehen auf verschiedenen Seiten Buttons, mit denen sie Module an
 #imageFigure(<addModule>, "mockups/AddModule.png", "Modul hinzufügen")
 ]
 
-#let changeMessageText = [Damit in der Auflistung der Änderungen eine hilfreiche Nachricht steht, sollen die vorgenommenen Änderungen beim Speichern eines Moduls zusammengefasst werden. Hierzu fragt ein Pop-up nach der Zusammenfassung und erklärt dem User, wo dieser Text zu sehen sein wird.]
+#let changeMessageText = [Damit in der Auflistung der Änderungen eine hilfreiche Nachricht steht, sollen die vorgenommenen Änderungen beim Speichern eines Moduls zusammengefasst werden. Hierzu fragt ein Pop-up nach der Zusammenfassung und erklärt dem User, wo dieser Text zu sehen sein wird (@changeMsgImg).]
 
 #let changeMessageImg = imageFigureNoPad(<changeMsgImg>, "mockups/ÄnderungsMessage.png", "Text für Änderungshistorie", width: 12em)
 
@@ -225,9 +225,9 @@ Angemeldete User sehen auf verschiedenen Seiten Buttons, mit denen sie Module an
 
  
 #let translateText = [
-Für die Erstellung oder Bearbeitung eines Moduls kann entweder eine vorhandene Vorlage aus einem Dropdown ausgewählt werden (@lookup), oder ein neuer Text durch Klicken auf den "Neu"-Button angelegt werden. Dies ist besonders praktisch, da sich bestimmte Texte oft wiederholen. 
+Für die Erstellung oder Bearbeitung eines Moduls kann entweder eine vorhandene Vorlage aus einem Dropdown ausgewählt werden (@lookup, @translateDropdown), oder ein neuer Text durch Klicken auf den "Neu"-Button angelegt werden. Dies ist besonders praktisch, da sich bestimmte Texte oft wiederholen. 
 
-Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im Dropdown angezeigt wird, sowie die tatsächlichen Texte, die später im Modulhandbuch abgebildet werden. 
+Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im Dropdown angezeigt wird, sowie die tatsächlichen Texte, die später im Modulhandbuch abgebildet werden (@translatePopup). 
 ]
 
 
@@ -253,7 +253,7 @@ Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im 
 #heading(level: 4, numbering:none, "Userverwaltung")
 
 #let userText = [
-  Das Hinzufügen eines neuen Users benötigt wenige Eingaben. Der Inhalt des Feldes "E-Mail-Adresse" wird automatisch anhand des eingegebenen Vor- und Nachnamens ausgefüllt, kann aber anschließend auch manuell bearbeitet werden, falls die E-Mail-Adresse vom bekannten Schema (vorname.nachname\@hs-hannover.de) einer Adresse der #hsh abweicht. Dies ist beispielsweise der Fall, wenn mehrere Personen denselben Vor- und Nachnamen haben.
+  Das Hinzufügen eines neuen Users benötigt ebenfalls eine Eingabemaske (@createUser). Der Inhalt des Feldes "E-Mail-Adresse" wird automatisch anhand des eingegebenen Vor- und Nachnamens ausgefüllt, kann aber anschließend auch manuell bearbeitet werden, falls die E-Mail-Adresse vom bekannten Schema (vorname.nachname\@hs-hannover.de) einer Adresse der #hsh abweicht. Dies ist beispielsweise der Fall, wenn mehrere Personen denselben Vor- und Nachnamen haben.
 ]
 
 #let userImage = imageFigureNoPad(<createUser>, "mockups/CreateUser.png", "Neuen User hinzufügen", width: 8em)
@@ -267,7 +267,7 @@ Wenn ein neuer Text angelegt wird, muss der User einen Kurztext angeben, der im 
 #heading(level: 4, numbering:none, "Änderungshistorie")
 
 #let changeLogText = [
-Alle Änderungen sollen nachverfolgbar sein (@SHOWCHANGES). Hierzu wird eine Übersicht über alle Änderungen benötigt. Wenn eine Reihe der Tabelle, also eine einzelne Änderung angeklickt wird, öffnet sich eine Ansicht, in der die vorherige Version und die bearbeitete Version nebeneinander dargestellt sind. Mit einem Knopfdruck können die vorgenommenen Änderungen rückgängig gemacht werden. Auch hier wird nach einem Kommentar gefragt, um die Änderungen zusammenzufassen (@changeMsgImg)
+Alle Änderungen sollen nachverfolgbar sein (@SHOWCHANGES). Hierzu wird eine Übersicht über alle Änderungen benötigt (@changelogImage). Wenn eine Reihe der Tabelle, also eine einzelne Änderung angeklickt wird, öffnet sich eine Ansicht, in der die vorherige Version und die bearbeitete Version nebeneinander dargestellt sind. Mit einem Knopfdruck können die vorgenommenen Änderungen rückgängig gemacht werden. Auch hier wird nach einem Kommentar gefragt, um die Änderungen zusammenzufassen (@changeMsgImg)
 ]
 
 
