@@ -9,11 +9,11 @@ Der in dieser Arbeit entstandene Quellcode ist an den folgenden Stellen zu finde
 #heading(numbering: none, level: 3, outlined: false)[Frontend & Entwicklerdokumentation]
 
 
-https://github.com/MrToWy/StudyModules-Frontend/
+https://gitlab.gwdg.de/lernanwendungen/studymodules
 
-Branch: `master`
+Branch: `main`
 
-Commit-Hash: `6c9cf1bbf415f23d6f791c1e88b90401ccff6880`
+Commit-Hash: `8217a61d2fd15ef2b38cb5a5b47fb2351902017b`
 
 #heading(numbering: none, level: 3, outlined: false)[Backend & LaTeX-Skript]
 
@@ -21,7 +21,7 @@ https://gitlab.gwdg.de/lernanwendungen/studybase
 
 Branch: `studymodules_tobi`
 
-Commit-Hash: `0ffad0bc580e4641205aa0cf3011480f5875c706`
+Commit-Hash: `9cdd4a94fdad896e86df201a1f8c212c0587231b`
 
 #pagebreak()
 
