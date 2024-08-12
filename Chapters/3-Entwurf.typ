@@ -114,7 +114,7 @@ Die Oberfläche der Anwendung besteht aus einer oberen Leiste (Toolbar) und eine
 Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) nutzen zu können, wird diese in der Toolbar platziert (siehe @grundgerüst). Neben der Suche ist ein Dropdown, mit dem die angezeigte Sprache umgestellt werden kann (@TRANSLATEMULTIPLE).  Damit jederzeit erkenntlich ist, in welcher Ansicht sich der User befindet (@PATH), wird diese Information als Breadcrumb auf der Toolbar platziert. @designInterfaces[Seite 193 f.]
 ]
 
-#let toolbarImage = imageFigureNoPad(<grundgerüst>, "mockups/Grundgerüst.svg", "Toolbar")
+#let toolbarImage = imageFigure(<grundgerüst>, "mockups/Grundgerüst.svg", "Toolbar")
 
 #let boxedToolbarImage = box(toolbarImage, inset: 0.5em)
 
@@ -129,7 +129,7 @@ Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) n
   Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seitenleiste (Drawer) platziert. Der Drawer kann mithilfe eines Knopfes ausgeklappt werden, welcher sich auf der Toolbar befindet. Somit können auch diese Funktionen mit wenig Aufwand (@CLICKS) von jeder Ansicht aus erreicht werden. Im Drawer sind die Masken zur Verwaltung der Benutzer (@CRUSER), zur Anzeige gelöschter Module (@SOFTDELETE) und zur Ansicht alter Prüfungsordnungen (siehe @drawer). Außerdem wird hier die Versionsnummer angezeigt, damit jederzeit überprüft werden kann, mit welcher Version des Systems gearbeitet wird.]
 
 
-#let drawerImage = imageFigureNoPad(width: 40%,
+#let drawerImage = imageFigure(width: 40%,
   <drawer>, "mockups/Drawer.png", "Drawer")
 
 //#wrap-content(align: bottom + right, drawerImage, drawerText)
@@ -137,14 +137,14 @@ Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) n
 #drawerImage
 
 
-#box[
+
 === Komponenten und Ansichten <views>
 
 #heading(level: 4, numbering:none, "Login")
 
 #let loginText = [
 Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächst über den Login-Button im Drawer (@drawer) anmelden (@LOGIN). Hierzu wird ein Screen benötigt, auf dem der User seine E-Mail und sein Passwort eingeben kann. Da Accounts von der studiengangsverantwortlichen Person erstellt werden (@CRUSER), wird auf dieser Seite keine Möglichkeit benötigt, sich selbst zu registrieren. Damit verständlich ist, wie ein Account erstellt werden kann, wird diese Information als Infotext unter dem Login-Button platziert (siehe @login).]
-#let loginImage = imageFigureNoPad(<login>, "mockups/Login.png", "Login", width: 20em)
+#let loginImage = imageFigure(<login>, "mockups/Login.png", "Login", width: 20em)
 
 
 //#wrap-content(align: top + right, loginImage, loginText)
@@ -152,7 +152,7 @@ Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächs
 #loginText
 #loginImage
 
-]
+
 
 #box[
 
@@ -171,23 +171,23 @@ Wenn ein User administrative Aufgaben übernehmen möchte, muss er sich zunächs
 
 
 
-#box[
+
   #heading(level: 4, numbering:none, "Navigation")
 
 Auf der Startseite der neuen Anwendung soll nicht direkt die Modulübersicht präsentiert werden, weil diese ohne gesetzte Filter überladen wirken könnte. Stattdessen wird der User zunächst auf eine Übersicht aller Fakultäten geleitet (@navigationMockup). Hier kann entweder eine Fakultät ausgewählt werden, oder es kann per Klick auf "Alle Module" direkt zur Modulübersicht gewechselt werden. Die Farben der einzelnen Fakultäten sind dieselben wie auf der Website der #hsh @HochschuleHannover und sollen den User dabei unterstützen, schnell die richtige Fakultät zu finden. Diese Ansicht wird übersprungen, falls der User einen direkten Link zu einem bestimmten Studiengang aufruft. Dieser Link könnte beispielsweise auf der Website der Hochschule platziert sein. Der User wird dann direkt zur Modulübersicht geleitet.
   
-#imageFigureNoPad(<navigationMockup>, "mockups/Navigation.png", "Startseite - Auswahl Fakultät")
-]
+#imageFigure(<navigationMockup>, "mockups/Navigation.png", "Startseite - Auswahl Fakultät")
 
-#box[
+
+
 Wenn in der Fakultätsauswahl eine Fakultät ausgewählt wurde, geht es weiter auf die Detailansicht der jeweiligen Fakultät (@navigationMockupLevel2). Hier werden alle Studiengänge der Fakultät aufgelistet. Die Studiengänge sind gruppiert nach der Abteilung, zu der sie zugehörig sind. Zur besseren Übersicht sind die Bachelorstudiengänge über den Masterstudiengängen angeordnet und zusätzlich farblich markiert. Des Weiteren gibt es die Möglichkeit in der oberen Leiste gezielt nach einem Studiengang zu suchen, oder nach Bachelor/Master zu filtern. Sobald auf dieser Übersicht ein Studiengang angeklickt wird, öffnet sich die Modulübersicht. In der Modulübersicht sind dann die Filter automatisch an die zuvor ausgewählte Fakultät und den ausgewählten Studiengang angepasst.
 
-#imageFigureNoPad(<navigationMockupLevel2>, "mockups/NavigationLevel2.png", "Startseite - Auswahl Studiengang")
-]
+#imageFigure(<navigationMockupLevel2>, "mockups/NavigationLevel2.png", "Startseite - Auswahl Studiengang")
 
-#box()[
+
+
   
-
+#pagebreak()
 #heading(level: 4, numbering:none, "Modulübersicht")
 #let moduleOverviewText = [
   In der Modulübersicht (@moduleoverview) sollen alle Module in einer tabellarischen Übersicht angezeigt werden. In der Tabelle sollen nur die für #link(<UseCaseInfoModule>)[Use Case 2] benötigten Daten gezeigt werden. Alle weiteren Informationen sind dann in der detaillierten Ansicht zu finden. Die detaillierte Ansicht soll sich durch Anklicken eines Eintrags öffnen. Über der Tabelle gibt es mehrere Filtermöglichkeiten, um die gesuchten Module schneller finden zu können.
@@ -199,7 +199,7 @@ Wenn in der Fakultätsauswahl eine Fakultät ausgewählt wurde, geht es weiter a
 #wrap-content(align: bottom + right, moduleOverview, moduleOverviewText)
 //#moduleOverviewText
 //#moduleOverview
-]
+
 
 
 #heading(level: 4, numbering:none, "Detailansicht eines Modules")
@@ -320,7 +320,7 @@ Der Endpunkt /modules soll zusätzlich POST-Anfragen entgegennehmen können, um 
   Hier sollten alle Informationen zur Verfügung gestellt werden, die für die Änderungshistorie eines Moduls benötigt werden (@changelogImage). Dazu gehört die Auflistung aller vorgenommenen Änderungen, der Autor der Änderung, sowie der erklärende Text, der bei einer Änderung angegeben werden muss (@changeMsgImg).
 
   
-#heading(level: 4, numbering: none)[/submodules]
+#heading(level: 4, numbering: none)[Endpunkt /submodules]
 Ähnlich wie schon bei /modules wird eine Auflistung aller Teilmodule benötigt. Damit Teilmodule auffindbar sind, sollte die Auflistung den Namen des Teilmodules enthalten. Außerdem könnte die verantwortliche Person enthalten sein, damit Modulverantwortliche Personen nach den Teilmodulen filtern können, für die sie verantwortlich sind.
 Der Endpunkt /submodules soll zusätzlich POST-Anfragen entgegennehmen können, um neue Teilmodule anzulegen. 
 

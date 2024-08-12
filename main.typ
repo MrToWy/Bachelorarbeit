@@ -22,7 +22,8 @@
   date: "13. August 2024",
   glossaryColumns: 1
 )
- 
+
+
 #include "Chapters/1-Einleitung.typ" 
 #include "Chapters/2-Planung.typ" 
 #include "Chapters/3-Entwurf.typ" 

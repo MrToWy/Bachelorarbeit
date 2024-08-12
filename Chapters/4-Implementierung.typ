@@ -60,7 +60,7 @@ Prisma bietet weiterhin eine Methode upsert an, die die Update-Methode und die C
 #pagebreak()
 #codeFigure("Backend: Erstellen und Bearbeiten von Modulen", <endpointBefore>, "endpointBefore")
 
-
+#pagebreak()
 Abschließend muss evaluiert werden, ob der entstandene Code verständlich und kompakt genug ist. Das vorgestellte Beispiel ist durch die vielen komplexen Datentypen stark gewachsen. Um den Code also wartbarer, lesbarer und verständlicher zu machen, wurde zuletzt noch die Codequalität optimiert. Hierzu wurden statt einer gemeinsamen Upsert-Methode zwei unterschiedliche Methoden (Create und Update) erstellt. Hierdurch wurde die Zuständigkeit klarer definiert. Außerdem wurden die verschiedenen Zuweisungen der komplexen Datentypen in jeweils eigene Methoden extrahiert. Dies hatte neben des nun weitaus besser lesbaren Codes den zusätzlichen Vorteil, dass die Methoden an verschiedenen Stellen verwendet werden konnten, sodass redundanter Code verringert wurde. Jedoch ergab sich daraus auch ein Nachteil. Durch das sequenzielle Verändern der Daten innerhalb der Methode bestand die Gefahr, dass die ersten Veränderungen erfolgreich sind, aber beispielsweise beim Zuweisen der zuständigen Person ein Fehler auftritt. In diesem Fall wäre das Update nur teilweise erfolgreich. In der früheren Version als alle Updates in einer Abfrage stattfanden, wäre in so einem Fall das gesamte Update fehlgeschlagen. Ein mögliches Teilupdate kann zu unerwarteten Fehlern führen und ist für den Benutzer des Systems entweder nur schwer zu erkennen oder unverständlich. Um dieses Verhalten wiederherzustellen, wurden letztlich alle Anweisungen in einer Transaktion @TransactionsBatchQueries zusammengefasst. Hierdurch konnte der Vorteil der besseren Codequalität bestehen bleiben und dennoch das gewünschte Verhalten erzielt werden. Im Falle eines Fehlers macht Prisma nun automatisch die bisher vorgenommenen Änderungen rückgängig, sodass keine inkonsistenten Daten entstehen können. Der neue Code ist deutlich lesbarer (siehe @endpointAfter).
 
 #codeFigure("Backend: Erstellen und Bearbeiten von Modulen (Verbessert)", <endpointAfter>, "endpointAfter")
@@ -90,6 +90,8 @@ Des Weiteren ist es wichtig, zwischen öffentlichen und privaten Endpunkten zu u
 
 
 #codeFigure("public.decorator.ts", <publicDecorator>, "publicDecorator")
+
+#pagebreak()
 
 #codeFigure("module.controller.ts", <moduleController>, "getModule")
 
@@ -254,6 +256,7 @@ Damit jede Komponente weiß, welche Sprache gerade dargestellt werden soll, wird
 
 Der LanguageService hat eine Methode `getLanguages`, mit der an verschiedenen Stellen in der Anwendung angezeigt werden kann, welche Sprachen zur Auswahl stehen. Außerdem sind Getter und Setter für die Eigenschaft `languageCode` implementiert. Im Setter wird die ausgewählte Sprache in den LocalStorage geschrieben, damit die Benutzer der Website nicht bei jedem Besuch erneut ihre Sprache auswählen müssen. Außerdem wird die neu ausgewählte Sprache an das `languageSubject` weitergegeben. Das `languageSubject` ist ein BehaviourSubject aus der Erweiterungsbibliothek RxJS @RxJSBehaviorSubject. Nach dem Observer-Pattern-Prinzip können andere Komponenten und Services das languageSubject beobachten und erhalten im Falle einer Veränderung eine Benachrichtigung. Somit können beim Wechsel der Sprache die neuen Texte geladen werden.
 
+
 #codeFigure("language.service.ts", <languageService>, "languageService")
 
 
@@ -332,6 +335,7 @@ In @components sind die einzelnen Komponenten einer Bearbeitungsmaske (z.B. die 
 
 #codeFigure("Two-Way-Binding", <twoWay>, "two-way")
 
+#pagebreak()
 Außerdem lädt das Edit-Component  für jede Sprache ein Translator-Component. 
 Das Translator-Component hat die Aufgabe, die benötigte Sprache zu laden und im Translations-Array an die erste Stelle zu schieben. Dies ist notwendig, weil in den folgenden Editor- und Preview-Komponenten immer auf den ersten Eintrag im Array geschaut wird. Wenn im Preview-Component beispielsweise der Name des Moduls gezeigt werden soll, wird `module.translations[0].name` aufgerufen.
 
@@ -408,13 +412,14 @@ Das Backend benötigt außerdem eine Möglichkeit, Daten langfristig aufzubewahr
 
 Nachdem die Images nun erstellt sind und die Compose-Datei die Struktur der Container definiert, kann `podman compose up -d` ausgeführt werden, um die Container zu erstellen und zu starten. In der Desktopanwendung von Podman ist dies nachzuvollziehen (@podmanDesktop). In @dockerDiagram ist eine Übersicht der verschiedenen Container zu sehen. Dort sind die verwendeten Port aufgelistet und es kann erkannt werden, in welche Richtung kommuniziert wird.
 
+#pagebreak()
+
 #codeFigure("compose-Datei", <compose>, "compose")
 #imageFigure(<podmanDesktop>, "podman.png", "Podman Desktop")
 
 #imageFigure(<dockerDiagram>, "Docker.png", "Diagramm der eingesetzten Dockercontainer", width: 95%)
 
+#pagebreak()
 == Zwischenfazit
 Nachdem Frontend und Backend implementiert wurden und eine Dokumentation erstellt wurde, besteht eine erste lauffähige Version des Systems. Diese Version kann im folgenden @review evaluiert werden, um herauszufinden, ob alle Anforderungen umgesetzt wurden.
 
-#pagebreak()
-#hide("grr")

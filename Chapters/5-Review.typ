@@ -50,7 +50,7 @@ Nachdem die kleineren Anpassungen vorgenommen und mit einer erneuten Überprüfu
 
 
 
-
+#pagebreak()
 
 == Überprüfung, ob Anforderungen erfüllt sind
 
@@ -177,7 +177,7 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
 
 
 
-
+#pagebreak()
 == Zwischenfazit
 Nachdem die aufgestellten Anforderungen überprüft wurden, kann nun eine Aussage zum neuen System getroffen werden. 
 
@@ -186,3 +186,4 @@ Von den 64 Anforderungen wurden 15 Anforderungen nicht erfüllt. Unter den nicht
 
 
 #pagebreak()
+#hide("grr")

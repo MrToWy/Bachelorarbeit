@@ -56,6 +56,7 @@ Es gibt eine schema.prisma-Datei (@moduletable), in der die Struktur der relatio
 
 In @moduletable ist beispielsweise zu sehen, wie eine Tabelle mit dem Namen "Module" definiert ist. Die Tabelle hat unter anderem eine Spalte id, mit dem Datentypen Int und einen name mit dem Datentypen String.
 
+#pagebreak()
 #codeFigure("Auszug aus schema.prisma", <moduletable>, "moduleTablePrisma")
 
 
@@ -86,7 +87,7 @@ Die kritischste Schwachstelle sind hier Redundanzen. Die Eigenschaften eines Mod
 
 Als Vorbereitung für ein neues System wurden vom Studiendekan die zuvor genannten Word Dokumente maschinell eingelesen, in ein JSON-Format umgewandelt und anschließend in eine PostgresSQL-Datenbank eingespielt. Weiterhin wurde ein Python Script erstellt, welches aus den Datensätzen in der Datenbank mithilfe von LaTeX ein PDF-Dokument für die Modulhandbücher generieren kann. Die Datenbank enthält jedoch weiterhin Redundanzen und könnte daher optimiert werden. 
 
-
+#pagebreak()
 
 == Zielgruppen <zielgruppen>
 Im folgenden Abschnitt sollen die verschiedenen Zielgruppen eines Modulhandbuches ermittelt und definiert werden. Die Übersicht der Zielgruppen wird für die später folgende Ermittlung der Use Cases benötigt (@usecases). Hierdurch wird ermöglicht zu verstehen, wer das Modulhandbuch verwenden wird und welche Anforderungen die verschiedenen Gruppen haben. Zur Ermittlung wurde zum einen im ECTS User-Guide @ects recherchiert und zum anderen das Interview (@interview) genutzt.
@@ -577,5 +578,3 @@ Reges, S., Stepp, M.: Building Java Programs, Prentice Hall", label: <literature
 == Zwischenfazit
 In diesem Kapitel wurden mithilfe verschiedener Methoden die Schwachstellen des alten Prozesses ermittelt und daraus im Anschluss Anforderungen an das neue System ermittelt. Hierbei half die Aufstellung von Zielgruppen und Anwendungsfällen. Die aufgestellten Anforderungen helfen bei der folgenden Planung der Anwendung und werden auch später im @review hilfreich, um zu ermitteln, ob das neue System eingesetzt werden kann. Die zum Ende des Kapitels herausgearbeitete Struktur der Modulhandbücher kann im Folgenden zur Entwicklung einer passenden Datenstruktur helfen. 
 
-#pagebreak()
-#hide("grr")

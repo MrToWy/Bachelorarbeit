@@ -48,7 +48,7 @@
 ]<UseCaseEditModule>
 
 
-
+#pagebreak()
 #useCase(4, "Datensatz anlegen")[
   Der Use Case beschreibt, wie ein neuer Datensatz angelegt werden kann. 
   Das System prüft dabei, ob die angegebenen Informationen plausibel sind. Ein Datensatz kann zum Beispiel ein Modul sein, ein Teilmodul oder ein Studiengang. Zur Übersichtlichkeit wurde nicht für jede Art ein einzelner Use Case erstellt.
