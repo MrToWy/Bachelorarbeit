@@ -86,8 +86,7 @@
     zebra-fill: white, 
     breakable: true,
     reference-sep: ", Zeile ",
-    default-color: rgb("#7d7d7d"),
-    
+    default-color: rgb("#7d7d7d")
   )
 
 
