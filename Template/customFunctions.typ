@@ -8,6 +8,17 @@
 #import "@preview/hydra:0.3.0": hydra
 #import "@preview/codly:1.0.0": *
 
+#let colorize = true
+
+#let useCaseColor = rgb("E28862")
+#let useCaseColorLight = rgb("EEC0AB")
+#let requirementColor = silver
+
+#if not colorize {
+  useCaseColor = rgb("AAAAAA")
+  useCaseColorLight = rgb("CCCCCC")
+}
+
 #let sidePadding = 1em
 #let topBotPadding = 3em
 
@@ -61,7 +72,7 @@
 
     #table(
       columns: (0.4fr, 1fr),
-      fill: (x, y) => if calc.even(x) { rgb("E28862") } else { rgb("EEC0AB") },
+      fill: (x, y) => if calc.even(x) { useCaseColor } else { useCaseColorLight },
       stroke: (x: none, y: 2.5pt + rgb("FFFF")),
   
 
