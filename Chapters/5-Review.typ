@@ -119,28 +119,28 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   [@Verantwortlichkeit], [Bei der Entwicklung wurde darauf geachtet, dass es für die verschiedenen Arten von Daten jeweils eigene Services gibt. Es gibt nicht eine große Klasse "DatabaseAccess", sondern einen ModuleService, einen SubModuleService, einen RequirementService und so weiter.], [Erfüllt],
   [@Kopplung], [Aus der Trennung von Frontend und Backend ergibt sich eine lose Kopplung, da das Frontend keine Abhängigkeit zur Datenbank hat, weil nur über die REST-Schnittstellte kommuniziert wird. Außerdem kommen die meisten Komponenten im Quellcode mit einer geringen Anzahl an Abhängigkeiten aus. Als Beispiel ist hier das ModuleGridComponent zu nennen, welches als zentrales Element der Anwendung die Module in einer Tabelle auf der Oberfläche anzeigt. Diese Komponente hat Abhängigkeiten zum ModuleService (um alle Module abzurufen), zum Router, der Activated Route und dem CourseService (um den ausgewählten Studiengang aus der URL auslesen und dessen Namen anzeigen zu können), zum AuthService (um zu ermitteln, ob der User eingeloggt ist) und zum LanguageService (um die Website in der gewünschten Sprache zu zeigen). Diese Anzahl an Abhängigkeiten ist gerechtfertigt, weil die Komponente eine zentrale Rolle in der Anwendung spielt und daher mit verschiedenen Bereichen der Anwendung interagieren muss.], [Erfüllt],
   [@Komplex], [Mithilfe eines externen Tools (Qodana @QodanaStaticCode) wurde die zyklomatische Komplexität der einzelnen Methoden betrachtet. Hierbei wurden keine Methoden mit einer höheren Komplexität als 10 gefunden.], [Erfüllt],
-  [@DepedencyInjection], [In Frontend und Backend werden Abhängigkeiten mithilfe von Dependency Injection eingesetzt. Siehe @createEndpoints und @uebersetzbarkeit], [Erfüllt],
+  [@DepedencyInjection], [In Frontend und Backend werden Abhängigkeiten mithilfe von Dependency Injection eingesetzt.], [Erfüllt #linebreak() @createEndpoints #linebreak() @uebersetzbarkeit],
   [@TEST], [Bisher nicht umgesetzt, aber durch @TESTABLE vorbereitet.], [Vorbereitet],
   [@TESTUI], [Bisher nicht umgesetzt, aber durch @TESTABLE vorbereitet.], [Vorbereitet],
   table.cell(colspan: 3, align: center, [#emph("Benutzbarkeit")]),
-  [@PATH], [Der aktuelle Pfad wird in der Anwendung angezeigt (siehe @moduleDetailResult). Durch Anklicken eines Elementes kann zurückgesprungen werden (beispielsweise von der Detailansicht eines Moduls zurück zur Auflistung aller Module)], [Erfüllt],
-  [@ASK], [Das Löschen von Datensätzen muss vom User bestätigt werden. Hierzu erscheint ein Popup mit den Buttons "Ja" und "Nein".], [Erfüllt],
+  [@PATH], [Der aktuelle Pfad wird in der Anwendung angezeigt. Durch Anklicken eines Elementes kann zurückgesprungen werden (beispielsweise von der Detailansicht eines Moduls zurück zur Auflistung aller Module)], [Erfüllt #linebreak() @moduleDetailResult],
+  [@ASK], [Das Löschen von Datensätzen muss vom User bestätigt werden. Hierzu erscheint ein Popup mit den Buttons "Ja" und "Nein".], [Erfüllt #linebreak() @deleteQuery],
   [@SOFTDELETE], [Diese Anforderung wurde nicht umgesetzt. Das Löschen eines Datensatzes könnte in Zukunft angepasst werden, sodass nur eine Eigenschaft "deleted" auf True gesetzt wird. Beim Laden von Daten werden nur Datensätze geladen, die "deleted=false" sind. Die Oberfläche könnte angepasst werden, sodass angemeldete User auch gelöschte Elemente ansehen können.], [Konzept liegt vor],
-  [@QUICK], [Das Generieren eines PDFs dauert recht lange. Hier wird ein Statusindikator eingesetzt, der dem User anzeigt, in welchem Status sich der Kompilierungsauftrag befindet. Abgesehen davon gibt es keine Stellen in der Anwendung, die eine erhöhte Ladezeit haben. Ein Ladebalken wurde daher nicht eingebaut, das Ziel einer guten Benutzbarkeit aber trotzdem erreicht.], [Erfüllt],
+  [@QUICK], [Das Generieren eines PDFs dauert recht lange. Hier wird ein Statusindikator eingesetzt, der dem User anzeigt, in welchem Status sich der Kompilierungsauftrag befindet. Abgesehen davon gibt es keine Stellen in der Anwendung, die eine erhöhte Ladezeit haben. Ein Ladebalken wurde daher nicht eingebaut, das Ziel einer guten Benutzbarkeit aber trotzdem erreicht.], [Erfüllt #linebreak() @createPdfStep2],
   [@ERROR], [Mögliche Fehler werden abgefangen und mithilfe einer verständlichen Fehlermeldung an den User übermittelt.], [Erfüllt #linebreak() @errorMsg],
   [@ERRORSOLVE],[Bisher nicht umgesetzt, aber durch @ERROR vorbereitet.],[Vorbereitet],
   [@RESPONSIVE],[Die Übersicht der Studiengänge, aller Module und die Moduldetails wurden für mobile Endgeräte optimiert.],[Teilweise erfüllt #linebreak() @design],
   [@KEYBOARD],[Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
-  [@SELFEXPLAIN],[Ohne eine Studie oder ähnliches ist es schwer zu beweisen, dass das System selbsterklärend ist. In der Implementierung wurde darauf geachtet, möglichst selbsterklärende Beschriftungen, Icons und Steuerelemente zu verwenden. In den Bearbeitungsmasken gibt es eine Live-Vorschau, sodass ersichtlich ist, welches Eingabefeld was verändert. Außerdem wurden an verschiedenen Stellen Tooltips, Dialoge und Einblendungen verwendet, um möglicherweise unklare Details genauer zu erklären.],[Vermutlich erfüllt],
+  [@SELFEXPLAIN],[Ohne eine Studie oder ähnliches ist es schwer zu beweisen, dass das System selbsterklärend ist. In der Implementierung wurde darauf geachtet, möglichst selbsterklärende Beschriftungen, Icons und Steuerelemente zu verwenden. In den Bearbeitungsmasken gibt es eine Live-Vorschau, sodass ersichtlich ist, welches Eingabefeld was verändert. Außerdem wurden an verschiedenen Stellen Tooltips, Dialoge und Einblendungen verwendet, um möglicherweise unklare Details genauer zu erklären.],[Vermutlich erfüllt #linebreak() @editModule],
   
   table.cell(colspan: 3, align: center, [#emph("Effizienz")]),
-  [@STARTFRONTEND],[Alle Seiten im Frontend laden innerhalb einer Sekunde. Die geladenen Datenmengen werden reduziert, indem beim Laden der Modulübersicht zum Beispiel nicht direkt alle Informationen eines Moduls geladen werden. Diese werden erst geladen, sobald die Detailansicht geöffnet wird.],[Erfüllt],
+  [@STARTFRONTEND],[Alle Seiten im Frontend laden innerhalb einer Sekunde. Die geladenen Datenmengen werden reduziert, indem beim Laden der Modulübersicht zum Beispiel nicht direkt alle Informationen eines Moduls geladen werden. Diese werden erst geladen, sobald die Detailansicht geöffnet wird.],[Erfüllt #linebreak() @endpoints],
   [@STARTBACKEND],[Während der Implementierung des Systems konnte kein Zustand ermittelt werden, zu dem das Backend nach einem Fehler nicht innerhalb einer Minute neu startet.],[Erfüllt],
   [@DEPLOY],[Das Frontend wird mithilfe einer GitHub-Action bei jedem Push auf den Testserver deployt. Das Backend wird mithilfe eines Deploy-Skripts und einem Cronjob automatisch deployt. Diese Methodik ist auch für den Livebetrieb möglich.],[Vorbereitet],
   [@CLICKS],[Es wurde versucht, die Arbeitsabläufe möglichst einfach zu gestalten. Ohne größeren Aufwand ist es nicht nachprüfbar, ob diese Anforderung vollständig erledigt ist.],[Vermutlich erfüllt],
 
   table.cell(colspan: 3, align: center, [#emph("Funktionalität")]),
-  [@TRANSLATE],[Die Anwendung und die PDFs die generiert werden stehen in Englisch und Deutsch bereit.],[Erfüllt],
+  [@TRANSLATE],[Die Anwendung und die PDFs die generiert werden stehen in Englisch und Deutsch bereit.],[Erfüllt #linebreak() @uebersetzbarkeit],
   [@TRANSLATEMULTIPLE],[Der Code ist so vorbereitet, dass ohne großen Aufwand weitere Sprachen hinzugefügt werden können. Aktuell liegen die Modulhandbücher nur in Englisch und Deutsch vor, weshalb die neue Anwendung auch nur in Deutsch und Englisch entwickelt wurde.],[Vorbereitet],
   [@lookup],[In den Bearbeitungsmasken werden Eingabefelder verwendet, welche den User bei der Eingabe unterstützen. Wenn beispielsweise eine Zahl erwartet wird, können keine Buchstaben eingegeben werden. Außerdem werden, wenn möglich, Dropdowns statt Textfeldern genutzt.],[Erfüllt #linebreak() @editModule],
   [@similarPdf], [Das neue PDF ähnelt dem bisherigen PDF.], [Erfüllt #linebreak() @pdfComparision],
@@ -165,6 +165,8 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   
 )
 
+
+#imageFigure(<deleteQuery>, "../Images/DeleteQuery.png", "Rückfrage beim Löschen")
 
 
 #imageFigure(<errorMsg>, "../Images/errormsg.png", "Fehlermeldung vom error.service.ts")
