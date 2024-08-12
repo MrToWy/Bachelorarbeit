@@ -66,19 +66,5 @@ _Falls diese Informationen nicht vorliegen - ist ein geeigneter Ansprechpartner 
 
 8. Haben Sie Vorstellungen / Anforderungen / Ideen für das neue System?
 
-#pagebreak()
 
 
-#heading(numbering: none, level: 2)[Screenshots der Webanwendung]
-
-
-
-
-
-#imageFigure(<filterResult>, "../Images/filter.png", "Filtermöglichkeit")
-
-#imageFigure(<hiddenCourse>, "../Images/HiddenCourse.png", "Ausgelendeter Studiengang")
-
-#imageFigure(<errorMsg>, "../Images/errormsg.png", "Fehlermeldung vom error.service.ts")
-
-#imageFigure(<changelog>, "../Images/Changelog.png", "Änderungshistorie")

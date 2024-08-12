@@ -25,6 +25,8 @@ Das in @drawer gezeigte Menü enthält in der tatsächlichen Implementierung and
 
 Die Filter in @moduleoverview wurden direkt in die Tabellenüberschrift integriert (@filterResult). Außerdem wurden weitere Spalten eingeführt, um #link(<UseCaseInfoModule>)[Use Case 2] abbilden zu können.
 
+#imageFigure(<filterResult>, "../Images/filter.png", "Filtermöglichkeit")
+
 Die in @translateDropdown und @translatePopup zu sehenden Steuerelemente zum Hinzufügen von Übersetzungen wurden zugunsten einer besseren Usability ersetzt (siehe @createEditModules)
 
 Alle nicht genannten Abbildungen aus @UI ähneln den tatsächlichen Implementierungen.
@@ -62,36 +64,36 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   ),
 
   table.cell(colspan: 3, align: center, [#link(<UseCaseInfoDegree>)[#emph("Use Case 1")]]),
-  [@StaticLink], [Durch die Nutzung von Routen kann ein Studiengang mithilfe eines Links aufgerufen werden.], [Erfüllt #linebreak() (@appRoutes)],
-  [@PDF], [In der Übersicht aller Studiengänge der Abteilung kann ein PDF für jeden Studiengang aufgerufen werden. ], [Erfüllt #linebreak() (@degreeProgramOverview)],
+  [@StaticLink], [Durch die Nutzung von Routen kann ein Studiengang mithilfe eines Links aufgerufen werden.], [Erfüllt #linebreak() @appRoutes],
+  [@PDF], [In der Übersicht aller Studiengänge der Abteilung kann ein PDF für jeden Studiengang aufgerufen werden. ], [Erfüllt #linebreak() @degreeProgramOverview],
   
   table.cell(colspan: 3, align: center, [#emph("Use Case 2")]),
-  [@SHOWMODULES], [Es können alle Module eines Studienganges angezeigt werden.], [Erfüllt #linebreak() (@moduleOverviewResult)],
-  [@FILTER], [In allen Spalten steht eine Filterfunktion bereit.], [Erfüllt #linebreak() (@filterResult)],
+  [@SHOWMODULES], [Es können alle Module eines Studienganges angezeigt werden.], [Erfüllt #linebreak() @moduleOverviewResult],
+  [@FILTER], [In allen Spalten steht eine Filterfunktion bereit.], [Erfüllt #linebreak() @filterResult],
   [@SEARCH], [Die Suchfunktion wurde erfolgreich implementiert.], [Erfüllt #linebreak() @implementSearch],
-  [@SHOWMODULEDETAIL], [Es gibt für jedes Modul eine Detailansicht mit allen verfügbaren Informationen.], [Erfüllt #linebreak() (@moduleDetailResult)],
+  [@SHOWMODULEDETAIL], [Es gibt für jedes Modul eine Detailansicht mit allen verfügbaren Informationen.], [Erfüllt #linebreak() @moduleDetailResult],
 
   table.cell(colspan: 3, align: center, [#emph("Use Case 3")]),
   [@LOGIN], [Im seitlichen Menü gibt es einen Login-Button.], [Erfüllt],
   [@LOGOUT], [Im seitlichen Menü gibt es einen Logout-Button.], [Erfüllt],
   [@RESETPW], [Wurde nicht umgesetzt, da Accounts in der Einführungsphase erst direkt in der Datenbank verwaltet werden. Eventuell erfolgt später eine Anbindung an die SSO-Accounts der Hochschule. <nichtUmgesetzt>], [Nicht erfüllt],
   [@RESETMYPW], [Wurde nicht umgesetzt (siehe #link(<nichtUmgesetzt>)[Umsetzung F9])], [Nicht erfüllt],
-  [@EDIT], [Personen die für ein Modul verantwortlich sind, sowie die studiengangsverantwortliche Person können Module bearbeiten.], [Erfüllt #linebreak() (@editModule)],
-  [@CHECKMOD], [Es wurden verschiedene Plausibilitätschecks eingebaut. Fehlerhafte Felder werden rot markiert. Der User erhält weitere Informationen über einen Tooltip.], [Erfüllt #linebreak() (@plausib)],
+  [@EDIT], [Personen die für ein Modul verantwortlich sind, sowie die studiengangsverantwortliche Person können Module bearbeiten.], [Erfüllt #linebreak() @editModule],
+  [@CHECKMOD], [Es wurden verschiedene Plausibilitätschecks eingebaut. Fehlerhafte Felder werden rot markiert. Der User erhält weitere Informationen über einen Tooltip.], [Erfüllt #linebreak() @plausib],
 
   table.cell(colspan: 3, align: center, [#emph("Use Case 4")]),
-  [@MODULE], [Module können bearbeitet werden.], [Erfüllt  #linebreak() (@editModule)],
+  [@MODULE], [Module können bearbeitet werden.], [Erfüllt  #linebreak() @editModule],
   [@DUPLICATE], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
-  [@COURSE], [Studiengänge können verwaltet werden], [Erfüllt  #linebreak() (@menu)],
-  [@DUPLICATECourse], [Studiengänge können dupliziert werden. Dabei werden darin enthaltene Module und Teilmodule ebenfalls dupliziert. Ansprechpartner werden nicht dupliziert, sondern auf die bestehenden Einträge verwiesen.], [Erfüllt #linebreak() (@menu)],
-  [@hideCourse], [Studiengänge können im Menü in der Abteilungsübersicht ausgeblendet werden.], [Erfüllt #linebreak() (@menu)],
+  [@COURSE], [Studiengänge können verwaltet werden], [Erfüllt  #linebreak() @menu],
+  [@DUPLICATECourse], [Studiengänge können dupliziert werden. Dabei werden darin enthaltene Module und Teilmodule ebenfalls dupliziert. Ansprechpartner werden nicht dupliziert, sondern auf die bestehenden Einträge verwiesen.], [Erfüllt #linebreak() @menu],
+  [@hideCourse], [Studiengänge können im Menü in der Abteilungsübersicht ausgeblendet werden.], [Erfüllt #linebreak() @menu],
   [@showHiddenCourses], [Wenn ein User angemeldet ist, werden ausgeblendete Studiengänge angezeigt. Die für nicht angemeldete User ausgeblendeten Studiengänge erhalten eine Markierung, die darauf hinweist. ], [Erfüllt #linebreak() @hiddenCourse],
   [@CRUSER], [Wurde nicht umgesetzt (siehe #link(<nichtUmgesetzt>)[Umsetzung F9])], [Nicht erfüllt],
   [@CreateSubmodules], [Teilmodule können verwaltet werden. ], [Erfüllt],
   [@CreateRequirements], [Vorraussetzungen haben keine eigenständige Verwaltungsmaske, sondern sind ein Teil der Modulbearbeitungsmaske und können dort bearbeitet werden. ], [Erfüllt],
 
   table.cell(colspan: 3, align: center, [#emph("Use Case 5")]),
-  [@SHOWCHANGES], [Die Änderungen an einem Modul werden automatisch protokolliert. Dabei ist der Benutzer angegeben, sowie alle modifizierten Felder.], [Erfüllt #linebreak() @changelog #linebreak() #link(<implementChangelog>)[Implementierung]],
+  [@SHOWCHANGES], [Die Änderungen an einem Modul werden automatisch protokolliert. Dabei ist der Benutzer angegeben, sowie alle modifizierten Felder.], [Erfüllt #linebreak() @changelog #linebreak() #link(<implementChangelog>)[Unterabschnitt 4.1.2]],
   [@REVERT], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
   [@SHOWCHANGESmisc], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
   [@REVERTmisc], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
@@ -99,6 +101,10 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   table.cell(colspan: 3, align: center, [#emph("Use Case 6")]),
   [@COMPARE], [Wurde aus zeitlichen Gründen nicht priorisiert.], [Nicht erfüllt],
 )
+
+#imageFigure(<hiddenCourse>, "../Images/HiddenCourse.png", "Ausgeblendeter Studiengang")
+
+#imageFigure(<changelog>, "../Images/Changelog.png", "Änderungshistorie")
 
 #pagebreak()
 #table(
@@ -136,7 +142,7 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   table.cell(colspan: 3, align: center, [#emph("Funktionalität")]),
   [@TRANSLATE],[Die Anwendung und die PDFs die generiert werden stehen in Englisch und Deutsch bereit.],[Erfüllt],
   [@TRANSLATEMULTIPLE],[Der Code ist so vorbereitet, dass ohne großen Aufwand weitere Sprachen hinzugefügt werden können. Aktuell liegen die Modulhandbücher nur in Englisch und Deutsch vor, weshalb die neue Anwendung auch nur in Deutsch und Englisch entwickelt wurde.],[Vorbereitet],
-  [@lookup],[In den Bearbeitungsmasken werden Eingabefelder verwendet, welche den User bei der Eingabe unterstützen. Wenn beispielsweise eine Zahl erwartet wird, können keine Buchstaben eingegeben werden. Außerdem werden, wenn möglich, Dropdowns statt Textfeldern genutzt.],[Erfüllt #linebreak() (@editModule)],
+  [@lookup],[In den Bearbeitungsmasken werden Eingabefelder verwendet, welche den User bei der Eingabe unterstützen. Wenn beispielsweise eine Zahl erwartet wird, können keine Buchstaben eingegeben werden. Außerdem werden, wenn möglich, Dropdowns statt Textfeldern genutzt.],[Erfüllt #linebreak() @editModule],
   [@similarPdf], [Das neue PDF ähnelt dem bisherigen PDF.], [Erfüllt #linebreak() @pdfComparision],
   [@security], [Nur autorisierte Benutzer können datenverändernde Endpunkte verwenden.], [Erfüllt],
 
@@ -158,6 +164,14 @@ Im Folgenden wird überprüft, welche Anforderungen erfüllt sind und welche Anf
   [@DB], [Die bestehende Datenbank wurde erweitert.], [Erfüllt],
   
 )
+
+
+
+#imageFigure(<errorMsg>, "../Images/errormsg.png", "Fehlermeldung vom error.service.ts")
+
+
+
+
 
 
 
