@@ -129,7 +129,7 @@ Um mit möglichst wenig Aufwand (@CLICKS) jederzeit die Suchfunktion (@SEARCH) n
   Funktionen, die nicht oft benötigt werden, werden in einer ausklappbaren Seitenleiste (Drawer) platziert. Der Drawer kann mithilfe eines Knopfes ausgeklappt werden, welcher sich auf der Toolbar befindet. Somit können auch diese Funktionen mit wenig Aufwand (@CLICKS) von jeder Ansicht aus erreicht werden. Im Drawer sind die Masken zur Verwaltung der Benutzer (@CRUSER), zur Anzeige gelöschter Module (@SOFTDELETE) und zur Ansicht alter Prüfungsordnungen (siehe @drawer). Außerdem wird hier die Versionsnummer angezeigt, damit jederzeit überprüft werden kann, mit welcher Version des Systems gearbeitet wird.]
 
 
-#let drawerImage = imageFigure(width: 40%,
+#let drawerImage = imageFigure(width: 50%,
   <drawer>, "mockups/Drawer.png", "Drawer")
 
 //#wrap-content(align: bottom + right, drawerImage, drawerText)
@@ -213,8 +213,10 @@ Sobald ein Modul ausgewählt wurde, wird die Detailansicht eines Modules (@previ
   #heading(level: 4, numbering:none, "Modul anlegen / bearbeiten")
 
 Angemeldete User sehen auf verschiedenen Seiten Buttons, mit denen sie Module anlegen und bearbeiten können. Damit die Dateneingabe für den User möglichst intuitiv ist, orientiert sich die Sortierung der Eingabefelder an der Sortierung der Felder im resultierenden PDF. Um eine einheitliche Optik zu erreichen wurden anschließend die Felder geringfügig umsortiert, sodass gleiche Datentypen, oder Felder, die thematisch zueinander passen, nah beieinander sind. Das resultierende PDF wird in der Vorschau imitiert. Hier werden die Eingaben des Users in Echtzeit angezeigt, sodass der User jederzeit sehen kann, wie die Modulbeschreibung aussehen wird.
-  
-#imageFigure(<addModule>, "mockups/AddModule.png", "Modul hinzufügen")
+
+#linebreak()
+
+#imageFigureNoPad(<addModule>, "mockups/AddModule.png", "Modul hinzufügen")
 ]
 
 #let changeMessageText = [Damit in der Auflistung der Änderungen eine hilfreiche Nachricht steht, sollen die vorgenommenen Änderungen beim Speichern eines Moduls zusammengefasst werden. Hierzu fragt ein Pop-up nach der Zusammenfassung und erklärt dem User, wo dieser Text zu sehen sein wird (@changeMsgImg).]
