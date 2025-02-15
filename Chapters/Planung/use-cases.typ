@@ -2,7 +2,7 @@
 
 
 #useCase(1, "Informationen zu Studiengang")[
-  Der Use Case beschreibt, wie eine studieninteressierte Person einen Überblick über alle Module eines Studienganges erhalten kann. Die Person möchte hierzu ein PDF erhalten, in dem alle Module und deren Eigenschaften aufgelistet sind.
+  Der Use Case beschreibt, wie eine studieninteressierte Person einen Überblick über alle Module eines Studiengangs erhalten kann. Die Person möchte hierzu ein PDF erhalten, in dem alle Module und deren Eigenschaften aufgelistet sind.
 ][
   Studieninteressierte Person (@studieninteressiertePerson)
 ][
@@ -57,11 +57,11 @@
 ][
   Erfolgreich mit einem Account eingeloggt, der Datensätze anlegen darf
 ][
-  Am Beispiel eines Modules:
+  Am Beispiel eines Moduls:
   1. User drückt auf Module
   2. User drückt auf "Hinzufügen"
   3. System wechselt in den Bearbeitungsmodus
-  4. User füllt Eingabefelder 
+  4. User füllt Eingabefelder aus
   5. User drückt auf "Speichern"
   6. System prüft, ob Angaben plausibel sind
   7. System zeigt "Modul erfolgreich angelegt"
@@ -71,7 +71,7 @@
 
 
 #useCase(5, "Änderungen rückgängig machen")[
-  Der Use Case beschreibt, wie Änderungen an einem Modul rückgängig gemacht werden können. Damit können sowohl eigene Änderungen, als auch die Änderungen anderer User zurückgesetzt werden.
+  Der Use Case beschreibt, wie Änderungen an einem Modul rückgängig gemacht werden können. Damit können sowohl eigene Änderungen als auch die Änderungen anderer User zurückgesetzt werden.
 ][
   Studiengangsverantwortliche Person
 ][
