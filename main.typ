@@ -4,7 +4,7 @@
   title: "Konzeption und Entwicklung eines Systems zur Verwaltung und Erstellung von Modulhandbüchern",
   subtitle: "Bachelorarbeit im Studiengang Mediendesigninformatik",
   author: "Tobias Wylega",
-  author_email: "tobias@wylega.de",
+  author_email: "tobias.github.bachelorarbeit@wylega.de",
   matrikelnummer: 1629483,
   prof: [
     Prof. Dr. Dennis Allerkamp\
